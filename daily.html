@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Mango Atlas" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Mango Atlas daily market update — sentiment, themes, risks and volatility, published every trading day." />
+  <meta property="og:title" content="Mango Atlas — Daily Update" />
+  <meta property="og:description" content="Daily market sentiment, key themes, risks and volatility outlook." />
+  <meta property="og:type" content="website" />
+  <title>Daily Update | Mango Atlas</title>
+  <style>
+    :root {
+      --bg:#000;
+      --surface:#0a0a0a;
+      --text:#ededed;
+      --cream:#fef3dc;
+      --muted:#8b8b8b;
+      --faint:#5d5d5d;
+      --line:rgba(254,243,220,.09);
+      --orange:#ff990a;
+      --max:1180px;
+      color-scheme:dark;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:#000;max-width:100%;overflow-x:hidden}
+    body{
+      margin:0;min-width:320px;min-height:100vh;max-width:100%;overflow-x:hidden;
+      background:
+        radial-gradient(circle at 78% 8%,rgba(255,153,10,.05),transparent 28rem),
+        linear-gradient(180deg,#000 0%,#050505 100%);
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    ::selection{background:rgba(255,153,10,.28);color:var(--cream)}
+    a{color:inherit;text-decoration:none}
+    header,main,footer{position:relative;z-index:1}
+    header{width:min(calc(100% - 40px),var(--max));height:86px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand{display:inline-flex;align-items:center;gap:11px;color:var(--cream);font-size:14px;font-weight:650;letter-spacing:-.02em}
+    .mini-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,#171717,#080808);box-shadow:inset 0 0 0 4px #080808,0 0 0 1px rgba(255,153,10,.08)}
+    .mini-mark svg{width:23px;height:23px;display:block}
+    nav{display:flex;align-items:center;gap:27px;color:#858585;font-size:12px}
+    nav a{transition:color .18s ease}nav a:hover,nav a:focus-visible{color:var(--cream)}
+    .x-link{color:#aaa}
+
+    .wrap{width:min(calc(100% - 40px),760px);margin:0 auto;padding:88px 0 96px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 20px;color:#a2a2a2;font-size:10px;font-weight:650;letter-spacing:.17em;text-transform:uppercase}
+    .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 18px rgba(255,153,10,.72)}
+    h1{margin:0;color:var(--cream);font-size:clamp(40px,7vw,64px);font-weight:610;letter-spacing:-.06em;line-height:1}
+    .updated{margin:20px 0 0;color:#7b7b7b;font-size:13px;letter-spacing:-.01em}
+    .updated strong{color:#b9b9b9;font-weight:600}
+
+    .card{margin-top:44px;padding:44px 46px;background:rgba(255,255,255,.015);border:1px solid var(--line);border-radius:18px}
+    .card h2{margin:0 0 16px;color:var(--cream);font-size:14px;font-weight:640;letter-spacing:-.02em}
+    .card h2:not(:first-child){margin-top:34px}
+    .card p{margin:0 0 14px;color:#c7c7c7;font-size:15px;line-height:1.68;letter-spacing:-.012em}
+    .card p:last-child{margin-bottom:0}
+    .card ul{margin:0;padding:0 0 0 2px;list-style:none}
+    .card li{position:relative;margin:0 0 12px;padding-left:22px;color:#c7c7c7;font-size:15px;line-height:1.62;letter-spacing:-.012em}
+    .card li:last-child{margin-bottom:0}
+    .card li:before{content:"•";position:absolute;left:2px;color:var(--orange)}
+    .card strong{color:var(--cream);font-weight:640}
+
+    .cta{margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .cta-note{color:#7b7b7b;font-size:12px;line-height:1.5}
+    .button{min-height:45px;padding:0 17px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;font-size:12px;font-weight:650;transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease}
+    .button:hover{transform:translateY(-1px)}
+    .primary{background:var(--orange);color:#140b00;box-shadow:0 8px 30px rgba(255,153,10,.11)}
+    .primary:hover,.primary:focus-visible{background:#ffaa2c}
+
+    footer{width:min(calc(100% - 40px),var(--max));min-height:110px;margin:0 auto;display:flex;justify-content:space-between;gap:30px;color:#5f5f5f;font-size:10px;line-height:1.6;border-top:1px solid var(--line);padding-top:24px}
+    footer strong{display:block;margin-bottom:2px;color:#969696;font-size:11px;font-weight:600}footer p{margin:0;text-align:right}
+
+    @media(max-width:620px){
+      header,footer,.wrap{width:min(calc(100% - 32px),var(--max))}header{height:76px}nav{gap:18px}
+      .wrap{padding:60px 0 64px}
+      h1{font-size:clamp(38px,13vw,52px)}
+      .card{margin-top:32px;padding:30px 24px;border-radius:14px}
+      .cta{flex-direction:column;align-items:flex-start;gap:14px}
+      footer{min-height:140px;flex-direction:column;gap:12px}footer p{text-align:left}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.001ms!important;animation-duration:.001ms!important;animation-iteration-count:1!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="/" aria-label="Mango Atlas home">
+      <span class="mini-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none"><path d="M17 77V22l31 32 35-35v59H69V53L48 74 31 56v21H17Z" fill="url(#m1)"/><path d="M51 78 70 51l18 27H74l-5-8-5 8H51Z" fill="#ff990a"/><defs><linearGradient id="m1" x1="16" y1="20" x2="82" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#757575"/><stop offset="1" stop-color="#242424"/></linearGradient></defs></svg>
+      </span>
+      <span>Mango Atlas</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a class="x-link" href="https://x.com/mangoatlas" target="_blank" rel="noreferrer">@mangoatlas ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> Daily market update</div>
+      <h1>Daily Update</h1>
+      <p class="updated" id="updated">Loading…</p>
+
+      <article class="card" id="card" aria-live="polite">
+        <p id="content" style="color:#7b7b7b">Loading update…</p>
+      </article>
+
+      <div class="cta">
+        <span class="cta-note">Sentiment, themes &amp; volatility — every trading day.</span>
+        <a class="button primary" href="https://x.com/mangoatlas" target="_blank" rel="noreferrer">Follow @mangoatlas on X ↗</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div><strong>Mango Atlas</strong><span>Independent trading &amp; research desk.</span></div>
+    <p>Research and commentary only. Not investment advice.</p>
+  </footer>
+
+  <script>
+    (function () {
+      function inline(line) {
+        return line
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      }
+
+      function render(raw) {
+        var lines = String(raw || '').replace(/\r\n?/g, '\n').split('\n');
+        var out = '';
+        var inList = false;
+        for (var i = 0; i < lines.length; i++) {
+          var t = lines[i].trim();
+          if (!t) { if (inList) { out += '</ul>'; inList = false; } continue; }
+          if (/^•/.test(t)) {
+            if (!inList) { out += '<ul>'; inList = true; }
+            out += '<li>' + inline(t.replace(/^•\s*/, '')) + '</li>';
+            continue;
+          }
+          if (inList) { out += '</ul>'; inList = false; }
+          if (/^\*\*.+\*\*$/.test(t)) {
+            out += '<h2>' + inline(t) + '</h2>';
+            continue;
+          }
+          out += '<p>' + inline(t) + '</p>';
+        }
+        if (inList) out += '</ul>';
+        return out;
+      }
+
+      function fmtUpdated(iso) {
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return '';
+        var date = d.toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        var time = d.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' });
+        return 'Updated <strong>' + date + '</strong> · ' + time + ' ET';
+      }
+
+      fetch('daily.json', { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error('bad status ' + r.status); return r.json(); })
+        .then(function (data) {
+          if (data.text) document.getElementById('content').outerHTML = render(data.text);
+          else document.getElementById('content').textContent = 'No update available yet.';
+          if (data.updatedAt) {
+            var s = fmtUpdated(data.updatedAt);
+            if (s) document.getElementById('updated').innerHTML = s;
+          }
+        })
+        .catch(function () {
+          document.getElementById('content').textContent = 'No update available yet. Check back soon.';
+          document.getElementById('updated').textContent = '';
+        });
+    })();
+  </script>
+</body>
+</html>
