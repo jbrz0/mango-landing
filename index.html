@@ -52,7 +52,7 @@
     header{width:min(calc(100% - 40px),var(--max));height:86px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
     .brand{display:inline-flex;align-items:center;gap:11px;color:var(--cream);font-size:14px;font-weight:650;letter-spacing:-.02em}
     .mini-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,#171717,#080808);box-shadow:inset 0 0 0 4px #080808,0 0 0 1px rgba(255,153,10,.08)}
-    .mini-mark svg{width:23px;height:23px;display:block}
+    .mini-mark img{width:23px;height:23px;display:block;object-fit:contain}
     nav{display:flex;align-items:center;gap:27px;color:#858585;font-size:12px}
     nav a{transition:color .18s ease}nav a:hover,nav a:focus-visible{color:var(--cream)}
     .x-link{color:#aaa}
@@ -82,7 +82,7 @@
     .cross-x,.cross-y{position:absolute;background:linear-gradient(90deg,transparent,rgba(255,153,10,.15),transparent)}
     .cross-x{width:100%;height:1px}.cross-y{height:100%;width:1px;transform:rotate(90deg)}
     .main-mark{position:relative;z-index:2;width:58%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#181818,#050505);border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 0 0 9px #090909,inset 0 0 0 10px rgba(255,153,10,.15),0 28px 90px rgba(0,0,0,.72),0 0 85px rgba(255,153,10,.045)}
-    .main-mark svg{width:69%;height:69%;filter:drop-shadow(0 4px 8px rgba(0,0,0,.45))}
+    .main-mark img{width:69%;height:69%;display:block;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.45))}
     .meta{width:min(calc(100% - 40px),var(--max));margin:0 auto 78px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .meta-item{padding:27px 28px 26px;border-right:1px solid var(--line)}
     .meta-item:last-child{border-right:0}
@@ -117,7 +117,7 @@
   <header>
     <a class="brand" href="#top" aria-label="Mango Atlas home">
       <span class="mini-mark" aria-hidden="true">
-        <svg viewBox="0 0 100 100" fill="none"><path d="M17 77V22l31 32 35-35v59H69V53L48 74 31 56v21H17Z" fill="url(#m1)"/><path d="M51 78 70 51l18 27H74l-5-8-5 8H51Z" fill="#ff990a"/><defs><linearGradient id="m1" x1="16" y1="20" x2="82" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#757575"/><stop offset="1" stop-color="#242424"/></linearGradient></defs></svg>
+        <img src="logo-transparent.png" alt="">
       </span>
       <span>Mango Atlas</span>
     </a>
@@ -145,7 +145,7 @@
           <div class="longitude one"></div><div class="longitude two"></div>
           <div class="orbit"></div><div class="cross-x"></div><div class="cross-y"></div>
           <div class="main-mark">
-            <svg viewBox="0 0 100 100" fill="none"><path d="M13 78V18l35 36 39-39v64H72V51L48 75 29 55v23H13Z" fill="url(#m2)"/><path d="M50 79 72 48l21 31H77l-6-9-6 9H50Z" fill="#ff990a"/><defs><linearGradient id="m2" x1="15" y1="18" x2="87" y2="79" gradientUnits="userSpaceOnUse"><stop stop-color="#696969"/><stop offset="1" stop-color="#1b1b1b"/></linearGradient></defs></svg>
+            <img src="logo-transparent.png" alt="">
           </div>
         </div>
       </div>
