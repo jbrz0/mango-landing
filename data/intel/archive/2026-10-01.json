@@ -2,32 +2,390 @@
   "schemaVersion": 1,
   "kind": "briefing",
   "asOfDate": "2026-10-01",
-  "generatedAt": "2026-10-01T00:00:56.690Z",
+  "generatedAt": "2026-10-01T22:44:30+07:00",
   "timezone": "Asia/Bangkok",
   "provenance": {
-    "source": "Grokbot daily briefing",
-    "note": "Preserved from the previously published daily.json at Git commit ef41c631a4a1fcae2632320d69a6269c995fa518. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Smoke assemble 2026-10-01 evening BKK from Daily Briefing Discord (Neutral/Medium ~08:27 BKK), FX Events morning Discord, and Sept 30 Bloomberg Markets Daily local/Discord artifacts. NQ and FX briefing routines treated as not run (nq/fx null). No market quotes — none properly sourced. No invented prices/levels/enums."
   },
   "overview": {
-    "sentiment": "bearish",
-    "confidence": "high",
+    "sentiment": "neutral",
+    "confidence": "medium",
     "volatilityOutlook": "rising",
-    "oneLineTake": "Surging Treasury yields and deteriorating credit conditions are overwhelming AI-driven tech resilience, creating a fragile, bifurcated market with rising tail risk and single-stock dispersion.",
+    "oneLineTake": "Soft PCE bought Fed patience, but record-era yields and narrow AI leadership leave Friday's jobs print as the real October open.",
     "themes": [
-      "Relentless bond rout pushes 10Y Treasury yields to 24-year highs, crushing broad market breadth and corporate debt affordability",
-      "AI mega-cap resilience creates extreme bifurcation; the \"AI put\" props Nasdaq while nearly half the S&P 500 languishes in bear markets",
-      "Corporate credit stress intensifies via Paramount’s distressed $30B financing, rising bankruptcies, and global private-credit gating fears",
-      "Plunging consumer confidence (lowest since 2014) clashes with sticky core inflation and hawkish Fed rhetoric, keeping financial conditions tight"
+      "Soft August PCE (3.4% / core 3.0% YoY) cooled October hike odds toward the high-30%s, but the relief rally faded into the close.",
+      "Long yields still dominate: 10y poked above 5.3% and the 30y near multi-decade highs despite the inflation beat.",
+      "Narrow leadership: Nasdaq edged up on AI (Micron beat, Gemini 4) while the Dow slumped ~0.9% and most September S&P names finished lower.",
+      "Labor week is live — claims and ISM today, then Friday's NFP/unemployment/wages as the next policy pivot."
     ],
     "risks": [
-      "Credit event risk from sustained high yields squeezing leveraged corporates and real estate exposures",
-      "Energy supply shock tail risk from Iran tensions and potential U.S. diesel export restrictions",
-      "2000-style divergence between calm index volatility and spiking single-stock volatility signaling fragility in narrow leadership"
+      "Hot payrolls/wages Friday could reprice hike odds and extend the long-end selloff.",
+      "Breadth fragility — indexes propped by a thin AI cohort while credit stays stressed.",
+      "Oil/geopolitics and diesel headlines keep an inflation tail risk in play."
     ]
   },
   "markets": [],
   "nq": null,
   "fx": null,
-  "events": [],
-  "intelligence": []
+  "events": [
+    {
+      "id": "2026-10-01-usd-trump-speaks",
+      "datetime": "2026-10-01T02:30:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "President Trump Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-usd-kashkari-speaks",
+      "datetime": "2026-10-01T05:00:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "FOMC Member Kashkari Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-chf-cpi-mm",
+      "datetime": "2026-10-01T13:30:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CHF",
+      "country": "Switzerland",
+      "impact": "medium",
+      "title": "CPI m/m",
+      "forecast": "0.0%",
+      "previous": "0.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-gbp-bailey-speaks",
+      "datetime": "2026-10-01T15:00:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-usd-unemployment-claims",
+      "datetime": "2026-10-01T19:30:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "201K",
+      "previous": "197K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-eur-lagarde-speaks",
+      "datetime": "2026-10-01T20:30:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-usd-waller-speaks",
+      "datetime": "2026-10-01T21:00:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "FOMC Member Waller Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-usd-ism-manufacturing",
+      "datetime": "2026-10-01T21:00:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "ISM Manufacturing PMI",
+      "forecast": "54.8",
+      "previous": "54.6",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-01-chf-schlegel-speaks",
+      "datetime": "2026-10-01T22:30:00+07:00",
+      "date": "2026-10-01",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CHF",
+      "country": "Switzerland",
+      "impact": "medium",
+      "title": "SNB Chairman Schlegel Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-usd-avg-hourly-earnings",
+      "datetime": "2026-10-02T19:30:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Average Hourly Earnings m/m",
+      "forecast": "0.3%",
+      "previous": "0.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-usd-nfp",
+      "datetime": "2026-10-02T19:30:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Non-Farm Employment Change",
+      "forecast": "90K",
+      "previous": "162K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-usd-unemployment-rate",
+      "datetime": "2026-10-02T19:30:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "4.1%",
+      "previous": "4.1%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bb-20260930-dollar-best-month",
+      "source": "Bloomberg",
+      "headline": "Dollar Powers to Best Month Since June on Fed's Inflation Fight",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/dollar-powers-to-best-month-since-june-on-fed-s-inflation-fight",
+      "summary": "BBDXY up 1.9% this month as Warsh inflation fight and Iran energy shock lift long yields.",
+      "publishedAt": null,
+      "tags": [
+        "Macro",
+        "Rates",
+        "FX"
+      ],
+      "symbols": [
+        "DXY",
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bb-20260929-treasury-short-squeeze",
+      "source": "Bloomberg",
+      "headline": "Crowded Short Trade in Treasury Futures Boosts Risk of a Squeeze",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-29/crowded-short-trade-in-treasury-futures-boosts-risk-of-a-squeeze",
+      "summary": "Heavy shorts in Treasury futures raise squeeze risk as long yields sit at multi-decade highs.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Macro",
+        "Positioning"
+      ],
+      "symbols": [
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bb-20260930-france-oat-premium",
+      "source": "Bloomberg",
+      "headline": "France's 10-Year Bond Risk Premium Rises to 120 Basis Points",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/france-s-10-year-bond-risk-premium-rises-to-120-basis-points",
+      "summary": "French OAT spread hits another milestone on next-year political upheaval and populist fiscal risk.",
+      "publishedAt": null,
+      "tags": [
+        "Europe",
+        "Rates",
+        "Macro"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20260929-stocks-ahead-pce",
+      "source": "Bloomberg",
+      "headline": "US Stocks and Treasuries Rise Ahead of PCE and Micron",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-29/stock-market-today-dow-s-p-live-updates",
+      "summary": "Equities and bonds firm as investors await Fed's preferred inflation gauge and Micron earnings.",
+      "publishedAt": null,
+      "tags": [
+        "Macro",
+        "Equities",
+        "Inflation"
+      ],
+      "symbols": [
+        "SPX",
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bb-20260930-micron-ai-spend",
+      "source": "Bloomberg",
+      "headline": "Micron's $370 Billion Stock Rebound Hinges on AI Spending View",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/micron-s-370-billion-stock-rebound-hinges-on-ai-spending-view",
+      "summary": "Micron market-value rebound since July hinges on bullish AI memory-spend comments after the close.",
+      "publishedAt": null,
+      "tags": [
+        "Tech",
+        "Earnings",
+        "AI"
+      ],
+      "symbols": [
+        "NQ"
+      ]
+    },
+    {
+      "id": "bb-20260930-mideast-crude-flows",
+      "source": "Bloomberg",
+      "headline": "Mideast Crude Oil Flows Hit 98% of Pre-War Level, JPMorgan Says",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/mideast-crude-oil-flows-hit-98-of-pre-war-level-jpmorgan-says",
+      "summary": "JPMorgan and Goldman estimate Middle East crude flows near pre-war levels, easing supply fears.",
+      "publishedAt": null,
+      "tags": [
+        "Energy",
+        "Oil",
+        "Geopolitics"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20260930-china-mini-stimulus",
+      "source": "Bloomberg",
+      "headline": "China's Mini-Stimulus Seen Securing GDP Target, Not Much More",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/china-s-mini-stimulus-seen-securing-gdp-target-not-much-more",
+      "summary": "Beijing's biggest stimulus push since 2024 underwhelms markets, seen only enough for the GDP target.",
+      "publishedAt": null,
+      "tags": [
+        "China",
+        "Macro",
+        "Stimulus"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20260929-paramount-ma-debt",
+      "source": "Bloomberg",
+      "headline": "Paramount Deal Delay Fuels Fears of Costly $52 Billion M&A Debt",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-29/paramount-deal-delay-fuels-fears-of-costly-52-billion-m-a-debt",
+      "summary": "Paramount deal delay stokes concern over expensive $52 billion acquisition financing.",
+      "publishedAt": null,
+      "tags": [
+        "Credit",
+        "MA",
+        "Media"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20260929-ms-crypto-lab",
+      "source": "Bloomberg",
+      "headline": "Morgan Stanley Builds Crypto Lab to Test Future of Wall Street",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-29/morgan-stanley-builds-crypto-lab-to-test-future-of-wall-street",
+      "summary": "Morgan Stanley sets up a crypto lab to experiment with next-generation Wall Street workflows.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto",
+        "Banks"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20260929-boeing-navy-jet",
+      "source": "Bloomberg",
+      "headline": "Boeing Beats Northrop for Next Navy Jet Contract to Replace F-18",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-29/boeing-beats-northrop-for-next-navy-jet-contract-to-replace-f-18",
+      "summary": "Boeing wins Navy next-gen fighter; shares +3.3% premarket while Northrop Grumman falls 3.5%.",
+      "publishedAt": null,
+      "tags": [
+        "Defense",
+        "Equities"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20260929-robinhood-weekend",
+      "source": "Bloomberg",
+      "headline": "Robinhood Debuts Weekend Trading and Perpetual Futures to Customers",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-29/robinhood-debuts-weekend-trading-perpetual-futures-to-customers",
+      "summary": "Robinhood plans weekend equity trading, a first for modern US markets; shares rise on the news.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Trading",
+        "Fintech"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20260930-trump-ai-audits",
+      "source": "Bloomberg",
+      "headline": "Trump Backs Independent AI Audits in Shift of Safety Posture",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/trump-backs-independent-ai-audits-in-shift-of-safety-posture",
+      "summary": "Trump endorses independent auditors for AI system safety, shifting the administration's posture.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "Policy",
+        "Tech"
+      ],
+      "symbols": []
+    }
+  ]
 }
