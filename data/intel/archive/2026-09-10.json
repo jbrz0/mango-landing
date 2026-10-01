@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-10",
+  "generatedAt": "2026-09-10T00:10:05.237Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 72777d29629f8b6c2b9f1d602264b18cd4bcbfa0. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "An oil-driven inflation shock, escalating Iran war, and surging Treasury yields are forcing a rapid repricing of Fed policy and equity risk, pushing markets into a volatility expansion regime that demands caution from options sellers.",
+    "themes": [
+      "Oil shock above $100/bbl and escalating US-Iran military conflict are repricing inflation expectations across assets",
+      "Treasury yields surging to multi-year highs as markets pivot to pricing potential Fed rate hikes, not cuts",
+      "US-Canada trade war escalation adding supply-chain pressure alongside Middle East supply risks"
+    ],
+    "risks": [
+      "Direct US-Iran military escalation threatening Hormuz supply routes and global shipping",
+      "Fed policy error risk if oil forces hiking into an already yield-stressed, slowing economy",
+      "Treasury buyback disappointment failing to anchor long-end yields, accelerating the bond selloff"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-02",
+  "generatedAt": "2026-09-02T00:00:43.527Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 8ccaed5da0d914484e906b7af2cd15306eaf00a3. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A stagflationary shock from surging oil and yields, combined with a hawkish Fed pivot and breaking equity technicals, is driving a decisive risk-off regime with expanding volatility into September.",
+    "themes": [
+      "Middle East escalation is driving an oil supply shock, with Brent surging past $90–$94 and tanker attacks in the Strait of Hormuz threatening sustained disruptions.",
+      "A synchronized global bond rout has pushed Treasury yields to their highest since early 2025, with UK, Japanese, and European borrowing costs also spiking to multi-decade highs.",
+      "Fed Chair Kevin Warsh’s hawkish pivot has markets repricing September toward a potential rate hike, crushing the prior easing narrative and pressuring rate-sensitive assets.",
+      "Equities are breaking key technical support, with the Dow dropping 400 points and broad weakness across tech, financials, and energy-sensitive sectors despite isolated AI earnings beats."
+    ],
+    "risks": [
+      "Disorderly bond market selloff and potential liquidity stress as global yields spike in tandem.",
+      "Severe supply shock if Hormuz transit is materially disrupted by widening U.S.-Iran hostilities.",
+      "Policy error risk from a Fed hiking into a slowing economy facing energy-driven inflation."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

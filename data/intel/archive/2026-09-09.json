@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-09",
+  "generatedAt": "2026-09-09T00:01:55.971Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 99303de570e858781a9989f4d8396ea376f7cde9. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Geopolitical oil shock, resurgent Fed hawkishness, and escalating trade wars are converging to end the summer rally and drive a volatility expansion regime.",
+    "themes": [
+      "Oil supply shock: Brent crude surges toward $100 on direct U.S.-Iran military escalation and Hormuz Strait threats",
+      "Fed hawkish repricing: Strong August jobs data revives rate-hike bets, pushing Treasury yields toward 4.8%",
+      "North American trade war intensifies: Canadian retaliatory tariffs take effect while Trump targets Bombardier and Ford-China ties",
+      "AI sector dispersion: Infrastructure/memory chips rally on deal flow while software makers selloff on execution worries"
+    ],
+    "risks": [
+      "Strait of Hormuz closure or restricted zone could trigger energy price spike and global shipping freeze",
+      "Carry-trade unwind risk as yen surges to multi-month highs and Japan dumps Treasuries to fund intervention",
+      "Compressed bond volatility (6-year low post-Labor Day) may be underpricing fiscal/geopolitical tail risks"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

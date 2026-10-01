@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-17",
+  "generatedAt": "2026-09-17T00:01:30.131Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 91abc400e5f159f3a476dfdaa4dbf83d9b394de6. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "The Fed's hawkish pivot into an oil-shocked, politically charged environment has triggered a bond-market revolt and equity drawdown, pushing markets into a rising-volatility regime with acute policy and credit risk.",
+    "themes": [
+      "Hawkish Fed restart: First hike since 2023 with Warsh signaling more to come, directly defying Trump's demands for sub-1% rates and sparking a policy-credibility crisis",
+      "Bond-market revolt: 10-year Treasury yield surged to 5% (highest since 2007), mortgage rates neared 7%, and long-dated corporate issuance is freezing up",
+      "Energy-inflation feedback loop: Iran war, Saudi pipeline attacks, and diesel shortages are amplifying inflation just as the Fed tightens, creating a stagflationary impulse",
+      "Cross-asset de-risking: Dow plunged 600+ points, analysts are slashing S&P 500 targets, and the dollar is spiking as global liquidity recedes",
+      "Consumer/housing stress: Homebuilder sentiment hit a 12-month low, hedge funds are stepping up shorts in consumer names, and retail spending is being fueled by savings drawdowns"
+    ],
+    "risks": [
+      "Disorderly bond-market move and private-credit stress (US private credit default rate hit a record 6.3%; Turkish funds defaulted on redemptions)",
+      "Fed independence under active political siege, raising tail-risk of erratic policy",
+      "Escalating Middle East supply shocks that could spike oil further despite the Fed's inflation fight"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

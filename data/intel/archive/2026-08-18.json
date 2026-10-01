@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-18",
+  "generatedAt": "2026-08-18T00:01:44.664Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 960c9ad0f0e79baf532e9f2cabf6c97c07244f42. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A complacent equity market priced for perfection is running into an oil-driven inflation spike, a historic bond selloff, and fading consumer strength, making volatility expansion the clearest near-term risk for options sellers.",
+    "themes": [
+      "Geopolitical Oil Shock: Iran ceasefire expiration, Trump threats against Oman, and Hormuz disruption fears are pushing Brent above $90, creating a stagflationary supply squeeze.",
+      "Bond Rout & Fiscal Stress: 30-year Treasury yields hit 19-year highs as AI-driven inflation fears, heavy issuance, and Fed policy risk override weak economic data.",
+      "Consumer Slowdown: July retail sales missed sharply, credit card and auto delinquencies remain elevated, and big-box earnings ahead will test the soft-landing narrative.",
+      "AI Infrastructure Boom: Massive capex deals (Nvidia/OpenAI) and Anthropic revenue surge keep tech sentiment alive, but the trade is crowded and now blamed for pressuring yields and rates volatility."
+    ],
+    "risks": [
+      "VIX at 2026 lows signals extreme complacency while macro and geopolitical catalysts are stacking, setting up a volatility expansion shock.",
+      "Jane Street’s reported $15 billion loss tied to AI/systematic strategies reveals fragility in crowded quant positioning.",
+      "Renewed Trump tariff threats (Canada) add policy uncertainty on top of supply-chain and inflation pressures."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

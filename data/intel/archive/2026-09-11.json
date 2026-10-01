@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-11",
+  "generatedAt": "2026-09-11T00:15:27.117Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 47d6560e29ba9c2bb7c2a031eaf3177540e4ee44. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "An oil-supply shock, bond-market revolt, and resurgent inflation are overwhelming isolated earnings beats and forcing a stagflationary repricing across risk assets.",
+    "themes": [
+      "Oil-supply shock: Brent/WTI break $100, diesel hits records, Hormuz tanker attacks and Iran war escalation threaten sustained energy inflation",
+      "Global bond revolt: 10Y Treasury nears 5%, mortgage rates top 7%, ECB hikes to 2.5%, and Bessent’s buybacks fail to arrest the selloff",
+      "Stagflationary impulse: Surging energy costs and shipping risk are forcing markets to price Fed hikes into a slowing economy",
+      "Political risk premium: US-Canada trade war, Trump’s $5K dividend proposal, and midterm uncertainty are compounding policy instability"
+    ],
+    "risks": [
+      "Fed forced to hike into oil-driven inflation as Treasury yields breach multi-year highs",
+      "Hormuz closure or wider Iran escalation could freeze energy supply and accelerate equity drawdowns",
+      "Treasury market is rejecting policy interventions, signaling a loss of confidence in fiscal/monetary coordination"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-30",
+  "generatedAt": "2026-09-30T00:00:45.509Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 48b6234726791fad2b7802839723702c71f8273b. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Relentless long-end yield expansion is driving a stealth bear market beneath a handful of AI mega-caps, with credit stress and collapsing consumer confidence raising the probability of a volatility spike.",
+    "themes": [
+      "Long-end Treasury yields surging to multi-decade highs (30-year at 24-year high), decoupling from oil and dominating cross-asset pricing.",
+      "Extreme equity bifurcation: AI mega-caps (MSFT, NVDA) showing historic strength while nearly half the S&P 500 languishes in bear markets.",
+      "Credit stress accelerating: munis on track for worst month since 1987, high-yield debt overwhelming investors, IPOs shelved and loans pulled.",
+      "Fed policy confusion and inflation anxiety ahead of Wednesday’s PCE report, with officials sending conflicting rate-hike signals.",
+      "AI capex bubble colliding with safety backlash, regulatory void, and prominent bubble warnings."
+    ],
+    "risks": [
+      "Credit market cracks spreading from munis to corporate debt and leveraged loans.",
+      "Diesel supply crunch and potential U.S. export ban threatening energy costs and logistics.",
+      "PCE inflation surprise forcing a hawkish repricing and renewed rate-hike bets.",
+      "AI bubble deflation amid safety concerns, delayed model releases, and unsustainable infrastructure spend."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

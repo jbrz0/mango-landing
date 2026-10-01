@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-18",
+  "generatedAt": "2026-09-18T00:02:53.811Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 42a432e80710ab546e5fcc6496c9856077bf7847. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Markets are bouncing on tech dip-buying and easing oil fears, but a fresh Fed hiking cycle, live Iran war escalation, and a historic bond rout signal a transition to a higher-volatility regime with asymmetric downside risk.",
+    "themes": [
+      "Fed launches hiking cycle with first rate increase since 2023; Warsh signals more tightening and defies Trump’s sub-1% demands",
+      "Iran war and Hormuz threats drive oil volatility, with diesel shortages and airline capacity cuts spreading real-economy pain",
+      "Bond market suffers historic rout as 10-year yields breach 5%, triggering record outflows and disorderly-move risk",
+      "Tech/AI stocks lead a sharp relief rally despite bubble warnings and mounting macro headwinds"
+    ],
+    "risks": [
+      "Hormuz closure or Iranian escalation triggers immediate oil supply shock and stagflation spike",
+      "Political assault on Fed independence undermines credibility and risks policy panic",
+      "Bond market liquidity freeze or disorderly yield surge sparks cross-asset contagion"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-22",
+  "generatedAt": "2026-09-22T00:01:34.020Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 8fe4b4af7feb86f7ff53696d7b782e37a11db0ca. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bullish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "AI-fueled index records are masking Fed hawkishness, an energy supply shock, and deteriorating market breadth, creating a fragile rally vulnerable to sudden volatility expansion.",
+    "themes": [
+      "AI euphoria drives narrow tech leadership to extremes (Meta Muse surge, AMD $1T market cap, Nasdaq record closes)",
+      "Fed maintains hawkish stance with officials signaling more hikes may be needed despite softening housing and manufacturing data",
+      "Energy supply shock accelerates as diesel hits record highs above $6.50 and Middle East tensions disrupt Saudi shipping routes",
+      "U.S.-China engage in high-stakes diplomacy on trade and AI governance ahead of Trump-Xi summit"
+    ],
+    "risks": [
+      "Extreme market concentration and deteriorating breadth beneath headline index records (1999 analogies resurfacing)",
+      "Fed overtightening into clear cyclical weakness (housing starts down, manufacturing dropping, industrial production flat)",
+      "Geopolitical escalation in the Middle East (Iran tensions, Houthi strikes) and potential U.S. diesel export ban rhetoric"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

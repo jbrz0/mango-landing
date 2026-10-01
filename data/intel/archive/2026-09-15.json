@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-15",
+  "generatedAt": "2026-09-15T00:01:30.438Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 763f5891bf8c2f579b371dd0774352cfd7fd0fed. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A triple shock of AI narrative collapse, 5% yields, and an oil-driven energy crisis is forcing a violent repricing of risk across equities, rates, and credit.",
+    "themes": [
+      "AI industry leaders (OpenAI, Anthropic) are publicly calling for a development slowdown, triggering a sharp rotation out of tech and chip stocks.",
+      "The 10-year Treasury yield breached 5% for the first time since 2007, driven by persistent inflation, surging oil, and fiscal debt fears.",
+      "A multi-front energy crisis is unfolding: Saudi pipeline shut, Strait of Hormuz attacks, record diesel prices, and oil above $100."
+    ],
+    "risks": [
+      "Fed is widely expected to hike this week, with some analysts warning of multiple hikes—stagflation risk is rising.",
+      "US private credit default rate hit a record 6.3%, signaling stress in lower-quality credit markets.",
+      "Geopolitical tail risk is elevated: Houthi missile barrages, Iran drone downing, and potential Saudi export disruption."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

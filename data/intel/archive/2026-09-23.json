@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-23",
+  "generatedAt": "2026-09-23T00:01:29.268Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit ffbee07016467ea3c13d1ff999c12b814c377578. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bullish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "AI euphoria is compressing tech volatility and driving record Nasdaq highs, but hawkish Fed policy, energy supply shocks, and extreme narrow leadership create a fragile rally ripe for regime-change risk.",
+    "themes": [
+      "AI euphoria (Meta Muse, AMD $1T) drives Nasdaq to record highs and reignites Mag 7 leadership",
+      "Fed remains hawkish with officials signaling more hikes and 10-year yields holding above 5%",
+      "Energy market stress: record diesel prices, potential U.S. export ban, and Hormuz geopolitical risk",
+      "Narrow rally with Dow/financials lagging and rotation out of cyclicals into tech",
+      "U.S.-China AI diplomacy and chip tensions ahead of Trump-Xi summit"
+    ],
+    "risks": [
+      "Iran/Hormuz supply shock and escalating Mideast tensions",
+      "Fed overtightening into housing weakness and dividend cuts",
+      "AI infrastructure/data center boom showing cracks (SoftBank IPO delay, Texas permit halt)"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

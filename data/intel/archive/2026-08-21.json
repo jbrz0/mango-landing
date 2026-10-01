@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-21",
+  "generatedAt": "2026-08-21T00:03:43.358Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 89f940da2b85bb7a5044c9b3a5d73809f33e43aa. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "The rapid failure of Treasury intervention to contain surging yields, combined with consumer cracks and geopolitical energy risk, confirms a regime shift toward volatility expansion and stagflationary pressure.",
+    "themes": [
+      "Treasury yield surge resumes despite Bessent’s scaled-up buybacks, crushing the \"Bessent Put\" and reigniting the global bond rout",
+      "U.S. national debt crossing $40 trillion fuels a fiscal confidence crisis and doubts about sustainable debt management",
+      "Consumer bellwethers (Walmart, Lowe’s, Home Depot) show clear spending pullback, margin compression, and tariff-dependent outlooks",
+      "Iran war tensions and Strait of Hormuz supply risks are driving oil and diesel prices higher, adding stagflationary pressure",
+      "Fed minutes reveal growing hawkishness with officials open to rate hikes if inflation persists, complicating the macro backdrop"
+    ],
+    "risks": [
+      "Policy impotence: Failed Treasury buybacks risk triggering a broader loss of confidence in U.S. rates and dollar stability",
+      "August 21 gamma cliff threatens to amplify equity volatility amid already fragile positioning and thin liquidity",
+      "Energy shock escalation could force the Fed to tighten into a slowing consumer economy"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

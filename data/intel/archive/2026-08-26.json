@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-26",
+  "generatedAt": "2026-08-26T00:13:46.566Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 85b07cb704f5eecc67286078acd87a01d8d9e220. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Equities are rallying on tech hope and falling oil, but bond market dysfunction, escalating trade wars, and maxed-out fragility signals point to an impending volatility expansion that threatens complacent options positioning.",
+    "themes": [
+      "US-Canada trade war escalation with retaliatory tariffs threatening North American supply chains and growth",
+      "Treasury bond market stress and \"Bessent Put\" interventions fueling gold/bitcoin debasement trades while undermining fiscal confidence",
+      "Nvidia earnings and AI infrastructure debt bubble as a critical inflection for tech leadership",
+      "Pivot from military to economic warfare on Iran easing oil prices but raising dollar-weaponization tail risks"
+    ],
+    "risks": [
+      "Bond market fragility and failed yield suppression despite aggressive Treasury buybacks",
+      "Extreme market fragility readings hitting maximum levels into Nvidia/Jackson Hole/PCE event cluster",
+      "Trade war spillover to autos and energy infrastructure chokepoints"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

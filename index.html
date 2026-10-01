@@ -1,166 +1,28 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="Mango Atlas" />
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Mango Atlas is an independent trading and research desk focused on markets, systems and data." />
-  <meta property="og:title" content="Mango Atlas" />
-  <meta property="og:description" content="Independent trading & research desk. Markets, systems, data." />
-  <meta property="og:type" content="website" />
-  <title>Mango Atlas | Markets, Systems, Data</title>
-  <style>
-    :root {
-      --bg:#000;
-      --surface:#0a0a0a;
-      --text:#ededed;
-      --cream:#fef3dc;
-      --muted:#8b8b8b;
-      --faint:#5d5d5d;
-      --line:rgba(254,243,220,.09);
-      --orange:#ff990a;
-      --max:1180px;
-      color-scheme:dark;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;background:#000;max-width:100%;overflow-x:hidden}
-    body{
-      margin:0;min-width:320px;min-height:100vh;max-width:100%;overflow-x:hidden;
-      background:
-        radial-gradient(circle at 78% 15%,rgba(255,153,10,.055),transparent 29rem),
-        linear-gradient(180deg,#000 0%,#050505 100%);
-      color:var(--text);
-      font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    ::selection{background:rgba(255,153,10,.28);color:var(--cream)}
-    a{color:inherit;text-decoration:none}
-    .ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-    .ambient-grid{position:absolute;inset:0;opacity:.15;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:84px 84px;mask-image:radial-gradient(circle at 76% 34%,#000 0%,transparent 58%)}
-    .ambient-glow{position:absolute;width:680px;height:680px;border-radius:50%;right:-190px;top:-210px;border:1px solid rgba(255,153,10,.12);box-shadow:inset 0 0 110px rgba(255,153,10,.025),0 0 120px rgba(255,153,10,.018)}
-    .ambient-orbit{position:absolute;width:760px;height:230px;border:1px solid rgba(255,153,10,.11);border-radius:50%;right:-100px;top:110px;transform:rotate(-17deg)}
-    .ambient-orbit.two{width:610px;height:305px;right:-40px;top:82px;transform:rotate(18deg);border-color:rgba(255,255,255,.05)}
-    header,main,footer{position:relative;z-index:1}
-    header{width:min(calc(100% - 40px),var(--max));height:86px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
-    .brand{display:inline-flex;align-items:center;gap:11px;color:var(--cream);font-size:14px;font-weight:650;letter-spacing:-.02em}
-    .mini-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,#171717,#080808);box-shadow:inset 0 0 0 4px #080808,0 0 0 1px rgba(255,153,10,.08)}
-    .mini-mark img{width:23px;height:23px;display:block;object-fit:contain}
-    nav{display:flex;align-items:center;gap:27px;color:#858585;font-size:12px}
-    nav a{transition:color .18s ease}nav a:hover,nav a:focus-visible{color:var(--cream)}
-    .x-link{color:#aaa}
-    .hero{position:relative;overflow:hidden;width:min(calc(100% - 40px),var(--max));min-height:670px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(340px,.9fr);gap:48px;align-items:center;padding:84px 0 74px}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 27px;color:#a2a2a2;font-size:10px;font-weight:650;letter-spacing:.17em;text-transform:uppercase}
-    .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 18px rgba(255,153,10,.72)}
-    h1{margin:0;max-width:760px;color:var(--cream);font-size:clamp(66px,7.55vw,112px);font-weight:610;letter-spacing:-.074em;line-height:.9}
-    h1 span{color:var(--orange);text-shadow:0 0 38px rgba(255,153,10,.08)}
-    .lede{max-width:620px;margin:31px 0 0;color:#a0a0a0;font-size:clamp(17px,1.5vw,20px);line-height:1.58;letter-spacing:-.018em}
-    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
-    .button{min-height:45px;padding:0 17px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;font-size:12px;font-weight:650;transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease}
-    .button:hover{transform:translateY(-1px)}
-    .primary{background:var(--orange);color:#140b00;box-shadow:0 8px 30px rgba(255,153,10,.11)}
-    .primary:hover,.primary:focus-visible{background:#ffaa2c}
-    .ghost{color:#c6c6c6;background:rgba(255,255,255,.022);border-color:rgba(254,243,220,.15)}
-    .ghost:hover,.ghost:focus-visible{color:var(--cream);background:rgba(255,255,255,.045);border-color:rgba(254,243,220,.22)}
-    .visual{display:grid;place-items:center}
-    .globe{position:relative;width:min(35vw,430px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 62% 35%,rgba(255,153,10,.055),transparent 56%)}
-    .globe:before{content:"";position:absolute;inset:3%;border-radius:50%;border:1px solid rgba(255,153,10,.12);box-shadow:0 0 78px rgba(255,153,10,.03)}
-    .globe:after{content:"";position:absolute;inset:17%;border-radius:50%;border:1px solid rgba(255,255,255,.06)}
-    .latitude,.longitude,.orbit{position:absolute;border:1px solid rgba(255,255,255,.055);border-radius:50%}
-    .latitude.one{width:78%;height:28%}
-    .latitude.two{width:90%;height:44%}
-    .longitude.one{width:36%;height:88%}
-    .longitude.two{width:62%;height:94%;transform:rotate(38deg)}
-    .orbit{width:118%;height:30%;transform:rotate(-17deg);border-color:rgba(255,153,10,.14)}
-    .cross-x,.cross-y{position:absolute;background:linear-gradient(90deg,transparent,rgba(255,153,10,.15),transparent)}
-    .cross-x{width:100%;height:1px}.cross-y{height:100%;width:1px;transform:rotate(90deg)}
-    .main-mark{position:relative;z-index:2;width:58%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#181818,#050505);border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 0 0 9px #090909,inset 0 0 0 10px rgba(255,153,10,.15),0 28px 90px rgba(0,0,0,.72),0 0 85px rgba(255,153,10,.045)}
-    .main-mark img{width:100%;height:100%;margin-top: 5px; display:block;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.45))}
-    .meta{width:min(calc(100% - 40px),var(--max));margin:0 auto 78px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .meta-item{padding:27px 28px 26px;border-right:1px solid var(--line)}
-    .meta-item:last-child{border-right:0}
-    .meta-kicker{color:#5d5d5d;font:600 9px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}
-    .meta-item h2{margin:17px 0 8px;color:#dcd8cf;font-size:17px;font-weight:560;letter-spacing:-.025em}
-    .meta-item p{margin:0;color:#777;font-size:12px;line-height:1.55}
-    footer{width:min(calc(100% - 40px),var(--max));min-height:110px;margin:0 auto;display:flex;justify-content:space-between;gap:30px;color:#5f5f5f;font-size:10px;line-height:1.6}
-    footer strong{display:block;margin-bottom:2px;color:#969696;font-size:11px;font-weight:600}footer p{margin:0;text-align:right}
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr;min-height:auto;padding:78px 0 66px}
-      .visual{position:absolute;right:-180px;top:36px;z-index:-1;opacity:.34;max-width:100vw;pointer-events:none}
-      .globe{width:450px}.lede{max-width:560px}.meta{grid-template-columns:1fr}
-      .meta-item{border-right:0;border-bottom:1px solid var(--line)}.meta-item:last-child{border-bottom:0}
-    }
-    @media(max-width:620px){
-      header,.hero,.meta,footer{width:min(calc(100% - 32px),var(--max))}header{height:76px}nav{gap:18px}nav a:first-child{display:none}
-      .hero{padding:68px 0 54px}.eyebrow{font-size:9px;margin-bottom:22px}h1{font-size:clamp(58px,20vw,82px);line-height:.92}.lede{margin-top:26px;font-size:16px}.actions{margin-top:28px}
-      .visual{right:-185px;top:8px;opacity:.25;max-width:100vw}.globe{width:min(445px,112vw)}.meta{margin-bottom:58px}.meta-item{padding:24px 22px}
-      footer{min-height:140px;flex-direction:column;gap:12px}footer p{text-align:left}
-    }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.001ms!important;animation-duration:.001ms!important;animation-iteration-count:1!important}}
-  </style>
-</head>
-<body>
-  <div class="ambient" aria-hidden="true">
-    <div class="ambient-grid"></div>
-    <div class="ambient-glow"></div>
-    <div class="ambient-orbit"></div>
-    <div class="ambient-orbit two"></div>
-  </div>
-
-  <header>
-    <a class="brand" href="#top" aria-label="Mango Atlas home">
-      <span class="mini-mark" aria-hidden="true">
-        <img src="logo-transparent.png" alt="">
-      </span>
-      <span>Mango Atlas</span>
-    </a>
-    <nav aria-label="Primary navigation">
-      <a href="#desk" style="display: none;">Desk</a>
-      <a class="x-link" href="https://x.com/mangoatlas" target="_blank" rel="noreferrer">@mangoatlas ↗</a>
-    </nav>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div>
-        <div class="eyebrow"><span class="dot"></span> Independent trading &amp; research desk</div>
-        <h1>Markets.<br>Systems.<br><span>Data.</span></h1>
-        <p class="lede">Researching market structure, systematic execution and the infrastructure behind better decisions.</p>
-        <div class="actions">
-          <a class="button primary" href="https://x.com/mangoatlas" target="_blank" rel="noreferrer">Follow on X ↗</a>
-          <a class="button ghost" href="#desk" style="display: none;">View the desk</a>
-        </div>
-      </div>
-
-      <div class="visual" aria-hidden="true">
-        <div class="globe">
-          <div class="latitude one"></div><div class="latitude two"></div>
-          <div class="longitude one"></div><div class="longitude two"></div>
-          <div class="orbit"></div><div class="cross-x"></div><div class="cross-y"></div>
-          <div class="main-mark">
-            <img src="logo-transparent.png" alt="">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="meta" id="desk" aria-label="Focus areas">
-      <article class="meta-item"><div class="meta-kicker">01 / Markets</div><h2>Cross-asset research</h2><p>Currencies, indices, metals and digital assets.</p></article>
-      <article class="meta-item"><div class="meta-kicker">02 / Systems</div><h2>Systematic process</h2><p>Rules, testing, automation and execution infrastructure.</p></article>
-      <article class="meta-item"><div class="meta-kicker">03 / Data</div><h2>Decision context</h2><p>Price, volume, positioning and market structure.</p></article>
-    </section>
-  </main>
-
-  <footer>
-    <div><strong>Mango Atlas</strong><span>Independent trading &amp; research desk.</span></div>
-    <p>Research and commentary only. Not investment advice.</p>
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Free market intelligence from Mango Atlas. Daily macro, Nasdaq and FX research, economic events, sourced news summaries and interactive charts.">
+    <meta property="og:title" content="Mango Atlas Market Intelligence">
+    <meta property="og:description" content="The daily market picture. Independent macro, Nasdaq and FX intelligence, free and open to everyone.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mangoatlas.xyz/">
+    <meta property="og:image" content="https://mangoatlas.xyz/logo-transparent.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://mangoatlas.xyz/">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Mango Atlas">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Mango Atlas Market Intelligence</title>
+  </head>
+  <body>
+    <div id="app"><p class="initial-loading">Mango Atlas · Loading market intelligence…</p></div>
+    <noscript><p>This dashboard needs JavaScript to display research and interactive charts. <a href="/data/intel/current.json">Read the latest structured briefing.</a></p></noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

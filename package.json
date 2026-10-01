@@ -1,0 +1,26 @@
+{
+  "name": "mango-atlas-market-intelligence",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && tsx scripts/build.ts",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "intel:update": "tsx scripts/intel.ts update",
+    "intel:validate": "tsx scripts/intel.ts validate",
+    "intel:publish": "tsx scripts/publish.ts"
+  },
+  "dependencies": { "zod": "^4.1.0" },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.18.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.0"
+  }
+}

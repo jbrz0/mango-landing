@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-25",
+  "generatedAt": "2026-09-25T00:00:49.680Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit f8dd1b9295df6ac1bd9dce7321b741ff9e14a08a. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A historic bond selloff and resurgent inflation shocks are overwhelming narrow equity resilience, driving cross-asset volatility expansion and acute macro tail-risk.",
+    "themes": [
+      "Historic bond rout: 30-year Treasury yields at highest since 2004, 10-year near 5.2%, crushing rate-sensitive assets and pushing mortgage rates above 7%",
+      "Fed re-hawkishness: Officials signal another pre-election hike is likely, repricing the terminal rate higher and killing the soft-landing narrative",
+      "Oil/diesel inflation shock: Iran war risk and potential U.S. diesel export ban threaten to reignite goods and food inflation even as crude whipsaws on Hormuz diplomacy",
+      "Fragile equity leadership: Narrow AI/mega-cap strength props up headline indexes while small caps, housing, and industrials buckle under soaring real rates"
+    ],
+    "risks": [
+      "Financial system \"breakage\" from the fastest rate-rise cycle in decades (EM carry trade unwind, housing freeze, credit stress)",
+      "Iran/Hormuz geopolitical tail risk and a diesel ban-driven food price spiral"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

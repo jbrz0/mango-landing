@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-25",
+  "generatedAt": "2026-08-25T00:22:48.150Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 1bb84c5238894eb806adba349fb2aec7cfdf5c8b. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A perfect storm of trade war escalation, failed Treasury intervention, and AI jitters ahead of Nvidia earnings points to continued risk-off pressure with the debasement trade (BTC/gold) as the primary beneficiary.",
+    "themes": [
+      "Escalating US-Canada trade war — Talks collapsed, 50% auto/steel tariffs effective Jan 1, Canada vows dollar-for-dollar retaliation starting Sept 8; CAD tumbling, Canadian stocks whipsawing, and Ford's $3B Canadian bet caught in crosshairs.",
+      "Iran economic warfare intensifies — Bessent announces \"economic D-Day\" sanctions; Hormuz shipping costs hit $20M per supertanker; US scraps Korea marine drills; oil prices falling on supply expectations but risk premium remains elevated.",
+      "Treasury intervention failing — Bessent's bond buyback program dismissed as \"financial repression\" by Citadel Securities; Goldman/Wells say buybacks won't cut long rates; 30-year yield resumed climb despite intervention; prediction markets doubt effectiveness.",
+      "Tech/AI selloff ahead of Nvidia earnings — Chip rout dragging indices lower; Broadcom credit risk soaring on mega AI debt financing; SEC investigating near-implosion of AI hedge fund; Nvidia earnings and Jackson Hole looming as pivotal tests.",
+      "Debasement trade surging — Bitcoin up on biggest 3-day rally since 2023, approaching $80K; Bessent's bond maneuvers fueling crypto/gold narrative; Wall Street refocusing on debasement trade."
+    ],
+    "risks": [
+      "Trade war escalation — Trump threatening even higher tariffs; Canada \"at war\" rhetoric; potential QE return if trade war damages economy.",
+      "Bond market dysfunction — Treasury intervention failing could trigger further yield spike; Fed owns >50% of 10-15yr maturities; basis trade distortions.",
+      "AI credit stress — Broadcom's mega AI debt backstops and Guggenheim loan at 73-cent low signal cracks in leveraged AI financing.",
+      "Geopolitical tail risk — Iran bounties on Trump family, cyberattacks on UK power grid, and potential Hormuz disruption."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

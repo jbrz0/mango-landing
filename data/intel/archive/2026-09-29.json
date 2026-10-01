@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-29",
+  "generatedAt": "2026-09-29T00:01:44.822Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 6513338bc5a0b9c260d0b3e25ff70e28bf21e01d. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A three-headed monster of surging bond yields, geopolitical oil shock, and AI trade fragility is forcing a defensive rotation and raising the probability of a volatility expansion.",
+    "themes": [
+      "Bond Yield Shock: 10-year Treasury yield surging above 5.2%, hitting multi-decade highs, driving a broad risk-off rotation and pressuring tech/growth stocks.",
+      "Geopolitical Oil Spike: US-Iran tensions escalating after Trump rejects ceasefire, crude oil surging, and a potential US diesel export ban adding to energy-driven inflation fears.",
+      "AI Trade Under Pressure: Rising yields and debt costs threatening AI capex; Michael Burry and others calling a near-term correction; Oracle downgrade; bond market \"chicken\" with Treasury."
+    ],
+    "risks": [
+      "Credit Contagion: CMBS losses hitting AAA tranches, high-yield debt deluge overwhelming investors, and corporate debt maturities testing borrowers as rates rise.",
+      "Midterm Election Uncertainty: Options pricing muted moves, but political risk (Senate tossups, House control) could trigger a volatility spike post-election.",
+      "Consumer Strain: Consumer sentiment near record lows, leisure sector stress, and immigration crackdown disrupting labor supply (cattle slaughter, housing)."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

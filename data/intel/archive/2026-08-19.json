@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-19",
+  "generatedAt": "2026-08-19T00:05:43.432Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit d624ec9b1601a7fc69842ab42c2a187765a36581. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A violent bond rout and Hormuz-driven oil spike are squeezing tech valuations and threatening stagflation, leaving the Fed trapped and option sellers exposed to regime-shift risk.",
+    "themes": [
+      "Treasury yields surging to multi-year highs on fiscal drift and debt-supply fears, hammering rate-sensitive tech valuations",
+      "AI/chip stocks leading equity declines as the AI capex boom faces bubble-risk scrutiny and higher discount rates",
+      "Iran/Hormuz stalemate escalating oil prices (Brent >$90) and raising stagflationary tail risks",
+      "Consumer spending showing cracks with weak retail data and frozen housing conditions",
+      "Bond vigilantes overriding Fed expectations, with traders hedging against a 2027 pivot while yields keep climbing"
+    ],
+    "risks": [
+      "Strait of Hormuz closure or direct military escalation causing an oil price shock",
+      "US fiscal crisis/debt spiral forcing sustained higher yields and crowding out private investment",
+      "Tariff escalation (50% on Canada) adding supply-chain inflation while growth slows"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

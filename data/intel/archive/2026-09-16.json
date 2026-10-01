@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-16",
+  "generatedAt": "2026-09-16T00:00:16.770Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit aeba9fa113aeef80720eccfdc6d2cb1eabc1210d. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "The market is caught in a three-way pincer of energy-driven inflation, a broken AI narrative, and a bond market revolt—this is a regime change event, not a dip to buy.",
+    "themes": [
+      "Energy Shock & Stagflation Fears: Oil above $105, diesel at records, Saudi pipeline shut, and Iran war costs are driving a classic stagflation narrative—higher inflation + slowing growth.",
+      "Bond Market Regime Shift: 10-year yield breached 5% (highest since 2007), with the bond market explicitly rejecting Treasury Secretary Bessent’s intervention. This is a macro repricing, not a blip.",
+      "AI Narrative Fracture: Top AI CEOs (Anthropic, OpenAI) are publicly calling for a slowdown, while chip stocks (NVDA, MU) are getting crushed. The \"AI is a hoax\" vs. \"AI is existential risk\" clash is creating a sector-wide volatility event.",
+      "Fed Forced to Hike: Market is pricing a rate hike (first in 3 years) amid persistent inflation. The Fed is trapped between energy-driven CPI and a slowing economy."
+    ],
+    "risks": [
+      "Saudi Pipeline Outage: If the East-West pipeline stays down for weeks, global oil supply tightens dramatically—tail risk for energy prices and inflation.",
+      "AI Slowdown Becoming a Selloff: If the \"slow down\" rhetoric shifts from safety to capex cuts, the entire AI capex cycle (and the stocks priced for it) could unwind violently.",
+      "Bond Market Disorder: BofA flags risk of disorderly bond move. Hedge funds are the wild card—forced deleveraging could cascade into equities."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

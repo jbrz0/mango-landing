@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-17",
+  "generatedAt": "2026-08-17T00:00:31.027Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 51e4613361ed06cbb2f265561970d72ef1783fbf. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Record highs are resilient, but AI-leverage agg, inflation rears under rates, and fading handheld/main real spur climbing tail risk.",
+    "themes": [
+      "Equities remain at/near record highs, but trading is increasingly passive-minded and “eerie calm” now masks fast-shipping investor sentiment — record breadth is thin.",
+      "AI infrastructure is the primary risk surface: massive capex, $500B AI financing platforms, leveraged Nvidia-linked structures, shadow credit backstops, and dislocation from names like Jane Street animate being the fault line if AI capex disappoints or rates climb.",
+      "Inflation is cooling enough to cap near-term Fed hikes, but sticky core goods, AI-driven rate fears, and a steepening global yield curve keep bond markets central to equity valuations — bonds are a muted lead risk, not relief.",
+      "Consumer health is the counter-rally theme: weak July retail sales, stalled real pay, raised credit card and auto delinquencies, and a string of “health check” big-box earnings set up a decisive macro disinflation test."
+    ],
+    "risks": [
+      "AI-related leverage and linked derivatives: repeated references to demand for yield-coated risk, “phantom quality” credit, and $70B backstops raise tail-risk spreading/distribution potential.",
+      "Geopolitical tension in Middle East/Iran plus Strait shocks and war-spot oil scarcity remain live but not yet repriced — fast spike in gas/violence sensitive.",
+      "Volatility compression at records: with Hindenburg-style technical warnings flashing and old player “sword overhang” risk, any earnings or data miss becomes a self-reinforcing deleveraging event through ETFs."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

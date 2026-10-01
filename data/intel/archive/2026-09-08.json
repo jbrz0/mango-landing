@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-08",
+  "generatedAt": "2026-09-08T00:04:37.014Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit da72bd468a0589d9c636924ce635d29f1973168f. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Direct US-Iran conflict, record energy prices, and a hawkish Fed reprice are pushing markets into a stagflationary risk-off regime with expanding volatility across equities and rates.",
+    "themes": [
+      "Direct US-Iran military escalation and Hormuz Strait supply threats are driving oil/diesel to record highs, repricing the inflation outlook",
+      "Strong August payrolls (+162k) triggered a hawkish Fed reprice, lifting yields toward 4.8% and pressuring equities",
+      "China is injecting $54bn+ into banks/insurers to combat property weakness while halting rare earth shipments to the US",
+      "AI/memory chip trade remains a crowded bright spot (Micron, Sandisk, Korean semis) even as broad markets weaken",
+      "Commodity inflation is broadening: copper at all-time highs, food prices at 2022 peaks, and iron ore reclaiming $100"
+    ],
+    "risks": [
+      "Strait of Hormuz closure or Iranian \"restricted zone\" could trigger an immediate oil spike and global supply shock",
+      "Stagflationary dynamics are building: manufacturing/construction data is softening while energy and food costs accelerate",
+      "Japan sold a record $80bn of reserves (likely Treasuries) to defend the yen, adding Treasury supply pressure",
+      "Credit stress signals are emerging (Australian developer insolvency, FICO plunge, complex debt concerns)"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

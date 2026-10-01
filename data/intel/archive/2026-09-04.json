@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-04",
+  "generatedAt": "2026-09-04T00:01:37.921Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit f6ef8b76943bb4211e0491347663883cc1369a67. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bullish",
+    "confidence": "high",
+    "volatilityOutlook": "falling",
+    "oneLineTake": "Equities are rallying hard on a dovish Fed repricing, but the bond market and oil remain coiled threats that could snap sentiment on the next data print.",
+    "themes": [
+      "Dovish Fed pivot dominates: Waller signals rate hold, crushing rate-hike bets and igniting a broad equity rally.",
+      "AI capex narrative re-accelerates: Nvidia’s $13B Hugging Face deal and Snowflake’s AI-fueled beat reinforce the compute cycle.",
+      "Bond market stress is being contained by Fed rhetoric, allowing risk assets to decouple from yields for now."
+    ],
+    "risks": [
+      "Geopolitical oil spike: Iran strikes Kuwait and Hormuz tanker attacks keep Brent above $95, threatening inflation pass-through.",
+      "Global bond rout is not resolved: Yields near multi-year highs; any hawkish CPI surprise could reverse the risk-on move violently."
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

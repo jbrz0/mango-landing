@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-20",
+  "generatedAt": "2026-08-20T00:00:28.474Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit e050070d5a0871e26514aa46b46b08e0a9341785. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Treasury buybacks are masking severe fiscal and monetary stress, leaving volatility asymmetrically skewed to the upside.",
+    "themes": [
+      "Treasury buybacks suppressing yields amid $40T debt overhang and fiscal stress",
+      "Fed minutes reveal growing support for rate hikes if inflation doesn't cool",
+      "Bond market volatility transmitting to tech/semiconductor sector weakness",
+      "Middle East tensions keeping oil elevated and supply chains at risk"
+    ],
+    "risks": [
+      "September corporate issuance wall could shatter Treasury market calm",
+      "Strait of Hormuz escalation threatening energy supply and inflation",
+      "Fed rate hike threat amid sticky inflation and record debt"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

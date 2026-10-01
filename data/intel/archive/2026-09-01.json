@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-01",
+  "generatedAt": "2026-09-01T00:03:12.313Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 4318780ba4dd71e28e1f44b00698d700fd8c8bda. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A hawkish monetary shock layered atop a live geopolitical conflict and negative seasonal currents is forcing a rapid repricing of risk, pushing volatility higher and favoring defensive positioning.",
+    "themes": [
+      "Hawkish Fed pivot under Warsh reprices rate-hike risk, sending 10-year yields above 4.75% and tightening financial conditions",
+      "U.S.-Iran military escalation drives Brent crude above $90/bbl, stoking stagflationary supply-shock fears across assets",
+      "AI boom persists but equity leadership narrows to mega-cap tech while small-caps and breadth deteriorate",
+      "September seasonality collides with weakening labor data and geopolitical risk, raising probability of a volatility regime shift"
+    ],
+    "risks": [
+      "Strait of Hormuz / Iran war escalation threatens sustained energy price spikes and logistics disruption",
+      "Fed hiking into deteriorating jobs data (QCEW stall, -178k benchmark revision) risks a hard-landing policy error",
+      "Leveraged positioning and thin breadth leave the market vulnerable to rapid de-risking flows"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

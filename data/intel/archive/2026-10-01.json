@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-10-01",
+  "generatedAt": "2026-10-01T00:00:56.690Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit ef41c631a4a1fcae2632320d69a6269c995fa518. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Surging Treasury yields and deteriorating credit conditions are overwhelming AI-driven tech resilience, creating a fragile, bifurcated market with rising tail risk and single-stock dispersion.",
+    "themes": [
+      "Relentless bond rout pushes 10Y Treasury yields to 24-year highs, crushing broad market breadth and corporate debt affordability",
+      "AI mega-cap resilience creates extreme bifurcation; the \"AI put\" props Nasdaq while nearly half the S&P 500 languishes in bear markets",
+      "Corporate credit stress intensifies via Paramount’s distressed $30B financing, rising bankruptcies, and global private-credit gating fears",
+      "Plunging consumer confidence (lowest since 2014) clashes with sticky core inflation and hawkish Fed rhetoric, keeping financial conditions tight"
+    ],
+    "risks": [
+      "Credit event risk from sustained high yields squeezing leveraged corporates and real estate exposures",
+      "Energy supply shock tail risk from Iran tensions and potential U.S. diesel export restrictions",
+      "2000-style divergence between calm index volatility and spiking single-stock volatility signaling fragility in narrow leadership"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-08-24",
+  "generatedAt": "2026-08-24T00:01:05.042Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit f6e7bd1642a7bdffad1e0141719260b87d72ae12. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Trade-war escalation, a revolting bond market, and a crowded catalyst calendar are driving a volatility expansion that makes short-gamma exposure dangerous ahead of Nvidia and Jackson Hole.",
+    "themes": [
+      "US-Canada trade war erupts as talks collapse and retaliatory tariffs hit",
+      "Treasury bond-market intervention fails to stem rising yields amid $40T debt anxiety",
+      "Nvidia earnings and Jackson Hole stack event risk in a fragile tape",
+      "Consumer weakness surfaces with Walmart’s slowest sales growth in years"
+    ],
+    "risks": [
+      "Bond-market confidence cracking as \"Bessent Put\" fizzles and fiscal dominance grows",
+      "Iran sanctions and Red Sea tensions threatening energy supply chains",
+      "AI sector repricing risk if Nvidia guidance misses elevated capex expectations"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}

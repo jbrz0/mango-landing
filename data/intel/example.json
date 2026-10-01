@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "kind": "example",
+  "asOfDate": "2026-01-15",
+  "generatedAt": "2026-01-15T08:00:00+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": { "source": "Documentation fixture", "note": "EXAMPLE ONLY. Synthetic research and numbers for schema and UI tests. Never publish this fixture." },
+  "overview": {
+    "sentiment": "neutral", "confidence": "low", "volatilityOutlook": "stable",
+    "oneLineTake": "EXAMPLE: Wait for the scheduled release before reassessing the research view.",
+    "themes": ["EXAMPLE: Macro uncertainty remains the dominant theme."],
+    "risks": ["EXAMPLE: An unexpected release could change the volatility outlook."]
+  },
+  "markets": [
+    { "symbol": "NQ", "label": "E-mini Nasdaq 100 continuous futures", "instrumentType": "futures", "price": 20000, "changePct": 0.25, "unit": "points", "source": "Synthetic test fixture", "updatedAt": "2026-01-15T07:50:00+07:00", "status": "delayed" },
+    { "symbol": "US10Y", "label": "US 10-year Treasury yield", "instrumentType": "yield", "price": 4, "changePct": null, "unit": "percent", "source": "Synthetic test fixture", "updatedAt": "2026-01-15T07:50:00+07:00", "status": "snapshot" },
+    { "symbol": "VIX", "label": "CBOE Volatility Index", "instrumentType": "volatility_index", "price": null, "changePct": null, "unit": "points", "source": null, "updatedAt": null, "status": "unavailable" }
+  ],
+  "nq": {
+    "bias": "mildly_bullish", "conviction": "low", "regime": "EXAMPLE: Range-bound",
+    "summary": "EXAMPLE: A synthetic Nasdaq briefing used to demonstrate the complete contract.",
+    "primaryCatalyst": "EXAMPLE: Scheduled economic release.", "primaryRisk": "EXAMPLE: Weak participation.",
+    "overnight": "EXAMPLE: Session context.", "macro": "EXAMPLE: Rates context.", "volatility": "EXAMPLE: Options and volatility context.",
+    "sentimentShortTerm": "neutral", "sentimentMediumTerm": "mildly_bullish",
+    "megaCaps": [{ "symbol": "MSFT", "changePct": null, "context": "EXAMPLE: Leadership context without a quoted move.", "source": "Synthetic test fixture", "updatedAt": null }],
+    "semiconductors": [{ "symbol": "NVDA", "changePct": 0.5, "context": "EXAMPLE: Synthetic move for testing.", "source": "Synthetic test fixture", "updatedAt": "2026-01-15T07:50:00+07:00" }],
+    "premarket": [{ "symbol": "AAPL", "changePct": null, "context": "EXAMPLE: No price supplied.", "source": "Synthetic test fixture", "updatedAt": null }]
+  },
+  "fx": {
+    "macroPulse": "EXAMPLE: A synthetic dollar view, not current market research.",
+    "instruments": [
+      { "symbol": "EURUSD", "bias": "neutral", "driver": "EXAMPLE: Waiting for data.", "posture": "Wait for confirmation", "support": [1.05], "resistance": [1.1], "comments": "EXAMPLE levels only." },
+      { "symbol": "USDJPY", "bias": null, "driver": null, "posture": null, "support": [], "resistance": [], "comments": null }
+    ]
+  },
+  "events": [
+    { "id": "example-release", "datetime": "2026-01-15T19:30:00+07:00", "date": "2026-01-15", "timeLabel": null, "timezone": "Asia/Bangkok", "currency": "USD", "country": "United States", "impact": "high", "title": "EXAMPLE economic release", "forecast": null, "previous": null, "actual": null, "source": "https://www.forexfactory.com/calendar" },
+    { "id": "example-tentative", "datetime": null, "date": "2026-01-16", "timeLabel": "tentative", "timezone": "Asia/Bangkok", "currency": "JPY", "country": "Japan", "impact": "medium", "title": "EXAMPLE tentative event", "forecast": null, "previous": null, "actual": null, "source": "https://www.forexfactory.com/calendar" }
+  ],
+  "intelligence": [
+    { "id": "example-macro", "source": "Example source", "headline": "EXAMPLE: Macro story headline", "url": "https://example.com/macro", "summary": "Original synthetic summary for documentation. This is not a real news article or copied publisher text.", "publishedAt": "2026-01-15T07:30:00+07:00", "tags": ["Macro", "Rates"], "symbols": ["DXY"] },
+    { "id": "example-tech", "source": "Example source", "headline": "EXAMPLE: Technology story headline", "url": "https://example.com/tech", "summary": "Synthetic technology summary for filter testing.", "publishedAt": null, "tags": ["Technology"], "symbols": ["NQ"] }
+  ]
+}

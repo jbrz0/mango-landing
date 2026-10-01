@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-09-03",
+  "generatedAt": "2026-09-03T00:01:25.742Z",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Grokbot daily briefing",
+    "note": "Preserved from the previously published daily.json at Git commit 8c73561ebdb92cf8450cf789cccb7a6b726d86e8. Research statements were migrated verbatim, not independently verified. No prices were inferred from prose."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "high",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A toxic macro trifecta of surging bond yields, a live geopolitical oil shock, and a hawkish Fed pivot is driving volatility expansion and eroding equity support despite a tentative relief bounce.",
+    "themes": [
+      "Global bond rout: Treasury yields surged past 4.75% to multi-year highs as inflation fears and $40T debt supply overwhelm markets",
+      "Geopolitical oil shock: Brent crude breached $95/bbl on active U.S.-Iran strikes and Hormuz tanker attacks, reigniting stagflation risk",
+      "Fed regime shift: September rate-hike odds jumped sharply after hawkish signals from Chair Warsh and Governor Barr",
+      "AI earnings dispersion: Dell, HPE, and Snowflake rallied on infrastructure demand while Broadcom and Palantir sold off despite beats"
+    ],
+    "risks": [
+      "Stagflationary trap: Fed hiking into the weakest ADP jobs print in 7 months (38K) with oil prices spiking",
+      "Sovereign debt instability: U.S. debt crossed $40T as global borrowing costs hit decade highs",
+      "Hormuz escalation: sustained supply disruption risk with naval mines and projectile attacks on supertankers"
+    ]
+  },
+  "markets": [],
+  "nq": null,
+  "fx": null,
+  "events": [],
+  "intelligence": []
+}
