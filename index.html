@@ -2,6 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <!-- Google Analytics: production domains only, excluding local and preview traffic. -->
+    <script>
+      if (['mangoatlas.xyz', 'www.mangoatlas.xyz'].includes(window.location.hostname)) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-T8K5KE5246');
+        const googleTag = document.createElement('script');
+        googleTag.async = true;
+        googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-T8K5KE5246';
+        document.head.appendChild(googleTag);
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Free market intelligence from Mango Atlas. Daily macro, Nasdaq and FX research, economic events, sourced news summaries and interactive charts.">

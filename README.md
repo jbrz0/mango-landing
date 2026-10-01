@@ -90,6 +90,10 @@ All app times are Asia/Bangkok (ICT), with 12-hour display. Daily research and n
 
 If adding a keyed API later, introduce a server-side provider adapter and server-only environment variables. Never add a credential to a `VITE_*` variable; this frontend is public.
 
+## Analytics
+
+Google Analytics uses the [Google tag](https://developers.google.com/tag-platform/gtagjs) with measurement ID `G-T8K5KE5246`, configured in `index.html`. It loads asynchronously only on `mangoatlas.xyz` and `www.mangoatlas.xyz`, so local development, browser tests and Vercel preview domains do not send analytics traffic. The measurement ID is public and requires no environment variable or secret.
+
 ## Deployment
 
 The existing GitHub → Vercel integration is preserved. `vercel.json` explicitly runs `npm ci` and `npm run build` and serves `dist`. `/daily` and `/daily.html` permanently redirect to `/`. Vercel's build itself validates data; it does not depend on GitHub Actions finishing first. The GitHub workflow additionally runs validation, type checking, unit tests, production build and browser tests on every push/PR.
