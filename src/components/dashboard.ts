@@ -18,19 +18,12 @@ export function shell(chart: string) {
   <div class="subnav"><nav aria-label="Dashboard sections"><a class="active" href="#overview">Overview</a><a href="#nasdaq">Nasdaq</a><a href="#charts">Charts</a><a href="#fx">FX</a><a href="#intelligence">Intelligence</a></nav><span class="public-label">INDEPENDENT RESEARCH <span>/</span> OPEN ACCESS</span></div>
   <main id="main" class="page-wrap"><div class="page-heading"><div><p class="eyebrow"><span class="orange">THE DAILY PICTURE</span> / MACRO · NASDAQ · FX</p><h1>Market intelligence<span class="orange">.</span></h1></div><div class="archive-control"><label for="brief-date">Briefing archive</label><div class="select-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 11h18"/></svg><select id="brief-date" disabled><option>Loading briefings…</option></select></div></div></div>
   <div id="data-status" class="data-status" role="status">Loading the latest published intelligence…</div>
-  <section id="market-strip" class="ticker-strip" aria-label="Market snapshots"></section>
+  <section id="market-strip" class="market-quotes" aria-label="Current market quotes"></section>
+  <details id="briefing-quotes" class="briefing-quotes" hidden></details>
   <div class="dashboard-grid"><section id="overview" class="panel regime-panel" aria-labelledby="overview-title"></section><section id="catalysts" class="panel events-panel" aria-labelledby="events-title"></section><section id="nasdaq" class="panel nq-panel" aria-labelledby="nq-title"></section><section id="macro" class="panel macro-panel" aria-labelledby="macro-title"></section>${chart}<section id="themes" class="panel themes-panel" aria-labelledby="themes-title"></section><section id="fx" class="panel fx-panel" aria-labelledby="fx-title"></section><section id="intelligence" class="panel feed-panel" aria-labelledby="feed-title"></section></div>
   <section id="changes" class="changes-panel" aria-labelledby="changes-title"></section>
-  <aside class="community"><div><span class="orange">KEEP THE CONVERSATION GOING</span><p>Research is the starting point.</p></div><a href="${SOCIAL.discord}" target="_blank" rel="noopener noreferrer">Join the Mango Atlas Discord ${arrow}</a></aside>
-  </main><footer class="site-footer"><div><strong>MANGO ATLAS</strong><span>Independent trading & research desk.</span></div><p>Published research, not a live trading signal. Not investment advice.</p><a href="${SOCIAL.x}" target="_blank" rel="noopener noreferrer">@mangoatlas ↗</a></footer>`;
+  </main><footer class="site-footer"><div><strong>MANGO ATLAS</strong><span>Independent trading & research desk.</span></div><p>Published research, not a live trading signal. Not investment advice.</p><nav class="footer-socials" aria-label="Community links"><a href="${SOCIAL.discord}" target="_blank" rel="noopener noreferrer">${discordIcon} Discord ↗</a><a href="${SOCIAL.x}" target="_blank" rel="noopener noreferrer">${xIcon} @mangoatlas ↗</a></nav></footer>`;
 }
-
-const defaults = [
-  { symbol: 'NQ', label: 'Nasdaq futures', type: 'futures' }, { symbol: 'ES', label: 'S&P 500 futures', type: 'futures' },
-  { symbol: 'BTCUSD', label: 'Bitcoin spot', type: 'crypto_spot' }, { symbol: 'DXY', label: 'US Dollar Index', type: 'cash_index' },
-  { symbol: 'US10Y', label: '10Y Treasury yield', type: 'yield' }, { symbol: 'VIX', label: 'Volatility index', type: 'volatility_index' },
-  { symbol: 'XAUUSD', label: 'Gold spot', type: 'spot' },
-];
 
 function price(item: Market) {
   if (item.price === null) return '—';
@@ -42,11 +35,8 @@ function quoteStatus(item: Market) {
   return item.status === 'delayed' ? 'Delayed snapshot' : 'Snapshot';
 }
 function ticker(data: Intel | null) {
-  const actual = data?.markets ?? [];
-  const list: Array<Market | typeof defaults[number]> = [...actual, ...defaults.filter(d => !actual.some(m => m.symbol === d.symbol && m.instrumentType === d.type))];
-  return list.map(item => {
-    const available = 'price' in item;
-    return `<article class="ticker"><div class="ticker-top"><strong>${e(item.symbol)}</strong><span>${available ? e(quoteStatus(item)) : 'Unavailable'}</span></div><div class="ticker-price"><b>${available ? price(item) : '—'}</b><span class="${available && item.changePct !== null ? item.changePct >= 0 ? 'positive-text' : 'negative-text' : 'muted-text'}">${available && item.changePct !== null ? e(signed(item.changePct)) : 'No quote'}</span></div><span class="ticker-label">${e(item.label)}${available ? ` · ${e(readable(item.instrumentType))}` : ''}</span>${available && item.updatedAt ? `<span class="quote-source">${e(item.source)} · ${day(item.updatedAt)} ${time(item.updatedAt)} ICT</span>` : ''}</article>`;
+  return (data?.markets ?? []).map(item => {
+    return `<article class="ticker"><div class="ticker-top"><strong>${e(item.symbol)}</strong><span>${e(quoteStatus(item))}</span></div><div class="ticker-price"><b>${price(item)}</b><span class="${item.changePct !== null ? item.changePct >= 0 ? 'positive-text' : 'negative-text' : 'muted-text'}">${item.changePct !== null ? e(signed(item.changePct)) : 'No quote'}</span></div><span class="ticker-label">${e(item.label)} · ${e(readable(item.instrumentType))}</span>${item.updatedAt ? `<span class="quote-source">${e(item.source)} · ${day(item.updatedAt)} ${time(item.updatedAt)} ICT</span>` : ''}</article>`;
   }).join('');
 }
 
@@ -80,20 +70,8 @@ function movers(title: string, items: NonNullable<Intel['nq']>['megaCaps']) {
 function nq(data: Intel | null) {
   const info = data?.nq;
   return `${sectionHeader('nq-title', 'Nasdaq intelligence', '02 / NQ DESK')}
-    <div class="nq-heading"><div><span class="instrument-label mono">NQ <span>/</span> NASDAQ 100 FUTURES</span><p>Structure. Catalysts. Conviction.</p></div><button class="text-button" data-chart="CME_MINI:NQ1!">View chart ${arrow}</button></div>
-    ${info ? `<div class="nq-metrics">${metric('Bias', info.bias)}${metric('Conviction', info.conviction)}<div class="metric"><span class="eyebrow">Regime</span><strong>${e(info.regime ?? 'Unavailable')}</strong></div></div><p class="research-copy">${e(info.summary ?? 'No summary supplied.')}</p><div class="catalyst-risk"><div><span class="eyebrow orange">PRIMARY CATALYST</span><p>${e(info.primaryCatalyst ?? 'Unavailable')}</p></div><div><span class="eyebrow negative-text">PRIMARY RISK</span><p>${e(info.primaryRisk ?? 'Unavailable')}</p></div></div><details class="research-detail"><summary>Session & positioning<span>Expand research</span></summary><dl class="research-dl">${[['Overnight', info.overnight], ['Macro', info.macro], ['Options & volatility', info.volatility], ['Short-term sentiment', readable(info.sentimentShortTerm)], ['Medium-term sentiment', readable(info.sentimentMediumTerm)]].map(([label,value]) => `<div><dt>${e(label)}</dt><dd>${e(value ?? 'Unavailable')}</dd></div>`).join('')}</dl></details>${movers('Mega-cap leadership',info.megaCaps)}${movers('Semiconductors',info.semiconductors)}${movers('Premarket movers',info.premarket)}` : `${empty('NQ briefing awaiting publication', 'No Nasdaq-specific bias or levels have been supplied. Use View chart to open the actual NQ futures chart.', true)}<div class="coverage-row"><span>OVERNIGHT</span><span>MEGA-CAPS</span><span>SEMICONDUCTORS</span><span>OPTIONS</span></div>`}`;
-}
-
-function macro(data: Intel | null) {
-  const markets = (data?.markets ?? []).filter(item => ['yield', 'volatility_index'].includes(item.instrumentType) || item.symbol === 'DXY');
-  return `${sectionHeader('macro-title', 'Macro pulse', 'RATES / USD / VOL')}
-  <div class="macro-rows">${[
-    {symbol:'US10Y',label:'US 10Y Treasury', type:'yield',chart:'TVC:US10Y'},
-    {symbol:'DXY',label:'US Dollar Index',type:'cash_index',chart:'TVC:DXY'},
-    {symbol:'VIX',label:'Equity volatility',type:'volatility_index',chart:'CBOE:VIX'},
-    {symbol:'VXN',label:'Nasdaq volatility',type:'volatility_index',chart:null},
-  ].map(def => { const item = markets.find(m => m.symbol === def.symbol && m.instrumentType === def.type); return `<div class="macro-row"><div><strong>${def.label}</strong><span class="mono">${def.symbol}</span></div><div><b class="mono">${item ? price(item) : '—'}</b><small>${item ? e(quoteStatus(item)) : 'Unavailable'}</small>${item?.updatedAt ? `<small>${day(item.updatedAt)} · ${time(item.updatedAt)} ICT<br>${e(item.source)}</small>` : ''}</div>${def.chart ? `<button class="icon-link" data-chart="${def.chart}" aria-label="Chart ${def.label}">${arrow}</button>` : ''}</div>`; }).join('')}</div>
-  <p class="section-note">Yields are percentages. Index values are points. Values appear only with a timestamped source.</p>`;
+    <div class="nq-heading"><div><span class="instrument-label mono">NQ <span>/</span> NASDAQ 100 FUTURES</span><p>Research: NQ · Chart: NAS100 CFD</p></div><button class="text-button" data-chart="OANDA:NAS100USD">NAS100 CFD chart ${arrow}</button></div>
+    ${info ? `<div class="nq-metrics">${metric('Bias', info.bias)}${metric('Conviction', info.conviction)}<div class="metric"><span class="eyebrow">Regime</span><strong>${e(info.regime ?? 'Unavailable')}</strong></div></div><p class="research-copy">${e(info.summary ?? 'No summary supplied.')}</p><div class="catalyst-risk"><div><span class="eyebrow orange">PRIMARY CATALYST</span><p>${e(info.primaryCatalyst ?? 'Unavailable')}</p></div><div><span class="eyebrow negative-text">PRIMARY RISK</span><p>${e(info.primaryRisk ?? 'Unavailable')}</p></div></div><details class="research-detail"><summary>Session & positioning<span>Expand research</span></summary><dl class="research-dl">${[['Overnight', info.overnight], ['Macro', info.macro], ['Options & volatility', info.volatility], ['Short-term sentiment', readable(info.sentimentShortTerm)], ['Medium-term sentiment', readable(info.sentimentMediumTerm)]].map(([label,value]) => `<div><dt>${e(label)}</dt><dd>${e(value ?? 'Unavailable')}</dd></div>`).join('')}</dl></details>${movers('Mega-cap leadership',info.megaCaps)}${movers('Semiconductors',info.semiconductors)}${movers('Premarket movers',info.premarket)}` : `${empty('NQ briefing awaiting publication', 'No Nasdaq-specific bias or levels have been supplied. Explore the NAS100 CFD chart while awaiting research.', true)}<div class="coverage-row"><span>OVERNIGHT</span><span>MEGA-CAPS</span><span>SEMICONDUCTORS</span><span>OPTIONS</span></div>`}`;
 }
 
 function themes(data: Intel | null) {
@@ -119,17 +97,18 @@ export function feed(data: Intel | null, filter = 'All') {
 }
 
 export function renderData(data: Intel | null, historical: boolean, fallback = false) {
-  document.querySelector('#market-strip')!.innerHTML = ticker(data);
+  const snapshots = document.querySelector<HTMLDetailsElement>('#briefing-quotes')!;
+  snapshots.hidden = !data?.markets.length;
+  snapshots.innerHTML = data?.markets.length ? `<summary>Quotes recorded in the ${day(data.asOfDate)} briefing</summary><div class="ticker-strip">${ticker(data)}</div>` : '';
   document.querySelector('#overview')!.innerHTML = overview(data);
   document.querySelector('#catalysts')!.innerHTML = events(data, historical);
   document.querySelector('#nasdaq')!.innerHTML = nq(data);
-  document.querySelector('#macro')!.innerHTML = macro(data);
   document.querySelector('#themes')!.innerHTML = themes(data);
   document.querySelector('#fx')!.innerHTML = fx(data);
   document.querySelector('#intelligence')!.innerHTML = feed(data);
   const status = document.querySelector('#data-status')!;
   status.classList.toggle('stale', !!data && !historical && isStale(data.generatedAt));
-  status.innerHTML = data ? `<div><span class="status-label">${historical ? 'ARCHIVE' : isStale(data.generatedAt) ? 'STALE' : notToday(data.generatedAt) ? 'PREVIOUS BRIEF' : 'LATEST BRIEF'}</span><span>${historical ? 'Published' : 'Last updated'} <time datetime="${e(data.generatedAt)}">${day(data.generatedAt)} · ${time(data.generatedAt)} ICT</time>${fallback ? ' · Recovered from a valid archive' : ''}</span></div><span class="data-note">${historical ? 'Historical research · Chart shows the provider’s current view' : 'Daily research · Quotes are separate snapshots'}</span>` : '<span class="status-label">UNAVAILABLE</span><span>Research could not be loaded. Public charts remain available.</span><button class="text-button" id="retry-data">Retry</button>';
+  status.innerHTML = data ? `<div><span class="status-label">${historical ? 'ARCHIVE' : isStale(data.generatedAt) ? 'STALE' : notToday(data.generatedAt) ? 'PREVIOUS BRIEF' : 'LATEST BRIEF'}</span><span>${historical ? 'Published' : 'Last updated'} <time datetime="${e(data.generatedAt)}">${day(data.generatedAt)} · ${time(data.generatedAt)} ICT</time>${fallback ? ' · Recovered from a valid archive' : ''}</span></div><span class="data-note">${historical ? 'Historical research · Quotes and charts remain current' : 'Daily research · Market feeds update independently'}</span>` : '<span class="status-label">UNAVAILABLE</span><span>Research could not be loaded. Public charts remain available.</span><button class="text-button" id="retry-data">Retry</button>';
   document.querySelector('#retry-data')?.addEventListener('click', () => location.reload());
 }
 

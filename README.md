@@ -4,7 +4,7 @@ A public, free market-intelligence dashboard at [mangoatlas.xyz](https://mangoat
 
 ## Development
 
-Node **22.12+**, npm, and Git are required. This remains a static site, with TypeScript and Vite added for modular code and reproducible builds. No React framework, database, application server, or paid data subscription is required.
+Node **22.12+**, npm, and Git are required. The frontend is static TypeScript/Vite, with one cached Vercel Function for official daily market data. No React framework, database, persistent application server, or paid data subscription is required.
 
 ```sh
 npm ci
@@ -40,7 +40,10 @@ npm run test:e2e
 src/
   components/          Dashboard sections, chart adapter and UI primitives
   lib/intel/           Zod schema, archive loading, comparable field changes
+  lib/markets/         Independent daily-market contract and client cache
   styles.css           Shared tokens and responsive layout
+api/macro.ts           Cached, read-only Vercel Function
+server/market-data.ts  Fixed Cboe and Treasury adapters, validation and cache
 scripts/
   data.ts              Repository-wide validation
   update.ts            Staged build, atomic writes, recovery and rollback
@@ -82,11 +85,32 @@ npm run intel:publish -- --input /tmp/mango-intel.json
 
 ## Providers and environment
 
-**No environment variables or credentials are required.** `.env.example` documents this. Research is entirely repo-backed; interactive charts use TradingView's public iframe widget, loaded only when viewed. No market API is called by the site and no quotes are scraped from the widget.
+**No environment variables or credentials are required.** Research stays repo-backed. Quotes and charts update independently of the selected briefing:
 
-The small chart adapter and explicit symbol registry are in `src/components/chart.ts`. Public [TradingView widgets](https://www.tradingview.com/widget-docs/widgets/charts/advanced-chart/) have [exchange-specific restrictions](https://www.tradingview.com/widget-docs/faq/data/). NQ/ES/GC futures open the actual futures chart externally because their free embeds are restricted. The default in-page Nasdaq chart is explicitly **OANDA NAS100 CFD**, not NQ or NDX. Other labels distinguish cash indices, spot FX, spot gold and crypto spot. Provider data can be delayed or unavailable; failures leave the research usable. Provider attribution remains visible.
+| Instruments | Source and delivery | Cadence |
+| --- | --- | --- |
+| NAS100, US500, XAUUSD, six FX pairs | OANDA via official TradingView widgets | Provider feed, may be delayed |
+| Dollar index CFD | Capital.com via official TradingView widgets | Provider feed, may be delayed |
+| BTC/USD, ETH/USD | Coinbase via official TradingView widgets | Provider feed |
+| VIX, VXN | [Cboe historical CSV](https://www.cboe.com/tradable_products/vix/vix_historical_data/) through `/api/macro` | Official daily closes |
+| US10Y | [US Treasury XML](https://home.treasury.gov/treasury-daily-interest-rate-xml-feed) through `/api/macro` | Daily 10-year par yield in percent |
 
-All app times are Asia/Bangkok (ICT), with 12-hour display. Daily research and numerical quotes carry distinct timestamps. A quote is always shown as a stored snapshot even if its source originally reported `live`. Briefings and quotes older than 36 hours are marked stale. Selecting an archive never changes the external chart to a purported historical snapshot.
+The top strip uses TradingView's own quote widget for NAS100 CFD, US500 CFD, dollar index CFD, spot gold and Bitcoin. On smaller screens it scrolls horizontally so no symbols disappear. Prices are not scraped or copied out of its iframe. The macro panel shows the three official daily observations with source dates and changes from the preceding observation. Yield changes are basis points; volatility changes are percentages.
+
+The registry in `src/components/chart.ts` contains 15 instruments. Restricted futures and duplicate cash-index options were removed. **NAS100 and US500 are CFDs, and dollar index CFD is explicitly labeled.** NQ research retains its original futures identity; its chart shortcut clearly says NAS100 CFD. [TradingView widgets have exchange restrictions](https://www.tradingview.com/widget-docs/faq/data/), so VIX, VXN and US10Y use native interactive Lightweight Charts with official daily data instead of blocked embeds. These have pan/zoom, crosshair values and 1M/3M/1Y/All ranges. Library and data-source attribution remain visible.
+
+`/api/macro` fetches only fixed official URLs, validates values and dates, returns up to 756 observations per series, and includes the prior Treasury year for January continuity. It caches successful responses for 15 minutes at the function/CDN, with up to one hour of stale-while-revalidate at the CDN. The browser checks every five minutes while visible. Refresh failures retain the last success when available in that function instance or browser, preserve its dates, and mark it explicitly. A cold start during an upstream outage has no durable fallback and reports unavailable. Observations over five calendar days old are marked stale; the UI never presents these daily values as intraday prices. No scheduled job is needed.
+
+Research timestamps use Asia/Bangkok (ICT), with 12-hour display. Provider observation dates remain their original dates; retrieval time is separate in the API. Briefings and optional stored research quotes older than 36 hours are marked stale. If a briefing contains quotes, they appear in a separate dated disclosure. Selecting an archive does not relabel current market data as historical.
+
+Run the opt-in real-provider audit after changing any symbol (Chrome installed by default, or set `PLAYWRIGHT_CHANNEL`):
+
+```sh
+node --import tsx scripts/verify-market-feeds.ts http://127.0.0.1:5173/
+node --import tsx scripts/verify-market-feeds.ts https://www.mangoatlas.xyz/
+```
+
+It checks every chart for populated prices or official history, all quote-strip symbols, source dates, mobile overflow, footer alignment and browser errors. Screenshots and JSON evidence go into ignored `.intel-work/market-audit/`. CI uses deterministic provider fixtures; external-provider availability is checked separately. The Vite dev and preview servers serve the same macro handler as Vercel.
 
 If adding a keyed API later, introduce a server-side provider adapter and server-only environment variables. Never add a credential to a `VITE_*` variable; this frontend is public.
 

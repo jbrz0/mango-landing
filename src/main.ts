@@ -1,6 +1,7 @@
 import './styles.css';
 import { shell, renderData, renderChanges, feed, events } from './components/dashboard';
 import { chartPanel, attachChart } from './components/chart';
+import { attachMarkets } from './components/markets';
 import { loadArchive, loadDashboard, previousBriefing } from './lib/intel/load';
 import type { Intel } from './lib/intel/schema';
 import { day, escape as e, time } from './lib/format';
@@ -20,6 +21,7 @@ updateClock();
 setInterval(updateClock, 30_000);
 attachChart();
 renderData(null, false);
+attachMarkets();
 document.querySelector('#data-status')!.textContent = 'Loading the latest published intelligence…';
 
 async function show(data: Intel | null, ticket: number) {

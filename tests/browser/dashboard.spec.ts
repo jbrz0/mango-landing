@@ -4,6 +4,11 @@ import { resolve } from 'node:path';
 
 const fixture = JSON.parse(await readFile(resolve('data/intel/example.json'), 'utf8'));
 const current = JSON.parse(await readFile(resolve('data/intel/current.json'), 'utf8'));
+const macroFixture = { series: ['VIX', 'VXN', 'US10Y'].map(symbol => ({ symbol, points: [
+  { date: '2026-01-13', value: symbol === 'US10Y' ? 4.1 : 16.1 },
+  { date: '2026-01-14', value: symbol === 'US10Y' ? 4.2 : 16.2 },
+  { date: '2026-01-15', value: symbol === 'US10Y' ? 4.3 : 16.3 },
+], retrievedAt: '2026-01-15T05:00:00Z', refreshFailed: false })), unavailable: [] };
 async function populated(page: Page) {
   await page.clock.setFixedTime(new Date('2026-01-15T05:00:00Z'));
   const data = { ...structuredClone(fixture), kind: 'briefing' };
@@ -14,6 +19,7 @@ async function populated(page: Page) {
 test.beforeEach(async ({ page }) => {
   // Deterministic UI tests never rely on a third-party chart connection.
   await page.route('https://s3.tradingview.com/**', route => route.abort());
+  await page.route('**/api/macro', route => route.fulfill({ json: macroFixture }));
 });
 
 for (const width of [375, 390, 430, 1440]) {
@@ -28,6 +34,9 @@ for (const width of [375, 390, 430, 1440]) {
     expect(await page.evaluate(() => scrollY)).toBe(0);
     await expect(page.getByRole('link', { name: 'Mango Atlas on X' })).toHaveAttribute('href', 'https://x.com/mangoatlas');
     await expect(page.locator('.discord-link')).toHaveAttribute('href', 'https://discord.gg/xUQSsm5UpV');
+    const socials = await page.locator('.footer-socials a').evaluateAll(links => links.map(link => link.getBoundingClientRect().top));
+    expect(socials[0]).toBe(socials[1]);
+    await expect(page.locator('[data-macro="US10Y"]')).toContainText('4.3%');
     expect(errors).toEqual([]);
   });
 }
@@ -38,6 +47,8 @@ test('history selection changes briefing and compares actual earlier data', asyn
   await expect(page.locator('#overview')).toContainText('Falling');
   await expect(page.locator('#changes')).toContainText('Rising');
   await expect(page.locator('#changes')).toContainText('Falling');
+  await expect(page.locator('#market-strip')).toContainText('Independent of briefing date');
+  await expect(page.locator('[data-macro="VIX"]')).toContainText('16.3');
   await page.locator('#brief-date').selectOption(current.asOfDate);
   await expect(page.locator('#overview')).toContainText(current.overview.oneLineTake);
 });
@@ -70,20 +81,48 @@ test('populated mobile: events in ICT, FX levels, feed filtering, escaped resear
   await expect(page.locator('.story')).toContainText('Technology story');
   await page.getByRole('button', { name: 'All', exact: true }).click();
   await expect(page.locator('.story')).toHaveCount(2);
+  await page.locator('#briefing-quotes summary').click();
   await expect(page.locator('.ticker').first()).toContainText('20,000');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
-test('stale briefing is marked and external futures never become a CFD silently', async ({ page }) => {
+test('stale research is marked and the available Nasdaq chart is explicitly a CFD', async ({ page }) => {
   await populated(page); await page.clock.setFixedTime(new Date('2026-01-18T05:00:00Z')); await page.goto('/');
   await expect(page.locator('#data-status')).toContainText('STALE');
-  await page.getByRole('button', { name: 'View chart', exact: true }).click();
-  await expect(page.locator('#chart-instrument')).toHaveText('NQ · Nasdaq 100 futures');
-  await expect(page.locator('#chart-host')).toContainText('futures data is restricted');
-  await expect(page.locator('#chart-host a')).toHaveAttribute('href', /CME_MINI%3ANQ1!/);
+  await page.getByRole('button', { name: 'NAS100 CFD chart' }).click();
+  await expect(page.locator('#chart-instrument')).toHaveText('NAS100 · Nasdaq 100 CFD');
+  await expect(page.locator('#chart-detail')).toContainText('not NQ futures');
+  expect(await page.locator('#chart-symbol option').allTextContents()).not.toEqual(expect.arrayContaining([expect.stringMatching(/futures/)]));
   await page.locator('#chart-symbol').selectOption('OANDA:EURUSD');
   await expect(page.locator('#chart-instrument')).toHaveText('EURUSD · Spot FX');
   await expect(page.locator('#chart-host')).toContainText('Chart unavailable');
   await expect(page.locator('#overview')).toContainText('EXAMPLE rendered safely');
+});
+
+test('VIX, VXN and Treasury use actual native daily charts with date ranges and source attribution', async ({ page }) => {
+  await page.goto('/');
+  for (const symbol of ['VIX', 'VXN', 'US10Y']) {
+    await page.locator('#chart-symbol').selectOption(`${symbol === 'US10Y' ? 'UST' : 'CBOE'}:${symbol}`);
+    await expect(page.locator('.daily-canvas canvas').first()).toBeVisible();
+    await expect(page.locator('.daily-readout')).toContainText('15 Jan 2026');
+    await expect(page.locator('#chart-source')).toHaveAttribute('href', symbol === 'US10Y' ? /treasury.gov/ : /cboe.com/);
+    await page.getByRole('button', { name: 'All', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'All', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#chart-host iframe')).toHaveCount(0);
+  }
+});
+
+test('macro provider outage has a clear recovery action and preserves research', async ({ page }) => {
+  await page.route('**/api/macro', route => route.fulfill({ status: 503, json: { series: [], unavailable: ['VIX', 'VXN', 'US10Y'] } }));
+  await page.goto('/');
+  await expect(page.locator('[data-macro="VIX"]')).toContainText('Unavailable');
+  await page.locator('#chart-symbol').selectOption('CBOE:VIX');
+  await expect(page.locator('#chart-host')).toContainText('Daily source temporarily unavailable');
+  await page.route('**/api/macro', route => route.fulfill({ json: macroFixture }));
+  await page.getByRole('button', { name: 'Retry chart' }).click();
+  await expect(page.locator('.daily-canvas canvas').first()).toBeVisible();
+  await page.locator('#refresh-macro').click();
+  await expect(page.locator('[data-macro="VIX"]')).toContainText('16.3');
+  await expect(page.locator('#overview')).toContainText(current.overview.oneLineTake);
 });
 test('daily and legacy HTML route redirect to dashboard', async ({ request }) => {
   for (const path of ['/daily', '/daily/', '/daily.html']) {

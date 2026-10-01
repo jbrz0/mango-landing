@@ -1,17 +1,15 @@
 import { escape as e } from '../lib/format';
+import { loadMacro } from '../lib/markets/load';
+import { macroDefinitions, type MacroSymbol } from '../lib/markets/schema';
 
-export const chartSymbols = [
+export const chartSymbols: Array<{ id: string; short: string; label: string; detail: string; group: string; daily?: MacroSymbol }> = [
   { id: 'OANDA:NAS100USD', short: 'NAS100', label: 'NAS100 · Nasdaq 100 CFD', detail: 'OANDA · Cash CFD, not NQ futures', group: 'Indices' },
   { id: 'OANDA:SPX500USD', short: 'US500', label: 'US500 · S&P 500 CFD', detail: 'OANDA · Cash CFD, not ES futures', group: 'Indices' },
-  { id: 'CME_MINI:NQ1!', short: 'NQ', label: 'NQ · Nasdaq 100 futures', detail: 'CME · Continuous futures', group: 'Indices' },
-  { id: 'CME_MINI:ES1!', short: 'ES', label: 'ES · S&P 500 futures', detail: 'CME · Continuous futures', group: 'Indices' },
-  { id: 'NASDAQ:NDX', short: 'NDX', label: 'NDX · Nasdaq 100 cash index', detail: 'NASDAQ · Cash index', group: 'Indices' },
-  { id: 'SP:SPX', short: 'SPX', label: 'SPX · S&P 500 cash index', detail: 'S&P · Cash index', group: 'Indices' },
-  { id: 'TVC:DXY', short: 'DXY', label: 'DXY · US Dollar Index', detail: 'TVC · Dollar index', group: 'Macro' },
-  { id: 'TVC:US10Y', short: '10Y', label: 'US10Y · Treasury yield', detail: 'TVC · US 10-year yield (%)', group: 'Macro' },
-  { id: 'CBOE:VIX', short: 'VIX', label: 'VIX · Volatility index', detail: 'CBOE · Volatility index', group: 'Macro' },
+  { id: 'CAPITALCOM:DXY', short: 'DXY', label: 'DXY · Dollar index CFD', detail: 'Capital.com · Dollar index CFD', group: 'Macro' },
+  { id: 'UST:US10Y', short: '10Y', label: 'US10Y · Treasury yield', detail: 'US Treasury · Daily par yield (%)', group: 'Macro', daily: 'US10Y' },
+  { id: 'CBOE:VIX', short: 'VIX', label: 'VIX · Volatility index', detail: 'Cboe · Official daily close', group: 'Macro', daily: 'VIX' },
+  { id: 'CBOE:VXN', short: 'VXN', label: 'VXN · Nasdaq volatility', detail: 'Cboe · Official daily close', group: 'Macro', daily: 'VXN' },
   { id: 'OANDA:XAUUSD', short: 'Gold', label: 'XAUUSD · Spot gold', detail: 'OANDA · Spot gold / USD', group: 'Commodities' },
-  { id: 'COMEX:GC1!', short: 'GC', label: 'GC · Gold futures', detail: 'COMEX · Continuous futures', group: 'Commodities' },
   { id: 'COINBASE:BTCUSD', short: 'BTC', label: 'BTC/USD · Bitcoin spot', detail: 'Coinbase · Crypto spot', group: 'Crypto' },
   { id: 'COINBASE:ETHUSD', short: 'ETH', label: 'ETH/USD · Ether spot', detail: 'Coinbase · Crypto spot', group: 'Crypto' },
   ...['EURUSD', 'GBPUSD', 'AUDUSD', 'USDJPY', 'USDCHF', 'USDCAD'].map(symbol => ({ id: `OANDA:${symbol}`, short: symbol, label: `${symbol} · Spot FX`, detail: 'OANDA · Spot FX', group: 'FX' })),
@@ -19,11 +17,11 @@ export const chartSymbols = [
 
 export function chartPanel() {
   return `<section class="panel chart-panel" id="charts" aria-labelledby="chart-title">
-    <div class="section-heading"><h2 id="chart-title">Market chart</h2><span class="section-meta">INTERACTIVE / TRADINGVIEW</span></div>
-    <div class="chart-controls"><div class="chart-tabs" role="group" aria-label="Quick chart symbols">${chartSymbols.filter(s => ['NAS100', 'NQ', 'DXY', 'Gold', 'BTC'].includes(s.short)).map(s => `<button type="button" data-chart="${s.id}" aria-pressed="${s.short === 'NAS100'}">${s.short}</button>`).join('')}</div><label class="sr-only" for="chart-symbol">Chart instrument</label><select id="chart-symbol">${['Indices','Macro','Commodities','Crypto','FX'].map(group => `<optgroup label="${group}">${chartSymbols.filter(s => s.group === group).map(s => `<option value="${s.id}">${e(s.label)}</option>`).join('')}</optgroup>`).join('')}</select></div>
+    <div class="section-heading"><h2 id="chart-title">Market chart</h2><span class="section-meta">INTERACTIVE CHARTS</span></div>
+    <div class="chart-controls"><div class="chart-tabs" role="group" aria-label="Quick chart symbols">${chartSymbols.filter(s => ['NAS100', 'VIX', 'DXY', 'Gold', 'BTC'].includes(s.short)).map(s => `<button type="button" data-chart="${s.id}" aria-pressed="${s.short === 'NAS100'}">${s.short}</button>`).join('')}</div><label class="sr-only" for="chart-symbol">Chart instrument</label><select id="chart-symbol">${['Indices','Macro','Commodities','Crypto','FX'].map(group => `<optgroup label="${group}">${chartSymbols.filter(s => s.group === group).map(s => `<option value="${s.id}">${e(s.label)}</option>`).join('')}</optgroup>`).join('')}</select></div>
     <div class="chart-caption"><strong id="chart-instrument">NAS100 · Nasdaq 100 CFD</strong><span id="chart-detail">OANDA · Cash CFD, not NQ futures</span></div>
     <div id="chart-host" class="chart-host"></div>
-    <div class="chart-footnote"><span>Public chart · May be delayed or unavailable by exchange. Separate from the selected briefing.</span><a id="chart-source" href="https://www.tradingview.com/chart/?symbol=OANDA%3ANAS100USD" target="_blank" rel="noopener noreferrer nofollow">Chart by TradingView ↗</a></div>
+    <div class="chart-footnote"><span id="chart-note">Provider chart · May be delayed. Separate from the selected briefing.</span><a id="chart-source" href="https://www.tradingview.com/chart/?symbol=OANDA%3ANAS100USD" target="_blank" rel="noopener noreferrer nofollow">Chart by TradingView ↗</a></div>
   </section>`;
 }
 
@@ -33,19 +31,37 @@ export function attachChart() {
   let sequence = 0;
   let timer: ReturnType<typeof setTimeout>;
   let observer: MutationObserver | undefined;
-  function show(id: string) {
+  let dispose: (() => void) | undefined;
+  async function show(id: string, force = false) {
     const instrument = chartSymbols.find(s => s.id === id);
     if (!instrument) return;
     sequence++;
     const currentSequence = sequence;
-    clearTimeout(timer); observer?.disconnect();
+    clearTimeout(timer); observer?.disconnect(); dispose?.(); dispose = undefined;
     select.value = id;
     document.querySelector('#chart-instrument')!.textContent = instrument.label;
     document.querySelector('#chart-detail')!.textContent = instrument.detail;
-    document.querySelector<HTMLAnchorElement>('#chart-source')!.href = `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(id)}`;
+    const source = document.querySelector<HTMLAnchorElement>('#chart-source')!;
+    source.href = `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(id)}`;
+    source.textContent = 'Chart by TradingView ↗';
+    document.querySelector('#chart-note')!.textContent = 'Provider chart · May be delayed. Separate from the selected briefing.';
     document.querySelectorAll<HTMLButtonElement>('[data-chart]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.chart === id)));
-    if (['CME_MINI:NQ1!', 'CME_MINI:ES1!', 'COMEX:GC1!'].includes(id)) {
-      host.innerHTML = `<div class="chart-loading"><strong>${e(instrument.short)} futures · External chart</strong><span>This exchange’s futures data is restricted in free embeds. Open the actual futures chart on TradingView. CFD prices and levels are a different instrument.</span><a class="chart-external" href="https://www.tradingview.com/chart/?symbol=${encodeURIComponent(id)}" target="_blank" rel="noopener noreferrer nofollow">Open ${e(instrument.short)} futures ↗</a></div>`;
+    if (instrument.daily) {
+      const definition = macroDefinitions[instrument.daily];
+      source.href = definition.sourceUrl; source.textContent = `Data: ${definition.source} ↗`;
+      document.querySelector('#chart-note')!.innerHTML = 'Official daily observations · Drag to pan, scroll to zoom. <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">TradingView Lightweight Charts™ · Copyright © 2025 TradingView, Inc.</a>';
+      host.innerHTML = '<div class="chart-loading" role="status">Loading official daily history…</div>';
+      try {
+        const [data, { drawDailyChart }] = await Promise.all([loadMacro(force), import('./daily-chart')]);
+        if (sequence !== currentSequence) return;
+        const series = data.series.find(series => series.symbol === instrument.daily);
+        if (!series) throw new Error('Source unavailable');
+        dispose = drawDailyChart(host, series);
+      } catch {
+        if (sequence !== currentSequence) return;
+        host.innerHTML = '<div class="chart-loading"><strong>Daily source temporarily unavailable</strong><span>Retry to load the official history.</span><button type="button">Retry chart</button></div>';
+        host.querySelector('button')?.addEventListener('click', () => void show(id, true));
+      }
       return;
     }
     host.innerHTML = '<div class="chart-loading" role="status">Loading public chart…</div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';
