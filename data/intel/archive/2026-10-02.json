@@ -1,0 +1,647 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-10-02",
+  "generatedAt": "2026-10-02T08:43:48+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-10-02 BKK from Daily Briefing, FX Briefing, NQ Briefing, FX Events morning preview (Forex Factory week JSON), Yahoo quote JSON under oct2-morning, and Bloomberg Markets Daily (Relentless bond pressure) from noreply@news.bloomberg.com / Discord delivery ~7:38 AM BKK. No invented prices/levels/enums."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Mild overnight bid and a yield pullback set a fragile calm; tonight's jobs print still decides whether October gets relief or another vol spike.",
+    "themes": [
+      "NFP day: September payrolls at 7:30 PM BKK (f ~84–89K / UE 4.1% / AHE 0.3%) with October Fed hold odds near ~70%+.",
+      "Thursday's yield snapback: 10y hit ~5.34% (highest since 2002) then closed ~5.24%; stocks scraped higher (S&P ~+0.2%, Dow/Nasdaq flat).",
+      "Overnight futures lightly bid into the print (ES ~+0.1%, NQ ~+0.3%) while DXY holds ~102 and gold ~4,210.",
+      "Oil/geopolitics back on: Brent +4% to ~$102 on a third U.S. carrier to the Middle East; WTI ~$93.",
+      "Side tape: hot Tokyo Core CPI 2.7%, EZ CPI flash 4 PM BKK; Nike slid after a sales miss and restructuring."
+    ],
+    "risks": [
+      "Hot payrolls/wages reprice hike odds and restart the long-end selloff.",
+      "Soft NFP could flip USD/yields but also raise growth/recession concerns into weekend positioning.",
+      "Oil spike keeps an inflation tail risk live even if jobs cool.",
+      "Weekly index losses still on the table if the print disappoints breadth."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NQ",
+      "label": "Nasdaq 100 Dec 26 futures",
+      "instrumentType": "futures",
+      "price": 30839.25,
+      "changePct": 0.8931,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T06:58:11+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 30501.56,
+      "changePct": 0.0745,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T04:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "SPX",
+      "label": "S&P 500",
+      "instrumentType": "cash_index",
+      "price": 7666.45,
+      "changePct": -0.4891,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T03:35:37+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 101.991,
+      "changePct": 0.7816,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T06:56:37+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 5.237,
+      "changePct": 1.0224,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T01:59:54+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 16.39,
+      "changePct": 10.2219,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility",
+      "instrumentType": "volatility_index",
+      "price": 22.51,
+      "changePct": 5.9793,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T03:15:02+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold Dec 26 futures",
+      "instrumentType": "futures",
+      "price": 4212.6,
+      "changePct": 1.0604,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T06:56:23+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.1251,
+      "changePct": -1.1162,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T07:01:58+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 157.852,
+      "changePct": 0.247,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T07:02:31+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.693,
+      "changePct": -1.1271,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T07:01:58+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.8305,
+      "changePct": 0.0964,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-02T07:02:32+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "neutral",
+    "conviction": "low",
+    "regime": "Event-driven / NFP binary",
+    "summary": "NDX scraped higher as 10Y retreated from a 2002-era 5.34% spike to ~5.24% after Jefferson echoed \"more time\" on hikes; overnight NQ stays lightly bid on semis, but the whole book is binary into tonight's jobs print (f ~89–90K / UE 4.1% / AHE 0.3%). Trade the calm — don't press it.",
+    "primaryCatalyst": "Soft yield reverse + MU/AI cushion",
+    "primaryRisk": "NFP 7:30p BKK",
+    "overnight": "Asia quiet; US fut modest green (NQ ~+0.3%, ES softer). Brent ~+$4 overnight on Middle East carrier headlines — inflation tail still live.",
+    "macro": "Oct-hike odds cooled further (~70%+ hold) as front-end yields led the bull steepener; sticky long end + firm DXY still tax multiples until NFP clears.",
+    "volatility": "VIX 16.4 · VXN 22.5 — Nasdaq vol still richer into the print; treat as event vol, not trend vol.",
+    "sentimentShortTerm": "mildly_bullish",
+    "sentimentMediumTerm": "neutral",
+    "megaCaps": [
+      {
+        "symbol": "AAPL",
+        "changePct": null,
+        "context": "Thu session noted +1.1% in NQ brief; numeric Yahoo day-change not used (source conflict).",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": null,
+        "context": "Thu session noted +1.0% in NQ brief.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": null,
+        "context": "Thu session noted +0.9% in NQ brief; premarket soft per brief.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": null,
+        "context": "Thu session noted +0.8% in NQ brief.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": null,
+        "context": "Thu session noted +0.6% in NQ brief.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": null,
+        "context": "Thu session noted +0.5%; overnight ~+1% bid with semis per NQ brief.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": null,
+        "context": "Thu session noted -1.1%; premarket soft per NQ brief.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "META",
+        "changePct": null,
+        "context": "Thu session noted -1.8% in NQ brief.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": null,
+        "context": "Thu +0.3% with ~+1.4% overnight bid; MU digest supportive; AI put not NFP immunity.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": null,
+        "context": "Overnight ~+1% with semis bid into NFP.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "MU",
+        "changePct": null,
+        "context": "MU digest still supportive for AI/memory complex.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      }
+    ],
+    "premarket": [
+      {
+        "symbol": "NVDA",
+        "changePct": null,
+        "context": "Semis/NVDA bid in premarket.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": null,
+        "context": "AVGO soft in premarket.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": null,
+        "context": "GOOGL soft in premarket.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "NKE",
+        "changePct": null,
+        "context": "NKE heavy after sales miss/restructure; oil spike in backdrop.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      }
+    ]
+  },
+  "fx": {
+    "macroPulse": "USD extended overnight — DXY ~102.0 (18-mo highs), EURUSD punched into the 1.125 area, AUD near 0.693. Tokyo Core CPI hot (2.7% vs 2.4% f / 1.8% p) capped USDJPY near 157.9. 10Y ~5.24%. Entire book is NFP at 7:30 PM BKK (f 89K / UE 4.1% / AHE 0.3%).",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "bullish",
+        "driver": "Pre-NFP USD bid + sticky yields; index cleared 102 into weekend risk.",
+        "posture": "Long bias while >101.50. Fade pops 102.40–102.60 into print; soft NFP = mean-revert toward 101.20.",
+        "support": [
+          101.5,
+          101.2
+        ],
+        "resistance": [
+          102.4,
+          102.6
+        ],
+        "comments": "Structurally bid into NFP."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": null,
+        "driver": "Volatile overnight; spot/fut ~4,210 with yields still elevated.",
+        "posture": "Stand aside into 7:30p. Soft jobs → buy dips 4,160–4,180; hot print risks 4,100.",
+        "support": [
+          4160,
+          4180
+        ],
+        "resistance": [],
+        "comments": "Watch only / NFP binary."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "bearish",
+        "driver": "Broad USD + FR politics; pair ~1.125 at multi-month lows. Watch 4p EZ CPI.",
+        "posture": "Sell rallies 1.1300–1.1320. Break 1.1200 opens fresh lows; hot EZ CPI only cushions.",
+        "support": [
+          1.12
+        ],
+        "resistance": [
+          1.13,
+          1.132
+        ],
+        "comments": null
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "mildly_bullish",
+        "driver": "Hot Tokyo CPI capped the break above 158; yields still favor USD.",
+        "posture": "Buy dips 157.20–157.50. Upside 158.50–159; respect MoF into 159–160. Soft NFP = yen bid.",
+        "support": [
+          157.2,
+          157.5
+        ],
+        "resistance": [
+          158.5,
+          159
+        ],
+        "comments": "MoF-capped."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "bearish",
+        "driver": "Soft AU trimmed CPI hangover + USD bid; pair ~0.693 near 3-mo lows.",
+        "posture": "Sell rallies 0.6960–0.6980. Support 0.6900; no chase below. Soft NFP = bounce risk.",
+        "support": [
+          0.69
+        ],
+        "resistance": [
+          0.696,
+          0.698
+        ],
+        "comments": null
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": null,
+        "driver": "Pair eased toward 0.8305 even as DXY ripped — CHF not fully tracking USD bid.",
+        "posture": "Watch only into NFP. Range 0.8280–0.8350; hot print reopens 0.8380.",
+        "support": [
+          0.828
+        ],
+        "resistance": [
+          0.835,
+          0.838
+        ],
+        "comments": "Watch only — chop."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-10-02-jpy-tokyo-core-cpi",
+      "datetime": "2026-10-02T06:30:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "JPY",
+      "country": "Japan",
+      "impact": "medium",
+      "title": "Tokyo Core CPI y/y",
+      "forecast": "2.4%",
+      "previous": "1.8%",
+      "actual": "2.7%",
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-eur-core-cpi-flash",
+      "datetime": "2026-10-02T16:00:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "Core CPI Flash Estimate y/y",
+      "forecast": "2.5%",
+      "previous": "2.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-eur-cpi-flash",
+      "datetime": "2026-10-02T16:00:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "CPI Flash Estimate y/y",
+      "forecast": "3.7%",
+      "previous": "3.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-usd-ahe",
+      "datetime": "2026-10-02T19:30:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Average Hourly Earnings m/m",
+      "forecast": "0.3%",
+      "previous": "0.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-usd-nfp",
+      "datetime": "2026-10-02T19:30:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Non-Farm Employment Change",
+      "forecast": "89K",
+      "previous": "162K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-02-usd-unemployment",
+      "datetime": "2026-10-02T19:30:00+07:00",
+      "date": "2026-10-02",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "4.1%",
+      "previous": "4.1%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bb-20261001-treasury-10y-2002",
+      "source": "Bloomberg",
+      "headline": "Treasury 10-Year Yield Hits Highest Since 2002 on Rate Outlook",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/treasury-10-year-yield-hits-highest-since-2002-on-rate-outlook-mup7ryq2",
+      "summary": "US 10-year yield climbs to a 2002-era high as resilient growth and sticky inflation keep pressure on bonds.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Macro"
+      ],
+      "symbols": [
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bb-20261001-global-bonds-worst-quarter",
+      "source": "Bloomberg",
+      "headline": "Global Bonds Face Worst Quarter Since 2024 on Inflation Fears",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/global-bonds-face-worst-quarter-since-2024-on-inflation-fears",
+      "summary": "Government bonds post their worst quarter since 2024 as inflation and growth keep yields marching higher.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Macro"
+      ],
+      "symbols": [
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bb-20261001-uk-long-yield-6pct",
+      "source": "Bloomberg",
+      "headline": "UK Long-Term Bond Yield Reaches 6% for First Time Since 1998",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/uk-long-term-bond-yield-reaches-6-for-first-time-since-1998",
+      "summary": "UK long-term borrowing costs hit 6% for the first time in nearly three decades amid the global bond selloff.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Europe"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20261001-ten-reasons-yields",
+      "source": "Bloomberg",
+      "headline": "Ten Reasons Investors Are Driving Government Bond Yields Higher",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/ten-reasons-investors-are-driving-government-bond-yields-higher",
+      "summary": "From $100 oil to resilient spending, a checklist of drivers behind the relentless rise in global yields.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Macro",
+        "Oil"
+      ],
+      "symbols": [
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bb-20261001-micron-forecast",
+      "source": "Bloomberg",
+      "headline": "Micron Forecast Tops Estimates After Demand Outstrips Supply",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/micron-forecast-tops-estimates-after-demand-outstrips-supply",
+      "summary": "Micron's upbeat AI-driven outlook lifts related equities even as the chipmaker flags rising costs.",
+      "publishedAt": null,
+      "tags": [
+        "Tech",
+        "Earnings",
+        "AI"
+      ],
+      "symbols": [
+        "NQ"
+      ]
+    },
+    {
+      "id": "bb-20261001-boe-bailey-ai",
+      "source": "Bloomberg",
+      "headline": "BOE Governor Warns AI Boom Could Trigger Market Shocks",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/boe-governor-warns-ai-boom-could-trigger-market-shocks-bbc",
+      "summary": "Bailey says the BOE is watching carefully as AI capital inflows send asset prices soaring.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "Policy",
+        "UK"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20261001-trump-powell-resign",
+      "source": "Bloomberg",
+      "headline": "Trump Says Powell Should Be Forced to Resign From Fed Board",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-30/trump-says-powell-should-be-forced-to-resign-from-fed-board-muoizeps",
+      "summary": "Trump renews pressure on Powell over Fed headquarters renovation findings.",
+      "publishedAt": null,
+      "tags": [
+        "Policy",
+        "Fed"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20261001-challenger-job-cuts",
+      "source": "Bloomberg",
+      "headline": "US Companies Announce Fewest Job Cuts for a September Since 2022",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/us-companies-announce-fewest-job-cuts-for-a-september-since-2022",
+      "summary": "Challenger data show the lightest September layoff tally since 2022 ahead of the jobs print.",
+      "publishedAt": null,
+      "tags": [
+        "Labor",
+        "Macro"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20261001-france-budget-test",
+      "source": "Bloomberg",
+      "headline": "France to Lay Out Budget in Latest Test of Investor Nerves",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/france-to-lay-out-budget-in-latest-test-of-investor-nerves",
+      "summary": "Paris unveils a 2027 plan with large spending cuts and tax hikes as OAT risk premia stay elevated.",
+      "publishedAt": null,
+      "tags": [
+        "Europe",
+        "Fiscal",
+        "Rates"
+      ],
+      "symbols": [
+        "EURUSD"
+      ]
+    },
+    {
+      "id": "bb-20261001-france-unloved-equities",
+      "source": "Bloomberg",
+      "headline": "Budget Fight Looms With Paris Market Looking Frail",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/budget-fight-looms-with-paris-market-looking-frail-taking-stock",
+      "summary": "French equities remain Europe's most unloved as political risk weighs on confidence and valuations.",
+      "publishedAt": null,
+      "tags": [
+        "Europe",
+        "Equities"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bb-20261001-msft-trillion-quarter",
+      "source": "Bloomberg",
+      "headline": "Microsoft's Trillion-Dollar Quarter Shows AI Trade Won't Quit",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/microsoft-s-trillion-dollar-quarter-shows-ai-trade-won-t-quit",
+      "summary": "Microsoft shares gained 37.5% in Q3, the biggest quarterly advance since 1998, on AI investment confidence.",
+      "publishedAt": null,
+      "tags": [
+        "Tech",
+        "AI",
+        "Equities"
+      ],
+      "symbols": [
+        "NQ"
+      ]
+    },
+    {
+      "id": "bb-20261001-hedge-funds-euro",
+      "source": "Bloomberg",
+      "headline": "Hedge Funds Boost Bets on Euro Weakness as French Risks Increase",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-01/hedge-funds-boost-bets-on-euro-weakness-as-french-risks-increase",
+      "summary": "Speculators lean harder short euro as French political and fiscal risks intensify.",
+      "publishedAt": null,
+      "tags": [
+        "FX",
+        "Europe",
+        "Positioning"
+      ],
+      "symbols": [
+        "EURUSD"
+      ]
+    }
+  ]
+}
