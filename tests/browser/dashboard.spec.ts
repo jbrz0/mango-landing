@@ -1,9 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const fixture = JSON.parse(await readFile(resolve('data/intel/example.json'), 'utf8'));
 const current = JSON.parse(await readFile(resolve('data/intel/current.json'), 'utf8'));
+const archiveDates = (await readdir(resolve('data/intel/archive'))).map(file => file.replace('.json', '')).sort().reverse();
 const macroFixture = { series: ['VIX', 'VXN', 'US10Y'].map(symbol => ({ symbol, points: [
   { date: '2026-01-13', value: symbol === 'US10Y' ? 4.1 : 16.1 },
   { date: '2026-01-14', value: symbol === 'US10Y' ? 4.2 : 16.2 },
@@ -57,7 +58,7 @@ test('corrupt current and latest archive recover from the next valid archive', a
   await page.route(`**/data/intel/archive/${current.asOfDate}.json`, route => route.fulfill({ body: '{' }));
   await page.goto('/');
   await expect(page.locator('#data-status')).toContainText('Recovered from a valid archive');
-  await expect(page.locator('#brief-date')).toHaveValue('2026-09-30');
+  await expect(page.locator('#brief-date')).toHaveValue(archiveDates.find(date => date < current.asOfDate)!);
 });
 test('all data failures retain usable dashboard and chart controls', async ({ page }) => {
   await page.route('**/data/intel/**', route => route.fulfill({ status: 503, body: '' }));
@@ -105,8 +106,8 @@ test('VIX, VXN and Treasury use actual native daily charts with date ranges and 
     await expect(page.locator('.daily-canvas canvas').first()).toBeVisible();
     await expect(page.locator('.daily-readout')).toContainText('15 Jan 2026');
     await expect(page.locator('#chart-source')).toHaveAttribute('href', symbol === 'US10Y' ? /treasury.gov/ : /cboe.com/);
-    await page.getByRole('button', { name: 'All', exact: true }).click();
-    await expect(page.getByRole('button', { name: 'All', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await page.getByRole('group', { name: 'Chart date range' }).getByRole('button', { name: 'All', exact: true }).click();
+    await expect(page.getByRole('group', { name: 'Chart date range' }).getByRole('button', { name: 'All', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#chart-host iframe')).toHaveCount(0);
   }
 });
@@ -129,4 +130,57 @@ test('daily and legacy HTML route redirect to dashboard', async ({ request }) =>
     const response = await request.get(path, { maxRedirects: 0 });
     expect(response.status()).toBe(308); expect(response.headers().location).toBe('/');
   }
+});
+
+async function panelSpacing(page: Page) {
+  return page.evaluate(() => {
+    const columns = [['overview', 'nasdaq', 'charts', 'fx', 'changes'], ['catalysts', 'macro', 'themes', 'intelligence']];
+    return columns.flatMap(ids => ids.slice(1).map((id, index) => ({
+      pair: `${ids[index]} → ${id}`,
+      gap: document.getElementById(id)!.getBoundingClientRect().top - document.getElementById(ids[index])!.getBoundingClientRect().bottom,
+    })));
+  });
+}
+
+for (const width of [1024, 1440, 1920]) {
+  test(`populated ${width}px desktop has consistent gaps within both columns`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto('/');
+    await expect(page.locator('#brief-date')).toHaveValue(current.asOfDate);
+    await expect(page.locator('[data-macro="US10Y"]')).toContainText('4.3%');
+    for (const { pair, gap } of await panelSpacing(page)) {
+      expect(gap, pair).toBeCloseTo(width <= 1100 ? 14 : 18, 0);
+    }
+  });
+}
+
+test('expanding research leaves the other column in place and closes gaps in its own column', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await populated(page); await page.goto('/');
+  await expect(page.locator('[data-macro="US10Y"]')).toContainText('4.3%');
+  const secondary = () => page.locator('#catalysts, #macro, #themes, #intelligence').evaluateAll(panels => panels.map(panel => panel.getBoundingClientRect().top + window.scrollY));
+  const positions = await secondary();
+  await page.locator('#nasdaq .research-detail').first().locator('summary').click();
+  await page.locator('#fx .fx-instrument').first().locator('summary').click();
+  expect(await secondary()).toEqual(positions);
+  for (const { pair, gap } of await panelSpacing(page)) expect(gap, pair).toBeCloseTo(18, 0);
+});
+
+test('mobile and desktop resizing preserve panel order, open research and the interactive chart', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await populated(page); await page.goto('/');
+  await page.locator('#chart-symbol').selectOption('CBOE:VIX');
+  await expect(page.locator('.daily-canvas canvas').first()).toBeVisible();
+  await page.locator('#fx .fx-instrument').first().locator('summary').click();
+  await page.setViewportSize({ width: 375, height: 812 });
+  await expect(page.locator('.dashboard-grid > section')).toHaveCount(9);
+  expect(await page.locator('.dashboard-grid > section').evaluateAll(panels => panels.map(panel => panel.id))).toEqual(['overview', 'catalysts', 'nasdaq', 'charts', 'themes', 'macro', 'fx', 'intelligence', 'changes']);
+  await expect(page.locator('#fx .fx-instrument').first()).toHaveAttribute('open', '');
+  await page.locator('#charts').scrollIntoViewIfNeeded();
+  await page.getByRole('button', { name: '1Y', exact: true }).click();
+  await expect(page.getByRole('button', { name: '1Y', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(page.locator('.daily-canvas canvas').first()).toBeVisible();
+  for (const { pair, gap } of await panelSpacing(page)) expect(gap, pair).toBeCloseTo(18, 0);
 });

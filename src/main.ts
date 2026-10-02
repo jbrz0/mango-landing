@@ -2,11 +2,13 @@ import './styles.css';
 import { shell, renderData, renderChanges, feed, events } from './components/dashboard';
 import { chartPanel, attachChart } from './components/chart';
 import { attachMarkets } from './components/markets';
+import { attachDashboardLayout } from './components/layout';
 import { loadArchive, loadDashboard, previousBriefing } from './lib/intel/load';
 import type { Intel } from './lib/intel/schema';
 import { day, escape as e, time } from './lib/format';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = shell(chartPanel());
+attachDashboardLayout();
 const dateSelect = document.querySelector<HTMLSelectElement>('#brief-date')!;
 let selected: Intel | null = null;
 let latest: Intel | null = null;
