@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import briefing from '../data/intel/current.json';
+import briefing from '../data/intel/current.json' with { type: 'json' };
 import { EQUITY_TTL, equityQuoteSchema, type EquityQuote, type EquityResponse } from '../src/lib/markets/equities.js';
 
 const providerSchema = z.object({ chart: z.object({ error: z.null(), result: z.array(z.object({ meta: z.object({

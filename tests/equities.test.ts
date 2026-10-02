@@ -2,12 +2,40 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createEquityLoader, parseEquity } from '../server/equity-data';
 import { equityStatus } from '../src/lib/markets/equities';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { spawnSync } from 'node:child_process';
+import ts from 'typescript';
 
 const now = Date.parse('2026-10-02T06:00:00Z');
 const payload = (symbol = 'AAPL') => ({ chart: { error: null, result: [{ meta: {
   symbol, currency: 'USD', instrumentType: 'EQUITY', regularMarketPrice: 110,
   regularMarketTime: Date.parse('2026-10-01T20:00:00Z') / 1000, chartPreviousClose: 100,
 } }] } });
+
+test('equities function initializes under native Node ESM without the development loader', async () => {
+  const work = resolve('.intel-work');
+  await mkdir(work, { recursive: true });
+  const directory = await mkdtemp(resolve(work, 'equities-runtime-'));
+  try {
+    for (const file of ['api/equities.ts', 'server/equity-data.ts', 'src/lib/markets/equities.ts']) {
+      const output = resolve(directory, file.replace(/\.ts$/, '.js'));
+      await mkdir(dirname(output), { recursive: true });
+      const source = await readFile(resolve(file), 'utf8');
+      await writeFile(output, ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2023 } }).outputText);
+    }
+    const snapshot = resolve(directory, 'data/intel/current.json');
+    await mkdir(dirname(snapshot), { recursive: true });
+    await writeFile(snapshot, await readFile(resolve('data/intel/current.json')));
+    const url = pathToFileURL(resolve(directory, 'api/equities.js')).href;
+    const result = spawnSync(process.execPath, ['--input-type=module', '--eval', `const handler = (await import(${JSON.stringify(url)})).default; if (typeof handler !== 'function') process.exit(1);`], { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+  } finally {
+    assert.equal(dirname(directory), work);
+    await rm(directory, { recursive: true, force: true });
+  }
+});
 
 test('quotes retain the provider timestamp and calculate change from previous session, not research', () => {
   const quote = parseEquity(payload(), 'AAPL', now);
