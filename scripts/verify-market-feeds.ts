@@ -38,7 +38,9 @@ try {
   }
   const equityResponse = await page.request.head(new URL('/api/equities', url).href);
   expect(equityResponse.status()).toBe(200);
-  expect(equityResponse.headers()['cache-control']).toContain('s-maxage=900');
+  expect(equityResponse.headers()['cache-control']).toContain('max-age=60');
+  // Vercel consumes s-maxage at the edge and strips it from the browser response.
+  if (!equityResponse.headers()['x-vercel-cache']) expect(equityResponse.headers()['cache-control']).toContain('s-maxage=900');
   expect((await page.request.post(new URL('/api/equities', url).href)).status()).toBe(405);
   await page.locator('#nasdaq details').nth(1).locator('summary').click();
   await page.locator('#nasdaq').screenshot({ path: `${output}/nasdaq-prices.png` });
