@@ -4,7 +4,7 @@ A public, free market-intelligence dashboard at [mangoatlas.xyz](https://mangoat
 
 ## Development
 
-Node **22.12+**, npm, and Git are required. The frontend is static TypeScript/Vite, with one cached Vercel Function for official daily market data. No React framework, database, persistent application server, or paid data subscription is required.
+Node **22.12+**, npm, and Git are required. The frontend is static TypeScript/Vite, with cached Vercel Functions for official daily market data and Nasdaq constituent prices. No React framework, database, persistent application server, or paid data subscription is required.
 
 ```sh
 npm ci
@@ -43,7 +43,9 @@ src/
   lib/markets/         Independent daily-market contract and client cache
   styles.css           Shared tokens and responsive layout
 api/macro.ts           Cached, read-only Vercel Function
+api/equities.ts        Shared 15-minute stock/ETF quote cache
 server/market-data.ts  Fixed Cboe and Treasury adapters, validation and cache
+server/equity-data.ts  Validated Yahoo Finance regular-session quote adapter
 scripts/
   data.ts              Repository-wide validation
   update.ts            Staged build, atomic writes, recovery and rollback
@@ -58,7 +60,7 @@ public/                Original logo/favicons, manifest, robots and sitemap
 docs/GROKBOT_DATA_UPDATE.md
 ```
 
-The build emits current data, archives and a generated manifest into `dist/data/intel/`. The browser validates JSON again and can recover from the newest valid archive if current data fails. The date list is also embedded at build time for recovery when the manifest cannot be fetched. Development examples and legacy prose are **not** copied into `dist/`.
+The build emits current data, archives and a generated manifest into `dist/data/intel/`. These are real, versioned daily JSON snapshots, so archive storage needs no database. The selector shows published dates within the latest briefing's 30-day window; older files remain preserved. The browser validates JSON again and can recover from the newest valid archive if current data fails. The date list is also embedded at build time for recovery when the manifest cannot be fetched. Development examples and legacy prose are **not** copied into `dist/`.
 
 30 previously published Grokbot briefings were migrated from Git history, through October 1, 2026. Their original timestamps and source commit IDs are preserved. This migration does not independently verify the research claims or infer numerical quotes. Markdown emphasis is removed, explicit volatility labels are normalized, and the older unsupported `Transition` volatility value becomes `null`. No NQ, FX, calendar or news feed was available in the repository; those sections honestly show missing coverage until supplied.
 
@@ -94,14 +96,17 @@ npm run intel:publish -- --input /tmp/mango-intel.json
 | BTC/USD, ETH/USD | Coinbase via official TradingView widgets | Provider feed |
 | VIX, VXN | [Cboe historical CSV](https://www.cboe.com/tradable_products/vix/vix_historical_data/) through `/api/macro` | Official daily closes |
 | US10Y | [US Treasury XML](https://home.treasury.gov/treasury-daily-interest-rate-xml-feed) through `/api/macro` | Daily 10-year par yield in percent |
+| Stocks/ETFs mentioned in Nasdaq research | Yahoo Finance chart JSON through `/api/equities` | Latest regular session; shared 15-minute cache, may be delayed |
 
 The top strip uses TradingView's own quote widget for NAS100 CFD, US500 CFD, dollar index CFD, spot gold and Bitcoin. On smaller screens it scrolls horizontally so no symbols disappear. Prices are not scraped or copied out of its iframe. The macro panel shows the three official daily observations with source dates and changes from the preceding observation. Yield changes are basis points; volatility changes are percentages.
 
-The registry in `src/components/chart.ts` contains 15 instruments. Restricted futures and duplicate cash-index options were removed. **NAS100 and US500 are CFDs, and dollar index CFD is explicitly labeled.** NQ research retains its original futures identity; its chart shortcut clearly says NAS100 CFD. [TradingView widgets have exchange restrictions](https://www.tradingview.com/widget-docs/faq/data/), so VIX, VXN and US10Y use native interactive Lightweight Charts with official daily data instead of blocked embeds. These have pan/zoom, crosshair values and 1M/3M/1Y/All ranges. Library and data-source attribution remain visible.
+The registry in `src/components/chart.ts` contains 15 instruments, all rendered as solid `#ff990a` lines. Restricted futures and duplicate cash-index options were removed. **NAS100 and US500 are CFDs, and dollar index CFD is explicitly labeled.** NQ research retains its original futures identity; its chart shortcut clearly says NAS100 CFD. [TradingView widgets have exchange restrictions](https://www.tradingview.com/widget-docs/faq/data/), so VIX, VXN and US10Y use native interactive Lightweight Charts with official daily data instead of blocked embeds. These have pan/zoom, crosshair values and 1M/3M/1Y/All ranges. Other charts retain their hourly default, with compact 15m/1h/4h/1D buttons and no advanced toolbar, OHLC legend or volume. TradingView's public embed reads line-style overrides from the iframe query string; passing them only in its config hash has no effect. Library and data-source attribution remain visible.
 
 `/api/macro` fetches only fixed official URLs, validates values and dates, returns up to 756 observations per series, and includes the prior Treasury year for January continuity. It caches successful responses for 15 minutes at the function/CDN, with up to one hour of stale-while-revalidate at the CDN. The browser checks every five minutes while visible. Refresh failures retain the last success when available in that function instance or browser, preserve its dates, and mark it explicitly. A cold start during an upstream outage has no durable fallback and reports unavailable. Observations over five calendar days old are marked stale; the UI never presents these daily values as intraday prices. No scheduled job is needed.
 
-Research timestamps use Asia/Bangkok (ICT), with 12-hour display. Provider observation dates remain their original dates; retrieval time is separate in the API. Briefings and optional stored research quotes older than 36 hours are marked stale. If a briefing contains quotes, they appear in a separate dated disclosure. Selecting an archive does not relabel current market data as historical.
+Nasdaq stock rows show prices and changes from the preceding regular-session close, separately from published research commentary. `/api/equities` fetches only the unique US stock/ETF symbols in the current briefing, with no caller-selected upstream URLs. All visitors share the CDN's 15-minute cache, with up to another 15 minutes of stale-while-revalidate; concurrent requests in a function instance share one refresh. Browsers reuse responses for 15 minutes and refresh while visible. Failed symbols retain their original last-known timestamp when available, otherwise display `Price unavailable`. Retrievals more than 30 minutes old and failed refreshes are marked; observations older than five days are stale. This is a keyless Yahoo endpoint, not a contracted feed with guaranteed uptime. There is no durable cache across cold starts during provider outages, and symbols only mentioned in an older archive may be unavailable. No Redis, credentials or scheduled job is required.
+
+The UI detects the browser/device time zone, falling back to Asia/Bangkok, with 12-hour display. This applies to the clock, updates, quote/news timestamps, catalyst grouping and TradingView intraday axes. Stored research remains in Bangkok time. Recognized clock references in its prose are converted using the briefing date and stored time zone; explicitly named US/UTC zones and relative editorial language remain intact. Date-only archive and provider observation labels never shift. Untimed events retain their published date because no exact instant is known. Briefings older than 36 hours are marked stale. The redundant stored-quote disclosure is removed. Selecting an archive does not relabel current market data as historical.
 
 Run the opt-in real-provider audit after changing any symbol (Chrome installed by default, or set `PLAYWRIGHT_CHANNEL`):
 
@@ -110,7 +115,7 @@ node --import tsx scripts/verify-market-feeds.ts http://127.0.0.1:5173/
 node --import tsx scripts/verify-market-feeds.ts https://www.mangoatlas.xyz/
 ```
 
-It checks every chart for populated prices or official history, all quote-strip symbols, source dates, mobile overflow, footer alignment and browser errors. Screenshots and JSON evidence go into ignored `.intel-work/market-audit/`. CI uses deterministic provider fixtures; external-provider availability is checked separately. The Vite dev and preview servers serve the same macro handler as Vercel.
+It checks every chart for rendered orange price lines or official history, all quote-strip symbols, Nasdaq row prices, source dates, mobile overflow, footer alignment and browser errors. Screenshots and JSON evidence go into ignored `.intel-work/market-audit/`. CI uses deterministic provider fixtures; external-provider availability is checked separately. The Vite dev and preview servers serve the same macro and equities handlers as Vercel.
 
 If adding a keyed API later, introduce a server-side provider adapter and server-only environment variables. Never add a credential to a `VITE_*` variable; this frontend is public.
 

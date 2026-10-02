@@ -3,6 +3,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { chartSymbols } from '../src/components/chart';
 import { quoteSymbols } from '../src/components/markets';
 import { macroResponseSchema } from '../src/lib/markets/schema';
+import { equityResponseSchema } from '../src/lib/markets/equities';
 
 // Opt-in live provider audit. Keep external network availability out of CI.
 const url = process.argv[2] ?? 'http://127.0.0.1:5173/';
@@ -27,6 +28,23 @@ try {
   for (const symbol of quoteSymbols) expect(quoteText).toContain(symbol.title);
   expect(quoteText).not.toMatch(/unavailable|invalid symbol|only available/i);
   console.log('All quote-strip instruments returned prices and percentage changes.');
+  const equities = equityResponseSchema.parse(await (await page.request.get(new URL('/api/equities', url).href)).json());
+  expect(equities.unavailable).toEqual([]);
+  expect(equities.quotes.length).toBeGreaterThan(0);
+  for (const quote of equities.quotes) {
+    expect(quote.refreshFailed).toBe(false);
+    await expect(page.locator(`[data-equity="${quote.symbol}"]`).first()).toContainText(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(quote.price));
+    await expect(page.locator(`[data-equity-source="${quote.symbol}"]`).first()).toContainText('Yahoo Finance');
+  }
+  const equityResponse = await page.request.head(new URL('/api/equities', url).href);
+  expect(equityResponse.status()).toBe(200);
+  expect(equityResponse.headers()['cache-control']).toContain('s-maxage=900');
+  expect((await page.request.post(new URL('/api/equities', url).href)).status()).toBe(405);
+  await page.locator('#nasdaq details').nth(1).locator('summary').click();
+  await page.locator('#nasdaq').screenshot({ path: `${output}/nasdaq-prices.png` });
+  await page.locator('#nasdaq details').nth(1).locator('summary').click();
+  await page.locator('#intelligence').screenshot({ path: `${output}/intelligence-tags.png` });
+  console.log(`All ${equities.quotes.length} Nasdaq stock/ETF quotes returned sourced prices; shared cache headers verified.`);
   await page.screenshot({ path: `${output}/desktop.png`, fullPage: true });
   await page.setViewportSize({ width: 375, height: 812 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -35,6 +53,8 @@ try {
   await page.locator('#chart-symbol').selectOption('CBOE:VIX');
   await expect(page.locator('.daily-canvas canvas').first()).toBeVisible();
   await page.locator('#charts').screenshot({ path: `${output}/mobile-vix.png` });
+  await page.locator('#nasdaq details').nth(1).locator('summary').click();
+  await page.locator('#nasdaq').screenshot({ path: `${output}/mobile-nasdaq-prices.png` });
   const socialY = await page.locator('.footer-socials a').evaluateAll(links => links.map(link => link.getBoundingClientRect().y));
   expect(socialY[0]).toBe(socialY[1]); expect(errors).toEqual([]);
   await page.close();
@@ -58,8 +78,15 @@ try {
           await page.getByRole('button', { name: '1Y', exact: true }).click();
         } else {
           const body = page.frameLocator('#chart-host iframe').locator('body');
-          await expect.poll(() => body.innerText(), { timeout: 25_000 }).toMatch(/\n[OHC]\n[\d,]+\.\d/);
-          detail = await body.innerText();
+          await expect(page.frameLocator('#chart-host iframe').locator('canvas').first()).toBeVisible({ timeout: 25_000 });
+          await expect.poll(() => page.frameLocator('#chart-host iframe').locator('canvas').evaluateAll(canvases => canvases.reduce((count, canvas) => {
+            const context = (canvas as HTMLCanvasElement).getContext('2d');
+            if (!context) return count;
+            const pixels = context.getImageData(0, 0, (canvas as HTMLCanvasElement).width, (canvas as HTMLCanvasElement).height).data;
+            for (let i = 0; i < pixels.length; i += 4) if (pixels[i] > 240 && pixels[i + 1] > 140 && pixels[i + 1] < 170 && pixels[i + 2] < 30) count++;
+            return count;
+          }, 0)), { timeout: 15_000 }).toBeGreaterThan(100);
+          detail = `Orange line rendered; ${await body.innerText()}`;
           expect(detail).not.toMatch(/only available|invalid symbol|Try picking/i);
         }
         expect(appErrors).toEqual([]);

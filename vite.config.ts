@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { readRepository, serialize } from './scripts/data';
 import macroHandler from './api/macro';
+import equitiesHandler from './api/equities';
 
 export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugin {
   return {
@@ -26,6 +27,7 @@ export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugi
       server.middlewares.use(async (req, res, next) => {
         const path = req.url?.split('?')[0];
         if (path === '/api/macro') { await macroHandler(req, res); return; }
+        if (path === '/api/equities') { await equitiesHandler(req, res); return; }
         if (['/daily', '/daily/', '/daily.html'].includes(path ?? '')) {
           res.writeHead(308, { Location: '/' }); res.end(); return;
         }
@@ -44,6 +46,7 @@ export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugi
     configurePreviewServer(server) {
       server.middlewares.use(async (req, res, next) => {
         if (req.url?.split('?')[0] === '/api/macro') { await macroHandler(req, res); return; }
+        if (req.url?.split('?')[0] === '/api/equities') { await equitiesHandler(req, res); return; }
         if (['/daily', '/daily/', '/daily.html'].includes(req.url?.split('?')[0] ?? '')) {
           res.writeHead(308, { Location: '/' }); res.end();
         } else next();

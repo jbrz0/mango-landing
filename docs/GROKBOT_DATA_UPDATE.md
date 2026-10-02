@@ -89,13 +89,15 @@ Symbols accept uppercase letters, digits and `: ^ ! . _ / = -`, maximum 40 chara
 
 ### Research and movers
 
-Prose is plain text, rendered with HTML escaping. Most prose values allow up to 1,600 characters; short fields (labels, source names, IDs, tags, regime, event values) allow 160. Themes and risks each allow up to 20 items. NQ has `bias`, `conviction`, `regime`, `summary`, `primaryCatalyst`, `primaryRisk`, `overnight`, `macro`, `volatility`, `sentimentShortTerm`, `sentimentMediumTerm` plus the three mover arrays. Each mover has `symbol`, `changePct`, `context`, `source`, `updatedAt`. A numeric move requires its timestamp; null price change does not imply zero.
+Prose is plain text, rendered with HTML escaping. Most prose values allow up to 1,600 characters; short fields (labels, source names, IDs, tags, regime, event values) allow 160. Themes and risks each allow up to 20 items. NQ has `bias`, `conviction`, `regime`, `summary`, `primaryCatalyst`, `primaryRisk`, `overnight`, `macro`, `volatility`, `sentimentShortTerm`, `sentimentMediumTerm` plus the three mover arrays. Each mover has `symbol`, `changePct`, `context`, `source`, `updatedAt`. A numeric move requires its timestamp; null price change does not imply zero. The dashboard now obtains stock/ETF row prices independently through the shared `/api/equities` cache. Do not insert current quotes into historical research or change this payload shape for the price feed. The quote adapter automatically includes the unique stock/ETF symbols in the current published snapshot.
 
 ### Economic events
 
 `date` is the event's **Bangkok calendar day**. For known times set `datetime` with an explicit offset, `timeLabel: null`, and a matching Bangkok `date`. For genuinely unknown release time use `datetime: null` and `timeLabel: "tentative"`; do not invent midnight or a release time. All-day events use `all_day`. `timezone` stays `Asia/Bangkok`. Currency is a three-letter uppercase code. Forecast/previous/actual are short strings or `null` (strings allow values such as `3.2%` or `210K`). Do not invent forecasts or actuals.
 
-The UI displays 12-hour ICT time and today/the next seven days. It cannot infer calendar completeness from an empty array; empty coverage is labeled unpublished. Archived dates show the calendar as published. No front-end prose scraping or timezone inference is used.
+The UI detects the viewer's device time zone (Bangkok fallback) and displays 12-hour times and today/the next seven local calendar days. Timed events are grouped by their converted date; untimed events keep their published date. Keep source timestamps and the Bangkok schema unchanged. It cannot infer calendar completeness from an empty array; empty coverage is labeled unpublished. Archived dates show the calendar as published, with known times converted for the viewer. Date-only archive labels do not shift.
+
+For prose clock references on the briefing date, prefer explicit Bangkok notation such as `7:30 PM BKK` or `19:30 ICT`; these are localized at display time, as are existing `7:30p` references in the briefing's time zone. Put other-day release times in structured `events` instead of embedding an ambiguous clock in prose. Relative editorial terms such as "overnight" retain their original research context. Original stored text is never rewritten.
 
 ### Intelligence/news
 

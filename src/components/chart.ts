@@ -1,4 +1,4 @@
-import { escape as e } from '../lib/format';
+import { escape as e, displayTimeZone, zoneName } from '../lib/format';
 import { loadMacro } from '../lib/markets/load';
 import { macroDefinitions, type MacroSymbol } from '../lib/markets/schema';
 
@@ -32,6 +32,12 @@ export function attachChart() {
   let timer: ReturnType<typeof setTimeout>;
   let observer: MutationObserver | undefined;
   let dispose: (() => void) | undefined;
+  let interval = '60';
+  const lineOverrides = {
+    'mainSeriesProperties.lineStyle.colorType': 'solid',
+    'mainSeriesProperties.lineStyle.color': '#ff990a',
+    'mainSeriesProperties.lineStyle.linewidth': 2,
+  };
   async function show(id: string, force = false) {
     const instrument = chartSymbols.find(s => s.id === id);
     if (!instrument) return;
@@ -64,11 +70,16 @@ export function attachChart() {
       }
       return;
     }
-    host.innerHTML = '<div class="chart-loading" role="status">Loading public chart…</div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';
+    host.innerHTML = `<div class="daily-toolbar"><div class="daily-ranges" role="group" aria-label="Chart interval">${[['15', '15m'], ['60', '1h'], ['240', '4h'], ['D', '1D']].map(([value, label]) => `<button type="button" data-interval="${value}" aria-pressed="${value === interval}">${label}</button>`).join('')}</div><span>${e(zoneName.toUpperCase())}</span></div><div class="provider-chart"><div class="chart-loading" role="status">Loading public chart…</div><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div></div>`;
+    host.querySelectorAll<HTMLButtonElement>('[data-interval]').forEach(button => button.addEventListener('click', () => {
+      interval = button.dataset.interval!;
+      void show(id);
+    }));
     const container = host.querySelector<HTMLDivElement>('.tradingview-widget-container')!;
     const loading = host.querySelector<HTMLDivElement>('.chart-loading')!;
     const fail = () => {
       if (sequence !== currentSequence) return;
+      clearTimeout(timer);
       loading.innerHTML = '<strong>Chart unavailable</strong><span>The chart provider could not be reached. Research remains available.</span><button type="button" id="chart-retry">Retry chart</button>';
       loading.classList.add('failed');
       loading.querySelector('button')?.addEventListener('click', () => show(id));
@@ -76,6 +87,10 @@ export function attachChart() {
     observer = new MutationObserver(() => {
       const frame = container.querySelector('iframe');
       if (!frame) return;
+      // The public embed reads style overrides from its query string, not the config hash.
+      const url = new URL(frame.src);
+      url.searchParams.set('overrides', JSON.stringify(lineOverrides));
+      frame.src = url.href;
       frame.title = `${instrument.label} chart by TradingView`;
       frame.addEventListener('load', () => {
         if (sequence !== currentSequence) return;
@@ -87,7 +102,13 @@ export function attachChart() {
     const script = document.createElement('script');
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
     script.async = true;
-    script.textContent = JSON.stringify({ autosize: true, symbol: id, interval: '60', timezone: 'Asia/Bangkok', theme: 'dark', style: '1', locale: 'en', backgroundColor: '#0a0a0a', gridColor: 'rgba(255,255,255,0.04)', allow_symbol_change: false, hide_side_toolbar: true, hide_top_toolbar: false, hide_legend: false, save_image: false, calendar: false, support_host: 'https://www.tradingview.com' });
+    script.textContent = JSON.stringify({
+      autosize: true, symbol: id, interval, timezone: displayTimeZone, theme: 'dark', style: '2', locale: 'en',
+      backgroundColor: '#0a0a0a', gridColor: 'rgba(255,255,255,0.04)', allow_symbol_change: false,
+      hide_side_toolbar: true, hide_top_toolbar: true, hide_legend: true, hide_volume: true,
+      save_image: false, calendar: false, support_host: 'https://www.tradingview.com',
+      overrides: lineOverrides,
+    });
     script.onerror = fail;
     container.append(script);
     timer = setTimeout(fail, 18000);

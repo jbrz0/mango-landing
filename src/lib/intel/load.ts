@@ -1,5 +1,6 @@
 import knownDates from 'virtual:intel-dates';
 import { dateSchema, parseIntel, type Intel } from './schema';
+import { addDays } from '../format';
 
 async function fetchJson(path: string) {
   const response = await fetch(path, { cache: 'no-cache', signal: AbortSignal.timeout(6000) });
@@ -40,7 +41,8 @@ export async function loadDashboard() {
   }
   if (current) {
     cache.set(current.asOfDate, current);
-    dates = [...new Set([current.asOfDate, ...dates.filter(date => date <= current!.asOfDate)])].sort().reverse();
+    const oldest = addDays(current.asOfDate, -29);
+    dates = [...new Set([current.asOfDate, ...dates.filter(date => date >= oldest && date <= current!.asOfDate)])].sort().reverse();
   }
   return { current, dates, fallback };
 }

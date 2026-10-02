@@ -5,7 +5,9 @@ import { attachMarkets } from './components/markets';
 import { attachDashboardLayout } from './components/layout';
 import { loadArchive, loadDashboard, previousBriefing } from './lib/intel/load';
 import type { Intel } from './lib/intel/schema';
-import { day, escape as e, time } from './lib/format';
+import { day, escape as e, time, zoneLabel } from './lib/format';
+import { localizeResearch } from './lib/intel/localize';
+import { refreshEquityQuotes } from './components/equities';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = shell(chartPanel());
 attachDashboardLayout();
@@ -18,7 +20,10 @@ let request = 0;
 let eventScope = 'today';
 const historical = () => selected?.asOfDate !== latest?.asOfDate;
 
-function updateClock() { document.querySelector('#desk-clock')!.textContent = time(new Date().toISOString()); }
+function updateClock() {
+  const now = new Date().toISOString();
+  document.querySelector('#desk-clock')!.textContent = `${time(now)} ${zoneLabel(now)}`;
+}
 updateClock();
 setInterval(updateClock, 30_000);
 attachChart();
@@ -64,7 +69,7 @@ document.addEventListener('click', event => {
   const filter = element.closest<HTMLButtonElement>('[data-feed-filter]');
   if (filter?.dataset.feedFilter) {
     const tag = filter.dataset.feedFilter;
-    document.querySelector('#intelligence')!.innerHTML = feed(selected, tag);
+    document.querySelector('#intelligence')!.innerHTML = feed(selected ? localizeResearch(selected) : null, tag);
     [...document.querySelectorAll<HTMLButtonElement>('[data-feed-filter]')].find(button => button.dataset.feedFilter === tag)?.focus({ preventScroll: true });
   }
   const scope = element.closest<HTMLButtonElement>('[data-event-scope]');
@@ -78,3 +83,6 @@ document.addEventListener('click', event => {
 setInterval(() => {
   if (selected && !document.querySelector('#catalysts')?.contains(document.activeElement)) document.querySelector('#catalysts')!.innerHTML = events(selected, historical(), eventScope);
 }, 60_000);
+
+setInterval(() => { if (!document.hidden) void refreshEquityQuotes(); }, 15 * 60_000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) void refreshEquityQuotes(); });

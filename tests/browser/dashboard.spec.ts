@@ -21,6 +21,7 @@ test.beforeEach(async ({ page }) => {
   // Deterministic UI tests never rely on a third-party chart connection.
   await page.route('https://s3.tradingview.com/**', route => route.abort());
   await page.route('**/api/macro', route => route.fulfill({ json: macroFixture }));
+  await page.route('**/api/equities', route => route.fulfill({ json: { quotes: [{ symbol: 'AAPL', price: 110, changePct: 10, currency: 'USD', source: 'Yahoo Finance', updatedAt: '2026-01-14T20:00:00.000Z', retrievedAt: '2026-01-15T05:00:00.000Z', refreshFailed: false }], unavailable: [] } }));
 });
 
 for (const width of [375, 390, 430, 1440]) {
@@ -52,6 +53,82 @@ test('history selection changes briefing and compares actual earlier data', asyn
   await expect(page.locator('[data-macro="VIX"]')).toContainText('16.3');
   await page.locator('#brief-date').selectOption(current.asOfDate);
   await expect(page.locator('#overview')).toContainText(current.overview.oneLineTake);
+  const dates = await page.locator('#brief-date option').evaluateAll(options => options.map(option => (option as HTMLOptionElement).value));
+  expect(dates.every(date => Date.parse(current.asOfDate) - Date.parse(date) < 30 * 86400_000)).toBe(true);
+});
+
+test('Nasdaq displays sourced prices, opens one research section, and reuses the request', async ({ page }) => {
+  let calls = 0;
+  page.on('request', request => { if (new URL(request.url()).pathname === '/api/equities') calls++; });
+  await populated(page); await page.goto('/');
+  const sections = page.locator('#nasdaq details');
+  await sections.nth(1).locator('summary').click();
+  await expect(page.locator('[data-equity="AAPL"]').first()).toContainText('$110.00');
+  await expect(page.locator('[data-equity-source="AAPL"]').first()).toContainText('15 Jan 2026 · 3:00 AM ICT');
+  await expect(sections.nth(1)).toContainText('Independent of briefing date');
+  for (const index of [0, 2, 3, 1]) {
+    await sections.nth(index).locator('summary').click();
+    await expect(sections.nth(index)).toHaveAttribute('open', '');
+    await expect(page.locator('#nasdaq details[open]')).toHaveCount(1);
+  }
+  expect(calls).toBe(1);
+});
+
+test('intelligence filters wrap without horizontal scrolling on desktop and mobile', async ({ page }) => {
+  await page.goto('/');
+  for (const width of [1440, 375]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect(page.locator('.feed-filters button').last()).toBeAttached();
+    const layout = await page.locator('.feed-filters').evaluate(element => ({ overflow: element.scrollWidth > element.clientWidth, rows: new Set([...element.children].map(child => child.getBoundingClientRect().top)).size }));
+    expect(layout.overflow).toBe(false);
+    expect(layout.rows).toBeGreaterThan(1);
+  }
+});
+
+test('provider charts use the orange line and compact interval controls', async ({ page }) => {
+  await page.route('**/embed-widget-advanced-chart.js', route => route.fulfill({ contentType: 'application/javascript', body: 'const frame = document.createElement("iframe"); frame.src = "https://www.tradingview-widget.com/embed-widget/advanced-chart/?locale=en"; document.currentScript.parentElement.append(frame);' }));
+  await page.route('https://www.tradingview-widget.com/**', route => route.fulfill({ body: '<html><body>Chart fixture</body></html>' }));
+  await page.goto('/');
+  await page.getByRole('button', { name: 'NAS100 CFD chart' }).click();
+  const config = () => page.locator('#chart-host script').evaluate(element => JSON.parse(element.textContent!));
+  expect(await config()).toMatchObject({ style: '2', hide_top_toolbar: true, hide_legend: true, hide_volume: true, interval: '60', timezone: 'Asia/Bangkok', overrides: { 'mainSeriesProperties.lineStyle.color': '#ff990a' } });
+  await expect(page.locator('#chart-host iframe')).toHaveAttribute('src', /overrides=/);
+  const overrides = await page.locator('#chart-host iframe').evaluate(element => JSON.parse(new URL((element as HTMLIFrameElement).src).searchParams.get('overrides')!));
+  expect(overrides).toMatchObject({ 'mainSeriesProperties.lineStyle.color': '#ff990a', 'mainSeriesProperties.lineStyle.colorType': 'solid' });
+  await page.getByRole('button', { name: '4h', exact: true }).click();
+  expect((await config()).interval).toBe('240');
+  await expect(page.getByRole('button', { name: '4h', exact: true })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('stock quote outage is explicit while research remains usable', async ({ page }) => {
+  await page.route('**/api/equities', route => route.fulfill({ status: 503, json: { quotes: [], unavailable: ['AAPL'] } }));
+  await populated(page); await page.goto('/');
+  await page.locator('#nasdaq details').nth(1).locator('summary').click();
+  await expect(page.locator('[data-equity="AAPL"]').first()).toHaveText('Price unavailable');
+  await expect(page.locator('#nasdaq')).toContainText('EXAMPLE');
+  await expect(page.locator('#chart-symbol')).toBeEnabled();
+});
+
+test.describe('viewer in New York', () => {
+  test.use({ timezoneId: 'America/New_York' });
+  test('timestamps, research clock references and catalyst days all convert together', async ({ page }) => {
+    await page.clock.setFixedTime(new Date('2026-10-02T02:00:00Z'));
+    await page.goto('/');
+    await expect(page.locator('.desk-clock')).toContainText('NEW YORK');
+    await expect(page.locator('#data-status')).toContainText('01 Oct 2026 · 9:43 PM EDT');
+    await expect(page.locator('#brief-date')).toHaveValue('2026-10-02');
+    await expect(page.locator('#catalysts .event-date')).toHaveText('01 Oct 2026');
+    await expect(page.locator('#catalysts .event-row')).toHaveCount(1);
+    await expect(page.locator('#catalysts .event-row')).toContainText('7:30 PM');
+    await page.getByRole('button', { name: '7 days', exact: true }).click();
+    await expect(page.locator('#catalysts .event-row')).toHaveCount(6);
+    await expect(page.locator('#catalysts')).toContainText('8:30 AM');
+    await expect(page.locator('#nasdaq')).toContainText('NFP 8:30 AM EDT');
+    await expect(page.locator('#themes')).toContainText('8:30 AM EDT');
+    await expect(page.locator('[data-macro="US10Y"]')).toContainText('15 Jan 2026');
+    await page.getByRole('button', { name: 'NAS100 CFD chart' }).click();
+    expect(await page.locator('#chart-host script').evaluate(element => JSON.parse(element.textContent!).timezone)).toBe('America/New_York');
+  });
 });
 test('corrupt current and latest archive recover from the next valid archive', async ({ page }) => {
   await page.route('**/data/intel/current.json', route => route.fulfill({ json: { broken: true } }));
@@ -82,8 +159,7 @@ test('populated mobile: events in ICT, FX levels, feed filtering, escaped resear
   await expect(page.locator('.story')).toContainText('Technology story');
   await page.getByRole('button', { name: 'All', exact: true }).click();
   await expect(page.locator('.story')).toHaveCount(2);
-  await page.locator('#briefing-quotes summary').click();
-  await expect(page.locator('.ticker').first()).toContainText('20,000');
+  await expect(page.locator('#briefing-quotes')).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 test('stale research is marked and the available Nasdaq chart is explicitly a CFD', async ({ page }) => {

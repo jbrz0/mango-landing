@@ -31,6 +31,16 @@ a:hover, button:hover { color: var(--cream); }
 button:hover { background-color: #1c1c1c; }
 button:focus-visible, a:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 select { min-height: 40px; padding: 8px 30px 8px 12px; max-width: 100%; cursor: pointer; }
+#brief-date, #chart-symbol {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='m2 4 4 4 4-4' fill='none' stroke='%23e8e8e8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px 12px;
+}
+@media (forced-colors: active) {
+  #brief-date, #chart-symbol { appearance: auto; background-image: none; }
+}
 select:disabled { cursor: wait; }
 svg { width: 18px; height: 18px; flex-shrink: 0; }
 h1, h2, h3, p { margin: 0; }
@@ -169,6 +179,9 @@ summary > span:last-child { color: var(--faint); margin-left: auto; font: 8px va
 .mover { display: grid; grid-template-columns: 1fr auto; margin-bottom: 16px; gap: 6px; font-size: 10px; }
 .mover p, .mover small { grid-column: 1 / -1; color: var(--muted); }
 .mover small { color: var(--faint); font-size: 8px; }
+.mover-note { font-size: 9px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+.mover-quote { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; text-align: right; }
+.mover-quote-source { line-height: 1.6; }
 .macro-rows { padding: 0 21px; }
 .macro-row { display: grid; grid-template-columns: 1fr auto 27px; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
 .macro-row:last-child { border: 0; }
@@ -183,11 +196,12 @@ summary > span:last-child { color: var(--faint); margin-left: auto; font: 8px va
 .chart-tabs { display: flex; gap: 5px; }
 .chart-tabs button { border-color: transparent; background: transparent; color: var(--muted); padding: 6px 10px; min-height: 34px; font: 10px var(--mono); }
 .chart-tabs button[aria-pressed='true'] { background: #ff990a0d; color: var(--accent); border-color: #ff990a2b; }
-.chart-controls select { font: 9px var(--mono); min-height: 34px; max-width: 255px; }
+.chart-controls select { font: 9px var(--mono); min-height: 34px; min-width: 198px; max-width: 255px; }
 .chart-caption { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 5px; margin: 0 20px; padding: 10px 0 12px; border-top: 1px solid var(--border); }
 .chart-caption strong { font-size: 11px; font-weight: 500; }
 .chart-caption > span { font: 8px var(--mono); color: var(--muted); }
 .chart-host { position: relative; height: 478px; margin: 0 8px; }
+.provider-chart { position: relative; height: calc(100% - 44px); }
 .tradingview-widget-container { height: 100%; width: 100%; }
 .tradingview-widget-container__widget { height: 100%; width: 100%; }
 .chart-loading { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; padding: 24px; background: var(--surface); color: var(--muted); font-size: 12px; z-index: 1; text-align: center; }
@@ -224,7 +238,7 @@ summary > span:last-child { color: var(--faint); margin-left: auto; font: 8px va
 .fx-shortcuts { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; padding: 12px 21px 17px; border-top: 1px solid var(--border); }
 .fx-shortcuts > span { font-size: 8px; margin-right: 7px; }
 .symbol-button { background: transparent; border: 0; font-size: 9px; color: var(--muted); min-height: 36px; padding: 5px 7px; }
-.feed-filters { display: flex; overflow-x: auto; gap: 7px; margin: 12px 21px 0; scrollbar-width: thin; }
+.feed-filters { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 21px 0; }
 .feed-filters button { font-size: 9px; color: var(--muted); min-height: 34px; padding: 4px 10px; flex-shrink: 0; }
 .feed-filters button[aria-pressed='true'] { color: var(--accent); border-color: #ff990a35; background: #ff990a09; }
 .stories { max-height: 478px; overflow-y: auto; scrollbar-width: thin; }
@@ -259,8 +273,6 @@ summary > span:last-child { color: var(--faint); margin-left: auto; font: 8px va
 .quote-scroll { overflow-x: auto; scrollbar-width: thin; scrollbar-color: #444 transparent; }
 .quote-provider { min-width: 1200px; min-height: 72px; color-scheme: normal; }
 .quotes-loading { padding: 8px 16px; color: var(--muted); font-size: 10px; }
-.briefing-quotes { margin: 0 0 18px; }
-.briefing-quotes summary { padding: 12px 0; color: var(--muted); font-size: 11px; cursor: pointer; }
 .macro-source { font-size: 9px; color: var(--muted); margin-top: 6px; }
 .daily-toolbar { height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 8px; font: 9px var(--mono); color: var(--muted); }
 .daily-ranges { display: flex; gap: 4px; }

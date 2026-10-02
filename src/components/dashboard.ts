@@ -1,7 +1,8 @@
-import type { Intel, Market, EconomicEvent } from '../lib/intel/schema';
-import { bangkokDate } from '../lib/intel/schema';
+import type { Intel, EconomicEvent } from '../lib/intel/schema';
 import { changesSince } from '../lib/intel/compare';
-import { escape as e, day, time, number, signed, readable, isStale, notToday } from '../lib/format';
+import { escape as e, day, time, number, readable, isStale, notToday, timestamp, zoneName, dateKey, addDays, displayTimeZone } from '../lib/format';
+import { localizeResearch } from '../lib/intel/localize';
+import { refreshEquityQuotes } from './equities';
 import { badge, empty, metric, sectionHeader, arrow } from './primitives';
 import { chartSymbols } from './chart';
 
@@ -13,31 +14,15 @@ export function shell(chart: string) {
   return `<a class="skip-link" href="#main">Skip to market intelligence</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/" aria-label="Mango Atlas home"><img src="/logo-transparent.png" width="46" height="46" alt="Mango Atlas emblem"><span>MANGO<span class="brand-atlas">ATLAS</span><small>MARKET INTELLIGENCE</small></span></a>
-    <div class="header-actions"><span class="desk-clock"><span class="status-dot"></span>BANGKOK <time id="desk-clock"></time> ICT</span><a class="icon-link" href="${SOCIAL.x}" target="_blank" rel="noopener noreferrer" aria-label="Mango Atlas on X">${xIcon}</a><a class="discord-link" href="${SOCIAL.discord}" target="_blank" rel="noopener noreferrer">${discordIcon}<span>Join Discord</span>${arrow}</a></div>
+    <div class="header-actions"><span class="desk-clock" title="${e(displayTimeZone)}"><span class="status-dot"></span>${e(zoneName.toUpperCase())} <time id="desk-clock"></time></span><a class="icon-link" href="${SOCIAL.x}" target="_blank" rel="noopener noreferrer" aria-label="Mango Atlas on X">${xIcon}</a><a class="discord-link" href="${SOCIAL.discord}" target="_blank" rel="noopener noreferrer">${discordIcon}<span>Join Discord</span>${arrow}</a></div>
   </div></header>
   <div class="subnav"><nav aria-label="Dashboard sections"><a class="active" href="#overview">Overview</a><a href="#nasdaq">Nasdaq</a><a href="#charts">Charts</a><a href="#fx">FX</a><a href="#intelligence">Intelligence</a></nav><span class="public-label">INDEPENDENT RESEARCH <span>/</span> OPEN ACCESS</span></div>
   <main id="main" class="page-wrap"><div class="page-heading"><div><p class="eyebrow"><span class="orange">THE DAILY PICTURE</span> / MACRO · NASDAQ · FX</p><h1>Market intelligence<span class="orange">.</span></h1></div><div class="archive-control"><label for="brief-date">Briefing archive</label><div class="select-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 11h18"/></svg><select id="brief-date" disabled><option>Loading briefings…</option></select></div></div></div>
   <div id="data-status" class="data-status" role="status">Loading the latest published intelligence…</div>
   <section id="market-strip" class="market-quotes" aria-label="Current market quotes"></section>
-  <details id="briefing-quotes" class="briefing-quotes" hidden></details>
   <div class="dashboard-grid"><section id="overview" class="panel regime-panel" aria-labelledby="overview-title"></section><section id="catalysts" class="panel events-panel" aria-labelledby="events-title"></section><section id="nasdaq" class="panel nq-panel" aria-labelledby="nq-title"></section><section id="macro" class="panel macro-panel" aria-labelledby="macro-title"></section>${chart}<section id="themes" class="panel themes-panel" aria-labelledby="themes-title"></section><section id="fx" class="panel fx-panel" aria-labelledby="fx-title"></section><section id="intelligence" class="panel feed-panel" aria-labelledby="feed-title"></section></div>
   <section id="changes" class="changes-panel" aria-labelledby="changes-title"></section>
   </main><footer class="site-footer"><div><strong>MANGO ATLAS</strong><span>Independent trading & research desk.</span></div><p>Published research, not a live trading signal. Not investment advice.</p><nav class="footer-socials" aria-label="Community links"><a href="${SOCIAL.discord}" target="_blank" rel="noopener noreferrer">${discordIcon} Discord ↗</a><a href="${SOCIAL.x}" target="_blank" rel="noopener noreferrer">${xIcon} @mangoatlas ↗</a></nav></footer>`;
-}
-
-function price(item: Market) {
-  if (item.price === null) return '—';
-  return `${item.unit === 'USD' ? '$' : ''}${number(item.price, item.instrumentType === 'fx' ? 5 : 2)}${item.unit === 'percent' ? '%' : ''}`;
-}
-function quoteStatus(item: Market) {
-  if (item.status === 'unavailable') return 'Unavailable';
-  if (item.updatedAt && isStale(item.updatedAt)) return 'Stale snapshot';
-  return item.status === 'delayed' ? 'Delayed snapshot' : 'Snapshot';
-}
-function ticker(data: Intel | null) {
-  return (data?.markets ?? []).map(item => {
-    return `<article class="ticker"><div class="ticker-top"><strong>${e(item.symbol)}</strong><span>${e(quoteStatus(item))}</span></div><div class="ticker-price"><b>${price(item)}</b><span class="${item.changePct !== null ? item.changePct >= 0 ? 'positive-text' : 'negative-text' : 'muted-text'}">${item.changePct !== null ? e(signed(item.changePct)) : 'No quote'}</span></div><span class="ticker-label">${e(item.label)} · ${e(readable(item.instrumentType))}</span>${item.updatedAt ? `<span class="quote-source">${e(item.source)} · ${day(item.updatedAt)} ${time(item.updatedAt)} ICT</span>` : ''}</article>`;
-  }).join('');
 }
 
 function overview(data: Intel | null) {
@@ -52,26 +37,27 @@ function eventRow(event: EconomicEvent) {
 
 export function events(data: Intel | null, historical: boolean, scope = 'today') {
   const all = data?.events ?? [];
-  const baseDate = historical && data ? data.asOfDate : bangkokDate(new Date());
+  const baseDate = historical && data ? dateKey(data.generatedAt) : dateKey(new Date());
+  const eventDate = (event: EconomicEvent) => event.datetime ? dateKey(event.datetime) : event.date;
   const upcoming = all.filter(event => event.datetime && Date.parse(event.datetime) >= Date.now()).sort((a, b) => Date.parse(a.datetime!) - Date.parse(b.datetime!));
   const next = historical ? null : upcoming.find(event => event.impact === 'high') ?? upcoming[0];
-  const visible = all.filter(event => scope === 'week' ? event.date >= baseDate && event.date <= bangkokDate(new Date(Date.parse(`${baseDate}T00:00:00+07:00`) + 6 * 86400_000)) : event.date === baseDate).sort((a,b) => a.date.localeCompare(b.date) || (a.datetime ? Date.parse(a.datetime) : Infinity) - (b.datetime ? Date.parse(b.datetime) : Infinity));
-  const dates = [...new Set(visible.map(event => event.date))];
-  return `${sectionHeader('events-title', 'Key catalysts', 'BANGKOK / ICT')}
+  const visible = all.filter(event => scope === 'week' ? eventDate(event) >= baseDate && eventDate(event) <= addDays(baseDate, 6) : eventDate(event) === baseDate).sort((a,b) => eventDate(a).localeCompare(eventDate(b)) || (a.datetime ? Date.parse(a.datetime) : Infinity) - (b.datetime ? Date.parse(b.datetime) : Infinity));
+  const dates = [...new Set(visible.map(eventDate))];
+  return `${sectionHeader('events-title', 'Key catalysts', zoneName.toUpperCase())}
     <div class="event-toolbar"><div class="segmented" aria-label="Event date range"><button data-event-scope="today" aria-pressed="${scope === 'today'}">${historical ? 'Briefing day' : 'Today'}</button><button data-event-scope="week" aria-pressed="${scope === 'week'}">7 days</button></div><span class="muted-text mono">${visible.length} EVENTS</span></div>
-    ${next ? `<div class="next-event"><span class="eyebrow">NEXT ${next.impact === 'high' ? 'HIGH-IMPACT ' : ''}EVENT</span><strong>${e(next.title)}</strong><span class="mono">${day(next.datetime!)} · ${time(next.datetime!)} ICT</span></div>` : ''}
-    ${visible.length ? `<div class="event-list">${dates.map(date => `<div class="event-date">${day(date)}</div>${visible.filter(event => event.date === date).map(eventRow).join('')}`).join('')}</div>` : empty(all.length ? 'No events in this window' : 'Calendar not yet published', all.length ? 'Switch the date range to inspect upcoming releases.' : 'Scheduled releases will appear here with impact, forecasts and results. Missing coverage does not mean a quiet session.', true)}
-    <p class="section-note">${historical ? 'Calendar as published in this archived briefing.' : 'Times are ICT (UTC+7). Events and results are published snapshots.'}</p>`;
+    ${next ? `<div class="next-event"><span class="eyebrow">NEXT ${next.impact === 'high' ? 'HIGH-IMPACT ' : ''}EVENT</span><strong>${e(next.title)}</strong><span class="mono">${e(timestamp(next.datetime!))}</span></div>` : ''}
+    ${visible.length ? `<div class="event-list">${dates.map(date => `<div class="event-date">${day(date)}</div>${visible.filter(event => eventDate(event) === date).map(eventRow).join('')}`).join('')}</div>` : empty(all.length ? 'No events in this window' : 'Calendar not yet published', all.length ? 'Switch the date range to inspect upcoming releases.' : 'Scheduled releases will appear here with impact, forecasts and results. Missing coverage does not mean a quiet session.', true)}
+    <p class="section-note">Times in ${e(displayTimeZone)}. ${historical ? 'Calendar as published in this archived briefing.' : 'Events and results are published snapshots.'}${visible.some(event => !event.datetime) ? ' Untimed events retain their published calendar date.' : ''}</p>`;
 }
 
 function movers(title: string, items: NonNullable<Intel['nq']>['megaCaps']) {
-  return `<details class="research-detail"><summary>${title}<span>${items.length ? `${items.length} symbols` : 'No coverage'}</span></summary>${items.length ? items.map(item => `<div class="mover"><strong class="mono">${e(item.symbol)}</strong><span class="${(item.changePct ?? 0) < 0 ? 'negative-text' : 'positive-text'}">${item.changePct === null ? '—' : signed(item.changePct)}</span><p>${e(item.context)}</p><small>${e(item.source)}${item.updatedAt ? ` · ${day(item.updatedAt)} ${time(item.updatedAt)} ICT` : ''}</small></div>`).join('') : '<p class="muted-text">No constituent research supplied.</p>'}</details>`;
+  return `<details class="research-detail" name="nasdaq-research"><summary>${title}<span>${items.length ? `${items.length} symbols` : 'No coverage'}</span></summary>${items.length ? `<p class="mover-note">Latest regular-session prices · Cached 15 min · May be delayed. Independent of briefing date.</p>${items.map(item => `<div class="mover"><strong class="mono">${e(item.symbol)}</strong><span class="mover-quote mono" data-equity="${e(item.symbol)}">Loading price…</span><small class="mover-quote-source" data-equity-source="${e(item.symbol)}"></small><p>${e(item.context)}</p><small>Research: ${e(item.source)}${item.updatedAt ? ` · ${e(timestamp(item.updatedAt))}` : ''}</small></div>`).join('')}` : '<p class="muted-text">No constituent research supplied.</p>'}</details>`;
 }
 function nq(data: Intel | null) {
   const info = data?.nq;
   return `${sectionHeader('nq-title', 'Nasdaq intelligence', '02 / NQ DESK')}
     <div class="nq-heading"><div><span class="instrument-label mono">NQ <span>/</span> NASDAQ 100 FUTURES</span><p>Research: NQ · Chart: NAS100 CFD</p></div><button class="text-button" data-chart="OANDA:NAS100USD">NAS100 CFD chart ${arrow}</button></div>
-    ${info ? `<div class="nq-metrics">${metric('Bias', info.bias)}${metric('Conviction', info.conviction)}<div class="metric"><span class="eyebrow">Regime</span><strong>${e(info.regime ?? 'Unavailable')}</strong></div></div><p class="research-copy">${e(info.summary ?? 'No summary supplied.')}</p><div class="catalyst-risk"><div><span class="eyebrow orange">PRIMARY CATALYST</span><p>${e(info.primaryCatalyst ?? 'Unavailable')}</p></div><div><span class="eyebrow negative-text">PRIMARY RISK</span><p>${e(info.primaryRisk ?? 'Unavailable')}</p></div></div><details class="research-detail"><summary>Session & positioning<span>Expand research</span></summary><dl class="research-dl">${[['Overnight', info.overnight], ['Macro', info.macro], ['Options & volatility', info.volatility], ['Short-term sentiment', readable(info.sentimentShortTerm)], ['Medium-term sentiment', readable(info.sentimentMediumTerm)]].map(([label,value]) => `<div><dt>${e(label)}</dt><dd>${e(value ?? 'Unavailable')}</dd></div>`).join('')}</dl></details>${movers('Mega-cap leadership',info.megaCaps)}${movers('Semiconductors',info.semiconductors)}${movers('Premarket movers',info.premarket)}` : `${empty('NQ briefing awaiting publication', 'No Nasdaq-specific bias or levels have been supplied. Explore the NAS100 CFD chart while awaiting research.', true)}<div class="coverage-row"><span>OVERNIGHT</span><span>MEGA-CAPS</span><span>SEMICONDUCTORS</span><span>OPTIONS</span></div>`}`;
+    ${info ? `<div class="nq-metrics">${metric('Bias', info.bias)}${metric('Conviction', info.conviction)}<div class="metric"><span class="eyebrow">Regime</span><strong>${e(info.regime ?? 'Unavailable')}</strong></div></div><p class="research-copy">${e(info.summary ?? 'No summary supplied.')}</p><div class="catalyst-risk"><div><span class="eyebrow orange">PRIMARY CATALYST</span><p>${e(info.primaryCatalyst ?? 'Unavailable')}</p></div><div><span class="eyebrow negative-text">PRIMARY RISK</span><p>${e(info.primaryRisk ?? 'Unavailable')}</p></div></div><details class="research-detail" name="nasdaq-research"><summary>Session & positioning<span>Expand research</span></summary><dl class="research-dl">${[['Overnight', info.overnight], ['Macro', info.macro], ['Options & volatility', info.volatility], ['Short-term sentiment', readable(info.sentimentShortTerm)], ['Medium-term sentiment', readable(info.sentimentMediumTerm)]].map(([label,value]) => `<div><dt>${e(label)}</dt><dd>${e(value ?? 'Unavailable')}</dd></div>`).join('')}</dl></details>${movers('Mega-cap leadership',info.megaCaps)}${movers('Semiconductors',info.semiconductors)}${movers('Premarket movers',info.premarket)}` : `${empty('NQ briefing awaiting publication', 'No Nasdaq-specific bias or levels have been supplied. Explore the NAS100 CFD chart while awaiting research.', true)}<div class="coverage-row"><span>OVERNIGHT</span><span>MEGA-CAPS</span><span>SEMICONDUCTORS</span><span>OPTIONS</span></div>`}`;
 }
 
 function themes(data: Intel | null) {
@@ -92,23 +78,22 @@ export function feed(data: Intel | null, filter = 'All') {
   const tags = ['All', ...new Set(all.flatMap(item => item.tags))];
   const visible = filter === 'All' ? all : all.filter(item => item.tags.includes(filter));
   return `${sectionHeader('feed-title', 'Intelligence wire', '04 / CONTEXT THAT MATTERS')}
-  ${all.length ? `<div class="feed-filters" role="group" aria-label="Filter intelligence">${tags.map(tag => `<button data-feed-filter="${e(tag)}" aria-pressed="${filter === tag}">${e(tag)}</button>`).join('')}</div><div class="stories">${visible.map(item => `<article class="story"><div class="story-meta"><span>${e(item.source)}</span><time${item.publishedAt ? ` datetime="${e(item.publishedAt)}"` : ''}>${item.publishedAt ? `${day(item.publishedAt)} · ${time(item.publishedAt)} ICT` : 'Time not supplied'}</time></div><h3><a href="${e(item.url)}" target="_blank" rel="noopener noreferrer">${e(item.headline)} ${arrow}</a></h3><p>${e(item.summary)}</p><div class="story-tags">${[...item.tags,...item.symbols].map(tag => `<span>${e(tag)}</span>`).join('')}</div></article>`).join('')}</div>` : empty('The wire is quiet for now', 'Short, sourced story summaries will appear here when published. Original articles stay with their publishers.')}
+  ${all.length ? `<div class="feed-filters" role="group" aria-label="Filter intelligence">${tags.map(tag => `<button data-feed-filter="${e(tag)}" aria-pressed="${filter === tag}">${e(tag)}</button>`).join('')}</div><div class="stories">${visible.map(item => `<article class="story"><div class="story-meta"><span>${e(item.source)}</span><time${item.publishedAt ? ` datetime="${e(item.publishedAt)}"` : ''}>${item.publishedAt ? `${e(timestamp(item.publishedAt))}` : 'Time not supplied'}</time></div><h3><a href="${e(item.url)}" target="_blank" rel="noopener noreferrer">${e(item.headline)} ${arrow}</a></h3><p>${e(item.summary)}</p><div class="story-tags">${[...item.tags,...item.symbols].map(tag => `<span>${e(tag)}</span>`).join('')}</div></article>`).join('')}</div>` : empty('The wire is quiet for now', 'Short, sourced story summaries will appear here when published. Original articles stay with their publishers.')}
   <p class="section-note">Mango Atlas summaries. Links open the original reporting.</p>`;
 }
 
 export function renderData(data: Intel | null, historical: boolean, fallback = false) {
-  const snapshots = document.querySelector<HTMLDetailsElement>('#briefing-quotes')!;
-  snapshots.hidden = !data?.markets.length;
-  snapshots.innerHTML = data?.markets.length ? `<summary>Quotes recorded in the ${day(data.asOfDate)} briefing</summary><div class="ticker-strip">${ticker(data)}</div>` : '';
+  data = data ? localizeResearch(data) : null;
   document.querySelector('#overview')!.innerHTML = overview(data);
   document.querySelector('#catalysts')!.innerHTML = events(data, historical);
   document.querySelector('#nasdaq')!.innerHTML = nq(data);
   document.querySelector('#themes')!.innerHTML = themes(data);
   document.querySelector('#fx')!.innerHTML = fx(data);
   document.querySelector('#intelligence')!.innerHTML = feed(data);
+  if (data?.nq) void refreshEquityQuotes();
   const status = document.querySelector('#data-status')!;
   status.classList.toggle('stale', !!data && !historical && isStale(data.generatedAt));
-  status.innerHTML = data ? `<div><span class="status-label">${historical ? 'ARCHIVE' : isStale(data.generatedAt) ? 'STALE' : notToday(data.generatedAt) ? 'PREVIOUS BRIEF' : 'LATEST BRIEF'}</span><span>${historical ? 'Published' : 'Last updated'} <time datetime="${e(data.generatedAt)}">${day(data.generatedAt)} · ${time(data.generatedAt)} ICT</time>${fallback ? ' · Recovered from a valid archive' : ''}</span></div><span class="data-note">${historical ? 'Historical research · Quotes and charts remain current' : 'Daily research · Market feeds update independently'}</span>` : '<span class="status-label">UNAVAILABLE</span><span>Research could not be loaded. Public charts remain available.</span><button class="text-button" id="retry-data">Retry</button>';
+  status.innerHTML = data ? `<div><span class="status-label">${historical ? 'ARCHIVE' : isStale(data.generatedAt) ? 'STALE' : notToday(data.generatedAt) ? 'PREVIOUS BRIEF' : 'LATEST BRIEF'}</span><span>${historical ? 'Published' : 'Last updated'} <time datetime="${e(data.generatedAt)}">${e(timestamp(data.generatedAt))}</time>${fallback ? ' · Recovered from a valid archive' : ''}</span></div><span class="data-note">${historical ? 'Historical research · Quotes and charts remain current' : 'Daily research · Market feeds update independently'}</span>` : '<span class="status-label">UNAVAILABLE</span><span>Research could not be loaded. Public charts remain available.</span><button class="text-button" id="retry-data">Retry</button>';
   document.querySelector('#retry-data')?.addEventListener('click', () => location.reload());
 }
 
