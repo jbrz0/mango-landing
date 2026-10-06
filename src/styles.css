@@ -12,6 +12,9 @@
   --bullish: #82b99b;
   --bearish: #d48986;
   --warning: #dcb46f;
+  --conviction-low: #5b9fd4;
+  --conviction-medium: #ff990a;
+  --conviction-high: #dc2626;
   --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-synthesis: none;
@@ -59,7 +62,7 @@ h1, h2, h3, p { margin: 0; }
 .brand { display: flex; align-items: center; gap: 12px; font-size: 19px; letter-spacing: .07em; font-weight: 720; white-space: nowrap; }
 .brand img { object-fit: contain; }
 .brand-atlas { color: var(--accent); font-weight: 400; margin-left: 5px; }
-.brand small { display: block; font-family: var(--mono); color: var(--muted); font-size: 11px; line-height: 1; letter-spacing: .21em; margin-top: 4px; font-weight: 400; }
+.brand small { display: block; font-family: var(--mono); color: var(--muted); font-size: 11px; line-height: 1; letter-spacing: .21em; margin-top: 2px; font-weight: 400; }
 .header-actions { display: flex; align-items: center; gap: 18px; }
 .desk-clock { display: flex; align-items: center; gap: 9px; font: 13px var(--mono); color: var(--muted); }
 .desk-clock time { color: var(--text); }
@@ -119,7 +122,11 @@ h1, h2, h3, p { margin: 0; }
 .badge.positive { color: var(--bullish); border-color: #82b99b35; background: #82b99b09; }
 .badge.negative { color: var(--bearish); border-color: #d4898635; background: #d4898609; }
 .badge.warning { color: var(--warning); border-color: #dcb46f35; background: #dcb46f09; }
+.badge.low { color: var(--conviction-low); border-color: #5b9fd435; background: #5b9fd409; }
+.badge.medium { color: var(--conviction-medium); border-color: #ff990a35; background: #ff990a09; }
+.badge.high { color: var(--conviction-high); border-color: #dc262635; background: #dc262609; }
 .badge.muted { color: #b2b2b2; border-color: #ffffff18; background: #ffffff03; }
+.metric-dash { font: 14px/1.4 var(--mono); color: var(--muted); }
 .one-line { font-size: 16px; line-height: 1.8; color: #c8c8c8; padding: 0 24px 23px; max-width: 76ch; }
 .panel-bottom { border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 7px; color: var(--faint); font: 11px var(--mono); }
 .panel-bottom > span:last-child { margin-left: auto; }
@@ -298,7 +305,7 @@ summary > span:last-child { color: var(--faint); margin-left: auto; font: 11px v
   .header-inner, .subnav, .page-wrap, .site-footer { width: calc(100% - 32px); }
   .header-inner { height: 66px; gap: 12px; }
   .brand { font-size: 16px; gap: 8px; }
-  .brand img { width: 39px; height: 39px; }
+  .brand img { width: 43px; height: 43px; }
   .brand small { font-size: 8px; letter-spacing: .19em; }
   .header-actions { gap: 6px; }
   .desk-clock { display: none; }
