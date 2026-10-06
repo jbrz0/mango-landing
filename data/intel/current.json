@@ -1,30 +1,29 @@
 {
   "schemaVersion": 1,
   "kind": "briefing",
-  "asOfDate": "2026-10-05",
-  "generatedAt": "2026-10-05T08:44:59+07:00",
+  "asOfDate": "2026-10-06",
+  "generatedAt": "2026-10-06T08:35:36+07:00",
   "timezone": "Asia/Bangkok",
   "provenance": {
     "source": "Mango Atlas Grokbot daily intelligence",
-    "note": "Compiled 2026-10-05 BKK from Daily Briefing (posted 7:08 AM BKK), FX Briefing (7:05 AM BKK), NQ Briefing (7:12 AM BKK), ForexFactory week calendar JSON (fetched Oct 4 10:04 PM BKK; High/Medium only), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. No Bloomberg summaries for today were available, so intelligence is empty. No invented prices, levels, or enums."
+    "note": "Compiled 2026-10-06 BKK from Daily Briefing (posted 7:04 AM BKK), FX Briefing (7:04 AM BKK), NQ Briefing (7:19 AM BKK), ForexFactory week calendar JSON (fetched Oct 4 10:04 PM BKK; High/Medium only), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. Percent changes are shown only where the prior close is a verified regular-session close; futures, DXY and FX changes are null because the snapshot prior-close values were unreliable. No Bloomberg summaries for today were available, so intelligence is empty. No invented prices, levels, or enums."
   },
   "overview": {
     "sentiment": "neutral",
     "confidence": "medium",
     "volatilityOutlook": "rising",
-    "oneLineTake": "Soft jobs bought a record close, but rising yields, live oil risk, and Fed minutes ahead make this a fragile tape to sell premium into, not a reset.",
+    "oneLineTake": "Records on narrowing breadth with yields at 24-year highs and minutes Wednesday is a tape to stay hedged in, not one to sell cheap downside into.",
     "themes": [
-      "Soft September payrolls (+29K, negative revisions, unemployment 4.2%) killed October hike odds: Nasdaq 100 closed at a record Friday (QQQ +1.0% to 749.58, SPY +0.7% to 769.64), Nvidia hit a new high and AMD crossed $1T.",
-      "Bonds did not buy the relief: yields rose despite the weak print, the 10-year sits near 5.24% at 24-year highs, and 30-year mortgages jumped to about 7.3%. French spread stress and gilt highs keep the global rates reset live.",
-      "Energy shock stays live: more tankers struck near Iran, U.S. bombers pulled from a UK base on terror concerns, and Iraq is routing a supertanker through Hormuz. OPEC+ held November quotas and the G7 diesel release only eases the refining squeeze at the margin.",
-      "Fed risk has shifted from October to December: inflation is still outrunning wages, and this week's minutes are the next read on the Warsh board.",
-      "Earnings season opens (Delta, Pepsi, Levi's) while Paramount's $52B debt sale shows higher rates biting corporate borrowers."
+      "Stocks and yields both up: Nasdaq 100 set another record Monday (QQQ +0.9% to 756.20, SPY +0.7% to 774.83) on Nvidia, Microsoft and AI deal flow, but breadth narrowed and the Dow lagged.",
+      "Long-end rout keeps grinding: the 10-year rose about 4bp to ~5.31%, long bonds hit multi-decade highs, and BMO talks of a 6% long bond. French bond stress is weighing on the euro and the dollar is near its 2026 high.",
+      "Oil eased as Hormuz flows recover (WTI -2.1% to ~$89, Aramco cut Asian prices), but the Saudi-Houthi war is widening and the U.S. Iran blockade is still turning ships away.",
+      "Fed hike pricing is live: about 23% for October and a full 25bp by December. Services PMI cooled with prices building, and FOMC minutes land Wednesday.",
+      "AI financing is stretching: OpenAI eyeing a ~$1.4T round, a record $60B Broadcom/Anthropic chip loan, EA bondholders alleging default, and the NY Fed probing bank loans to private credit."
     ],
     "risks": [
-      "Long-end yields pushing further above 5% with equities at records sets up a rates-driven de-rating, with vol-control funds near record equity exposure as an amplifier.",
-      "Iran and Hormuz escalation lifts oil and diesel and re-feeds hike pricing.",
-      "Brazil's election (Bolsonaro early lead in the count) is an EM and FX swing risk at today's open.",
-      "Hawkish minutes revive December hike pricing and hit narrow AI and chip leadership."
+      "10-year pushing toward new highs above 5.3% while equity leadership narrows sets up a rates-driven de-rating.",
+      "Red Sea and Gulf escalation (Riyadh and Aramco targeted) could reverse the oil dip fast.",
+      "Hawkish minutes pull hike odds forward and hit crowded AI and chip longs."
     ]
   },
   "markets": [
@@ -32,344 +31,324 @@
       "symbol": "NQ",
       "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
       "instrumentType": "futures",
-      "price": 31131.25,
-      "changePct": 0.2237,
+      "price": 31343.25,
+      "changePct": null,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-05T06:57:24+07:00",
+      "updatedAt": "2026-10-06T07:03:26+07:00",
       "status": "delayed"
     },
     {
       "symbol": "NDX",
       "label": "NASDAQ-100 cash index",
       "instrumentType": "cash_index",
-      "price": 30807.93,
-      "changePct": 1.0044,
+      "price": 31076.44,
+      "changePct": 0.8716,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-03T04:15:59+07:00",
+      "updatedAt": "2026-10-06T04:15:59+07:00",
       "status": "delayed"
     },
     {
       "symbol": "DXY",
       "label": "ICE US Dollar Index",
       "instrumentType": "cash_index",
-      "price": 101.903,
-      "changePct": -0.0265,
+      "price": 102.171,
+      "changePct": null,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-05T06:57:47+07:00",
+      "updatedAt": "2026-10-06T07:03:29+07:00",
       "status": "delayed"
     },
     {
       "symbol": "US10Y",
       "label": "US 10-year Treasury yield",
       "instrumentType": "yield",
-      "price": 5.277,
-      "changePct": 0.7638,
+      "price": 5.311,
+      "changePct": 0.6443,
       "unit": "percent",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-03T01:59:55+07:00",
+      "updatedAt": "2026-10-06T01:59:51+07:00",
       "status": "delayed"
     },
     {
       "symbol": "VIX",
       "label": "CBOE Volatility Index",
       "instrumentType": "volatility_index",
-      "price": 15.31,
-      "changePct": -6.5894,
+      "price": 15.52,
+      "changePct": 1.3717,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-03T03:15:01+07:00",
+      "updatedAt": "2026-10-06T03:15:01+07:00",
       "status": "delayed"
     },
     {
       "symbol": "VXN",
       "label": "CBOE NASDAQ 100 Volatility Index",
       "instrumentType": "volatility_index",
-      "price": 21.2,
-      "changePct": -5.8196,
+      "price": 21.7,
+      "changePct": 2.3585,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-03T03:15:01+07:00",
+      "updatedAt": "2026-10-06T03:15:01+07:00",
       "status": "delayed"
     },
     {
       "symbol": "GC",
       "label": "Gold front-month futures (Yahoo GC=F)",
       "instrumentType": "futures",
-      "price": 4169.4,
-      "changePct": 0.1706,
+      "price": 4161.1,
+      "changePct": null,
       "unit": "USD",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-05T06:55:24+07:00",
+      "updatedAt": "2026-10-06T06:50:58+07:00",
       "status": "delayed"
     },
     {
       "symbol": "EURUSD",
       "label": "EUR/USD spot",
       "instrumentType": "fx",
-      "price": 1.12587,
-      "changePct": 0.0788,
+      "price": 1.12208,
+      "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-05T07:04:48+07:00",
+      "updatedAt": "2026-10-06T07:00:47+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDJPY",
       "label": "USD/JPY spot",
       "instrumentType": "fx",
-      "price": 157.608,
-      "changePct": -0.202,
+      "price": 157.93,
+      "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-05T07:05:31+07:00",
+      "updatedAt": "2026-10-06T07:01:13+07:00",
       "status": "delayed"
     },
     {
       "symbol": "AUDUSD",
       "label": "AUD/USD spot",
       "instrumentType": "fx",
-      "price": 0.69556,
-      "changePct": 0.3876,
+      "price": 0.69686,
+      "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-05T07:04:48+07:00",
+      "updatedAt": "2026-10-06T07:00:47+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDCHF",
       "label": "USD/CHF spot",
       "instrumentType": "fx",
-      "price": 0.82793,
-      "changePct": -0.3131,
+      "price": 0.83137,
+      "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-05T07:05:31+07:00",
+      "updatedAt": "2026-10-06T07:01:14+07:00",
       "status": "delayed"
     }
   ],
   "nq": {
     "bias": "mildly_bullish",
     "conviction": null,
-    "regime": "Trend (record breakout), rates-capped",
-    "summary": "Soft payrolls (+29K, negative revisions, UE 4.2%) cooled hike bets and pushed NDX to a record, and NQ is holding the gain overnight. The catch is the bond market: 10Y dipped to 5.16% on the print and closed 5.28%. Trend is up, but every leg higher is borrowing against yields. Thesis: mild long, 5/10 conviction (brief rated Low-Med); buy pullbacks to the old high, don't chase gaps. Invalidation: NDX close below 30,737.",
-    "primaryCatalyst": "ISM Services at 9:00 PM BKK (f 55.1 / p 55.4); watch prices paid.",
-    "primaryRisk": "10Y breaking 5.30% or hawkish FOMC minutes (Thu 1:00 AM BKK).",
-    "overnight": "Globex opened firm, NQ +0.22% in a tight 31,059-31,169 band. No weekend shock to price.",
-    "macro": "Weak jobs moved the Fed path from October to December, but long-end yields rose anyway. A 10Y above 5.30% is the main de-rating threat for long-duration tech. Iran/Hormuz tanker headlines keep the oil-to-inflation channel live.",
-    "volatility": "VIX 15.3 (-6.6%), VXN 21.2 (-5.8%). Vol sold into the record, so dips can get bought until rates bite. Dealer gamma unavailable.",
+    "regime": "Trend (records), rates-capped",
+    "summary": "NDX printed another record on NVDA, MSFT and AI deal flow while the 10Y tagged a 24-year high near 5.35%. Stocks and yields rising together is holding for now, but breadth narrowed and VXN rose with price. Trend stays up until rates or the minutes say otherwise. Thesis: mildly bullish, 5/10 (brief rated Low-Med), buy dips in trend. Invalidation: NDX close below 30,800. NDX levels: resistance 31,117 (record high), 31,250, 31,500; support 31,018, 30,800, 30,616.",
+    "primaryCatalyst": "Fed's Bowman at 9:45 PM BKK, then FOMC minutes Thursday 1:00 AM BKK.",
+    "primaryRisk": "10Y through 5.35%, Red Sea escalation, or hawkish FOMC minutes.",
+    "overnight": "NQ firm and quiet in a 31,326-31,385 band. Oil eased (WTI ~$89, Brent ~$100) after Aramco cut Asia prices.",
+    "macro": "30Y hit ~5.70%. Markets price ~23% for an October hike and a full 25bp by December. Every new yield high is a direct de-rating risk for long-duration tech.",
+    "volatility": "VIX 15.5 (+1.4%), VXN 21.7 (+2.4%). Vol bid into a record is a hedging tell. Dealer gamma unavailable.",
     "sentimentShortTerm": "mildly_bullish",
     "sentimentMediumTerm": null,
     "megaCaps": [
       {
         "symbol": "TSLA",
-        "changePct": 4.6539,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
+        "changePct": 2.1965,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:00+07:00"
-      },
-      {
-        "symbol": "AVGO",
-        "changePct": 3.3465,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
-      },
-      {
-        "symbol": "ORCL",
-        "changePct": 3.0637,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:02:32+07:00"
-      },
-      {
-        "symbol": "GOOGL",
-        "changePct": 1.5551,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
+        "updatedAt": "2026-10-06T03:00:01+07:00"
       },
       {
         "symbol": "NVDA",
-        "changePct": 1.3385,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
+        "changePct": 2.1158,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
+        "updatedAt": "2026-10-06T03:00:01+07:00"
       },
       {
-        "symbol": "AMZN",
-        "changePct": 1.3254,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
+        "symbol": "AVGO",
+        "changePct": 2.0752,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
-      },
-      {
-        "symbol": "AAPL",
-        "changePct": 1.0202,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
-      },
-      {
-        "symbol": "MSFT",
-        "changePct": 0.9224,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
+        "updatedAt": "2026-10-06T03:00:01+07:00"
       },
       {
         "symbol": "META",
-        "changePct": 0.2962,
-        "context": "Friday Oct 2 regular-session close vs prior close.",
+        "changePct": 1.8981,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 1.4782,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 0.8646,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": -0.2397,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": -0.0477,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
       }
     ],
     "semiconductors": [
       {
         "symbol": "SMH",
-        "changePct": 2.0702,
-        "context": "Semis ETF led Friday's gap higher; chips led the gap, not the close.",
+        "changePct": 0.5233,
+        "context": "Semis ETF only modestly higher Monday while NVDA and AVGO did the work. Thin chip leadership.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:00+07:00"
-      },
-      {
-        "symbol": "AMD",
-        "changePct": null,
-        "context": "Crossed a $1T market value on Friday.",
-        "source": "NQ Briefing research",
-        "updatedAt": null
+        "updatedAt": "2026-10-06T03:00:00+07:00"
       },
       {
         "symbol": "NVDA",
-        "changePct": 1.3385,
-        "context": "Hit a new high Friday but faded about 0.9% from the open into the close.",
+        "changePct": 2.1158,
+        "context": "Led the record session on AI deal flow.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 2.0752,
+        "context": "Up with NVDA; Broadcom/Anthropic record $60B chip loan in the headlines.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:01+07:00"
       },
       {
         "symbol": "MU",
-        "changePct": -2.0503,
-        "context": "Lone loser among tracked NQ heavyweights Friday; faded about 2.9% from the open.",
+        "changePct": -1.0168,
+        "context": "Lagged the chip group Monday.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-03T03:00:01+07:00"
+        "updatedAt": "2026-10-06T03:00:02+07:00"
       }
     ],
     "premarket": [
       {
-        "symbol": "WBD",
+        "symbol": "NVDA",
         "changePct": null,
-        "context": "Leaving the Nasdaq-100 (index rebalance flow). US cash was closed at brief time, so no premarket read.",
+        "context": "US cash was closed at brief time, so no premarket read. Watch the Nvidia-Groq stockholder suit and OpenAI's reported ~$1.4T round for AI headlines.",
         "source": "NQ Briefing research",
         "updatedAt": null
       }
     ]
   },
   "fx": {
-    "macroPulse": "Soft NFP (+29K, negative revisions) didn't break USD. 10Y closed about 5.28%, up on the week despite weak jobs, and DXY holds about 101.9. Quiet Asia open with Australia and China on holiday, so liquidity is thin until Europe. Key today: EZ Final Services PMI 3:00 PM BKK, Sentix 3:30 PM BKK, US ISM Services 9:00 PM BKK.",
+    "macroPulse": "USD firm on rates: 10Y up 4bp to ~5.31%, long end at multi-decade highs, DXY ~102.1. Nasdaq 100 closed at a record anyway, and oil fell ~2% (Brent ~$100.3) after Aramco cut Asia prices. Markets price ~23% for an October hike and a full 25bp by December, with FOMC minutes later this week. Key today: BoJ Ueda 1:35 PM BKK, Swiss unemployment 2:00 PM BKK, Canada Ivey PMI 9:00 PM BKK, Fed's Bowman 9:45 PM BKK.",
     "instruments": [
       {
         "symbol": "DXY",
         "bias": "mildly_bullish",
-        "driver": "Yields are doing USD's work after a weak payrolls print; index flat at about 101.92.",
-        "posture": "Hold long bias above 101.50. A soft ISM is the only real test today; above 102.40 reopens the highs.",
+        "driver": "Yields keep doing USD's work; index up to ~102.1 from ~101.9 a day ago.",
+        "posture": "Long bias above 101.80. A move through 102.40 reopens the highs.",
         "support": [
-          101.5
+          101.8
         ],
         "resistance": [
           102.4
         ],
-        "comments": "Brief view: neutral to firm."
+        "comments": "Brief view: firm."
       },
       {
         "symbol": "XAUUSD",
-        "bias": "mildly_bullish",
-        "driver": "Futures about 4,169 (+0.2%), spot closed about 4,142. Weak jobs help, but 5%+ yields cap it.",
-        "posture": "Buy dips 4,140-4,150 with a stop under 4,100. Watch only into ISM if yields push higher.",
+        "bias": null,
+        "driver": "Spot closed ~4,134 after failing at 4,170. 5.3% yields and December hike pricing cap it.",
+        "posture": "Watch only above 4,120. A break there opens 4,100, and only a close back above 4,170 turns it bullish.",
         "support": [
-          4150,
-          4140,
+          4120,
           4100
         ],
-        "resistance": [],
-        "comments": "Brief view: mildly bullish. 4,100 is the stop level."
+        "resistance": [
+          4170
+        ],
+        "comments": "Brief view: capped."
       },
       {
         "symbol": "EURUSD",
         "bias": "bearish",
-        "driver": "Pair about 1.1259, still near multi-month lows. EZ PMIs are finals, so they're unlikely to move it.",
-        "posture": "Sell rallies 1.1300-1.1320. A break of 1.1200 opens fresh lows.",
+        "driver": "Down 0.3% to ~1.1217 on European fiscal and political stress, with a low of 1.1160.",
+        "posture": "Sell rallies 1.1250-1.1280. A break of 1.1160 opens fresh lows.",
         "support": [
-          1.12
+          1.116
         ],
         "resistance": [
-          1.13,
-          1.132
+          1.125,
+          1.128
         ],
-        "comments": "Brief view: bearish, bouncing."
+        "comments": "Brief view: bearish."
       },
       {
         "symbol": "USDJPY",
         "bias": "neutral",
-        "driver": "Off 0.2% to about 157.61 after the soft NFP. BoJ's Ueda speaks tomorrow at 1:35 PM BKK.",
-        "posture": "Buy dips 157.20-157.50 with upside 158.50. Respect MoF risk near 159-160.",
+        "driver": "~157.95, rejected at 158.30. Ueda at 1:35 PM BKK is the event risk.",
+        "posture": "Buy dips 157.40-157.60 for 158.50. Respect MoF risk near 159-160.",
         "support": [
-          157.5,
-          157.2
+          157.6,
+          157.4
         ],
         "resistance": [
+          158.3,
           158.5
         ],
-        "comments": "Brief view: two-way. MoF intervention risk near 159-160."
+        "comments": "Brief view: two-way into Ueda. MoF intervention risk near 159-160."
       },
       {
         "symbol": "AUDUSD",
         "bias": "bearish",
-        "driver": "Up 0.4% to about 0.6956 on a holiday-thin open, right into last week's sell zone.",
-        "posture": "Sell 0.6960-0.6980 with a stop above 0.7000. Target 0.6920.",
+        "driver": "~0.6966, capped at 0.6974. Westpac consumer confidence fell 4.7% to 80.4.",
+        "posture": "Sell 0.6970-0.6990 with a stop above 0.7010. Target 0.6930.",
         "support": [
-          0.692
+          0.693
         ],
         "resistance": [
-          0.696,
-          0.698,
-          0.7
+          0.697,
+          0.699,
+          0.701
         ],
         "comments": "Brief view: bearish into resistance."
       },
       {
         "symbol": "USDCHF",
-        "bias": "neutral",
-        "driver": "Down 0.3% to about 0.8279, at the bottom of the recent range.",
-        "posture": "Range 0.8270-0.8350. Only a close below 0.8270 changes that.",
+        "bias": "mildly_bullish",
+        "driver": "Up 0.4% to ~0.8311 off the range floor, high 0.8324.",
+        "posture": "Watch only in the 0.8270-0.8350 range. Only a close above 0.8350 changes that.",
         "support": [
           0.827
         ],
         "resistance": [
           0.835
         ],
-        "comments": "Brief view: watch only, chop."
+        "comments": "Brief view: mildly firm."
       }
     ]
   },
   "events": [
-    {
-      "id": "2026-10-05-usd-ism-services-pmi",
-      "datetime": "2026-10-05T21:00:00+07:00",
-      "date": "2026-10-05",
-      "timeLabel": null,
-      "timezone": "Asia/Bangkok",
-      "currency": "USD",
-      "country": "United States",
-      "impact": "medium",
-      "title": "ISM Services PMI",
-      "forecast": "55.1",
-      "previous": "55.4",
-      "actual": null,
-      "source": "https://www.forexfactory.com/calendar"
-    },
     {
       "id": "2026-10-06-jpy-boj-gov-ueda-speaks",
       "datetime": "2026-10-06T13:35:00+07:00",

@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-10-06",
+  "generatedAt": "2026-10-06T08:35:36+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-10-06 BKK from Daily Briefing (posted 7:04 AM BKK), FX Briefing (7:04 AM BKK), NQ Briefing (7:19 AM BKK), ForexFactory week calendar JSON (fetched Oct 4 10:04 PM BKK; High/Medium only), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. Percent changes are shown only where the prior close is a verified regular-session close; futures, DXY and FX changes are null because the snapshot prior-close values were unreliable. No Bloomberg summaries for today were available, so intelligence is empty. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Records on narrowing breadth with yields at 24-year highs and minutes Wednesday is a tape to stay hedged in, not one to sell cheap downside into.",
+    "themes": [
+      "Stocks and yields both up: Nasdaq 100 set another record Monday (QQQ +0.9% to 756.20, SPY +0.7% to 774.83) on Nvidia, Microsoft and AI deal flow, but breadth narrowed and the Dow lagged.",
+      "Long-end rout keeps grinding: the 10-year rose about 4bp to ~5.31%, long bonds hit multi-decade highs, and BMO talks of a 6% long bond. French bond stress is weighing on the euro and the dollar is near its 2026 high.",
+      "Oil eased as Hormuz flows recover (WTI -2.1% to ~$89, Aramco cut Asian prices), but the Saudi-Houthi war is widening and the U.S. Iran blockade is still turning ships away.",
+      "Fed hike pricing is live: about 23% for October and a full 25bp by December. Services PMI cooled with prices building, and FOMC minutes land Wednesday.",
+      "AI financing is stretching: OpenAI eyeing a ~$1.4T round, a record $60B Broadcom/Anthropic chip loan, EA bondholders alleging default, and the NY Fed probing bank loans to private credit."
+    ],
+    "risks": [
+      "10-year pushing toward new highs above 5.3% while equity leadership narrows sets up a rates-driven de-rating.",
+      "Red Sea and Gulf escalation (Riyadh and Aramco targeted) could reverse the oil dip fast.",
+      "Hawkish minutes pull hike odds forward and hit crowded AI and chip longs."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 31343.25,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T07:03:26+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 31076.44,
+      "changePct": 0.8716,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T04:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 102.171,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T07:03:29+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 5.311,
+      "changePct": 0.6443,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T01:59:51+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 15.52,
+      "changePct": 1.3717,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 21.7,
+      "changePct": 2.3585,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 4161.1,
+      "changePct": null,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T06:50:58+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.12208,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T07:00:47+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 157.93,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T07:01:13+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.69686,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T07:00:47+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.83137,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-06T07:01:14+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "mildly_bullish",
+    "conviction": null,
+    "regime": "Trend (records), rates-capped",
+    "summary": "NDX printed another record on NVDA, MSFT and AI deal flow while the 10Y tagged a 24-year high near 5.35%. Stocks and yields rising together is holding for now, but breadth narrowed and VXN rose with price. Trend stays up until rates or the minutes say otherwise. Thesis: mildly bullish, 5/10 (brief rated Low-Med), buy dips in trend. Invalidation: NDX close below 30,800. NDX levels: resistance 31,117 (record high), 31,250, 31,500; support 31,018, 30,800, 30,616.",
+    "primaryCatalyst": "Fed's Bowman at 9:45 PM BKK, then FOMC minutes Thursday 1:00 AM BKK.",
+    "primaryRisk": "10Y through 5.35%, Red Sea escalation, or hawkish FOMC minutes.",
+    "overnight": "NQ firm and quiet in a 31,326-31,385 band. Oil eased (WTI ~$89, Brent ~$100) after Aramco cut Asia prices.",
+    "macro": "30Y hit ~5.70%. Markets price ~23% for an October hike and a full 25bp by December. Every new yield high is a direct de-rating risk for long-duration tech.",
+    "volatility": "VIX 15.5 (+1.4%), VXN 21.7 (+2.4%). Vol bid into a record is a hedging tell. Dealer gamma unavailable.",
+    "sentimentShortTerm": "mildly_bullish",
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "TSLA",
+        "changePct": 2.1965,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": 2.1158,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 2.0752,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": 1.8981,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 1.4782,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 0.8646,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": -0.2397,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": -0.0477,
+        "context": "Monday Oct 5 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": 0.5233,
+        "context": "Semis ETF only modestly higher Monday while NVDA and AVGO did the work. Thin chip leadership.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:00+07:00"
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": 2.1158,
+        "context": "Led the record session on AI deal flow.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 2.0752,
+        "context": "Up with NVDA; Broadcom/Anthropic record $60B chip loan in the headlines.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:01+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": -1.0168,
+        "context": "Lagged the chip group Monday.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-06T03:00:02+07:00"
+      }
+    ],
+    "premarket": [
+      {
+        "symbol": "NVDA",
+        "changePct": null,
+        "context": "US cash was closed at brief time, so no premarket read. Watch the Nvidia-Groq stockholder suit and OpenAI's reported ~$1.4T round for AI headlines.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      }
+    ]
+  },
+  "fx": {
+    "macroPulse": "USD firm on rates: 10Y up 4bp to ~5.31%, long end at multi-decade highs, DXY ~102.1. Nasdaq 100 closed at a record anyway, and oil fell ~2% (Brent ~$100.3) after Aramco cut Asia prices. Markets price ~23% for an October hike and a full 25bp by December, with FOMC minutes later this week. Key today: BoJ Ueda 1:35 PM BKK, Swiss unemployment 2:00 PM BKK, Canada Ivey PMI 9:00 PM BKK, Fed's Bowman 9:45 PM BKK.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "mildly_bullish",
+        "driver": "Yields keep doing USD's work; index up to ~102.1 from ~101.9 a day ago.",
+        "posture": "Long bias above 101.80. A move through 102.40 reopens the highs.",
+        "support": [
+          101.8
+        ],
+        "resistance": [
+          102.4
+        ],
+        "comments": "Brief view: firm."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": null,
+        "driver": "Spot closed ~4,134 after failing at 4,170. 5.3% yields and December hike pricing cap it.",
+        "posture": "Watch only above 4,120. A break there opens 4,100, and only a close back above 4,170 turns it bullish.",
+        "support": [
+          4120,
+          4100
+        ],
+        "resistance": [
+          4170
+        ],
+        "comments": "Brief view: capped."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "bearish",
+        "driver": "Down 0.3% to ~1.1217 on European fiscal and political stress, with a low of 1.1160.",
+        "posture": "Sell rallies 1.1250-1.1280. A break of 1.1160 opens fresh lows.",
+        "support": [
+          1.116
+        ],
+        "resistance": [
+          1.125,
+          1.128
+        ],
+        "comments": "Brief view: bearish."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "neutral",
+        "driver": "~157.95, rejected at 158.30. Ueda at 1:35 PM BKK is the event risk.",
+        "posture": "Buy dips 157.40-157.60 for 158.50. Respect MoF risk near 159-160.",
+        "support": [
+          157.6,
+          157.4
+        ],
+        "resistance": [
+          158.3,
+          158.5
+        ],
+        "comments": "Brief view: two-way into Ueda. MoF intervention risk near 159-160."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "bearish",
+        "driver": "~0.6966, capped at 0.6974. Westpac consumer confidence fell 4.7% to 80.4.",
+        "posture": "Sell 0.6970-0.6990 with a stop above 0.7010. Target 0.6930.",
+        "support": [
+          0.693
+        ],
+        "resistance": [
+          0.697,
+          0.699,
+          0.701
+        ],
+        "comments": "Brief view: bearish into resistance."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "mildly_bullish",
+        "driver": "Up 0.4% to ~0.8311 off the range floor, high 0.8324.",
+        "posture": "Watch only in the 0.8270-0.8350 range. Only a close above 0.8350 changes that.",
+        "support": [
+          0.827
+        ],
+        "resistance": [
+          0.835
+        ],
+        "comments": "Brief view: mildly firm."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-10-06-jpy-boj-gov-ueda-speaks",
+      "datetime": "2026-10-06T13:35:00+07:00",
+      "date": "2026-10-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "JPY",
+      "country": "Japan",
+      "impact": "high",
+      "title": "BOJ Gov Ueda Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-06-cad-ivey-pmi",
+      "datetime": "2026-10-06T21:00:00+07:00",
+      "date": "2026-10-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "medium",
+      "title": "Ivey PMI",
+      "forecast": "65.2",
+      "previous": "64.3",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-08-usd-fomc-meeting-minutes",
+      "datetime": "2026-10-08T01:00:00+07:00",
+      "date": "2026-10-08",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "FOMC Meeting Minutes",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-08-usd-unemployment-claims",
+      "datetime": "2026-10-08T19:30:00+07:00",
+      "date": "2026-10-08",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "200K",
+      "previous": "197K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-cad-employment-change",
+      "datetime": "2026-10-09T19:30:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "high",
+      "title": "Employment Change",
+      "forecast": "9.0K",
+      "previous": "-41.7K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-cad-unemployment-rate",
+      "datetime": "2026-10-09T19:30:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "6.5%",
+      "previous": "6.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-usd-prelim-uom-consumer-sentiment",
+      "datetime": "2026-10-09T21:00:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Prelim UoM Consumer Sentiment",
+      "forecast": "47.6",
+      "previous": "47.8",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-usd-prelim-uom-inflation-expectations",
+      "datetime": "2026-10-09T21:00:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Prelim UoM Inflation Expectations",
+      "forecast": null,
+      "previous": "4.6%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": []
+}
