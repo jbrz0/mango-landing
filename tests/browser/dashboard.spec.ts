@@ -43,12 +43,14 @@ for (const width of [375, 390, 430, 1440]) {
   });
 }
 test('history selection changes briefing and compares actual earlier data', async ({ page }) => {
+  const selectedDate = archiveDates.find(date => date < current.asOfDate)!;
+  const selectedBrief = JSON.parse(await readFile(resolve(`data/intel/archive/${selectedDate}.json`), 'utf8'));
   await page.goto('/'); await expect(page.locator('#brief-date')).toBeEnabled();
-  await page.locator('#brief-date').selectOption('2026-09-04');
+  await page.locator('#brief-date').selectOption(selectedDate);
   await expect(page.locator('#data-status')).toContainText('ARCHIVE');
-  await expect(page.locator('#overview')).toContainText('Falling');
-  await expect(page.locator('#changes')).toContainText('Rising');
-  await expect(page.locator('#changes')).toContainText('Falling');
+  await expect(page.locator('#overview')).toContainText(selectedBrief.overview.oneLineTake);
+  await expect(page.locator('#changes .section-meta')).not.toHaveText('PUBLISHED COMPARISONS');
+  await expect(page.locator('#changes .section-meta')).toContainText('→');
   await expect(page.locator('#market-strip')).toContainText('Independent of briefing date');
   await expect(page.locator('[data-macro="VIX"]')).toContainText('16.3');
   await page.locator('#brief-date').selectOption(current.asOfDate);
@@ -75,6 +77,11 @@ test('Nasdaq displays sourced prices, opens one research section, and reuses the
 });
 
 test('intelligence filters wrap without horizontal scrolling on desktop and mobile', async ({ page }) => {
+  await populated(page);
+  const data = { ...structuredClone(fixture), kind: 'briefing' };
+  data.intelligence[0].tags = ['Technology', 'Semiconductors', 'Monetary policy', 'Employment', 'Geopolitics', 'Earnings', 'Inflation', 'Energy'];
+  data.intelligence[1].tags = ['Currencies', 'Bonds', 'Commodities', 'Global markets', 'Fiscal policy', 'Consumer demand'];
+  await page.route('**/data/intel/current.json', route => route.fulfill({ json: data }));
   await page.goto('/');
   for (const width of [1440, 375]) {
     await page.setViewportSize({ width, height: 900 });
@@ -112,6 +119,10 @@ test('stock quote outage is explicit while research remains usable', async ({ pa
 test.describe('viewer in New York', () => {
   test.use({ timezoneId: 'America/New_York' });
   test('timestamps, research clock references and catalyst days all convert together', async ({ page }) => {
+    // Keep this timezone scenario on its original briefing as daily data advances.
+    const timezoneBrief = JSON.parse(await readFile(resolve('data/intel/archive/2026-10-02.json'), 'utf8'));
+    await page.route('**/data/intel/current.json', route => route.fulfill({ json: timezoneBrief }));
+    await page.route('**/data/intel/manifest.json', route => route.fulfill({ json: { dates: archiveDates.filter(date => date <= timezoneBrief.asOfDate) } }));
     await page.clock.setFixedTime(new Date('2026-10-02T02:00:00Z'));
     await page.goto('/');
     await expect(page.locator('.desk-clock')).toContainText('NEW YORK');
@@ -259,4 +270,38 @@ test('mobile and desktop resizing preserve panel order, open research and the in
   await page.setViewportSize({ width: 1440, height: 1000 });
   await expect(page.locator('.daily-canvas canvas').first()).toBeVisible();
   for (const { pair, gap } of await panelSpacing(page)) expect(gap, pair).toBeCloseTo(18, 0);
+});
+
+test('readable research, icons, stock identities and flags survive narrow layouts and image failure', async ({ page }) => {
+  await populated(page);
+  const data = { ...structuredClone(fixture), kind: 'briefing' };
+  data.nq.megaCaps = ['TSLA', 'AAPL'].map(symbol => ({ symbol, changePct: null, context: 'EXAMPLE leadership research', source: 'Test fixture', updatedAt: null }));
+  data.fx.instruments.push({ symbol: 'XAUUSD', bias: null, driver: 'EXAMPLE gold context', posture: 'Watch only above 4,120. A close above 4,170 turns it bullish.', support: [4120], resistance: [4170], comments: null });
+  data.intelligence[0].symbols.push('AAPL');
+  await page.route('**/data/intel/current.json', route => route.fulfill({ json: data }));
+  await page.route('**/company-logos/TSLA.png', route => route.fulfill({ status: 404, body: '' }));
+  await page.goto('/');
+  await expect(page.locator('#brief-date')).toBeEnabled();
+  await page.getByRole('button', { name: '7 days', exact: true }).click();
+  await expect(page.locator('#catalysts img[src="/flags/jp.svg"]')).toBeVisible();
+  await expect(page.locator('#catalysts img[src="/flags/us.svg"]').first()).toBeVisible();
+  await page.locator('#nasdaq details').nth(1).locator('summary').click();
+  const tesla = page.locator('.mover').filter({ has: page.locator('.stock-identity strong', { hasText: 'TSLA' }) }).first();
+  await expect(tesla.locator('.company-logo img')).toBeHidden();
+  await expect(tesla.locator('.stock-identity')).toContainText('TSLA');
+  const apple = page.locator('.mover img[src="/company-logos/AAPL.png"]').first();
+  await apple.scrollIntoViewIfNeeded();
+  await expect(apple).toBeVisible();
+  await expect.poll(() => apple.evaluate(image => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator('h2 .section-icon')).toHaveCount(9);
+  await expect(page.locator('.story-tags .stock-identity')).toContainText('AAPL');
+  for (const width of [320, 375, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px`).toBe(true);
+    expect(await page.locator('.research-copy').first().evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(15);
+  }
+  const gold = page.locator('.fx-instrument').filter({ has: page.locator('summary strong', { hasText: 'XAUUSD' }) });
+  await expect(gold.locator('.badge')).toHaveText('Watch only');
+  await gold.locator('summary').click();
+  await expect(gold.getByRole('button', { name: 'Open XAUUSD chart' })).toHaveAttribute('data-chart', 'OANDA:XAUUSD');
 });

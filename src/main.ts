@@ -8,7 +8,9 @@ import type { Intel } from './lib/intel/schema';
 import { day, escape as e, time, zoneLabel } from './lib/format';
 import { localizeResearch } from './lib/intel/localize';
 import { refreshEquityQuotes } from './components/equities';
+import { attachIdentityFallbacks } from './components/identities';
 
+attachIdentityFallbacks();
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = shell(chartPanel());
 attachDashboardLayout();
 const dateSelect = document.querySelector<HTMLSelectElement>('#brief-date')!;

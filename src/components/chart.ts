@@ -1,6 +1,7 @@
 import { escape as e, displayTimeZone, zoneName } from '../lib/format';
 import { loadMacro } from '../lib/markets/load';
 import { macroDefinitions, type MacroSymbol } from '../lib/markets/schema';
+import { sectionHeader } from './primitives';
 
 export const chartSymbols: Array<{ id: string; short: string; label: string; detail: string; group: string; daily?: MacroSymbol }> = [
   { id: 'OANDA:NAS100USD', short: 'NAS100', label: 'NAS100 · Nasdaq 100 CFD', detail: 'OANDA · Cash CFD, not NQ futures', group: 'Indices' },
@@ -17,7 +18,7 @@ export const chartSymbols: Array<{ id: string; short: string; label: string; det
 
 export function chartPanel() {
   return `<section class="panel chart-panel" id="charts" aria-labelledby="chart-title">
-    <div class="section-heading"><h2 id="chart-title">Market chart</h2><span class="section-meta">INTERACTIVE CHARTS</span></div>
+    ${sectionHeader('chart-title', 'Market chart', 'INTERACTIVE CHARTS')}
     <div class="chart-controls"><div class="chart-tabs" role="group" aria-label="Quick chart symbols">${chartSymbols.filter(s => ['NAS100', 'VIX', 'DXY', 'Gold', 'BTC'].includes(s.short)).map(s => `<button type="button" data-chart="${s.id}" aria-pressed="${s.short === 'NAS100'}">${s.short}</button>`).join('')}</div><label class="sr-only" for="chart-symbol">Chart instrument</label><select id="chart-symbol">${['Indices','Macro','Commodities','Crypto','FX'].map(group => `<optgroup label="${group}">${chartSymbols.filter(s => s.group === group).map(s => `<option value="${s.id}">${e(s.label)}</option>`).join('')}</optgroup>`).join('')}</select></div>
     <div class="chart-caption"><strong id="chart-instrument">NAS100 · Nasdaq 100 CFD</strong><span id="chart-detail">OANDA · Cash CFD, not NQ futures</span></div>
     <div id="chart-host" class="chart-host"></div>

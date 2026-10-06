@@ -89,6 +89,8 @@ Symbols accept uppercase letters, digits and `: ^ ! . _ / = -`, maximum 40 chara
 
 ### Research and movers
 
+For FX, publish a directional `bias` only when the research supports one. A `null` bias with an explicit posture beginning with `Watch only`, `Stand aside`, `Wait for confirmation` or `No trade` displays as **Watch only**. Other null biases display **Bias not supplied**. This is a label for the current published research, not a quote-provider failure. Do not fill it from older briefings or infer it from price changes. Continue to publish the existing v1 fields.
+
 Prose is plain text, rendered with HTML escaping. Most prose values allow up to 1,600 characters; short fields (labels, source names, IDs, tags, regime, event values) allow 160. Themes and risks each allow up to 20 items. NQ has `bias`, `conviction`, `regime`, `summary`, `primaryCatalyst`, `primaryRisk`, `overnight`, `macro`, `volatility`, `sentimentShortTerm`, `sentimentMediumTerm` plus the three mover arrays. Each mover has `symbol`, `changePct`, `context`, `source`, `updatedAt`. A numeric move requires its timestamp; null price change does not imply zero. The dashboard now obtains stock/ETF row prices independently through the shared `/api/equities` cache. Do not insert current quotes into historical research or change this payload shape for the price feed. The quote adapter automatically includes the unique stock/ETF symbols in the current published snapshot.
 
 ### Economic events
