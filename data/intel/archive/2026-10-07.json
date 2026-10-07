@@ -1,0 +1,688 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-10-07",
+  "generatedAt": "2026-10-07T08:35:29+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-10-07 BKK from Daily Briefing (posted 7:07 AM BKK), FX Briefing (7:08 AM BKK), NQ Briefing (7:12 AM BKK), ForexFactory week calendar JSON (fetched Oct 7 6:06 AM BKK; High/Medium only), Mango Atlas Bloomberg summaries (posted 7:40 AM BKK, covering Oct 5-6 US-date articles; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. Gold futures and FX percent changes are null because the snapshot prior-close values were unreliable. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "bullish",
+    "confidence": "medium",
+    "volatilityOutlook": "stable",
+    "oneLineTake": "Earnings and AI have equities back at records while yields cool, but the 5%+ rate and oil backdrop keeps the bid narrow and sensitive to today's Fed minutes.",
+    "themes": [
+      "Records are back: the S&P 500 closed at its first record since August and the Nasdaq 100 rose about 0.5% (SPY 779.09, +0.55%; QQQ 759.66, +0.46%) as Q3 profit growth near 25% y/y anchors the earnings-season bid.",
+      "Rates relief, not a regime change: the 10y slipped about 3bp to ~5.28% off multi-decade highs, but traders are reloading bets on higher yields, December hike talk persists, and FOMC minutes land in today's US session.",
+      "Leadership is narrow and AI-heavy: Mag 7 and chips (Nvidia near $6T, Marvell raising its outlook, AMD at highs) carry the tape, the Nasdaq has beaten the Russell in 14 of 16 sessions, and the reported $40B SpaceX raise for Nvidia chips extends the capex story.",
+      "Energy stays the inflation channel: WTI ~$89.79, EIA lifted its 2026 Brent forecast to $98 ($105 Q4 average), Iran is stepping up Hormuz ship attacks even as flows recover, and diesel costs are prompting emergency policy moves.",
+      "Hedges are bid alongside equities: gold rose about 0.7% to ~$4,170 and the dollar sits near its strongest level of the year."
+    ],
+    "risks": [
+      "Hawkish FOMC minutes or another long-end selloff (BNP warns axing the 20-year bond could push yields higher) would hit a narrow, rate-sensitive rally.",
+      "Hormuz or Iran escalation, with Vance demanding concrete nuclear concessions, could re-spike oil and diesel.",
+      "France's debt crisis and euro contagion fears, plus JPMorgan flagging distressed US loans at a post-pandemic high, are credit tail risks.",
+      "Thin breadth means a miss from a mega-cap leader can drag the index with little offset."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 31493.5,
+      "changePct": 0.5612,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T06:57:29+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 31224.69,
+      "changePct": 0.477,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T05:34:12+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 101.908,
+      "changePct": -0.2564,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T06:55:46+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 5.269,
+      "changePct": -0.7908,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T01:59:54+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 15.01,
+      "changePct": -3.2861,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 21.15,
+      "changePct": -2.5346,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 4195.1,
+      "changePct": null,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T06:55:41+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.12549,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T07:04:51+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 158.378,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T07:05:46+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.69828,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T07:04:51+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.83254,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-07T07:05:46+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "mildly_bullish",
+    "conviction": "medium",
+    "regime": "Trend (records), event-driven into FOMC minutes",
+    "summary": "NDX printed a fresh record as the 10Y eased about 3bp and Q3 earnings hopes (~25% y/y) carried the tape. The close faded about 135 pts off the high, with semis rolling over late. Trend stays up, but tonight's auction plus minutes stack the rate risk into one window. Thesis: mildly bullish, 5/10 (brief rated Low-Med), buy dips in trend before the event and reduce into it. Invalidation: NDX close below 30,800. NDX levels: resistance 31,361 (record high), 31,500, 31,750; support 31,208, 31,117, 30,800.",
+    "primaryCatalyst": "US 10-year auction at 12:01 AM BKK Thursday, then FOMC minutes at 1:00 AM BKK Thursday.",
+    "primaryRisk": "Hawkish minutes, 10Y above 5.35%, or Hormuz escalation.",
+    "overnight": "NQ firm in a tight 31,485-31,521 band. FT says SpaceX wants $40B to buy Nvidia chips (after the close). WTI ~$89.8, gold ~$4,170.",
+    "macro": "10Y off its highs but still 5.27%, and the 3Y auction cleared at 4.932%, the highest since 2006. A hawkish read in the minutes reprices December hike odds and hits long-duration tech first.",
+    "volatility": "VIX 15.0 (-3.3%), VXN 21.1 (-2.5%). Vol eased with price, but VXN stays rich versus VIX. Dealer gamma unavailable.",
+    "sentimentShortTerm": "mildly_bullish",
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "AVGO",
+        "changePct": 3.6689,
+        "context": "Led mega-caps; carried the chip group. Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": 1.9451,
+        "context": "Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      },
+      {
+        "symbol": "ORCL",
+        "changePct": 1.6072,
+        "context": "Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:04:24+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 0.7845,
+        "context": "Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 0.3492,
+        "context": "Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": 0.2223,
+        "context": "Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": 0.1423,
+        "context": "Faded about 1.2% off the open. Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:00+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": -0.4071,
+        "context": "Tuesday Oct 6 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": -0.2209,
+        "context": "Semis ETF slipped and closed near its low; the group reversed late.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:00+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": -1.7294,
+        "context": "Weak as chips rolled over into the close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 3.6689,
+        "context": "Carried the semis while the rest reversed late.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-07T03:00:01+07:00"
+      }
+    ],
+    "premarket": [
+      {
+        "symbol": "NVDA",
+        "changePct": null,
+        "context": "US cash was closed at brief time, so no premarket read. Watch NVDA on the reported SpaceX $40B chip-financing plan.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": null,
+        "context": "Watch AAPL on its reported smart home launch next Tuesday.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      }
+    ]
+  },
+  "fx": {
+    "macroPulse": "USD softer as the 10Y slipped 3bp to ~5.28%, though the 3Y auction cleared at 4.932%, the highest since 2006. The S&P 500 closed at a record and gold rose ~0.7%. FOMC minutes at 1:00 AM BKK Thursday are the main risk.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "mildly_bearish",
+        "driver": "Eased 0.26% to ~101.9 with yields; Trump called a strong dollar good but said it can slow growth.",
+        "posture": "Watch only into the minutes. Back above 102.10 restores the long bias, and below 101.80 opens a deeper pullback.",
+        "support": [
+          101.8
+        ],
+        "resistance": [
+          102.1
+        ],
+        "comments": "Brief view: softer."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "mildly_bullish",
+        "driver": "Closed ~4,166 (+0.8%) with a high of 4,184 as yields eased.",
+        "posture": "Buy dips 4,135-4,150 while above 4,105. Targets 4,184 then 4,200.",
+        "support": [
+          4150,
+          4135,
+          4105
+        ],
+        "resistance": [
+          4184,
+          4200
+        ],
+        "comments": "Brief view: firm."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "mildly_bearish",
+        "driver": "Up 0.3% to ~1.1253 off 1.1202, high 1.1277, with French debt stress still in the background.",
+        "posture": "Sell 1.1265-1.1285 with a stop above 1.1310. Target 1.1205.",
+        "support": [
+          1.1205
+        ],
+        "resistance": [
+          1.1265,
+          1.1285,
+          1.131
+        ],
+        "comments": "Brief view: bounce into resistance."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": null,
+        "driver": "Closed ~158.30, the level that capped it Monday, while BoJ's Sato backed gradual hikes.",
+        "posture": "Watch only below 158.50. A clean break targets 159, where MoF risk rises.",
+        "support": [],
+        "resistance": [
+          158.5,
+          159
+        ],
+        "comments": "Brief view: pressing highs. MoF risk rises near 159."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "mildly_bearish",
+        "driver": "~0.6980, high 0.6990, and the RBA says unemployment sits at its 4.6% NAIRU estimate.",
+        "posture": "Sell 0.6985-0.7000 with a stop above 0.7010. Target 0.6960.",
+        "support": [
+          0.696
+        ],
+        "resistance": [
+          0.6985,
+          0.7,
+          0.701
+        ],
+        "comments": "Brief view: capped."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "neutral",
+        "driver": "~0.8323 inside yesterday's 0.8295-0.8326 range.",
+        "posture": "Watch only, chop inside 0.8270-0.8350.",
+        "support": [
+          0.827
+        ],
+        "resistance": [
+          0.835
+        ],
+        "comments": "Brief view: range."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-10-08-usd-fomc-meeting-minutes",
+      "datetime": "2026-10-08T01:00:00+07:00",
+      "date": "2026-10-08",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "FOMC Meeting Minutes",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-08-usd-fomc-member-waller-speaks",
+      "datetime": "2026-10-08T15:30:00+07:00",
+      "date": "2026-10-08",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "FOMC Member Waller Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-08-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-10-08T19:15:00+07:00",
+      "date": "2026-10-08",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-08-usd-unemployment-claims",
+      "datetime": "2026-10-08T19:30:00+07:00",
+      "date": "2026-10-08",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "200K",
+      "previous": "197K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-cad-employment-change",
+      "datetime": "2026-10-09T19:30:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "high",
+      "title": "Employment Change",
+      "forecast": "6.3K",
+      "previous": "-41.7K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-cad-unemployment-rate",
+      "datetime": "2026-10-09T19:30:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "6.5%",
+      "previous": "6.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-usd-prelim-uom-consumer-sentiment",
+      "datetime": "2026-10-09T21:00:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Prelim UoM Consumer Sentiment",
+      "forecast": "47.5",
+      "previous": "47.8",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-09-usd-prelim-uom-inflation-expectations",
+      "datetime": "2026-10-09T21:00:00+07:00",
+      "date": "2026-10-09",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Prelim UoM Inflation Expectations",
+      "forecast": null,
+      "previous": "4.6%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-s-p-500-closes-in-on-record-high-as-tech-rallies-markets-wrap-muvv94wz",
+      "source": "Bloomberg",
+      "headline": "S&P 500 Closes In on Record High as Tech Rallies",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-05/s-p-500-closes-in-on-record-high-as-tech-rallies-markets-wrap-muvv94wz",
+      "summary": "S&P 500 nears its first record since August in a broad global advance; falling oil eases inflation worries and pulls yields lower.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Macro",
+        "Rates"
+      ],
+      "symbols": [
+        "SPX"
+      ]
+    },
+    {
+      "id": "bbg-nvidia-heads-for-6-trillion-value-with-chipmaker-back-at-record",
+      "source": "Bloomberg",
+      "headline": "Nvidia Heads for $6 Trillion Value With Chipmaker Back at Record",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/nvidia-heads-for-6-trillion-value-with-chipmaker-back-at-record",
+      "summary": "Record high after a robust revenue outlook and the biggest buyback in history; up about 30% in 2026 vs 14% for the S&P 500.",
+      "publishedAt": null,
+      "tags": [
+        "Tech",
+        "AI",
+        "Equities"
+      ],
+      "symbols": [
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-ray-dalio-warns-china-japan-may-pull-back-from-us-treasuries",
+      "source": "Bloomberg",
+      "headline": "Ray Dalio Warns China, Japan May Pull Back From US Treasuries",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/ray-dalio-warns-china-japan-may-pull-back-from-us-treasuries",
+      "summary": "Dalio says Treasuries are exposed to weaker demand from the two biggest foreign creditors and repeats his warning of a US debt crisis within three years.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Macro",
+        "Geopolitics"
+      ],
+      "symbols": [
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bbg-wall-street-eyes-record-bonuses-as-profit-heads-past-90-billion",
+      "source": "Bloomberg",
+      "headline": "Wall Street Eyes Record Bonuses as Profit Heads Past $90 Billion",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/wall-street-eyes-record-bonuses-as-profit-heads-past-90-billion",
+      "summary": "New York trading and investment-banking firms are poised for record earnings above $90 billion this year, with bonuses at an all-time high.",
+      "publishedAt": null,
+      "tags": [
+        "Banks",
+        "Earnings"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-openai-in-talks-with-uae-funds-blackrock-for-30-billion-round",
+      "source": "Bloomberg",
+      "headline": "OpenAI in Talks With UAE Funds, BlackRock for $30 Billion Round",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-05/openai-in-talks-with-uae-funds-blackrock-for-30-billion-round",
+      "summary": "OpenAI is in talks for UAE funds to join a $30 billion financing round.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "Funding"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-deepseek-to-raise-at-least-12-billion-in-tencent-backed-funding",
+      "source": "Bloomberg",
+      "headline": "DeepSeek to Raise at Least $12 Billion in Tencent-Backed Funding",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/deepseek-to-raise-at-least-12-billion-in-tencent-backed-funding",
+      "summary": "DeepSeek is close to securing $12 billion in new funding.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "China",
+        "Funding"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-moonshot-said-to-eye-early-2027-ipo-after-value-hits-50-billion",
+      "source": "Bloomberg",
+      "headline": "Moonshot Said to Eye Early 2027 IPO After Value Hits $50 Billion",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/moonshot-said-to-eye-early-2027-ipo-after-value-hits-50-billion",
+      "summary": "Moonshot AI is heading toward a Hong Kong listing in the first quarter.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "China",
+        "IPO"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-google-constellation-near-billion-dollar-deal-for-nuclear-power",
+      "source": "Bloomberg",
+      "headline": "Google, Constellation Near Billion-Dollar Deal for Nuclear Power",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/google-constellation-near-billion-dollar-deal-for-nuclear-power",
+      "summary": "Alphabet is close to buying $1 billion-plus of nuclear power for data centers; Constellation Energy up 3.3% premarket.",
+      "publishedAt": null,
+      "tags": [
+        "Energy",
+        "AI",
+        "Utilities"
+      ],
+      "symbols": [
+        "GOOGL"
+      ]
+    },
+    {
+      "id": "bbg-trump-signs-order-to-ease-limits-on-diesel-variety-to-curb-costs",
+      "source": "Bloomberg",
+      "headline": "Trump Signs Order to Ease Limits on Diesel Variety to Curb Costs",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/trump-signs-order-to-ease-limits-on-diesel-variety-to-curb-costs",
+      "summary": "Restrictions eased on a tax-exempt diesel variety, the latest bid to cut fuel costs ahead of the midterms.",
+      "publishedAt": null,
+      "tags": [
+        "Energy",
+        "Oil",
+        "Policy"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-jpmorgan-dangles-11-yield-on-volta-s-5-billion-ai-loan-sale",
+      "source": "Bloomberg",
+      "headline": "JPMorgan Dangles 11% Yield on Volta's $5 Billion AI Loan Sale",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-05/jpmorgan-dangles-11-yield-on-volta-s-5-billion-ai-loan-sale",
+      "summary": "One of the highest borrowing costs yet in the leveraged-loan market that's financing the AI boom.",
+      "publishedAt": null,
+      "tags": [
+        "Credit",
+        "AI"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-banks-chase-risky-chip-loans-in-asia-s-8-2-trillion-ai-buildout",
+      "source": "Bloomberg",
+      "headline": "Banks Chase Risky Chip Loans in Asia's $8.2 Trillion AI Buildout",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/banks-chase-risky-chip-loans-in-asia-s-8-2-trillion-ai-buildout",
+      "summary": "Lenders take on riskier semiconductor loans to fund Asia's AI infrastructure push.",
+      "publishedAt": null,
+      "tags": [
+        "Credit",
+        "AI",
+        "Asia"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-option-care-jumps-on-report-mckesson-is-preparing-an-offer",
+      "source": "Bloomberg",
+      "headline": "Option Care Jumps on Report McKesson Is Preparing an Offer",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-05/option-care-jumps-on-report-mckesson-is-preparing-an-offer",
+      "summary": "Option Care up 27% after FT reports McKesson and CD&R are close to a $5 billion-plus deal.",
+      "publishedAt": null,
+      "tags": [
+        "M&A",
+        "Healthcare"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-calpers-plans-to-step-up-private-credit-allocations-to-energy",
+      "source": "Bloomberg",
+      "headline": "Calpers Plans to Step Up Private Credit Allocations to Energy",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-05/calpers-plans-to-step-up-private-credit-allocations-to-energy",
+      "summary": "Calpers will add private-credit bets on the energy transition, which it sees as undervalued.",
+      "publishedAt": null,
+      "tags": [
+        "Credit",
+        "Energy"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-scott-bessent-s-economic-forecasts-are-testing-his-credibility",
+      "source": "Bloomberg",
+      "headline": "Bessent's Rosy Forecasts Are Putting His Credibility at Risk",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-05/scott-bessent-s-economic-forecasts-are-testing-his-credibility",
+      "summary": "Bessent's upbeat economic forecasts are testing his credibility.",
+      "publishedAt": null,
+      "tags": [
+        "Policy",
+        "Macro"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-china-ai-video-startup-kling-picks-banks-for-1-billion-plus-ipo",
+      "source": "Bloomberg",
+      "headline": "AI Video Startup Kling Picks Banks for $1 Billion-Plus IPO",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-06/china-ai-video-startup-kling-picks-banks-for-1-billion-plus-ipo",
+      "summary": "Chinese AI video startup Kling lines up banks for a listing of more than $1 billion.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "China",
+        "IPO"
+      ],
+      "symbols": []
+    }
+  ]
+}
