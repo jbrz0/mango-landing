@@ -4,6 +4,9 @@ import { resolve } from 'node:path';
 import { readRepository, serialize } from './scripts/data';
 import macroHandler from './api/macro';
 import equitiesHandler from './api/equities';
+import globalHandler from './api/global';
+
+export const pageInputs = { home: resolve('index.html'), global: resolve('global.html'), tools: resolve('tools.html') };
 
 export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugin {
   return {
@@ -26,6 +29,7 @@ export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugi
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         const path = req.url?.split('?')[0];
+        if (path === '/api/global') { await globalHandler(req, res); return; }
         if (path === '/api/macro') { await macroHandler(req, res); return; }
         if (path === '/api/equities') { await equitiesHandler(req, res); return; }
         if (['/daily', '/daily/', '/daily.html'].includes(path ?? '')) {
@@ -45,6 +49,7 @@ export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugi
     },
     configurePreviewServer(server) {
       server.middlewares.use(async (req, res, next) => {
+        if (req.url?.split('?')[0] === '/api/global') { await globalHandler(req, res); return; }
         if (req.url?.split('?')[0] === '/api/macro') { await macroHandler(req, res); return; }
         if (req.url?.split('?')[0] === '/api/equities') { await equitiesHandler(req, res); return; }
         if (['/daily', '/daily/', '/daily.html'].includes(req.url?.split('?')[0] ?? '')) {
@@ -55,4 +60,4 @@ export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugi
   };
 }
 
-export default defineConfig({ plugins: [intelligencePlugin()], build: { target: 'es2022' } });
+export default defineConfig({ plugins: [intelligencePlugin()], build: { target: 'es2022', rollupOptions: { input: pageInputs } } });
