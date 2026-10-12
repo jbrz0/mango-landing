@@ -1,0 +1,834 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-10-12",
+  "generatedAt": "2026-10-12T08:37:01+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-10-12 BKK from Daily Briefing (7:03 AM BKK), FX Briefing (7:05 AM BKK), NQ Briefing (7:16 AM BKK), ForexFactory week calendar JSON (fetched Oct 12 6:04 AM BKK; High/Medium only, today onward), the latest Mango Atlas Bloomberg Markets Daily summaries (Friday Oct 9 issue, posted Oct 10; no Monday issue yet; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Index tone is calm, but CPI, bank earnings, 5%+ yields and Gulf escalation make this a week to own event risk rather than sell it cheap.",
+    "themes": [
+      "Equities held up Friday: QQQ closed +0.49% at 751.27 and SPY +0.60% at 778.57, with the S&P near record highs and Big Tech's rally into a fourth week as Thursday's OpenAI revenue scare faded. Futures edge higher into the open.",
+      "Rates stay the binding constraint. The 10-year sat at 5.22% on Oct 8 after multiyear highs, mortgages are near 7.40%, and the rate shock beneath the AI rally narrative is spreading.",
+      "Energy is two-sided. Trump's Russia-Ukraine energy ceasefire and Russian diesel deal aim to cap fuel prices, but Houthi strikes on Saudi airports, burning tankers in Hormuz and Hurricane Isaias cutting Gulf output keep crude bid.",
+      "Earnings season opens with big banks this week, then TSMC and ASML, testing whether profits can keep carrying stocks at stretched valuations. US inflation data also lands this week."
+    ],
+    "risks": [
+      "A hot inflation print pushing the 10-year further above 5% would hit long-duration tech hardest.",
+      "Wider Gulf war: Trump says he will look at joining Saudi Arabia against the Houthis, and Iran calls the US Hormuz response insufficient.",
+      "AI credit and bubble stress (Broadcom, Oracle debt repricing) with hedge funds crowded into tech dispersion.",
+      "Europe sovereign stress around France and Italy, plus RBI defending the plunging rupee."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 31252.5,
+      "changePct": 0.4621,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-12T07:02:49+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 30883.15,
+      "changePct": 0.5121,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-10T04:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 102.203,
+      "changePct": -0.0068,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-12T06:52:56+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 5.244,
+      "changePct": 0.2485,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-10T01:59:55+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 14.84,
+      "changePct": -3.6989,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-10T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 20.55,
+      "changePct": -6.5059,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-10T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 4216,
+      "changePct": -0.0071,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-12T06:52:51+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.12082,
+      "changePct": -0.0426,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-12T07:02:28+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 158.159,
+      "changePct": 0.0607,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-12T07:02:57+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.69867,
+      "changePct": 0.3974,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-12T07:01:28+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.82978,
+      "changePct": -0.1925,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-12T07:02:58+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "neutral",
+    "conviction": "low",
+    "regime": "Range, event-driven week",
+    "summary": "NDX recovered Friday as the OpenAI revenue scare faded, led by ORCL, AMZN and MSFT while chips lagged. NQ opens the week firmer despite weekend Gulf attacks and tanker fires. With 10Y above 5.2% and CPI plus bank earnings ahead, upside likely stays capped until the data. Thesis: neutral with a mild long lean, 5/10, buy dips above 30,770. Invalidation: NDX below 30,726. NDX levels: resistance 30,947 (Fri H), 31,000, 31,125 (Thu H); support 30,770 (Fri L), 30,726 (Thu close), 30,556 (Thu L).",
+    "primaryCatalyst": "Fed's Hammack speaks at 11:10 PM BKK. Later this week: US CPI Wednesday 7:30 PM BKK and big bank earnings.",
+    "primaryRisk": "Gulf escalation lifting oil and yields (10Y vs 5.25%), pushing NDX back under 30,770.",
+    "overnight": "NQ up 0.5% from Friday's 31,109 settle, holding the upper half of a 31,125 to 31,289 band. Weekend headlines: strikes on Saudi airports and tanker fires near Hormuz kept oil bid.",
+    "macro": "10Y 5.24% remains the main drag on long-duration tech. Trump's Russia-Ukraine energy ceasefire push aims to cap fuel, but Gulf escalation pulls the other way on oil and inflation.",
+    "volatility": "VIX 14.8 (-3.7%), VXN 20.5 (-6.5%). The Nasdaq vol premium is narrowing after Thursday's spike. Dealer gamma unavailable.",
+    "sentimentShortTerm": "mildly_bearish",
+    "sentimentMediumTerm": "mildly_bullish",
+    "megaCaps": [
+      {
+        "symbol": "ORCL",
+        "changePct": 4.2081,
+        "context": "Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:03:26+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": 3.2945,
+        "context": "Reports say AMZN is in talks to buy AI startup Decart for about $7B (unconfirmed). Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 2.3842,
+        "context": "Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:01+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": 2.0533,
+        "context": "Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:00+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 0.9676,
+        "context": "Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:00+07:00"
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": -0.5207,
+        "context": "Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:00+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": -1.1104,
+        "context": "Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:00+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": -0.6488,
+        "context": "Semis ETF faded from a 615 high to 603; chips still lag the AI software rebound. Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:00+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": -0.6603,
+        "context": "Friday Oct 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-10T03:00:01+07:00"
+      }
+    ],
+    "premarket": [
+      {
+        "symbol": "MSFT",
+        "changePct": null,
+        "context": "US cash was closed at brief time. Watch MSFT after Nadella's AI emergency brake comments.",
+        "source": "NQ Briefing research",
+        "updatedAt": null
+      }
+    ]
+  },
+  "fx": {
+    "macroPulse": "USD opens flat with the 10Y still at 5.24%, so rates stay the anchor into a week with US CPI and bank earnings. Asia tone is mildly risk on in AUD, while weekend Gulf attacks and Hormuz tanker fires keep oil and havens on watch.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "neutral",
+        "driver": "Index flat near 102.20 in a tight 102.19 to 102.30 range, with 5%+ yields offset by a quiet calendar.",
+        "posture": "Watch only, chop until CPI.",
+        "support": [
+          102.19
+        ],
+        "resistance": [
+          102.3
+        ],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "neutral",
+        "driver": "Gold futures flat near 4,216 as Gulf escalation supports havens while 5%+ yields cap upside.",
+        "posture": "Watch only; a break above 4,224 on fresh Gulf headlines is the only setup worth chasing.",
+        "support": [],
+        "resistance": [
+          4224
+        ],
+        "comments": "Brief view: neutral, supported."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "neutral",
+        "driver": "Pair slipped 0.04% to 1.1208 with France fiscal worries a drag on the euro side.",
+        "posture": "Watch only, chop between 1.1188 and 1.1210.",
+        "support": [
+          1.1188
+        ],
+        "resistance": [
+          1.121
+        ],
+        "comments": "Brief view: neutral, soft."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "bullish",
+        "driver": "Pair holds 158.16 near the 158.41 high on wide US yield spreads.",
+        "posture": "Buy dips toward 158.10 while yields hold; above 158.40 carries intervention headline risk.",
+        "support": [
+          158.1
+        ],
+        "resistance": [
+          158.41
+        ],
+        "comments": "Brief view: bullish, extended."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "bullish",
+        "driver": "Leads the board, up 0.4% to 0.6987 and pressing the 0.6990 session high.",
+        "posture": "Lean long above 0.6970; a clean break of 0.6990 opens 0.70.",
+        "support": [
+          0.697
+        ],
+        "resistance": [
+          0.699,
+          0.7
+        ],
+        "comments": "Brief view: bullish."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "bearish",
+        "driver": "Down 0.19% to 0.8298 as Gulf risk keeps franc demand alive.",
+        "posture": "Sell rallies toward 0.8307 while Middle East headlines stay hot.",
+        "support": [],
+        "resistance": [
+          0.8307
+        ],
+        "comments": "Brief view: bearish."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-10-14-0910-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-10-14T09:10:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-14-1230-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-10-14T12:30:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-14-1305-cad-boc-gov-macklem-speaks",
+      "datetime": "2026-10-14T13:05:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "medium",
+      "title": "BOC Gov Macklem Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-14-1530-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-10-14T15:30:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-14-1930-usd-core-cpi-m-m",
+      "datetime": "2026-10-14T19:30:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core CPI m/m",
+      "forecast": "0.2%",
+      "previous": "0.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-14-1930-usd-core-cpi-y-y",
+      "datetime": "2026-10-14T19:30:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core CPI y/y",
+      "forecast": "2.5%",
+      "previous": "2.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-14-1930-usd-cpi-m-m",
+      "datetime": "2026-10-14T19:30:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "CPI m/m",
+      "forecast": "0.6%",
+      "previous": "0.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-14-1930-usd-cpi-y-y",
+      "datetime": "2026-10-14T19:30:00+07:00",
+      "date": "2026-10-14",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "CPI y/y",
+      "forecast": "3.6%",
+      "previous": "3.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-0730-aud-employment-change",
+      "datetime": "2026-10-15T07:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "high",
+      "title": "Employment Change",
+      "forecast": "20.0K",
+      "previous": "39.5K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-0730-aud-unemployment-rate",
+      "datetime": "2026-10-15T07:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "4.6%",
+      "previous": "4.6%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1130-chf-snb-chairman-schlegel-speaks",
+      "datetime": "2026-10-15T11:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CHF",
+      "country": "Switzerland",
+      "impact": "medium",
+      "title": "SNB Chairman Schlegel Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1300-gbp-gdp-m-m",
+      "datetime": "2026-10-15T13:00:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "GDP m/m",
+      "forecast": "-0.1%",
+      "previous": "0.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1430-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-10-15T14:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1930-usd-core-ppi-m-m",
+      "datetime": "2026-10-15T19:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core PPI m/m",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1930-usd-core-retail-sales-m-m",
+      "datetime": "2026-10-15T19:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core Retail Sales m/m",
+      "forecast": "0.5%",
+      "previous": "1.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1930-usd-ppi-m-m",
+      "datetime": "2026-10-15T19:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "PPI m/m",
+      "forecast": "0.5%",
+      "previous": "0.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1930-usd-retail-sales-m-m",
+      "datetime": "2026-10-15T19:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Retail Sales m/m",
+      "forecast": "0.3%",
+      "previous": "1.2%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1930-usd-philly-fed-manufacturing-index",
+      "datetime": "2026-10-15T19:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Philly Fed Manufacturing Index",
+      "forecast": "26.5",
+      "previous": "37.8",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-15-1930-usd-unemployment-claims",
+      "datetime": "2026-10-15T19:30:00+07:00",
+      "date": "2026-10-15",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "195K",
+      "previous": "197K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-16-0900-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-10-16T09:00:00+07:00",
+      "date": "2026-10-16",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-16-1030-usd-fed-chairman-warsh-speaks",
+      "datetime": "2026-10-16T10:30:00+07:00",
+      "date": "2026-10-16",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Fed Chairman Warsh Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-16-1115-cad-boc-gov-macklem-speaks",
+      "datetime": "2026-10-16T11:15:00+07:00",
+      "date": "2026-10-16",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "medium",
+      "title": "BOC Gov Macklem Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-17-1345-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-10-17T13:45:00+07:00",
+      "date": "2026-10-17",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "source": "Bloomberg",
+      "headline": "Stock Market Today: Dow, S&P Live Updates",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/stock-market-today-dow-s-p-live-updates",
+      "summary": "The S&P 500 was set to bounce from two days of losses as oil fell and AI-boom worries eased. S&P 500 futures 7,849.75 (+0.4%), Nasdaq 100 futures 31,221.00 (+0.8%), US 10-year 5.25% (+0.02), Stoxx 600 631.99 (+1.0%), Brent $102.98 (-1.2%) as of 6:19 AM ET.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Oil",
+        "AI"
+      ],
+      "symbols": [
+        "SPX",
+        "NQ"
+      ]
+    },
+    {
+      "id": "bbg-anthropic-ipo-investors-struggle-to-put-a-price-on-rogue-ai-risk",
+      "source": "Bloomberg",
+      "headline": "Anthropic IPO Investors Struggle to Put a Price on Rogue AI Risk",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/anthropic-ipo-investors-struggle-to-put-a-price-on-rogue-ai-risk",
+      "summary": "With Anthropic seeking to list as soon as mid-November, investors face how to disclose AI risk; Slow Ventures' Sam Lessin proposed labs put $1 trillion in escrow.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "IPO",
+        "Tech"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-revolut-ceo-storonsky-says-he-s-targeting-us-primary-listing",
+      "source": "Bloomberg",
+      "headline": "Revolut CEO Says He's Targeting US Primary Listing",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/revolut-ceo-storonsky-says-he-s-targeting-us-primary-listing",
+      "summary": "Nik Storonsky wants to compete with JPMorgan and American Express in the US and would hold a primary US listing if Revolut goes public.",
+      "publishedAt": null,
+      "tags": [
+        "Fintech",
+        "IPO"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-openai-expects-70-billion-in-annualized-revenue-by-end-of-2026",
+      "source": "Bloomberg",
+      "headline": "OpenAI Expects $70 Billion in Annualized Revenue by End of 2026",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-09/openai-expects-70-billion-in-annualized-revenue-by-end-of-2026",
+      "summary": "OpenAI expects to reach or exceed $70 billion in annualized revenue by year-end, people familiar said.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "Tech"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-airtel-money-to-debut-after-london-s-biggest-ipo-in-five-years",
+      "source": "Bloomberg",
+      "headline": "Airtel Money Debuts After London's Biggest IPO in Five Years",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-09/airtel-money-to-debut-after-london-s-biggest-ipo-in-five-years",
+      "summary": "Airtel Money made a tepid London debut after what may be the bourse's largest IPO in five years.",
+      "publishedAt": null,
+      "tags": [
+        "IPO",
+        "Europe"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-guggenheim-funds-outflows-surged-to-2-4-billion-in-september",
+      "source": "Bloomberg",
+      "headline": "Guggenheim Funds Outflows Surged to $2.4 Billion in September",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/guggenheim-funds-outflows-surged-to-2-4-billion-in-september",
+      "summary": "Investors pulled $2.4 billion from Guggenheim's four largest mutual funds after reports US authorities are probing CEO Mark Walter's dealings.",
+      "publishedAt": null,
+      "tags": [
+        "Funds",
+        "Credit"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-humana-surges-on-medicare-quality-ratings-improvement",
+      "source": "Bloomberg",
+      "headline": "Humana Surges on Medicare Quality Ratings Improvement",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/humana-surges-on-medicare-quality-ratings-improvement",
+      "summary": "Humana rallied 13% premarket on new Medicare rankings; CVS Health fell 1.7% as ratings for some large plans deteriorated.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Healthcare"
+      ],
+      "symbols": [
+        "HUM",
+        "CVS"
+      ]
+    },
+    {
+      "id": "bbg-spacex-to-acquire-low-band-spectrum-for-mobile-phone-service",
+      "source": "Bloomberg",
+      "headline": "SpaceX to Acquire Low-Band Spectrum for Mobile Phone Service",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/spacex-to-acquire-low-band-spectrum-for-mobile-phone-service",
+      "summary": "SpaceX gained 3.9%. T-Mobile -6.2%, Verizon -4.2%, AT&T -5.5%; Crown Castle +5.7%, American Tower +4.4%, SBA +1.7%. Apple fell 2.1% on reported iPhone 18 Pro order cuts.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Telecom"
+      ],
+      "symbols": [
+        "TMUS",
+        "VZ",
+        "T",
+        "AAPL"
+      ]
+    },
+    {
+      "id": "bbg-amex-fined-350-million-for-lapses-in-money-laundering-systems",
+      "source": "Bloomberg",
+      "headline": "Amex Fined $350 Million for Lapses in Money Laundering Systems",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/amex-fined-350-million-for-lapses-in-money-laundering-systems",
+      "summary": "American Express edged lower after a $350 million fine from US regulators. Delta reported before the open.",
+      "publishedAt": null,
+      "tags": [
+        "Financials",
+        "Policy"
+      ],
+      "symbols": [
+        "AXP"
+      ]
+    },
+    {
+      "id": "bbg-chinese-bonds-become-source-of-cheap-money-for-global-borrowers",
+      "source": "Bloomberg",
+      "headline": "Chinese Bonds Become Source of Cheap Money for Global Borrowers",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-09/chinese-bonds-become-source-of-cheap-money-for-global-borrowers",
+      "summary": "Regulators approved offshore use of proceeds from more than 40% of panda bonds sold this year, a record share, as low yuan rates draw foreign issuers.",
+      "publishedAt": null,
+      "tags": [
+        "China",
+        "Rates",
+        "FX"
+      ],
+      "symbols": [
+        "CNY"
+      ]
+    },
+    {
+      "id": "bbg-chipotle-jumps-after-report-that-starbucks-has-explored-takeover",
+      "source": "Bloomberg",
+      "headline": "Chipotle Jumps After Report That Starbucks Has Explored Takeover",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-08/chipotle-jumps-after-report-that-starbucks-has-explored-takeover",
+      "summary": "Chipotle jumped on a report Starbucks worked with advisers on a takeover proposal; Melius' Jacob Aiken-Phillips wants to hear a lot more.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Deals"
+      ],
+      "symbols": [
+        "CMG",
+        "SBUX"
+      ]
+    }
+  ]
+}
