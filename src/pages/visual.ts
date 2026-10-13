@@ -1,424 +1,170 @@
-import '../styles.css';
-import './labs.css';
 import './visual.css';
-import { pageShell, startClock } from './shared';
-import { badge } from '../components/primitives';
-import { day, escape as e, number, readable, signed, timestamp } from '../lib/format';
-import { changesSince } from '../lib/intel/compare';
-import { fxBiasLabel } from '../lib/intel/fx';
+import { day, escape as e, timestamp, zoneName } from '../lib/format';
 import { loadArchive, loadDashboard } from '../lib/intel/load';
-import { localizeResearch } from '../lib/intel/localize';
 import type { Intel } from '../lib/intel/schema';
-import { mountField, mountLevels, mountRegime, type FieldNode, type LevelMark } from './visual-scene';
+import { buildLens, buildShiftLens, LENSES, type LensId, type VisualLens, type VisualNode } from './visual-data';
+import { mountAtlas } from './visual-scene';
 
-type DeskNode = FieldNode & { title: string; note: string; rows: { label: string; value: string }[] };
-type Point = { date: string; sentiment: number | null; nq: number | null; intel: Intel };
-const SCORE: Record<string, number> = { bearish: -2, mildly_bearish: -1, neutral: 0, mildly_bullish: 1, bullish: 2 };
-const score = (value: string | null | undefined) => value != null && value in SCORE ? SCORE[value]! : null;
-const stripSymbols = ['NQ', 'NDX', 'US10Y', 'VIX', 'VXN', 'DXY', 'GC'];
+const paths: Record<string, string> = {
+  overview: '<circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-35 12 12)"/>',
+  markets: '<path d="M4 20V12h4v8m3 0V4h4v16m3 0V8h4v12M2 20h22"/>',
+  leadership: '<path d="m3 17 6-6 5 3 7-10M15 4h6v6M3 21h18"/>',
+  levels: '<path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/>',
+  history: '<path d="M3 3v18h18M5 15l5-6 5 4 6-8"/>',
+  catalysts: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/>',
+  themes: '<circle cx="12" cy="12" r="3"/><circle cx="4" cy="4" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="5" cy="21" r="2"/><path d="m6 6 4 4m5 0 3-3M6 19l4-4"/>',
+  wire: '<circle cx="5" cy="12" r="3"/><circle cx="18" cy="5" r="2"/><circle cx="18" cy="19" r="2"/><path d="m8 11 8-5m-8 7 8 5"/>',
+  back: '<path d="m14 6-6 6 6 6M8 12h13"/>', reset: '<path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/>',
+  rotate: '<ellipse cx="12" cy="12" rx="10" ry="5"/><path d="m8 4 4-2 4 2m-4-2v20"/>',
+  expand: '<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4m0 3v1"/>',
+  chevron: '<path d="m9 5 7 7-7 7"/>', close: '<path d="m6 6 12 12M6 18 18 6"/>',
+};
+const icon = (name: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] ?? paths.overview}</svg>`;
+document.querySelector('#app')!.innerHTML = `
+<a class="skip-link" href="#item-picker">Skip to data explorer</a><div class="atlas-shell">
+<header class="atlas-header"><a class="atlas-brand" href="/" aria-label="Mango Atlas dashboard"><img src="/logo-transparent.png" width="35" height="35" alt=""><span>MANGO <b>ATLAS</b></span></a><span class="header-divider"></span><span class="atlas-wordmark">VISUAL ATLAS <i>EXPERIMENT 01</i></span><div class="header-tools"><label class="date-control"><span>BRIEFING</span><select id="brief-date" aria-label="Briefing date" disabled><option>Loading…</option></select></label><a class="dashboard-link" href="/">${icon('back')}<span>Dashboard</span></a></div></header>
+<main class="atlas-world" id="main" aria-label="Interactive market atlas"><div class="world-grain" aria-hidden="true"></div>
+<div class="lens-heading"><div class="lens-kicker"><span class="signal-dot"></span><span id="lens-kicker">DAILY INTELLIGENCE, IN SPACE</span></div><h1 id="lens-title">The market.<br><em>In another dimension.</em></h1><p id="lens-description">Connecting the dots in your daily briefing.</p><div class="lens-legend" id="lens-legend"></div><div id="history-controls" class="history-controls" aria-label="History visualization" hidden><button type="button" data-history="bias" aria-pressed="true">Bias path</button><button type="button" data-history="changes" aria-pressed="false">Snapshot changes</button></div></div><div class="world-stats" id="world-stats"></div>
+<div id="scene-stage" class="scene-stage"><canvas id="atlas-canvas" aria-label="Interactive three-dimensional market data. Drag to orbit, pinch or scroll to zoom. Use the data explorer for keyboard access."></canvas><div id="atlas-labels" class="atlas-labels"></div><div id="scene-message" class="scene-message" role="status"><span class="loading-orbit"></span><p>Building your atlas…</p></div></div>
+<aside class="atlas-inspector" aria-label="Data explorer"><div class="inspector-top"><span><i class="signal-dot"></i> UNDER THE SURFACE</span><span id="item-position">— / —</span></div><label class="item-picker-label" for="item-picker">Explore a data point</label><select id="item-picker" disabled><option>Loading data…</option></select><div id="selected-content" aria-live="polite" aria-atomic="true"><div class="inspector-loading">The day's signals are on their way.</div></div><div class="inspector-actions"><button type="button" id="previous-item" aria-label="Previous data point">${icon('chevron')}</button><button type="button" id="read-note" disabled>Open research ${icon('chevron')}</button><button type="button" id="next-item" aria-label="Next data point">${icon('chevron')}</button></div></aside>
+<div class="scene-bottom"><div class="scene-instructions"><span class="mouse-icon" aria-hidden="true"></span><span id="scene-hint">DRAG TO ORBIT <i>·</i> SCROLL TO ZOOM <i>·</i> SELECT TO EXPLORE</span></div><div class="scene-tools"><button id="auto-rotate" type="button" aria-label="Auto rotate" aria-pressed="false" title="Auto rotate">${icon('rotate')}</button><button id="reset-view" type="button" aria-label="Reset camera" title="Reset camera">${icon('reset')}</button><button id="fullscreen" type="button" aria-label="Full screen" title="Full screen">${icon('expand')}</button><button id="help" type="button" aria-label="How to explore" title="How to explore">${icon('help')}</button></div></div></main>
+<nav class="lens-nav" aria-label="Visualization views"><div class="nav-intro"><span>CHANGE YOUR</span><b>PERSPECTIVE</b></div>${LENSES.map((lens, index) => `<button type="button" class="lens-button" data-lens="${lens.id}" aria-pressed="${index === 0}"><span class="lens-icon">${icon(lens.id)}</span><span class="lens-name">${e(lens.label)}</span><span class="lens-number">0${index + 1}</span></button>`).join('')}</nav>
+<footer class="atlas-footer"><span id="brief-meta">PUBLISHED SNAPSHOT · LOADING</span><span class="footer-right"><span class="signal-dot"></span> CURATED BY MANGO ATLAS <i>UNLISTED</i></span></footer></div>
+<dialog id="research-dialog" class="atlas-dialog"><div class="dialog-head"><span id="dialog-kicker">RESEARCH</span><button id="close-dialog" type="button" aria-label="Close research">${icon('close')}</button></div><div class="dialog-body" id="dialog-body"></div></dialog>`;
 
-const body = `<div class="lab-intro viz-intro"><div><div class="lab-kicker"><span class="status-dot"></span>MANGO ATLAS / VISUAL<span class="early-tag">UNLISTED</span></div><h1>See the brief.<br><span>Not the scroll.</span></h1><p class="viz-dek">Same published research as the dashboard. The move, the regime and the levels, without hunting through the writeup.</p><p id="one-line">Loading the published briefing…</p></div><div class="viz-controls"><label for="brief-date">Briefing archive</label><select id="brief-date" disabled><option>Loading briefings…</option></select><p id="brief-meta" class="mono"></p></div></div>
-<div id="quote-strip" class="viz-quotes" aria-label="Published market snapshot"></div>
-<section class="viz-panel" aria-labelledby="regime-title"><div class="viz-head"><h2 id="regime-title">Regime core</h2><span id="regime-meta">BIAS · CONFIDENCE · VOL</span></div><div class="regime-layout"><div class="regime-stage"><canvas id="regime-canvas" aria-label="Regime core. Color is broad bias, size is confidence, spin is the volatility outlook, and the inner sphere is Nasdaq bias."></canvas></div><div class="regime-copy" id="regime-copy"></div></div></section>
-<section class="viz-panel" id="field-panel" aria-labelledby="field-title"><div class="viz-head"><h2 id="field-title">Cross-asset field</h2><div class="segmented" role="group" aria-label="Field source"><button type="button" data-field="markets" aria-pressed="true">Markets</button><button type="button" data-field="leadership" aria-pressed="false">Leadership</button></div></div><p class="viz-legend" id="field-legend">Height uses a square-root scale of the published percent change, so a tenth of a percent is still visible next to a multi-percent move. Green is up, red is down, gray means that change was not in the briefing.</p><div class="field-layout"><div class="field-stage" id="field-stage"><canvas id="field-canvas" aria-label="Three-dimensional columns of published percent changes."></canvas><p class="field-hint" id="field-hint"></p><button type="button" class="ghost-button" id="field-reset">Reset view</button></div><div class="field-side"><div id="field-readout" aria-live="polite"></div><div id="field-list" role="listbox" aria-label="Published instruments"></div></div></div></section>
-<section class="viz-panel" aria-labelledby="path-title"><div class="viz-head"><h2 id="path-title">Bias path</h2><span id="path-meta">RECENT BRIEFINGS</span></div><div class="chart-key"><span><i class="broad"></i>Broad book</span><span><i class="nq"></i>Nasdaq</span></div><div id="bias-chart"></div></section>
-<section class="viz-panel" aria-labelledby="shift-title"><div class="viz-head"><h2 id="shift-title">Since the previous brief</h2><span id="shift-meta"></span></div><div id="shift-body"></div></section>
-<section class="viz-panel" aria-labelledby="lead-title"><div class="viz-head"><h2 id="lead-title">Leadership</h2><span>MEGA-CAPS · SEMIS</span></div><div id="leadership-body"></div></section>
-<section class="viz-panel" aria-labelledby="fx-title"><div class="viz-head"><h2 id="fx-title">FX levels</h2><span>SUPPORT · PRICE · RESISTANCE</span></div><p class="viz-copy fx-pulse" id="fx-pulse"></p><div class="fx-layout"><div id="fx-list" class="fx-list"></div><div class="level-stage"><canvas id="level-canvas" aria-label="Support, snapshot price and resistance as stacked planes. Spacing is scaled to that pair's published range."></canvas><p class="level-caption" id="level-caption"></p></div></div></section>
-<section class="viz-panel" aria-labelledby="event-title"><div class="viz-head"><h2 id="event-title">Catalysts</h2><span id="catalyst-meta"></span></div><div id="catalyst-chart"></div><div id="catalyst-list" class="event-scroll"></div></section>
-<div class="viz-split"><section class="viz-panel" aria-labelledby="themes-title"><div class="viz-head"><h2 id="themes-title">Themes and risks</h2></div><div id="theme-body"></div></section><section class="viz-panel" aria-labelledby="wire-title"><div class="viz-head"><h2 id="wire-title">Wire</h2><span id="wire-meta"></span></div><div id="wire-body"></div></section></div>`;
-
-document.querySelector('#app')!.innerHTML = pageShell('Visual', body);
-startClock();
-
-const dateSelect = document.querySelector<HTMLSelectElement>('#brief-date')!;
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelector('#field-hint')!.textContent = reduce ? 'Select a column from the list.' : 'Drag to orbit. Scroll to zoom. Select a column.';
-document.querySelector('#regime-meta')!.textContent = reduce ? 'COLOR = BIAS · SIZE = CONFIDENCE' : 'COLOR = BIAS · SIZE = CONFIDENCE · SPIN = VOL';
-
-const fieldView = mountField(document.querySelector('#field-canvas')!, document.querySelector('#field-stage')!, id => choose(id));
-const regimeView = mountRegime(document.querySelector('#regime-canvas')!);
-const levelView = mountLevels(document.querySelector('#level-canvas')!);
-if (!fieldView) {
-  document.querySelector('#field-reset')?.remove();
-  document.querySelector('#field-hint')!.textContent = '3D is unavailable here. The list still has every published move.';
-}
-if (!regimeView) document.querySelector('#regime-canvas')!.replaceWith(Object.assign(document.createElement('p'), { className: 'viz-empty', textContent: '3D regime core is unavailable in this browser. The readouts beside it still update.' }));
-if (!levelView) document.querySelector('#level-canvas')!.replaceWith(Object.assign(document.createElement('p'), { className: 'viz-empty', textContent: '3D levels are unavailable. The rails and numbers are the precise view.' }));
-
-const disposers = [fieldView?.destroy, regimeView?.destroy, levelView?.destroy].filter((fn): fn is () => void => Boolean(fn));
-if (import.meta.hot) import.meta.hot.dispose(() => disposers.forEach(fn => fn()));
-
-let dates: string[] = [];
+const query = <T extends Element = HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
+const dateSelect = query<HTMLSelectElement>('#brief-date');
+const picker = query<HTMLSelectElement>('#item-picker');
+const dialog = query<HTMLDialogElement>('#research-dialog');
+const sceneMessage = query('#scene-message');
+let current: Intel | null = null;
 let latestDate = '';
-let viewing: Intel | null = null;
-let mode: 'markets' | 'leadership' = 'markets';
-let nodes: DeskNode[] = [];
-let selectedId: string | null = null;
-let fxSymbol: string | null = null;
-let wireTag = 'All';
+let history: Intel[] = [];
+let active: LensId = 'overview';
+let historyMode: 'bias' | 'changes' = 'bias';
+let lens: VisualLens | null = null;
+let selected: VisualNode | null = null;
+let loadingHistory = true;
 let request = 0;
-let historyState: 'loading' | 'ready' = 'loading';
-let series: Point[] = [];
-const byDate = new Map<string, Intel>();
-let restoreChartFocus = false;
+let autoRotate = false;
+const cached = new Map<string, Intel>();
+const scene = mountAtlas(query<HTMLCanvasElement>('#atlas-canvas'), query('#atlas-labels'), id => selectNode(id));
+if (!scene) {
+  query('.atlas-world').classList.add('no-webgl');
+  sceneMessage.innerHTML = '<div class="fallback-orbit" aria-hidden="true"></div><p>Spatial view is unavailable here.</p><small>Explore every published value using the data picker.</small>';
+  query('#auto-rotate').setAttribute('disabled', ''); query('#reset-view').setAttribute('disabled', '');
+}
+if (matchMedia('(pointer: coarse)').matches) query('#scene-hint').textContent = 'DRAG TO ORBIT · PINCH TO ZOOM · TAP TO EXPLORE';
+if (!document.fullscreenEnabled) query('#fullscreen').hidden = true;
 
-function familyOf(symbol: string, instrumentType: string) {
-  if (symbol === 'GC' || symbol === 'SI' || symbol === 'XAUUSD') return 'Metals';
-  if (symbol === 'DXY' || instrumentType === 'fx') return 'FX';
-  if (instrumentType === 'yield') return 'Rates';
-  if (instrumentType === 'volatility_index') return 'Volatility';
-  return 'Index';
-}
-function levelDigits(value: number) {
-  const abs = Math.abs(value);
-  if (abs >= 100) return 2;
-  if (abs >= 20) return 3;
-  return 5;
-}
-function priceText(value: number | null, unit: string) {
-  if (value == null) return '—';
-  const digits = unit === 'percent' ? 3 : unit === 'rate' ? 5 : levelDigits(value);
-  return `${number(value, digits)}${unit === 'percent' ? '%' : ''}`;
-}
-function quoteFor(data: Intel, symbol: string) {
-  return data.markets.find(market => market.symbol === symbol) ?? null;
-}
-function changeText(change: number | null) {
-  return change == null ? '—' : signed(change);
-}
-function toneClass(change: number | null) {
-  if (change == null || change === 0) return '';
-  return change > 0 ? 'positive-text' : 'negative-text';
-}
-
-function marketNodes(data: Intel): DeskNode[] {
-  return data.markets.map(market => ({
-    id: market.symbol,
-    symbol: market.symbol,
-    family: familyOf(market.symbol, market.instrumentType),
-    change: market.changePct,
-    title: market.label,
-    note: `${market.label}. ${readable(market.status)} snapshot${market.source ? `, ${market.source}` : ''}.`,
-    rows: [
-      { label: 'Price', value: priceText(market.price, market.unit) },
-      { label: 'Change', value: changeText(market.changePct) },
-      ...(market.updatedAt ? [{ label: 'As of', value: timestamp(market.updatedAt) }] : []),
-      { label: 'Unit', value: market.unit },
-    ],
-  }));
-}
-function leadershipNodes(data: Intel): DeskNode[] {
-  const groups = [['Mega-caps', data.nq?.megaCaps ?? []], ['Semiconductors', data.nq?.semiconductors ?? []]] as const;
-  const seen = new Set<string>();
-  const list: DeskNode[] = [];
-  for (const [family, items] of groups) {
-    for (const item of items) {
-      if (item.changePct == null || seen.has(item.symbol)) continue;
-      seen.add(item.symbol);
-      list.push({
-        id: item.symbol, symbol: item.symbol, family, change: item.changePct, title: item.symbol, note: item.context,
-        rows: [{ label: 'Session change', value: changeText(item.changePct) }, ...(item.updatedAt ? [{ label: 'As of', value: timestamp(item.updatedAt) }] : [])],
-      });
-    }
+function miniChart(node: VisualNode) {
+  if (node.levels?.length) {
+    const lo = Math.min(...node.levels.map(mark => mark.value)), hi = Math.max(...node.levels.map(mark => mark.value));
+    const x = (value: number) => 12 + (value - lo) / (hi - lo || 1) * 236;
+    return `<svg class="detail-chart" viewBox="0 0 260 44" role="img" aria-label="Published support, price and resistance across this pair's range"><path d="M12 22H248" stroke="#35403c"/>${node.levels.map(mark => `<path d="M${x(mark.value)} ${mark.kind === 'price' ? 7 : 14}v${mark.kind === 'price' ? 30 : 16}" stroke="${mark.kind === 'price' ? '#ffad45' : mark.kind === 'support' ? '#b8e986' : '#fa817e'}" stroke-width="${mark.kind === 'price' ? 3 : 2}"/>`).join('')}</svg>`;
   }
-  return list;
-}
-
-function renderReadout(node: DeskNode | undefined) {
-  const host = document.querySelector('#field-readout')!;
-  if (!node) { host.innerHTML = '<p class="viz-empty">Nothing published for this view.</p>'; return; }
-  host.innerHTML = `<span class="eyebrow">${e(node.family)}</span><strong>${e(node.symbol)}</strong><p>${e(node.note)}</p><dl>${node.rows.map(row => `<div><dt>${e(row.label)}</dt><dd class="mono">${e(row.value)}</dd></div>`).join('')}</dl>`;
-}
-function renderList() {
-  const host = document.querySelector('#field-list')!;
-  const families = [...new Set(nodes.map(node => node.family))];
-  host.innerHTML = families.map(family => `<div class="lane"><span class="lane-label">${e(family.toUpperCase())}</span>${nodes.filter(node => node.family === family).map(node => `<button type="button" class="field-option" data-node="${e(node.id)}" role="option" aria-selected="${node.id === selectedId}"><span><b class="mono">${e(node.symbol)}</b><small>${e(mode === 'markets' ? node.title : node.note)}</small></span><em class="${toneClass(node.change)}">${e(changeText(node.change))}</em></button>`).join('')}</div>`).join('');
-}
-function choose(id: string) {
-  selectedId = id;
-  fieldView?.highlight(id);
-  renderReadout(nodes.find(node => node.id === id));
-  document.querySelectorAll<HTMLButtonElement>('[data-node]').forEach(button => button.setAttribute('aria-selected', String(button.dataset.node === id)));
-}
-function applyField(prefer?: string) {
-  if (!viewing) return;
-  nodes = mode === 'markets' ? marketNodes(viewing) : leadershipNodes(viewing);
-  fieldView?.setNodes(nodes);
-  const next = prefer && nodes.some(node => node.id === prefer) ? prefer : nodes.some(node => node.id === selectedId) ? selectedId : nodes[0]?.id ?? null;
-  selectedId = next;
-  renderList();
-  if (next) choose(next);
-  else { fieldView?.highlight(null); renderReadout(undefined); }
-  document.querySelectorAll<HTMLButtonElement>('[data-field]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.field === mode)));
-}
-
-function renderQuotes(data: Intel) {
-  const cards = stripSymbols.flatMap(symbol => {
-    const market = quoteFor(data, symbol);
-    if (!market) return [];
-    return [`<article class="viz-quote" title="${e(market.label)}"><span>${e(market.symbol)}</span><strong>${e(priceText(market.price, market.unit))}</strong><em class="${toneClass(market.changePct)}">${e(changeText(market.changePct))}</em><small>${e(readable(market.status).toUpperCase())}</small></article>`];
-  });
-  document.querySelector('#quote-strip')!.innerHTML = cards.join('') || '<article class="viz-quote"><span>SNAPSHOT</span><strong>—</strong><small>No market block in this briefing</small></article>';
-}
-function renderRegime(data: Intel) {
-  const view = localizeResearch(data);
-  regimeView?.setState({ sentiment: view.overview?.sentiment ?? null, confidence: view.overview?.confidence ?? null, volatility: view.overview?.volatilityOutlook ?? null, nqBias: view.nq?.bias ?? null });
-  const nq = view.nq;
-  document.querySelector('#regime-copy')!.innerHTML = `<div class="regime-metrics">${badge(view.overview?.sentiment)}${badge(view.overview?.confidence)}${badge(view.overview?.volatilityOutlook)}${nq ? badge(nq.bias, nq.bias ? `NQ ${readable(nq.bias)}` : undefined) : ''}</div>${nq?.regime ? `<p class="nq-line">${e(nq.regime)}</p>` : ''}<div class="regime-call"><div><span class="eyebrow orange">CATALYST</span><p>${e(nq?.primaryCatalyst ?? 'No primary catalyst supplied.')}</p></div><div><span class="eyebrow negative-text">RISK</span><p>${e(nq?.primaryRisk ?? 'No primary risk supplied.')}</p></div></div>${nq?.summary ? `<details class="research-detail"><summary>Nasdaq note<span>Briefing text</span></summary><p class="viz-copy">${e(nq.summary)}</p>${nq.overnight ? `<p class="viz-copy">${e(nq.overnight)}</p>` : ''}${nq.volatility ? `<p class="viz-copy">${e(nq.volatility)}</p>` : ''}</details>` : ''}`;
-}
-function renderLeadership(data: Intel) {
-  const rows = leadershipNodes(localizeResearch(data));
-  const max = Math.max(0.5, ...rows.map(row => Math.abs(row.change ?? 0)));
-  document.querySelector('#leadership-body')!.innerHTML = rows.length ? `<div class="bar-list">${rows.map(row => {
-    const width = Math.abs(row.change ?? 0) / max * 50;
-    const box = row.change == null ? '' : `<i class="bar-fill ${row.change > 0 ? 'up' : 'down'}" style="${row.change >= 0 ? 'left:50%' : 'right:50%'};width:${width}%"></i>`;
-    return `<button type="button" class="bar-row" data-leader="${e(row.id)}"><span class="bar-top"><b class="mono">${e(row.symbol)}</b><span class="bar-track"><i class="bar-zero"></i>${box}</span><em class="bar-value ${toneClass(row.change)}">${e(signed(row.change))}</em></span><span class="bar-note">${e(row.note)}</span></button>`;
-  }).join('')}</div>` : '<p class="viz-empty" style="padding:16px 18px">No mega-cap or semiconductor percent changes in this briefing.</p>';
-}
-
-function rail(support: number[], resistance: number[], price: number | null) {
-  const nums = [...support, ...resistance, ...(price == null ? [] : [price])];
-  if (!nums.length) return '';
-  const low = Math.min(...nums);
-  const high = Math.max(...nums);
-  const span = high - low || Math.abs(high) * 0.02 || 1;
-  const pad = span * 0.08;
-  const pos = (value: number) => ((value - (low - pad)) / (span + pad * 2)) * 100;
-  const tick = (value: number, kind: string) => `<i class="${kind}" style="left:${pos(value).toFixed(2)}%"></i>`;
-  return `<span class="rail" aria-hidden="true">${support.map(value => tick(value, 'sup')).join('')}${resistance.map(value => tick(value, 'res')).join('')}${price == null ? '' : tick(price, 'px')}</span>`;
-}
-function renderFx(data: Intel) {
-  const view = localizeResearch(data);
-  const instruments = view.fx?.instruments ?? [];
-  document.querySelector('#fx-pulse')!.textContent = view.fx?.macroPulse ?? '';
-  if (!instruments.length) {
-    fxSymbol = null;
-    levelView?.setMarks([]);
-    document.querySelector('#fx-list')!.innerHTML = '<p class="viz-empty">No FX instruments in this briefing.</p>';
-    document.querySelector('#level-caption')!.textContent = '';
-    return;
+  if (node.metric != null && (active === 'markets' || active === 'leadership' || lens?.id === 'markets')) {
+    const max = Math.max(.01, ...lens!.nodes.map(item => Math.abs(item.metric ?? 0))), width = Math.abs(node.metric) / max * 112;
+    return `<svg class="detail-chart" viewBox="0 0 260 44" role="img" aria-label="${e(node.value)} relative to the largest published move"><path d="M12 22H248M130 9v26" stroke="#35403c"/><rect x="${node.metric < 0 ? 130 - width : 130}" y="16" width="${width}" height="12" fill="${e(node.color)}"/><circle cx="130" cy="22" r="2" fill="#8d9691"/></svg>`;
   }
-  if (!fxSymbol || !instruments.some(item => item.symbol === fxSymbol)) fxSymbol = instruments[0]!.symbol;
-  document.querySelector('#fx-list')!.innerHTML = instruments.map(item => {
-    const quote = quoteFor(data, item.symbol);
-    const price = quote?.price ?? null;
-    return `<button type="button" class="fx-pick" data-fx="${e(item.symbol)}" aria-pressed="${item.symbol === fxSymbol}"><span class="fx-pick-top"><b class="mono">${e(item.symbol)}</b>${badge(item.bias, fxBiasLabel(item))}</span><span class="fx-posture">${e(item.posture ?? item.driver ?? 'No posture published.')}</span>${rail(item.support, item.resistance, price)}</button>`;
-  }).join('');
-  const selected = instruments.find(item => item.symbol === fxSymbol) ?? instruments[0]!;
-  const quote = quoteFor(data, selected.symbol);
-  const marks: LevelMark[] = [
-    ...selected.support.map(value => ({ kind: 'support' as const, value })),
-    ...selected.resistance.map(value => ({ kind: 'resistance' as const, value })),
-    ...(quote?.price == null ? [] : [{ kind: 'price' as const, value: quote.price }]),
-  ];
-  levelView?.setMarks(marks);
-  const fmt = (values: number[]) => values.length ? values.map(value => number(value, levelDigits(value))).join(' / ') : 'not published';
-  document.querySelector('#level-caption')!.textContent = `${selected.symbol}. Support ${fmt(selected.support)}. ${quote?.price == null ? 'No snapshot price for this symbol.' : `Snapshot ${priceText(quote.price, quote.unit)}.`} Resistance ${fmt(selected.resistance)}. Planes are scaled to this printed range, not to a fixed increment.`;
+  const values = ['bearish', 'mildly bearish', 'neutral', 'mildly bullish', 'bullish'];
+  const index = values.indexOf(node.value.toLowerCase().replace('nq ', ''));
+  if (index >= 0) return `<div class="bias-meter" role="img" aria-label="${e(node.value)} on the five-step published bias scale">${values.map((_, i) => `<i class="${i === index ? 'active' : ''}" style="--tick-color:${i < 2 ? '#fa817e' : i > 2 ? '#b8e986' : '#ffad45'}"></i>`).join('')}<span>BEARISH</span><span>BULLISH</span></div>`;
+  return `<div class="detail-signal" aria-hidden="true"><i style="--node-color:${e(node.color)}"></i><span>${active === 'wire' ? 'CONNECTED INTELLIGENCE' : active === 'catalysts' ? 'ON THE HORIZON' : 'PUBLISHED SIGNAL'}</span><b>↗</b></div>`;
 }
-
-function renderCatalysts(data: Intel) {
-  const events = [...data.events].sort((a, b) => a.date.localeCompare(b.date) || ((a.datetime ? Date.parse(a.datetime) : Infinity) - (b.datetime ? Date.parse(b.datetime) : Infinity)));
-  const days = [...new Set(events.map(event => event.date))];
-  document.querySelector('#catalyst-meta')!.textContent = `${events.length} PUBLISHED`;
-  document.querySelector('#catalyst-chart')!.innerHTML = days.length ? `<div class="day-cols">${days.map(date => {
-    const group = events.filter(event => event.date === date);
-    const high = group.filter(event => event.impact === 'high').length;
-    const med = group.filter(event => event.impact === 'medium').length;
-    const low = group.length - high - med;
-    return `<div class="day-col"><span class="stack"><i class="high" style="height:${high * 14}px"></i><i class="med" style="height:${(med + low) * 8}px"></i></span><span>${e(day(date).replace(/ \d{4}$/, ''))}</span><b>${group.length}</b></div>`;
-  }).join('')}</div><p class="viz-legend">Red is high impact. Amber is everything else. Counts are what this briefing published, not a live calendar.</p>` : '';
-  document.querySelector('#catalyst-list')!.innerHTML = events.length ? events.map(event => `<article class="event-row"><div class="event-time mono">${event.datetime ? e(timestamp(event.datetime).split(' · ').at(-1) ?? '') : e(readable(event.timeLabel))}<span>${e(event.currency)}</span></div><div class="event-body"><div><a href="${e(event.source)}" target="_blank" rel="noopener noreferrer">${e(event.title)}</a><span class="impact ${event.impact}">${event.impact === 'medium' ? 'MED' : event.impact.toUpperCase()}</span></div><small>${e(event.country)} · ${e(day(event.date))}</small><dl class="event-values"><div><dt>Forecast</dt><dd>${e(event.forecast ?? '—')}</dd></div><div><dt>Previous</dt><dd>${e(event.previous ?? '—')}</dd></div><div><dt>Actual</dt><dd>${e(event.actual ?? '—')}</dd></div></dl></div></article>`).join('') : '<p class="viz-empty">No events in this briefing.</p>';
+function selectNode(id: string) {
+  if (!lens) return;
+  const node = lens.nodes.find(item => item.id === id); if (!node) return;
+  selected = node; scene?.highlight(id); picker.value = id;
+  query('#item-position').textContent = `${String(lens.nodes.indexOf(node) + 1).padStart(2, '0')} / ${String(lens.nodes.length).padStart(2, '0')}`;
+  const priorities = active === 'markets' ? ['Snapshot price', 'Published change', 'Observed', 'Source'] : active === 'levels' ? ['Snapshot price', 'Support', 'Resistance', 'Bias'] : active === 'catalysts' ? ['Impact', 'Forecast', 'Previous', 'Actual'] : [];
+  const details = priorities.length ? priorities.flatMap(label => node.details.filter(row => row.label === label)) : node.details.filter(row => row.value.length < 100).slice(0, 4);
+  const displayValue = active === 'markets' ? node.details.find(row => row.label === 'Snapshot price')?.value ?? node.value : node.value;
+  query('#selected-content').innerHTML = `<div class="selected-group" style="--node-color:${e(node.color)}"><span></span>${e(node.group)}${active === 'markets' ? ' / SNAPSHOT' : ''}</div><h2 class="selected-name">${e(node.label)}</h2><p class="selected-value${displayValue.length > 30 ? ' long-value' : ''}" style="color:${e(active === 'markets' ? '#e8e9df' : node.color)}">${e(displayValue)}</p>${active === 'markets' ? `<p class="selected-change" style="color:${e(node.color)}">${e(node.value)} <span>SESSION MOVE</span></p>` : ''}${miniChart(node)}<p class="selected-note">${e(node.note || 'Select Open research for the published details.')}</p><dl class="selected-details">${details.map(row => `<div><dt>${e(row.label)}</dt><dd>${e(row.value)}</dd></div>`).join('')}</dl>${active === 'history' && node.date ? `<button type="button" class="load-session" data-date="${e(node.date)}">Open this briefing ${icon('chevron')}</button>` : ''}`;
+  query<HTMLButtonElement>('#read-note').disabled = false;
+  ['#previous-item', '#next-item'].forEach(selector => query<HTMLButtonElement>(selector).disabled = lens!.nodes.length < 2);
+  document.querySelectorAll<HTMLButtonElement>('.fallback-node').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.node === id)));
 }
-function renderThemes(data: Intel) {
-  const view = localizeResearch(data);
-  const themes = view.overview?.themes ?? [];
-  const risks = view.overview?.risks ?? [];
-  const list = (items: string[], risk = false) => items.length ? `<ol class="theme-list${risk ? ' risk-list' : ''}">${items.map((item, index) => `<li><span class="theme-index mono">${String(index + 1).padStart(2, '0')}</span><p>${e(item)}</p></li>`).join('')}</ol>` : '<p class="viz-empty">None published.</p>';
-  document.querySelector('#theme-body')!.innerHTML = `<div class="viz-themes">${list(themes)}</div><details class="research-detail risk-detail" open><summary>Risks to watch<span>${risks.length}</span></summary><div class="viz-risks">${list(risks, true)}</div></details>`;
+function changeLens(id: LensId, preserveSelection = false) {
+  active = id;
+  document.querySelectorAll('[data-lens]').forEach(button => button.setAttribute('aria-pressed', String((button as HTMLElement).dataset.lens === id)));
+  if (!current) return;
+  const prior = preserveSelection ? selected?.id : null;
+  lens = id === 'history' && historyMode === 'changes' ? buildShiftLens(current, history) : buildLens(current, history, id);
+  query('#history-controls').hidden = id !== 'history';
+  query('.atlas-world').setAttribute('data-mode', id);
+  query('#lens-kicker').textContent = lens.kicker;
+  query('#lens-title').innerHTML = id === 'overview' ? 'The market.<br><em>In another dimension.</em>' : e(lens.title);
+  query('#lens-description').textContent = lens.description;
+  query('#lens-legend').innerHTML = lens.legend.map(item => `<span><i style="background:${e(item.color)}"></i>${e(item.label)}</span>`).join('');
+  query('#world-stats').innerHTML = lens.stats.slice(0, 3).map(stat => `<div><span>${e(stat.label)}</span><b>${e(stat.value)}</b></div>`).join('');
+  scene?.setLens(lens);
+  if (scene) {
+    sceneMessage.hidden = lens.nodes.length > 0;
+    if (!lens.nodes.length) sceneMessage.innerHTML = `<p>${e(id === 'history' && loadingHistory ? 'Mapping recent briefings…' : lens.empty ?? 'No data published in this view.')}</p>`;
+  } else query('#atlas-labels').innerHTML = `<div class="fallback-grid">${lens.nodes.slice(0, 16).map(node => `<button type="button" class="fallback-node" data-node="${e(node.id)}" style="--node-color:${e(node.color)}"><span>${e(node.label)}</span><b>${e(node.value)}</b></button>`).join('')}</div>`;
+  picker.disabled = !lens.nodes.length;
+  picker.innerHTML = lens.nodes.length ? lens.nodes.map(node => `<option value="${e(node.id)}">${e(node.label)} · ${e(node.value)}</option>`).join('') : '<option>No published data</option>';
+  if (lens.nodes.length) selectNode(prior && lens.nodes.some(node => node.id === prior) ? prior : lens.nodes[0]!.id);
+  else {
+    selected = null; query('#selected-content').innerHTML = `<p class="inspector-loading">${e(lens.empty ?? 'No data published in this view.')}</p>`;
+    query('#item-position').textContent = '00 / 00';
+    ['#read-note', '#previous-item', '#next-item'].forEach(selector => query<HTMLButtonElement>(selector).disabled = true);
+  }
 }
-function renderWire(data: Intel) {
-  const view = localizeResearch(data);
-  const items = view.intelligence;
-  const tags = ['All', ...new Set(items.flatMap(item => item.tags))];
-  if (!tags.includes(wireTag)) wireTag = 'All';
-  const visible = wireTag === 'All' ? items : items.filter(item => item.tags.includes(wireTag));
-  document.querySelector('#wire-meta')!.textContent = `${visible.length} / ${items.length}`;
-  document.querySelector('#wire-body')!.innerHTML = items.length ? `<div class="tag-row" role="group" aria-label="Filter the wire">${tags.map(tag => {
-    const count = tag === 'All' ? items.length : items.filter(item => item.tags.includes(tag)).length;
-    return `<button type="button" data-wire="${e(tag)}" aria-pressed="${tag === wireTag}">${e(tag)}<span>${count}</span></button>`;
-  }).join('')}</div><div class="viz-stories">${visible.map(item => `<article class="viz-story"><div class="story-meta"><span>${e(item.source)}</span><time>${item.publishedAt ? e(timestamp(item.publishedAt)) : 'Time not supplied'}</time></div><h3><a href="${e(item.url)}" target="_blank" rel="noopener noreferrer">${e(item.headline)}</a></h3><p>${e(item.summary)}</p><div class="story-tags">${item.tags.map(tag => `<span>${e(tag)}</span>`).join('')}${item.symbols.map(symbol => `<span>${e(symbol)}</span>`).join('')}</div></article>`).join('')}</div>` : '<p class="viz-empty" style="padding:16px">No wire items in this briefing.</p>';
+function renderBrief(data: Intel) {
+  current = data; cached.set(data.asOfDate, data); dateSelect.value = data.asOfDate;
+  query('#brief-meta').textContent = `${data.asOfDate !== latestDate ? 'ARCHIVED BRIEF' : 'PUBLISHED SNAPSHOT'} · ${timestamp(data.generatedAt)}${loadingHistory ? ' · MAPPING ARCHIVE' : ''}`;
+  changeLens(active, true);
 }
-
-function line(points: Point[], key: 'sentiment' | 'nq', xAt: (index: number) => number, yAt: (value: number) => number) {
-  let path = '';
-  let open = false;
-  points.forEach((point, index) => {
-    const value = point[key];
-    if (value == null) { open = false; return; }
-    path += `${open ? 'L' : 'M'}${xAt(index).toFixed(1)},${yAt(value).toFixed(1)}`;
-    open = true;
-  });
-  return path;
+async function showBrief(date: string) {
+  const ticket = ++request; dateSelect.setAttribute('aria-busy', 'true');
+  try { const data = cached.get(date) ?? await loadArchive(date); if (ticket === request) renderBrief(data); }
+  catch { if (ticket !== request) return; if (current) dateSelect.value = current.asOfDate; query('#brief-meta').textContent = 'ARCHIVE UNAVAILABLE · PREVIOUS BRIEF STILL DISPLAYED'; }
+  finally { if (ticket === request) dateSelect.removeAttribute('aria-busy'); }
 }
-function renderPath() {
-  const host = document.querySelector('#bias-chart')!;
-  const meta = document.querySelector('#path-meta')!;
-  if (historyState === 'loading') { meta.textContent = 'LOADING ARCHIVE'; host.innerHTML = '<p class="viz-empty" style="padding:8px 18px 18px">Drawing the path from recent briefings…</p>'; return; }
-  meta.textContent = `${series.length} SESSIONS · −2 BEARISH TO +2 BULLISH`;
-  if (series.length < 2) { host.innerHTML = '<p class="viz-empty" style="padding:8px 18px 18px">At least two briefings are needed to draw a path.</p>'; return; }
-  const width = 960;
-  const height = 300;
-  const pad = { l: 96, r: 16, t: 16, b: 36 };
-  const innerW = width - pad.l - pad.r;
-  const innerH = height - pad.t - pad.b;
-  const xAt = (index: number) => pad.l + (index / (series.length - 1)) * innerW;
-  const yAt = (value: number) => pad.t + ((2 - value) / 4) * innerH;
-  const labels = [[2, 'Bullish'], [1, 'Mild bull'], [0, 'Neutral'], [-1, 'Mild bear'], [-2, 'Bearish']] as const;
-  const selected = series.findIndex(point => point.date === viewing?.asOfDate);
-  const step = innerW / (series.length - 1);
-  host.innerHTML = `<svg viewBox="0 0 ${width} ${height}" tabindex="0" role="group" aria-label="Bias path from recent briefings. Orange is the broad book, blue is Nasdaq. Activate a session to load it.">${labels.map(([value, label]) => `<line x1="${pad.l}" x2="${width - pad.r}" y1="${yAt(value)}" y2="${yAt(value)}" stroke="${value === 0 ? '#ffffff22' : '#ffffff10'}"></line><text x="8" y="${yAt(value) + 4}" fill="#8d8d8d" font-size="11" font-family="ui-monospace, monospace">${label}</text>`).join('')}${selected >= 0 ? `<line x1="${xAt(selected)}" x2="${xAt(selected)}" y1="${pad.t}" y2="${height - pad.b}" stroke="#ff990a55"></line>` : ''}<path d="${line(series, 'sentiment', xAt, yAt)}" fill="none" stroke="#ff990a" stroke-width="2"></path><path d="${line(series, 'nq', xAt, yAt)}" fill="none" stroke="#8eb4d4" stroke-width="2"></path>${series.map((point, index) => `<rect data-i="${index}" x="${(xAt(index) - step / 2).toFixed(1)}" y="${pad.t}" width="${step.toFixed(1)}" height="${innerH}" fill="transparent"></rect>${point.sentiment == null ? '' : `<circle cx="${xAt(index)}" cy="${yAt(point.sentiment)}" r="${point.date === viewing?.asOfDate ? 5 : 3}" fill="#ff990a"></circle>`}${point.nq == null ? '' : `<circle cx="${xAt(index)}" cy="${yAt(point.nq)}" r="${point.date === viewing?.asOfDate ? 5 : 3}" fill="#8eb4d4"></circle>`}<text x="${xAt(index)}" y="${height - 12}" text-anchor="middle" fill="#7d7d7d" font-size="10" font-family="ui-monospace, monospace">${index % Math.ceil(series.length / 6) === 0 ? e(day(point.date).replace(/ \d{4}$/, '')) : ''}</text>`).join('')}</svg><table class="sr-only"><caption>Bias scores, −2 bearish to +2 bullish</caption><thead><tr><th>Date</th><th>Broad</th><th>Nasdaq</th></tr></thead><tbody>${series.map(point => `<tr><td>${e(point.date)}</td><td>${point.sentiment ?? '—'}</td><td>${point.nq ?? '—'}</td></tr>`).join('')}</tbody></table>`;
-  const svg = host.querySelector('svg')!;
-  const open = (index: number) => {
-    const point = series[index];
-    if (!point || point.date === viewing?.asOfDate) return;
-    restoreChartFocus = document.activeElement === svg;
-    dateSelect.value = point.date;
-    void show(point.date);
-  };
-  svg.addEventListener('click', event => {
-    const hit = (event.target as Element).closest<SVGGraphicsElement>('[data-i]');
-    if (hit?.dataset.i) open(Number(hit.dataset.i));
-  });
-  svg.addEventListener('keydown', event => {
-    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-    event.preventDefault();
-    const current = Math.max(0, series.findIndex(point => point.date === viewing?.asOfDate));
-    open(Math.min(series.length - 1, Math.max(0, current + (event.key === 'ArrowRight' ? 1 : -1))));
-  });
-  if (restoreChartFocus) { restoreChartFocus = false; svg.focus(); }
+function stepNode(direction: number) {
+  if (!lens?.nodes.length || !selected) return;
+  selectNode(lens.nodes[(lens.nodes.indexOf(selected) + direction + lens.nodes.length) % lens.nodes.length]!.id);
 }
-
-function renderShift(current: Intel, previous: Intel | null) {
-  const host = document.querySelector('#shift-body')!;
-  const meta = document.querySelector('#shift-meta')!;
-  if (historyState === 'loading') { meta.textContent = 'LOADING'; host.innerHTML = '<p class="viz-empty shift-note">Comparing this brief with earlier sessions…</p>'; return; }
-  if (!previous) { meta.textContent = 'START OF WINDOW'; host.innerHTML = '<p class="viz-empty shift-note">No earlier briefing in this window.</p>'; return; }
-  meta.textContent = `${day(previous.asOfDate).toUpperCase()} → ${day(current.asOfDate).toUpperCase()}`;
-  const changes = changesSince(current, previous);
-  const prior = new Map(previous.markets.map(market => [market.symbol, market]));
-  const prices = current.markets.flatMap(market => {
-    const before = prior.get(market.symbol);
-    if (!before || market.price == null || before.price == null || before.price === 0) return [];
-    return [{ symbol: market.symbol, unit: market.unit, from: before.price, to: market.price, pct: (market.price - before.price) / before.price * 100 }];
-  }).sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct)).slice(0, 8);
-  host.innerHTML = `${changes.length ? `<div class="shift-changes">${changes.map(change => `<div><span>${e(change.label)}</span><span>${e(readable(change.before))} → ${e(readable(change.after))}</span>${badge(change.after)}</div>`).join('')}</div>` : '<p class="viz-empty shift-note">No change in sentiment, confidence, Nasdaq bias, regime or volatility.</p>'}<div class="shift-prices">${prices.map(price => `<div><span class="mono">${e(price.symbol)}</span><span class="mono">${e(priceText(price.from, price.unit))} → ${e(priceText(price.to, price.unit))}</span><b class="${toneClass(price.pct)}">${e(signed(price.pct))}</b></div>`).join('')}</div>`;
+function openResearch() {
+  if (!selected) return;
+  query('#dialog-kicker').textContent = `${selected.group.toUpperCase()} · ${current?.asOfDate ?? ''}`;
+  query('#dialog-body').innerHTML = `<h2>${e(selected.label)}</h2><p class="dialog-value" style="color:${e(selected.color)}">${e(selected.value)}</p><p class="dialog-note">${e(selected.note)}</p><dl class="dialog-details">${selected.details.map(row => `<div><dt>${e(row.label)}</dt><dd>${e(row.value)}</dd></div>`).join('')}</dl>${selected.url ? `<a class="source-link" href="${e(selected.url)}" target="_blank" rel="noopener noreferrer">Open published source ↗</a>` : ''}<p class="dialog-provenance">From the ${e(current?.asOfDate)} Mango Atlas briefing. ${e(current?.provenance.source)}.</p>`;
+  dialog.showModal();
 }
-
-function renderBrief(raw: Intel) {
-  viewing = raw;
-  const view = localizeResearch(raw);
-  const historical = raw.asOfDate !== latestDate;
-  document.querySelector('#one-line')!.textContent = view.overview?.oneLineTake ?? 'No market takeaway supplied for this briefing.';
-  document.querySelector('#brief-meta')!.textContent = `${historical ? 'Archive' : 'Latest'} · ${timestamp(raw.generatedAt)} · ${raw.provenance.source}`;
-  renderQuotes(raw);
-  renderRegime(raw);
-  applyField();
-  renderLeadership(raw);
-  renderFx(raw);
-  renderCatalysts(raw);
-  renderThemes(raw);
-  renderWire(raw);
-  renderPath();
-  renderShift(raw, historyState === 'ready' ? series[series.findIndex(point => point.date === raw.asOfDate) - 1]?.intel ?? null : null);
-}
-
-async function intelFor(date: string) {
-  const cached = byDate.get(date);
-  if (cached) return cached;
-  const data = await loadArchive(date);
-  byDate.set(date, data);
-  return data;
-}
-async function show(date: string) {
-  const ticket = ++request;
-  dateSelect.setAttribute('aria-busy', 'true');
-  try {
-    const data = await intelFor(date);
-    if (ticket !== request) return;
-    renderBrief(data);
-  } catch {
-    if (ticket !== request) return;
-    document.querySelector('#brief-meta')!.textContent = 'That archive could not be loaded. The previous selection is still displayed.';
-    if (viewing) dateSelect.value = viewing.asOfDate;
-  } finally { if (ticket === request) dateSelect.removeAttribute('aria-busy'); }
-}
-
-async function mapPool<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>) {
-  const out = new Array<R>(items.length);
-  let cursor = 0;
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => {
-    while (cursor < items.length) {
-      const index = cursor++;
-      out[index] = await fn(items[index]!);
-    }
-  }));
-  return out;
-}
-
-document.querySelector('#field-reset')?.addEventListener('click', () => fieldView?.reset());
-document.querySelector('#field-panel')!.addEventListener('click', event => {
-  const target = event.target as Element;
-  const source = target.closest<HTMLButtonElement>('[data-field]');
-  if (source?.dataset.field === 'markets' || source?.dataset.field === 'leadership') { mode = source.dataset.field; applyField(); }
-  const node = target.closest<HTMLButtonElement>('[data-node]');
-  if (node?.dataset.node) choose(node.dataset.node);
+query('.lens-nav').addEventListener('click', event => { const button = (event.target as Element).closest<HTMLButtonElement>('[data-lens]'); if (button && LENSES.some(item => item.id === button.dataset.lens)) changeLens(button.dataset.lens as LensId); });
+query('#history-controls').addEventListener('click', event => { const button = (event.target as Element).closest<HTMLElement>('[data-history]'); if (button?.dataset.history === 'bias' || button?.dataset.history === 'changes') { historyMode = button.dataset.history; query('#history-controls').querySelectorAll<HTMLElement>('button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.history === historyMode))); changeLens('history'); } });
+query('#atlas-labels').addEventListener('click', event => { const node = (event.target as Element).closest<HTMLElement>('[data-node]'); if (node?.dataset.node) selectNode(node.dataset.node); });
+picker.addEventListener('change', () => selectNode(picker.value));
+dateSelect.addEventListener('change', () => void showBrief(dateSelect.value));
+query('#previous-item').addEventListener('click', () => stepNode(-1)); query('#next-item').addEventListener('click', () => stepNode(1));
+query('#read-note').addEventListener('click', openResearch);
+query('#selected-content').addEventListener('click', event => { const button = (event.target as Element).closest<HTMLElement>('[data-date]'); if (button?.dataset.date) void showBrief(button.dataset.date); });
+query('#reset-view').addEventListener('click', () => scene?.reset());
+query('#auto-rotate').addEventListener('click', () => { autoRotate = !autoRotate; scene?.setAutoRotate(autoRotate); query('#auto-rotate').setAttribute('aria-pressed', String(autoRotate)); });
+query('#fullscreen').addEventListener('click', () => { const operation = document.fullscreenElement ? document.exitFullscreen() : query('.atlas-shell').requestFullscreen(); void operation.catch(() => { query('#scene-hint').textContent = 'FULL SCREEN UNAVAILABLE · DRAG TO ORBIT'; }); });
+document.addEventListener('fullscreenchange', () => query('#fullscreen').setAttribute('aria-label', document.fullscreenElement ? 'Exit full screen' : 'Full screen'));
+query('#help').addEventListener('click', () => {
+  query('#dialog-kicker').textContent = 'A DIFFERENT PERSPECTIVE';
+  query('#dialog-body').innerHTML = `<h2>Explore the briefing.</h2><p class="dialog-note">Choose a perspective along the bottom. Drag the scene to orbit, scroll or pinch to zoom, and select any labeled point to see its published data.</p><dl class="dialog-details"><div><dt>Every point is accessible</dt><dd>The data picker and previous / next controls reach every item, including points hidden behind the scene. Arrow keys change the selected point when the canvas is focused.</dd></div><div><dt>Snapshots, with context</dt><dd>Prices and moves come from the selected published briefing. They are snapshots, not streaming quotes. Gray markers mean a value wasn't supplied. Research stays attached to each point.</dd></div><div><dt>Eight ways to look</dt><dd>Pulse shows the regime. Markets and Leaders compare signed moves on a linear scale. FX planes use each pair's printed range. History follows categorical bias. Calendar uses ordinal impact. Themes have equal weight. Wire connects stories to their actual tags.</dd></div><div><dt>Your time zone</dt><dd>Timed events and publication times display in ${e(zoneName)}. Briefing dates retain their Bangkok publication date.</dd></div></dl>`;
+  dialog.showModal();
 });
-document.querySelector<HTMLElement>('#field-list')!.addEventListener('keydown', event => {
-  if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
-  event.preventDefault();
-  const index = nodes.findIndex(node => node.id === selectedId);
-  const next = nodes[index + (event.key === 'ArrowDown' ? 1 : -1)];
-  if (!next) return;
-  choose(next.id);
-  document.querySelector<HTMLButtonElement>(`[data-node="${CSS.escape(next.id)}"]`)?.focus();
-});
-document.querySelector('#leadership-body')!.addEventListener('click', event => {
-  const row = (event.target as Element).closest<HTMLButtonElement>('[data-leader]');
-  if (!row?.dataset.leader) return;
-  mode = 'leadership';
-  applyField(row.dataset.leader);
-  document.querySelector('#field-panel')!.scrollIntoView({ block: 'nearest' });
-});
-document.querySelector('#fx-list')!.addEventListener('click', event => {
-  const button = (event.target as Element).closest<HTMLButtonElement>('[data-fx]');
-  if (!button?.dataset.fx || !viewing) return;
-  fxSymbol = button.dataset.fx;
-  renderFx(viewing);
-});
-document.querySelector('#wire-body')!.addEventListener('click', event => {
-  const button = (event.target as Element).closest<HTMLButtonElement>('[data-wire]');
-  if (!button?.dataset.wire || !viewing) return;
-  wireTag = button.dataset.wire;
-  renderWire(viewing);
-});
-dateSelect.addEventListener('change', () => { void show(dateSelect.value); });
+query('#close-dialog').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', event => { if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close(); } });
+query<HTMLCanvasElement>('#atlas-canvas').tabIndex = 0;
+query('#atlas-canvas').addEventListener('keydown', event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); stepNode(event.key === 'ArrowLeft' ? -1 : 1); } if (event.key === 'Enter') openResearch(); if (event.key.toLowerCase() === 'r') scene?.reset(); });
 
 loadDashboard().then(async result => {
-  if (!result.current) throw new Error('No briefing');
-  latestDate = result.current.asOfDate;
-  dates = result.dates.length ? result.dates : [latestDate];
-  byDate.set(latestDate, result.current);
-  dateSelect.innerHTML = dates.map(date => `<option value="${date}">${e(day(date))}${date === latestDate ? ' · Latest' : ''}</option>`).join('');
-  dateSelect.disabled = false;
-  dateSelect.value = latestDate;
-  renderBrief(result.current);
-  const loaded = await mapPool(dates, 4, async date => date === latestDate ? result.current : loadArchive(date).catch(() => null));
-  series = loaded.flatMap(item => item ? [{ date: item.asOfDate, sentiment: score(item.overview?.sentiment), nq: score(item.nq?.bias), intel: item }] : []).sort((a, b) => a.date.localeCompare(b.date));
-  for (const point of series) byDate.set(point.date, point.intel);
-  historyState = 'ready';
-  if (viewing) { renderPath(); renderShift(viewing, series[series.findIndex(point => point.date === viewing!.asOfDate) - 1]?.intel ?? null); }
+  if (!result.current) throw new Error('No published briefing');
+  latestDate = result.current.asOfDate; const dates = result.dates.length ? result.dates : [latestDate]; history = [result.current];
+  dateSelect.innerHTML = dates.map(date => `<option value="${date}">${e(day(date))}${date === latestDate ? ' · Latest' : ''}</option>`).join(''); dateSelect.disabled = false; renderBrief(result.current);
+  let index = 0; const found: Intel[] = [];
+  await Promise.all(Array.from({ length: Math.min(4, dates.length) }, async () => { while (index < dates.length) { const date = dates[index++]!; const data = date === latestDate ? result.current : await loadArchive(date).catch(() => null); if (data) { found.push(data); cached.set(date, data); } } }));
+  history = found.sort((a, b) => a.asOfDate.localeCompare(b.asOfDate)); loadingHistory = false; if (current) renderBrief(current);
 }).catch(() => {
-  document.querySelector('#one-line')!.textContent = 'The briefing could not be loaded.';
-  document.querySelector('#brief-meta')!.textContent = 'Check the connection and reload.';
+  sceneMessage.hidden = false; sceneMessage.innerHTML = '<p>The briefing could not be loaded.</p><small>Check your connection, then <button type="button" id="retry-data">reload the atlas</button>.</small>';
+  query('#brief-meta').textContent = 'BRIEFING UNAVAILABLE'; query('#selected-content').innerHTML = '<p class="inspector-loading">No briefing is available. Reload to try again.</p>'; query('#retry-data').addEventListener('click', () => location.reload());
 });
+if (import.meta.hot) import.meta.hot.dispose(() => scene?.destroy());
