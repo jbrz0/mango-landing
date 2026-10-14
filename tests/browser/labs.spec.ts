@@ -91,7 +91,8 @@ test('calculator entry points open the standalone page and outdated entries are 
   await expect(page.locator('.toolkit-heading')).toContainText('6 tools to start');
   await expect(page.getByText('Futures Session Dashboard', { exact: true })).toHaveCount(0);
   await expect(page.locator('a[href*="N0Gy9U5Q"], a[href="#calculator"], #calculator, #calc-form')).toHaveCount(0);
-  await expect(page.locator('.featured-calculator')).toHaveAttribute('href', calculatorUrl);
+  await expect(page.locator('.featured-calculator')).toHaveCount(0);
+  await expect(page.getByText('THE EVERYDAY CALCULATION', { exact: true })).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'Open tool' })).toHaveAttribute('href', calculatorUrl);
   await page.locator('[data-details="futures-calculator"]').click();
   await expect(page.getByRole('dialog')).toContainText('Dollar targets to required points');
