@@ -7,6 +7,8 @@ export const contracts = {
   GC: { name: 'Gold', point: 100, tick: 0.1 },
   MCL: { name: 'Micro WTI Crude Oil', point: 100, tick: 0.01 },
   CL: { name: 'WTI Crude Oil', point: 1000, tick: 0.01 },
+  BTC: { name: 'Bitcoin', point: 5, tick: 5 },
+  MBT: { name: 'Micro Bitcoin', point: 0.1, tick: 5 },
 } as const;
 export type Contract = keyof typeof contracts;
 export function movePnl(symbol: Contract, quantity: number, move: number, units: 'points' | 'ticks', direction: 1 | -1 = 1) {

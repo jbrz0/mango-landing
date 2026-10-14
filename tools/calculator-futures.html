@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Calculate futures points and dollar P&L for NQ, ES, MNQ, MES, GC, MGC, CL, MCL, BTC and MBT. A free, simple calculator from Mango Atlas.">
+  <link rel="canonical" href="https://mangoatlas.xyz/tools/calculator-futures">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Futures Calculator · Mango Atlas</title>
+  <script>
+    if (['mangoatlas.xyz', 'www.mangoatlas.xyz'].includes(window.location.hostname)) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-T8K5KE5246');
+      const googleTag = document.createElement('script');
+      googleTag.async = true;
+      googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-T8K5KE5246';
+      document.head.appendChild(googleTag);
+    }
+  </script>
+</head>
+<body class="futures-page">
+  <div id="app"><p class="initial-loading">Mango Atlas · Loading the futures calculator…</p></div>
+  <noscript>This calculator needs JavaScript. <a href="/">Open the dashboard.</a></noscript>
+  <script type="module" src="/src/pages/calculator-futures.ts"></script>
+</body>
+</html>

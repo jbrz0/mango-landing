@@ -15,6 +15,10 @@ Open the local URL printed by Vite. The app uses the original logo, favicons, ty
 
 ## Validation and production
 
+The standalone futures calculator lives at `/tools/calculator-futures`. Link directly to a contract with `#mnq` (case insensitive) or `?contract=MNQ`; a recognized hash takes precedence. Its four keyboard-accessible fields support NQ, ES, MNQ, MES, GC, MGC, CL, MCL, BTC and MBT. Entering points calculates USD P&L, and entering USD calculates points. The last edited value remains the input when changing contract or quantity. Values are before commissions and fees; points mean a 1.00 price change, including metals, energy and Bitcoin. Reset keeps the selected contract. This page is unlisted and is not linked from the homepage navigation.
+
+Multipliers use CME specifications: [equity index contracts](https://www.cmegroup.com/articles/faqs/faq-e-nano-equity-index-futures.html), [gold contracts](https://www.cmegroup.com/markets/metals/precious/gold-futures.html), [WTI contracts](https://www.cmegroup.com/education/articles-and-reports/micro-wti-crude-oil-futures-faq), and [Bitcoin contracts](https://www.cmegroup.com/articles/faqs/frequently-asked-questions-cryptocurrency-futures.html).
+
 ```sh
 npm run intel:validate
 npm run typecheck
