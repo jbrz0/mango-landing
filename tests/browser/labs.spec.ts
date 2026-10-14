@@ -25,7 +25,7 @@ for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
       await expect(page.locator('h1')).toBeVisible();
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
       if (route === 'global') { await expect(page.locator('#quote-status')).toContainText('12 / 12'); await expect(page.locator('.map-node')).toHaveCount(4); }
-      else { await expect(page.locator('.product-card')).toHaveCount(7); await expect(page.locator('#calc-results')).toContainText('+$210.00'); }
+      else { await expect(page.locator('.product-card')).toHaveCount(6); await expect(page.locator('#calculator, #calc-form')).toHaveCount(0); }
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       expect(errors).toEqual([]);
     });
@@ -70,7 +70,7 @@ test('global failed refresh retains dated observations with an explicit failure 
 });
 test('tool catalog filters, searches, opens accessible details and uses published links', async ({ page }) => {
   await page.goto('/tools');
-  await page.locator('[data-category="Indicators"]').click(); await expect(page.locator('.product-card')).toHaveCount(3);
+  await page.locator('[data-category="Indicators"]').click(); await expect(page.locator('.product-card')).toHaveCount(2);
   await page.locator('[data-details="market-regime"]').click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.locator('#dialog-content .product-cta')).toHaveAttribute('href', 'https://www.tradingview.com/script/xQLgC1fS-Mango-Atlas-Market-Regime-HUD/');
@@ -81,20 +81,24 @@ test('tool catalog filters, searches, opens accessible details and uses publishe
   await expect(page.getByRole('dialog')).toContainText('Platform-independent');
   await expect(page.getByRole('dialog').locator('a')).toHaveCount(0);
 });
-test('calculator handles signed moves, ticks, invalid quantities and sequential scaling', async ({ page }) => {
+test('calculator entry points open the standalone page and outdated entries are absent', async ({ page }) => {
+  const calculatorUrl = 'https://www.mangoatlas.xyz/tools/calculator-futures';
   await page.goto('/tools');
-  await expect(page.locator('#calc-results')).toContainText('+$210.00');
-  await page.locator('[name="direction"]').selectOption('-1'); await expect(page.locator('#calc-results')).toContainText('−$210.00');
-  await page.locator('[name="move"]').fill('-35'); await expect(page.locator('#calc-results')).toContainText('+$210.00');
-  await page.locator('[name="units"]').selectOption('ticks'); await expect(page.locator('#calc-results')).toContainText('+$52.50');
-  await page.locator('[name="quantity"]').fill('1.5'); await expect(page.locator('#calc-results')).toContainText('positive whole');
-  await page.locator('[name="direction"]').selectOption('1');
-  await page.locator('[data-calc-mode="position"]').click(); await expect(page.locator('.calc-average')).toHaveText('24,470');
-  await expect(page.locator('#calc-results')).toContainText('+$1,280.00');
-  await page.locator('#add-leg').click();
-  await page.locator('[name="leg-quantity"]').last().fill('-2'); await page.locator('[name="leg-price"]').last().fill('24520');
-  await expect(page.locator('#calc-results')).toContainText('6 contracts'); await expect(page.locator('#calc-results')).toContainText('+$200.00');
-  await page.locator('[name="leg-quantity"]').last().fill('-20'); await expect(page.locator('#calc-results')).toContainText('Reductions cannot exceed');
+  const localCalculatorUrl = new URL('/tools/calculator-futures', page.url()).href;
+  // Keep navigation local while exercising the exact production links.
+  await page.route(calculatorUrl, route => route.fulfill({ status: 302, headers: { location: localCalculatorUrl } }));
+  await expect(page.locator('#catalog-count')).toHaveText('6 / 6 TOOLS');
+  await expect(page.locator('.toolkit-heading')).toContainText('6 tools to start');
+  await expect(page.getByText('Futures Session Dashboard', { exact: true })).toHaveCount(0);
+  await expect(page.locator('a[href*="N0Gy9U5Q"], a[href="#calculator"], #calculator, #calc-form')).toHaveCount(0);
+  await expect(page.locator('.featured-calculator')).toHaveAttribute('href', calculatorUrl);
+  await expect(page.getByRole('link', { name: 'Open tool' })).toHaveAttribute('href', calculatorUrl);
+  await page.locator('[data-details="futures-calculator"]').click();
+  await expect(page.getByRole('dialog')).toContainText('Dollar targets to required points');
+  await expect(page.getByRole('link', { name: 'Open free calculator' })).toHaveAttribute('href', calculatorUrl);
+  await page.getByRole('link', { name: 'Open free calculator' }).click();
+  await expect(page).toHaveURL(localCalculatorUrl);
+  await expect(page.getByRole('heading', { name: 'Futures calculator.' })).toBeVisible();
 });
 test('new pages remain absent from dashboard navigation and footer', async ({ page }) => {
   await page.route('https://s3.tradingview.com/**', route => route.abort());
