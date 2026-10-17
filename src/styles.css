@@ -77,8 +77,6 @@ h1, h2, h3, p { margin: 0; }
 .subnav nav a { display: flex; align-items: center; font-size: 14px; color: var(--muted); border-bottom: 2px solid transparent; }
 .subnav nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 .subnav nav a:hover { color: var(--text); }
-.public-label { font: 11px var(--mono); color: var(--faint); letter-spacing: .06em; }
-.public-label span { color: var(--accent); margin: 0 10px; }
 .page-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 30px 0 24px; }
 .eyebrow { display: block; font: 12px/1.6 var(--mono); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
 .page-heading h1 { font-size: clamp(25px, 2.5vw, 34px); letter-spacing: -.045em; line-height: 1.2; font-weight: 540; margin-top: 9px; }
@@ -294,7 +292,6 @@ summary > span:last-child { color: var(--faint); margin-left: auto; font: 11px v
   .dashboard-grid { --panel-gap: 14px; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); }
   .regime-metrics { gap: 15px; }
   .regime-main { flex-wrap: wrap; }
-  .public-label { display: none; }
   .chart-controls select { width: 100%; max-width: none; }
   .fx-instrument summary { grid-template-columns: 72px 1fr 10px; }
   .fx-posture { display: none; }
