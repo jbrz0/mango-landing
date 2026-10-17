@@ -3,6 +3,7 @@ import { changesSince } from '../lib/intel/compare';
 import { fxBiasLabel } from '../lib/intel/fx';
 import { localizeResearch } from '../lib/intel/localize';
 import type { Intel } from '../lib/intel/schema';
+import { FX_LEVEL_COLORS } from './visual-layout';
 
 export type LensId = 'overview' | 'markets' | 'leadership' | 'levels' | 'history' | 'catalysts' | 'themes' | 'wire';
 
@@ -18,7 +19,7 @@ export interface VisualNode {
   url?: string;
   date?: string;
   shape?: 'bar' | 'orb' | 'ring' | 'plate';
-  levels?: { kind: 'support' | 'resistance' | 'price'; value: number }[];
+  levels?: { kind: 'support' | 'resistance' | 'price'; value: number; label?: string }[];
 }
 
 export interface VisualLink {
@@ -165,45 +166,51 @@ function marketsLens(data: Intel): VisualLens {
 }
 
 function leadershipLens(data: Intel): VisualLens {
-  const result = lens('leadership', 'Who is leading?', 'MEGA-CAPS / SEMICONDUCTORS / PREMARKET', 'Every published leader has a column. Groups remain separate when a symbol appears more than once.');
+  const result = lens('leadership', 'Who is leading?', 'LEADERS / PUBLISHED % CHANGE', 'One row, one column per leader, ranked by published percent change. Select a symbol for all its research.');
   const groups = [
     { key: 'mega-caps', label: 'Mega-caps', items: data.nq?.megaCaps ?? [] },
     { key: 'semiconductors', label: 'Semiconductors', items: data.nq?.semiconductors ?? [] },
     { key: 'premarket', label: 'Premarket', items: data.nq?.premarket ?? [] },
   ];
-  result.nodes = groups.flatMap(group => {
-    const seen = new Map<string, number>();
-    return group.items.map(item => {
-      const count = (seen.get(item.symbol) ?? 0) + 1;
-      seen.set(item.symbol, count);
-      return {
-        id: `leadership:${group.key}:${item.symbol}${count > 1 ? `:${count}` : ''}`, label: item.symbol, value: move(item.changePct), group: group.label,
-        color: moveColor(item.changePct), metric: item.changePct, shape: 'bar' as const, note: item.context,
-        details: [field('Group', group.label), field('Published change', move(item.changePct)), field('Exact change (%)', item.changePct), field('Research context', item.context), field('Source', item.source), field('Observed', item.updatedAt ? timestamp(item.updatedAt) : null), field('Observation timestamp', item.updatedAt)],
-      };
-    });
-  });
+  const benchmarks = new Set(['NQ', 'NQ=F', 'NDX', '^NDX', 'NASDAQ', 'NAS100', 'QQQ', '^IXIC']);
+  const entries = groups.flatMap(group => group.items.map(item => ({ item, group: group.label })));
+  const symbols = [...new Set(entries.map(({ item }) => item.symbol))].filter(symbol => !benchmarks.has(symbol));
+  result.nodes = symbols.map(symbol => {
+    const research = entries.filter(({ item }) => item.symbol === symbol);
+    // Missing premarket research must not replace an actual published move.
+    const { item } = [...research].sort((a, b) => Number(b.item.changePct !== null) - Number(a.item.changePct !== null)
+      || (b.item.updatedAt ? Date.parse(b.item.updatedAt) : 0) - (a.item.updatedAt ? Date.parse(a.item.updatedAt) : 0))[0]!;
+    return {
+      id: `leadership:${symbol}`, label: symbol, value: move(item.changePct), group: 'Leaders',
+      color: moveColor(item.changePct), metric: item.changePct, shape: 'bar' as const,
+      note: [...new Set(research.map(entry => entry.item.context))].join('\n\n'),
+      details: [field('Published change', move(item.changePct)), field('Exact change (%)', item.changePct), field('Source', item.source), field('Observed', item.updatedAt ? timestamp(item.updatedAt) : null), field('Observation timestamp', item.updatedAt),
+        ...research.flatMap(entry => [field(`${entry.group} research`, entry.item.context), field(`${entry.group} change`, move(entry.item.changePct)), field(`${entry.group} source`, entry.item.source), field(`${entry.group} observed`, entry.item.updatedAt)])],
+    };
+  }).sort((a, b) => (b.metric ?? -Infinity) - (a.metric ?? -Infinity) || a.label.localeCompare(b.label));
   result.legend = moveLegend(); result.stats = moveStats(result.nodes);
   if (!result.nodes.length) result.empty = 'No mega-cap, semiconductor or premarket movers were published in this briefing.';
   return result;
 }
 
 function levelsLens(data: Intel): VisualLens {
-  const result = lens('levels', 'The FX terrain', 'SUPPORT / SNAPSHOT / RESISTANCE', 'Each pair has its own price scale. Stacked planes place exact published support and resistance around the snapshot quote.');
+  const result = lens('levels', 'The FX terrain', 'SUPPORT / SNAPSHOT / RESISTANCE', 'Prices rise upward on each pair’s own scale: teal resistance above, red support below. Outlined planes mark missing data; gold futures proxies are labeled.');
   result.nodes = (data.fx?.instruments ?? []).map(item => {
-    const quote = data.markets.find(market => market.symbol === item.symbol);
+    const spot = data.markets.find(market => market.symbol === item.symbol && market.price !== null);
+    const quote = spot ?? (item.symbol === 'XAUUSD' ? data.markets.find(market => market.symbol === 'GC' && market.price !== null) : undefined);
+    const proxy = quote !== undefined && quote.symbol !== item.symbol;
     const levels: NonNullable<VisualNode['levels']> = [
       ...item.support.map(value => ({ kind: 'support' as const, value })),
-      ...(quote?.price == null ? [] : [{ kind: 'price' as const, value: quote.price }]),
+      ...(quote?.price == null ? [] : [{ kind: 'price' as const, value: quote.price, ...(proxy ? { label: `${quote.symbol} futures proxy` } : {}) }]),
       ...item.resistance.map(value => ({ kind: 'resistance' as const, value })),
     ];
     return {
       id: `fx:${item.symbol}`, label: item.symbol, value: item.bias ? text(item.bias) : fxBiasLabel(item) ?? absent, group: 'FX', color: biasColor(item.bias), metric: null, shape: 'plate' as const, levels,
       note: prose(item.posture, item.driver, item.comments, data.fx?.macroPulse),
-      details: [field('Bias', item.bias ? text(item.bias) : fxBiasLabel(item)), field('Macro pulse', data.fx?.macroPulse), field('Driver', item.driver), field('Posture', item.posture), field('Comments', item.comments), field('Support', item.support.length ? item.support.map(exact).join(' / ') : null), field('Snapshot price', price(quote?.price ?? null, quote?.unit ?? 'rate')), field('Resistance', item.resistance.length ? item.resistance.map(exact).join(' / ') : null), field('Snapshot source', quote?.source), field('Snapshot observed', quote?.updatedAt ? timestamp(quote.updatedAt) : null), field('Price scale', 'Normalized separately for this pair; distances do not compare across pairs.')],
+      details: [field('Bias', item.bias ? text(item.bias) : fxBiasLabel(item)), field('Macro pulse', data.fx?.macroPulse), field('Driver', item.driver), field('Posture', item.posture), field('Comments', item.comments), field('Support', item.support.length ? item.support.map(exact).join(' / ') : null), field('Snapshot price', `${price(quote?.price ?? null, quote?.unit ?? 'rate')}${proxy ? ` (${quote.symbol} futures proxy)` : ''}`), field('Resistance', item.resistance.length ? item.resistance.map(exact).join(' / ') : null), field('Snapshot instrument', quote?.label), ...(proxy ? [field('Quote basis', 'Gold futures proxy, not a spot XAUUSD quote. The futures basis can differ from the published spot levels.')] : []), field('Snapshot source', quote?.source), field('Snapshot observed', quote?.updatedAt ? timestamp(quote.updatedAt) : null), field('Price scale', 'Normalized separately for this pair; distances do not compare across pairs. Outlined planes have no published price.')],
     };
   });
-  result.legend = [{ label: 'Support', color: COLOR.positive }, { label: 'Snapshot', color: COLOR.orange }, { label: 'Resistance', color: COLOR.negative }];
+  result.legend = [{ label: 'Support / downside', color: FX_LEVEL_COLORS.support }, { label: 'Snapshot / labeled proxy', color: FX_LEVEL_COLORS.price }, { label: 'Resistance / upside', color: FX_LEVEL_COLORS.resistance }, { label: 'Not supplied (outline)', color: COLOR.missing }];
   result.stats = [field('Pairs', result.nodes.length), field('Supports', result.nodes.reduce((total, node) => total + (node.levels?.filter(level => level.kind === 'support').length ?? 0), 0)), field('Resistances', result.nodes.reduce((total, node) => total + (node.levels?.filter(level => level.kind === 'resistance').length ?? 0), 0))];
   if (!result.nodes.length) result.empty = 'No FX instruments or levels were published in this briefing.';
   return result;

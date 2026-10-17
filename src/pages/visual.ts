@@ -4,6 +4,7 @@ import { loadArchive, loadDashboard } from '../lib/intel/load';
 import type { Intel } from '../lib/intel/schema';
 import { buildLens, buildShiftLens, LENSES, type LensId, type VisualLens, type VisualNode } from './visual-data';
 import { mountAtlas } from './visual-scene';
+import { FX_LEVEL_COLORS } from './visual-layout';
 
 const paths: Record<string, string> = {
   overview: '<circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-35 12 12)"/>',
@@ -23,7 +24,7 @@ const paths: Record<string, string> = {
 const icon = (name: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] ?? paths.overview}</svg>`;
 document.querySelector('#app')!.innerHTML = `
 <a class="skip-link" href="#item-picker">Skip to data explorer</a><div class="atlas-shell">
-<header class="atlas-header"><a class="atlas-brand" href="/" aria-label="Mango Atlas dashboard"><img src="/logo-transparent.png" width="35" height="35" alt=""><span>MANGO <b>ATLAS</b></span></a><span class="header-divider"></span><span class="atlas-wordmark">VISUAL ATLAS <i>EXPERIMENT 01</i></span><div class="header-tools"><label class="date-control"><span>BRIEFING</span><select id="brief-date" aria-label="Briefing date" disabled><option>Loading…</option></select></label><a class="dashboard-link" href="/">${icon('back')}<span>Dashboard</span></a></div></header>
+<header class="atlas-header"><a class="atlas-brand" href="/" aria-label="Mango Atlas dashboard"><img src="/logo-transparent.png" width="35" height="35" alt=""><span>MANGO <b>ATLAS</b></span></a><span class="header-divider"></span><span class="atlas-wordmark">VISUAL ATLAS</span><div class="header-tools"><label class="date-control"><span>BRIEFING</span><select id="brief-date" aria-label="Briefing date" disabled><option>Loading…</option></select></label><a class="dashboard-link" href="/">${icon('back')}<span>Dashboard</span></a></div></header>
 <main class="atlas-world" id="main" aria-label="Interactive market atlas"><div class="world-grain" aria-hidden="true"></div>
 <div class="lens-heading"><div class="lens-kicker"><span class="signal-dot"></span><span id="lens-kicker">DAILY INTELLIGENCE, IN SPACE</span></div><h1 id="lens-title">The market.<br><em>In another dimension.</em></h1><p id="lens-description">Connecting the dots in your daily briefing.</p><div class="lens-legend" id="lens-legend"></div><div id="history-controls" class="history-controls" aria-label="History visualization" hidden><button type="button" data-history="bias" aria-pressed="true">Bias path</button><button type="button" data-history="changes" aria-pressed="false">Snapshot changes</button></div></div><div class="world-stats" id="world-stats"></div>
 <div id="scene-stage" class="scene-stage"><canvas id="atlas-canvas" aria-label="Interactive three-dimensional market data. Drag to orbit, pinch or scroll to zoom. Use the data explorer for keyboard access."></canvas><div id="atlas-labels" class="atlas-labels"></div><div id="scene-message" class="scene-message" role="status"><span class="loading-orbit"></span><p>Building your atlas…</p></div></div>
@@ -62,7 +63,7 @@ function miniChart(node: VisualNode) {
   if (node.levels?.length) {
     const lo = Math.min(...node.levels.map(mark => mark.value)), hi = Math.max(...node.levels.map(mark => mark.value));
     const x = (value: number) => 12 + (value - lo) / (hi - lo || 1) * 236;
-    return `<svg class="detail-chart" viewBox="0 0 260 44" role="img" aria-label="Published support, price and resistance across this pair's range"><path d="M12 22H248" stroke="#35403c"/>${node.levels.map(mark => `<path d="M${x(mark.value)} ${mark.kind === 'price' ? 7 : 14}v${mark.kind === 'price' ? 30 : 16}" stroke="${mark.kind === 'price' ? '#ffad45' : mark.kind === 'support' ? '#b8e986' : '#fa817e'}" stroke-width="${mark.kind === 'price' ? 3 : 2}"/>`).join('')}</svg>`;
+    return `<svg class="detail-chart" viewBox="0 0 260 44" role="img" aria-label="Published support, snapshot or labeled proxy, and resistance across this pair's range"><path d="M12 22H248" stroke="#35403c"/>${node.levels.map(mark => `<path d="M${x(mark.value)} ${mark.kind === 'price' ? 7 : 14}v${mark.kind === 'price' ? 30 : 16}" stroke="${FX_LEVEL_COLORS[mark.kind]}" stroke-width="${mark.kind === 'price' ? 3 : 2}"/>`).join('')}</svg>`;
   }
   if (node.metric != null && (active === 'markets' || active === 'leadership' || lens?.id === 'markets')) {
     const max = Math.max(.01, ...lens!.nodes.map(item => Math.abs(item.metric ?? 0))), width = Math.abs(node.metric) / max * 112;

@@ -77,7 +77,8 @@ for (const [width, height] of [[1440, 900], [390, 844], [320, 568], [844, 390]])
 test('published briefing reaches every market, leader, pair, event, theme and story', async ({ page }) => {
   await page.goto('/visual'); await ready(page);
   await expect(page.locator('#brief-date')).toHaveValue(current.asOfDate);
-  const counts = { overview: 6, markets: current.markets.length, leadership: (current.nq?.megaCaps.length ?? 0) + (current.nq?.semiconductors.length ?? 0) + (current.nq?.premarket.length ?? 0), levels: current.fx?.instruments.length ?? 0, catalysts: current.events.length, themes: (current.overview?.themes.length ?? 0) + (current.overview?.risks.length ?? 0), wire: current.intelligence.length + new Set(current.intelligence.flatMap(story => story.tags)).size };
+  const leaders = new Set([...(current.nq?.megaCaps ?? []), ...(current.nq?.semiconductors ?? []), ...(current.nq?.premarket ?? [])].map(item => item.symbol).filter(symbol => !['NQ', 'NQ=F', 'NDX', '^NDX', 'NASDAQ', 'NAS100', 'QQQ', '^IXIC'].includes(symbol)));
+  const counts = { overview: 6, markets: current.markets.length, leadership: leaders.size, levels: current.fx?.instruments.length ?? 0, catalysts: current.events.length, themes: (current.overview?.themes.length ?? 0) + (current.overview?.risks.length ?? 0), wire: current.intelligence.length + new Set(current.intelligence.flatMap(story => story.tags)).size };
   for (const [view, count] of Object.entries(counts)) {
     await page.locator(`[data-lens="${view}"]`).click();
     await expect(page.locator('#item-picker option')).toHaveCount(count);
@@ -100,9 +101,27 @@ test('market research preserves exact snapshot values, missing values and proven
   await expect(page.locator('#research-dialog')).toContainText('Not supplied');
   await expect(page.locator('#research-dialog')).toContainText('Unavailable');
   await page.keyboard.press('Escape');
-  await openPoint(page, 'leadership', 'leadership:premarket:AAPL');
+  await openPoint(page, 'leadership', 'leadership:AAPL');
   await expect(page.locator('#research-dialog')).toContainText('Premarket');
   await expect(page.locator('#research-dialog')).toContainText('EXAMPLE: No price supplied.');
+});
+
+test('both selects inset their arrows and the experiment badge is removed', async ({ page }) => {
+  await populated(page); await page.goto('/visual'); await ready(page);
+  await expect(page.locator('.atlas-header')).not.toContainText('EXPERIMENT');
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const selector of ['#brief-date', '#item-picker']) {
+      const style = await page.locator(selector).evaluate(element => {
+        const css = getComputedStyle(element);
+        return { appearance: css.appearance, image: css.backgroundImage, position: css.backgroundPosition, right: parseFloat(css.paddingRight) };
+      });
+      expect(style.appearance).toBe('none');
+      expect(style.image).toContain('data:image/svg+xml');
+      expect(style.position).toContain('11px');
+      expect(style.right).toBeGreaterThanOrEqual(27);
+    }
+  }
 });
 
 test('FX levels, event times, themes and wire sources retain their complete research', async ({ page }) => {

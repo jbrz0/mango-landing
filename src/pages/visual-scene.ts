@@ -7,6 +7,7 @@ import {
   type Material, type Object3D,
 } from 'three';
 import type { VisualLens, VisualNode } from './visual-data';
+import { FX_LEVEL_COLORS, layoutFxLevels } from './visual-layout';
 
 type AtlasNode = {
   data: VisualNode;
@@ -197,9 +198,16 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
     nodes.push(item);
     return item;
   }
-  function orb(node: AtlasNode, size = 0.43, faceted = false) {
+  let sphereGeometry: SphereGeometry | null = null;
+  function smoothSphere(size: number, material: MeshStandardMaterial) {
+    sphereGeometry ??= new SphereGeometry(1, 48, 32);
+    const sphere = new Mesh(sphereGeometry, material);
+    sphere.scale.setScalar(size);
+    return sphere;
+  }
+  function orb(node: AtlasNode, size = 0.43) {
     const material = standard(node.data.color, 0.31);
-    const sphere = new Mesh(faceted ? new IcosahedronGeometry(size, 1) : new SphereGeometry(size, 32, 24), material);
+    const sphere = smoothSphere(size, material);
     node.object.add(sphere);
     node.materials.push(material);
     const ring = new Mesh(new TorusGeometry(size * 1.35, 0.012, 6, 64), basic(node.data.color, 0.8));
@@ -269,7 +277,7 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
     const globe = core.object;
     const coreMaterial = new MeshStandardMaterial({ color: regime.color, emissive: regime.color, emissiveIntensity: 0.39, metalness: 0.64, roughness: 0.28 });
     core.materials.push(coreMaterial);
-    const shell = new Mesh(new IcosahedronGeometry(2.02, 4), coreMaterial);
+    const shell = new Mesh(new SphereGeometry(2.02, 64, 48), coreMaterial);
     const wireColor = new Color(regime.color).lerp(new Color('#fff1d7'), 0.38);
     const wire = new Mesh(new IcosahedronGeometry(2.05, 2), new MeshBasicMaterial({ color: wireColor, wireframe: true, transparent: true, opacity: 0.24 }));
     const glow = new Mesh(new SphereGeometry(2.17, 32, 24), new MeshBasicMaterial({ color: regime.color, wireframe: true, transparent: true, opacity: 0.055, blending: AdditiveBlending, depthWrite: false }));
@@ -289,7 +297,7 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
       const angle = -Math.PI / 2 + 0.25 + i / signals.length * TAU;
       const position = new Vector3(Math.cos(angle) * 6.1, 0.6 + (i % 2 ? 0.55 : -0.2), Math.sin(angle) * 4.65);
       const item = addNode(data, position, new Vector3(0, 0.88, 0));
-      orb(item, 0.49, true);
+      orb(item, 0.49);
       line([new Vector3(0, 0.5, 0), position], data.color, 0.15, true);
       line([position, new Vector3(position.x, -1.83, position.z)], data.color, 0.2);
       foot(item, -1.83 - position.y, 0.54);
@@ -297,28 +305,21 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
   }
   function levels(current: VisualLens) {
     const count = current.nodes.length;
-    const columns = Math.min(count, canvas.clientWidth < 700 ? 3 : 5);
-    const rows = Math.ceil(count / Math.max(1, columns));
+    const spacing = Math.min(2.95, 14.75 / Math.max(1, count - 1));
     current.nodes.forEach((data, index) => {
-      const marks = data.levels ?? [];
-      const values = marks.map(mark => mark.value);
-      const min = Math.min(...values);
-      const max = Math.max(...values);
-      const span = max - min;
-      const yFor = (value: number) => span > 0 ? -1.35 + (value - min) / span * 4.65 : 1;
-      const row = Math.floor(index / Math.max(1, columns));
-      const item = addNode(data, new Vector3((index % columns - (columns - 1) / 2) * 2.95, 0, (row - (rows - 1) / 2) * 3.65), new Vector3(0, 3.75, 0));
+      const marks = layoutFxLevels(data.levels ?? []);
+      const item = addNode(data, new Vector3((index - (count - 1) / 2) * spacing, 0, 0), new Vector3(0, 3.75, 0));
       foot(item, -1.6, 0.78);
       line([item.object.position.clone().add(new Vector3(0, -1.5, 0)), item.object.position.clone().add(new Vector3(0, 3.3, 0))], '#688198', 0.28, true);
-      if (!marks.length) orb(item, 0.22);
       for (const mark of marks) {
-        const color = mark.kind === 'support' ? '#6ed2b1' : mark.kind === 'resistance' ? '#f08b87' : mango;
+        const color = mark.value === null ? '#858c8b' : FX_LEVEL_COLORS[mark.kind];
         const material = standard(color, mark.kind === 'price' ? 0.5 : 0.18);
+        if (mark.value === null) { material.wireframe = true; material.transparent = true; material.opacity = 0.32; }
         const plate = new Mesh(new BoxGeometry(mark.kind === 'price' ? 1.6 : 1.25, mark.kind === 'price' ? 0.11 : 0.075, 0.85), material);
-        plate.position.y = yFor(mark.value);
+        plate.position.y = mark.y;
         item.object.add(plate);
         item.materials.push(material);
-        axis(item.object.position.clone().add(new Vector3(0.89, yFor(mark.value), 0.1)), `${mark.value}`, data.id);
+        axis(item.object.position.clone().add(new Vector3(0.89, mark.y, 0.1)), mark.label, data.id);
       }
     });
   }
@@ -368,7 +369,7 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
       pillar.position.y = height / 2;
       item.object.add(pillar);
       item.materials.push(material);
-      const tip = new Mesh(new IcosahedronGeometry(0.3, 1), material);
+      const tip = smoothSphere(0.3, material);
       tip.position.y = height;
       item.object.add(tip);
       foot(item, 0, 0.55);
@@ -396,7 +397,7 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
         const angle = -Math.PI / 2 + index / members.length * TAU;
         const position = new Vector3(cx + Math.cos(angle) * radiusValue, 0.15, Math.sin(angle) * radiusValue);
         const item = addNode(data, position, new Vector3(0, 0.6, 0));
-        orb(item, 0.34, true);
+        orb(item, 0.34);
         line([new Vector3(cx, -0.25, 0), position], data.color, 0.17);
       });
     });
@@ -414,7 +415,7 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
     stories.forEach((data, index) => {
       const angle = -Math.PI / 2 + index / Math.max(1, stories.length) * TAU;
       const item = addNode(data, new Vector3(Math.cos(angle) * 6.7, -0.35 + (index % 2) * 0.6, Math.sin(angle) * 5.1), new Vector3(0, 0.5, 0));
-      orb(item, 0.2, true);
+      orb(item, 0.2);
     });
     const map = new Map(nodes.map(node => [node.data.id, node]));
     current.links.forEach(linkData => {
@@ -481,6 +482,7 @@ export function mountAtlas(canvas: HTMLCanvasElement, labelHost: HTMLElement, on
     nodes = [];
     axes = [];
     disposeObject(dataRoot);
+    sphereGeometry = null;
     dataRoot.clear();
   }
   function setLens(next: VisualLens) {
