@@ -52,7 +52,7 @@ for (const [width, height] of [[1440, 900], [390, 844], [320, 568], [844, 390]])
   test(`all eight views remain usable without page scroll at ${width} × ${height}`, async ({ page }) => {
     const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
     await populated(page); await page.setViewportSize({ width, height }); await page.goto('/visual'); await ready(page);
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
+    await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
     for (const view of views) {
       await page.locator(`[data-lens="${view}"]`).click();
       await expect(page.locator('.atlas-world')).toHaveAttribute('data-mode', view);
@@ -86,7 +86,7 @@ test('published briefing reaches every market, leader, pair, event, theme and st
     await expect(page.locator('#item-position')).toHaveText(`${String(count).padStart(2, '0')} / ${String(count).padStart(2, '0')}`);
   }
   await page.goto('/');
-  await expect(page.locator('a[href="/visual"], a[href="/visual.html"]')).toHaveCount(0);
+  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Visual Atlas' })).toHaveAttribute('href', '/visual');
 });
 
 test('market research preserves exact snapshot values, missing values and provenance', async ({ page }) => {

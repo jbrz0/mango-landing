@@ -7,6 +7,7 @@ import { badge, empty, metric, sectionHeader, arrow } from './primitives';
 import { chartSymbols } from './chart';
 import { stockIdentity, eventCurrency } from './identities';
 import { fxBiasLabel } from '../lib/intel/fx';
+import { siteNavigation } from './navigation';
 
 export const SOCIAL = { x: 'https://x.com/mangoatlas', discord: 'https://discord.gg/xUQSsm5UpV' };
 const xIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.9-9L.8 2h6.5l4.4 6.6L18.9 2ZM17.8 20h1.7L6.2 3.9H4.4L17.8 20Z"/></svg>';
@@ -16,6 +17,7 @@ export function shell(chart: string) {
   return `<a class="skip-link" href="#main">Skip to market intelligence</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/" aria-label="Mango Atlas home"><img src="/logo-transparent.png" width="52" height="52" alt="Mango Atlas emblem"><span>MANGO<span class="brand-atlas">ATLAS</span><small>MARKET INTELLIGENCE</small></span></a>
+    ${siteNavigation('/')}
     <div class="header-actions"><span class="desk-clock" title="${e(displayTimeZone)}"><span class="status-dot"></span>${e(zoneName.toUpperCase())} <time id="desk-clock"></time></span><a class="icon-link" href="${SOCIAL.x}" target="_blank" rel="noopener noreferrer" aria-label="Mango Atlas on X">${xIcon}</a><a class="discord-link" href="${SOCIAL.discord}" target="_blank" rel="noopener noreferrer">${discordIcon}<span>Join Discord</span>${arrow}</a></div>
   </div></header>
   <div class="subnav"><nav aria-label="Dashboard sections"><a class="active" href="#overview">Overview</a><a href="#nasdaq">Nasdaq</a><a href="#charts">Charts</a><a href="#fx">FX</a><a href="#intelligence">Intelligence</a></nav><span class="public-label">INDEPENDENT RESEARCH <span>/</span> OPEN ACCESS</span></div>

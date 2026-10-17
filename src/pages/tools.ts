@@ -23,13 +23,13 @@ function art(product: Product) {
   } as Record<string, string>)[product.art];
   return `<div class="product-art visual-${product.art}" aria-hidden="true">${content}<span class="art-caption">${product.art === 'calculator' ? 'WORKING UTILITY' : 'INTERFACE CONCEPT'}</span></div>`;
 }
-const body = `<div class="lab-intro tools-intro"><div><div class="lab-kicker"><span class="status-dot"></span>MANGO ATLAS / TOOLS<span class="early-tag">EARLY ACCESS</span></div><h1>A sharper<br><span>trading desk.</span></h1><p>Purpose-built indicators, operating systems and utilities.<br>Less friction. More focus.</p></div></div>
+const body = `<div class="lab-intro tools-intro"><div><div class="lab-kicker"><span class="status-dot"></span>MANGO ATLAS / TOOLS</div><h1>A sharper<br><span>trading desk.</span></h1><p>Purpose-built indicators, operating systems and utilities.<br>Less friction. More focus.</p></div></div>
 <div class="toolkit-heading"><div><span class="mono">THE TOOLKIT / 01</span><h2>Built for the way you work.</h2></div><p>${products.length} tools to start. An expanding toolkit.</p></div>
 <div class="catalog-toolbar"><div class="lab-tabs" role="group" aria-label="Product category">${['All tools', 'Utilities', 'Indicators', 'Templates', 'Resources'].map((c,i) => `<button data-category="${c}" aria-pressed="${!i}">${c}<span>${c === 'All tools' ? products.length : products.filter(p => p.category === c).length}</span></button>`).join('')}</div><label class="catalog-search">${icon('radar')}<span class="sr-only">Search tools</span><input id="tool-search" type="search" placeholder="Find your next tool…" autocomplete="off"></label></div>
 <div class="product-grid" id="product-grid"></div><p id="catalog-count" class="catalog-count mono" aria-live="polite"></p>
 <div class="tools-endnote"><span>${icon('tools')}</span><div><h2>A toolkit in progress.</h2><p>Published indicators link to TradingView. Templates, order flow and the software directory are still being built. Availability and pricing will appear here as each product is ready.</p></div></div>
 <dialog id="product-dialog" class="product-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="Close product details">×</button><div id="dialog-content"></div></dialog>`;
-document.querySelector('#app')!.innerHTML = pageShell('Tools', body);
+document.querySelector('#app')!.innerHTML = pageShell('Tools', body, '/tools');
 startClock();
 let category = 'All tools';
 let search = '';

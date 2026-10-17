@@ -23,7 +23,7 @@ for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(`/${route}`);
       await expect(page.locator('h1')).toBeVisible();
-      await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
+      await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
       if (route === 'global') { await expect(page.locator('#quote-status')).toContainText('12 / 12'); await expect(page.locator('.map-node')).toHaveCount(4); }
       else { await expect(page.locator('.product-card')).toHaveCount(6); await expect(page.locator('#calculator, #calc-form')).toHaveCount(0); }
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -101,9 +101,13 @@ test('calculator entry points open the standalone page and outdated entries are 
   await expect(page).toHaveURL(localCalculatorUrl);
   await expect(page.getByRole('heading', { name: 'Futures calculator.' })).toBeVisible();
 });
-test('new pages remain absent from dashboard navigation and footer', async ({ page }) => {
+test('dashboard navigation includes the public site pages and keeps section shortcuts separate', async ({ page }) => {
   await page.route('https://s3.tradingview.com/**', route => route.abort());
   await page.route('**/api/equities', route => route.fulfill({ json: { quotes: [], unavailable: [] } }));
   await page.goto('/');
-  await expect(page.locator('a[href="/global"], a[href="/tools"]')).toHaveCount(0);
+  const nav = page.getByRole('navigation', { name: 'Main navigation' });
+  await expect(nav.getByRole('link')).toHaveText(['Dashboard', 'Visual Atlas', 'Global Intel', 'Tools']);
+  await expect(nav.locator('[aria-current="page"]')).toHaveAttribute('href', '/');
+  const sectionLinks = await page.getByRole('navigation', { name: 'Dashboard sections' }).locator('a').evaluateAll(links => links.map(link => link.getAttribute('href')));
+  expect(sectionLinks).toEqual(['#overview', '#nasdaq', '#charts', '#fx', '#intelligence']);
 });

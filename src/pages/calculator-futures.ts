@@ -2,12 +2,13 @@ import '../styles.css';
 import './calculator-futures.css';
 import { calculateFutures, contractFromUrl, contracts, futuresSymbols, parseFuturesNumber, type CalculationSource } from '../lib/futures';
 import type { Contract } from '../lib/global/calculator';
+import { siteNavigation } from '../components/navigation';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <a class="skip-link" href="#main">Skip to calculator</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/" aria-label="Mango Atlas home"><img src="/logo-transparent.png" width="46" height="46" alt=""><span>MANGO<span class="brand-atlas">ATLAS</span><small>MARKET INTELLIGENCE</small></span></a>
-    <a class="futures-back" href="/"><span aria-hidden="true">←</span> Dashboard</a>
+    ${siteNavigation('/tools/calculator-futures')}
   </div></header>
   <main id="main" class="futures-wrap">
     <div class="futures-heading"><p class="eyebrow"><span class="orange">MANGO ATLAS</span> / TOOLS</p><h1>Futures calculator<span class="orange">.</span></h1><p>Enter points or dollars. The other fills itself in.</p></div>

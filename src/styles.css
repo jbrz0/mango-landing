@@ -300,7 +300,7 @@ summary > span:last-child { color: var(--faint); margin-left: auto; font: 11px v
   .fx-posture { display: none; }
 }
 @media (max-width: 760px) {
-  html { scroll-padding-top: 74px; }
+  html { scroll-padding-top: 122px; }
   .site-header { position: sticky; top: 0; z-index: 5; background: #050505fa; }
   .header-inner, .subnav, .page-wrap, .site-footer { width: calc(100% - 32px); }
   .header-inner { height: 66px; gap: 12px; }
