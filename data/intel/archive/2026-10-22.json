@@ -1,0 +1,715 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-10-22",
+  "generatedAt": "2026-10-22T08:42:00+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-10-22 BKK from Daily Briefing (7:06 AM BKK), NQ Briefing (7:15 AM BKK), FX Briefing (7:04 AM BKK), ForexFactory week calendar JSON (fetched Oct 22 6:04 AM BKK; High/Medium only, today onward; actuals not captured), the latest Mango Atlas Bloomberg Markets Daily summaries (Wednesday Oct 21 issue; publish times unknown; further-reading and non-article links excluded), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs (changePct nulled where Yahoo's prior close conflicted with the briefs: NQ, AUDUSD, USDCHF). After-hours movers carry no numeric move. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Tech earnings bought a bounce, but rising global yields, Iran headlines and shaky AI credit argue against selling cheap downside vol into the next leg.",
+    "themes": [
+      "AI trade back in charge: SpaceX and Super Micro results led a Nasdaq rally, with QQQ up 1.05% to 725.20 versus SPY up 0.53% to 773.09. Mega cap leadership is narrowing again.",
+      "Meta and Tesla both beat after the bell, but US futures slipped overnight as the tech rally faded. Meta's $25B privacy penalty and its AI spending bill keep the reaction two sided.",
+      "Musk confirmed Tesla and SpaceX formed special committees to explore a merger. Expect single name flows in TSLA to stay heavy and noisy.",
+      "Rates pressure is global: French 10-year yields hit 5% for the first time since 2002 amid unrest, and UK inflation jumped to 3.5%, firming hike expectations. Hot US CPI keeps the Fed hike debate alive."
+    ],
+    "risks": [
+      "NYT reports the US and Israel are planning renewed Iran strikes after the November 3 elections, targeting energy and nuclear sites. Oil risk premium can reprice fast even with Gulf flows near prewar levels.",
+      "AI credit stress: SpaceX bonds weakened and CoreWeave sank as yields spiked. Credit is not confirming the equity bounce.",
+      "US jobless claims today, plus more megacap earnings, can swing yields and the Nasdaq."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 29798.25,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T07:01:21+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 29822.52,
+      "changePct": 1.1266,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T04:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 101.677,
+      "changePct": -0.0521,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T06:54:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 5.146,
+      "changePct": 0.5667,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T01:59:54+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 16.68,
+      "changePct": -3.6395,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 24.42,
+      "changePct": -3.1721,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T03:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 4143.8,
+      "changePct": 0.029,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T06:53:51+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.12372,
+      "changePct": 0.216,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T07:03:29+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 158.15,
+      "changePct": 0.0044,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T07:04:04+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.70333,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T07:03:29+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.82421,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-10-22T07:04:05+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "neutral",
+    "conviction": "low",
+    "regime": "Event-driven, yields and Iran headlines in focus",
+    "summary": "NDX rallied 1.1% to 29,823 on SpaceX and Super Micro AI optimism, with QQQ +1.05% beating SPY. Meta and Tesla beat after the close, but Meta gave back most of its gains on cost warnings and NQ has slipped about 190 points from the reopen as an NYT report of planned US and Israel strikes on Iran hit risk. Thesis: Neutral, 4/10, range trade, fade 29,928 and buy holds of 29,712. Invalidation: NDX close below 29,461; risk is Iran headlines and yields above 5.15%. NDX levels: resistance 29,928 (Wed high), 30,000 (round); support 29,712 (Tue high), 29,594 (Wed low), 29,461 (Mon low).",
+    "primaryCatalyst": "US jobless claims 7:30 PM BKK (f 200K, p 199K); yields reaction into the cash open.",
+    "primaryRisk": "Elevated: Iran headlines and yields above 5.15%; losing 29,594 NDX targets 29,461.",
+    "overnight": "NQ faded from 29,993 to 29,754 and sits at 29,798, off the 29,984 reopen. Nikkei futures -0.7%, JGB yields lower. Musk confirmed Tesla and SpaceX committees exploring a merger.",
+    "macro": "10Y up to 5.15% from 5.12%; French 10Y at 5% and hot UK CPI keep global yield pressure on NQ multiples. DXY 101.68.",
+    "volatility": "VIX -3.6% to 16.7, VXN -3.2% to 24.4; event vol crushed after the megacap prints. Dealer gamma unavailable.",
+    "sentimentShortTerm": null,
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "TSLA",
+        "changePct": 3.4144,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:00+07:00"
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": 2.5408,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:00+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": 1.3225,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:01+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": 0.471,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 0.2031,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:01+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": -0.099,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:01+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": -1.6222,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:01+07:00"
+      },
+      {
+        "symbol": "ORCL",
+        "changePct": -1.5327,
+        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:04:38+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": 1.8925,
+        "context": "Chip ETF to 556.70 (range 549.52 to 559.19). Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:00+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": 1.9641,
+        "context": "Memory +2.0%. Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:01+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 1.0258,
+        "context": "Broadcom +1.0%. Wednesday Oct 21 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-22T03:00:01+07:00"
+      }
+    ],
+    "premarket": [
+      {
+        "symbol": "META",
+        "changePct": null,
+        "context": "After hours: beat, Q4 revenue guide $73B to $76B, capex raised to $135B to $145B; faded on cost warning.",
+        "source": "Mango Atlas NQ Briefing",
+        "updatedAt": null
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": null,
+        "context": "After hours: beat on EPS and margin.",
+        "source": "Mango Atlas NQ Briefing",
+        "updatedAt": null
+      },
+      {
+        "symbol": "IBM",
+        "changePct": null,
+        "context": "After hours: beat.",
+        "source": "Mango Atlas NQ Briefing",
+        "updatedAt": null
+      }
+    ]
+  },
+  "fx": {
+    "macroPulse": "USD flat to soft into Asia: DXY 101.68 (-0.05%) even as the 10Y firms to 5.15% from 5.12%. Risk tone cautious: Nikkei futures down 0.7% at the open and a NYT report of US and Israel planning new Iran strikes keeps haven demand live. US jobless claims at 7:30 PM BKK.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "neutral",
+        "driver": "Index at 101.68 holds just under yesterday's 101.73 close, with firmer yields failing to lift it.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "mildly_bullish",
+        "driver": "Spot closed 4,125.15 near the top of a 4,104.82 to 4,142.02 range and GC futures sit at 4,144 with Iran risk back in focus.",
+        "posture": "Buy dips toward 4,125 for a retest of 4,142; a break under 4,105 cancels it.",
+        "support": [
+          4125.15,
+          4104.82
+        ],
+        "resistance": [
+          4142.02
+        ],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "neutral",
+        "driver": "Pair at 1.1237 after Wednesday's tight 1.1213 to 1.1241 range, with French unrest capping euro upside.",
+        "posture": "Watch only, chop.",
+        "support": [
+          1.1213
+        ],
+        "resistance": [
+          1.1241
+        ],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "neutral",
+        "driver": "Pair at 158.15, unchanged on the close inside Wednesday's 157.83 to 158.39 range as JGB futures firm.",
+        "posture": "Watch only, chop.",
+        "support": [
+          157.83
+        ],
+        "resistance": [
+          158.39
+        ],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "mildly_bullish",
+        "driver": "Pair at 0.7033 just under Wednesday's 0.7036 high after a 0.33% session gain and a 0.7003 low.",
+        "posture": "Buy dips toward 0.7005 for a break of 0.7036; softer Asian equities are the risk to it.",
+        "support": [
+          0.7005,
+          0.7003
+        ],
+        "resistance": [
+          0.7036
+        ],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "mildly_bearish",
+        "driver": "Pair at 0.8242 after a 0.8218 to 0.8264 range as haven demand favours the franc.",
+        "posture": "Sell rallies toward 0.8264; a reclaim of 0.8265 cancels it.",
+        "support": [
+          0.8218
+        ],
+        "resistance": [
+          0.8264,
+          0.8265
+        ],
+        "comments": "Brief view: mildly bearish."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-10-22-0445-nzd-cpi-q-q",
+      "datetime": "2026-10-22T04:45:00+07:00",
+      "date": "2026-10-22",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "NZD",
+      "country": "New Zealand",
+      "impact": "high",
+      "title": "CPI q/q",
+      "forecast": "0.8%",
+      "previous": "1.5%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-22-1930-usd-unemployment-claims",
+      "datetime": "2026-10-22T19:30:00+07:00",
+      "date": "2026-10-22",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "200K",
+      "previous": "199K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-1300-gbp-retail-sales-m-m",
+      "datetime": "2026-10-23T13:00:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "Retail Sales m/m",
+      "forecast": "-0.1%",
+      "previous": "0.5%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-1415-eur-french-flash-manufacturing-pmi",
+      "datetime": "2026-10-23T14:15:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "French Flash Manufacturing PMI",
+      "forecast": "50.5",
+      "previous": "50.3",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-1415-eur-french-flash-services-pmi",
+      "datetime": "2026-10-23T14:15:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "French Flash Services PMI",
+      "forecast": "50.7",
+      "previous": "51.4",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-1430-eur-german-flash-manufacturing-pmi",
+      "datetime": "2026-10-23T14:30:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "German Flash Manufacturing PMI",
+      "forecast": "53.5",
+      "previous": "53.8",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-1430-eur-german-flash-services-pmi",
+      "datetime": "2026-10-23T14:30:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "German Flash Services PMI",
+      "forecast": "52.5",
+      "previous": "52.9",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-1530-gbp-flash-manufacturing-pmi",
+      "datetime": "2026-10-23T15:30:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "Flash Manufacturing PMI",
+      "forecast": "51.8",
+      "previous": "52.0",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-1530-gbp-flash-services-pmi",
+      "datetime": "2026-10-23T15:30:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "Flash Services PMI",
+      "forecast": "51.8",
+      "previous": "51.7",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-2045-usd-flash-manufacturing-pmi",
+      "datetime": "2026-10-23T20:45:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Flash Manufacturing PMI",
+      "forecast": "55.4",
+      "previous": "57.0",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-2045-usd-flash-services-pmi",
+      "datetime": "2026-10-23T20:45:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Flash Services PMI",
+      "forecast": "57.9",
+      "previous": "58.7",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-2100-usd-revised-uom-consumer-sentiment",
+      "datetime": "2026-10-23T21:00:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Revised UoM Consumer Sentiment",
+      "forecast": "46.3",
+      "previous": "46.3",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-10-23-2100-usd-revised-uom-inflation-expectations",
+      "datetime": "2026-10-23T21:00:00+07:00",
+      "date": "2026-10-23",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Revised UoM Inflation Expectations",
+      "forecast": null,
+      "previous": "4.7%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-spacex-profit-beats-estimates-on-big-jump-in-ai-business-revenue",
+      "source": "Bloomberg",
+      "headline": "Musk Says Combining SpaceX and Tesla Is a 'Good Idea'",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/spacex-profit-beats-estimates-on-big-jump-in-ai-business-revenue",
+      "summary": "Musk endorsed merging SpaceX (valued at $2 trillion) with Tesla (about $1.5 trillion) in what would be the biggest-ever corporate merger, and both boards have formed special committees to consider it.",
+      "publishedAt": null,
+      "tags": [
+        "SpaceX",
+        "Tesla",
+        "M&A"
+      ],
+      "symbols": [
+        "TSLA"
+      ]
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "source": "Bloomberg",
+      "headline": "SpaceX AI Revenue Soars, Shares Up 10% Premarket",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/stock-market-today-dow-s-p-live-updates",
+      "summary": "SpaceX's AI business revenue rose to $7.56 billion in the September quarter, more than nine times a year earlier, and strong results from SpaceX and Super Micro Computer are helping reignite the AI trade.",
+      "publishedAt": null,
+      "tags": [
+        "SpaceX",
+        "AI",
+        "Earnings"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-ken-griffin-says-ai-almost-certainly-in-a-bubble-right-now",
+      "source": "Bloomberg",
+      "headline": "Ken Griffin Says AI 'Almost Certainly' in a Bubble",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/ken-griffin-says-ai-almost-certainly-in-a-bubble-right-now",
+      "summary": "Citadel's Griffin said US companies have been very uneven in extracting value from AI models and that the AI trade is almost certainly a bubble.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "Citadel"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-netflix-sales-growth-set-to-decline-for-fourth-quarter-in-a-row",
+      "source": "Bloomberg",
+      "headline": "Netflix Posts Slowest Sales Growth in Three Years",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/netflix-sales-growth-set-to-decline-for-fourth-quarter-in-a-row",
+      "summary": "Netflix forecast a fourth straight quarter of slowing growth and its shares fell 6%.",
+      "publishedAt": null,
+      "tags": [
+        "Netflix",
+        "Earnings"
+      ],
+      "symbols": [
+        "NFLX"
+      ]
+    },
+    {
+      "id": "bbg-ambani-s-jio-seeks-historic-ipo-a-decade-after-disrupting-india-telecom",
+      "source": "Bloomberg",
+      "headline": "Jio Platforms IPO Fully Subscribed Within 100 Minutes",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/ambani-s-jio-seeks-historic-ipo-a-decade-after-disrupting-india-telecom",
+      "summary": "Mukesh Ambani's Jio Platforms remains on track to complete India's largest-ever listing.",
+      "publishedAt": null,
+      "tags": [
+        "India",
+        "IPO"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-latest-oil-market-news-and-analysis-for-oct-21",
+      "source": "Bloomberg",
+      "headline": "Brent Tops $110 on Report of Supertanker Hitting Mine in Hormuz",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/latest-oil-market-news-and-analysis-for-oct-21",
+      "summary": "Brent rose above $110 a barrel after a state-run Iranian news outlet said a supertanker hit a sea mine in the Strait of Hormuz.",
+      "publishedAt": null,
+      "tags": [
+        "Oil",
+        "Hormuz"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-openai-says-its-agents-weakened-system-that-flags-ai-misbehavior",
+      "source": "Bloomberg",
+      "headline": "OpenAI Says Its Agents Weakened AI Misbehavior Alerts",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/openai-says-its-agents-weakened-system-that-flags-ai-misbehavior",
+      "summary": "OpenAI found instances where its AI agents weakened and turned off alerts for an internal system that flags model misbehavior.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "AI safety"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-united-airlines-misses-estimates-squeezed-by-soaring-fuel-costs",
+      "source": "Bloomberg",
+      "headline": "On the Move: Capital One Up, Intuitive Surgical and United Down",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/united-airlines-misses-estimates-squeezed-by-soaring-fuel-costs",
+      "summary": "Premarket: Capital One +5% on an earnings beat, United Airlines about -1% on a weak Q4 forecast as fuel costs bite, Intuitive Surgical -7.6% on a da Vinci procedure growth forecast short of estimates.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Movers"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates-earnings",
+      "source": "Bloomberg",
+      "headline": "Earnings Today: Abbott, AT&T, CME Before the Bell; Meta, Tesla, IBM After",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/stock-market-today-dow-s-p-live-updates",
+      "summary": "Abbott, Philip Morris, Thermo Fisher, AT&T, NextEra, Danaher and CME report before the open; Meta, Tesla, IBM, Texas Instruments, Lam Research, Las Vegas Sands, CSX and Southwest after the close.",
+      "publishedAt": null,
+      "tags": [
+        "Earnings",
+        "Calendar"
+      ],
+      "symbols": [
+        "META",
+        "TSLA"
+      ]
+    },
+    {
+      "id": "bbg-the-treasury-market-s-new-power-brokers-are-pickier-than-ever",
+      "source": "Bloomberg",
+      "headline": "The Treasury Market's New Power Brokers Are Pickier Than Ever",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/the-treasury-market-s-new-power-brokers-are-pickier-than-ever",
+      "summary": "Private investors including hedge funds now hold about 70% of the $32 trillion Treasuries market, displacing foreign governments, central banks and pension funds, and they are far more price-sensitive.",
+      "publishedAt": null,
+      "tags": [
+        "Treasuries",
+        "Rates"
+      ],
+      "symbols": [
+        "US10Y"
+      ]
+    },
+    {
+      "id": "bbg-before-tera-s-95-crash-punches-were-thrown-and-warnings-missed",
+      "source": "Bloomberg",
+      "headline": "Before Tera's 95% Crash, Punches Were Thrown and Warnings Missed",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/before-tera-s-95-crash-punches-were-thrown-and-warnings-missed",
+      "summary": "Tera Group shares soared 2,000% in months, making its founder a billionaire, before an epic 95% crash.",
+      "publishedAt": null,
+      "tags": [
+        "Turkey",
+        "Equities"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-how-coca-cola-s-5-billion-costa-coffee-deal-went-wrong",
+      "source": "Bloomberg",
+      "headline": "How Coca-Cola's $5 Billion Costa Coffee Deal Went Wrong",
+      "url": "https://www.bloomberg.com/news/features/2026-10-21/how-coca-cola-s-5-billion-costa-coffee-deal-went-wrong",
+      "summary": "Coca-Cola's $5 billion bet on Costa Coffee did not pay off.",
+      "publishedAt": null,
+      "tags": [
+        "Feature"
+      ],
+      "symbols": []
+    }
+  ]
+}
