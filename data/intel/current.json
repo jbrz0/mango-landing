@@ -1,28 +1,30 @@
 {
   "schemaVersion": 1,
   "kind": "briefing",
-  "asOfDate": "2026-10-22",
-  "generatedAt": "2026-10-22T08:42:00+07:00",
+  "asOfDate": "2026-10-23",
+  "generatedAt": "2026-10-23T08:41:59+07:00",
   "timezone": "Asia/Bangkok",
   "provenance": {
     "source": "Mango Atlas Grokbot daily intelligence",
-    "note": "Compiled 2026-10-22 BKK from Daily Briefing (7:06 AM BKK), NQ Briefing (7:15 AM BKK), FX Briefing (7:04 AM BKK), ForexFactory week calendar JSON (fetched Oct 22 6:04 AM BKK; High/Medium only, today onward; actuals not captured), the latest Mango Atlas Bloomberg Markets Daily summaries (Wednesday Oct 21 issue; publish times unknown; further-reading and non-article links excluded), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs (changePct nulled where Yahoo's prior close conflicted with the briefs: NQ, AUDUSD, USDCHF). After-hours movers carry no numeric move. No invented prices, levels, or enums."
+    "note": "Compiled 2026-10-23 BKK from Daily Briefing (7:04 AM BKK), NQ Briefing (7:13 AM BKK), FX Briefing (7:09 AM BKK), ForexFactory week calendar JSON (fetched Oct 23 6:01 AM BKK; High/Medium only, today onward; actuals not captured), the latest Mango Atlas Bloomberg Markets Daily summaries (Thursday Oct 22 issue; publish times unknown; further-reading links excluded), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs (changePct nulled where Yahoo's prior close was not confirmed by the briefs: NQ, AUDUSD). No premarket movers reported. No invented prices, levels, or enums."
   },
   "overview": {
-    "sentiment": "neutral",
-    "confidence": "medium",
+    "sentiment": "bearish",
+    "confidence": "high",
     "volatilityOutlook": "rising",
-    "oneLineTake": "Tech earnings bought a bounce, but rising global yields, Iran headlines and shaky AI credit argue against selling cheap downside vol into the next leg.",
+    "oneLineTake": "AI doubt plus an oil spike has flipped the tape to risk-off, so respect rising vol and avoid selling cheap downside in tech until the Iran and AI funding headlines calm.",
     "themes": [
-      "AI trade back in charge: SpaceX and Super Micro results led a Nasdaq rally, with QQQ up 1.05% to 725.20 versus SPY up 0.53% to 773.09. Mega cap leadership is narrowing again.",
-      "Meta and Tesla both beat after the bell, but US futures slipped overnight as the tech rally faded. Meta's $25B privacy penalty and its AI spending bill keep the reaction two sided.",
-      "Musk confirmed Tesla and SpaceX formed special committees to explore a merger. Expect single name flows in TSLA to stay heavy and noisy.",
-      "Rates pressure is global: French 10-year yields hit 5% for the first time since 2002 amid unrest, and UK inflation jumped to 3.5%, firming hike expectations. Hot US CPI keeps the Fed hike debate alive."
+      "AI capex is on trial. Meta's spending outlook and a CoreWeave downgrade on financing worries hit the AI complex; QQQ fell 2.9% to 704.47 while SPY lost 1.2% to 763.96, and chips led the damage with Micron sharply lower.",
+      "Flight to safety in bonds. Treasury yields posted their biggest one-day drop since the 2023 banking crisis and the 10-year slipped below 5%, as money rotated out of growth into duration.",
+      "Oil shock is back. Brent topped $113, the highest since May, after Trump hinted at action on Iran and the US pulled diplomats from Saudi Arabia; soaring tanker rates add a second energy squeeze.",
+      "Fracturing tape. The Dow held up as defensives and energy were bid while tech broke, so index level hides heavy dispersion underneath.",
+      "Fed math is shifting. AI jitters trimmed hike bets, but oil and firm growth nowcasts keep inflation risk alive."
     ],
     "risks": [
-      "NYT reports the US and Israel are planning renewed Iran strikes after the November 3 elections, targeting energy and nuclear sites. Oil risk premium can reprice fast even with Gulf flows near prewar levels.",
-      "AI credit stress: SpaceX bonds weakened and CoreWeave sank as yields spiked. Credit is not confirming the equity bounce.",
-      "US jobless claims today, plus more megacap earnings, can swing yields and the Nasdaq."
+      "A US strike on Iran or new Gulf supply hits would push oil and headline inflation higher into a weak tape.",
+      "AI funding stress spreading from neoclouds to megacap credit and capex guidance.",
+      "Asia opens soft on the tech rout; follow-through selling into Friday is the base case.",
+      "Bond rally reversal: hedging costs for a big Treasuries rally are soaring, so any oil-driven inflation scare can whip yields back up."
     ]
   },
   "markets": [
@@ -30,354 +32,301 @@
       "symbol": "NQ",
       "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
       "instrumentType": "futures",
-      "price": 29798.25,
+      "price": 29094,
       "changePct": null,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T07:01:21+07:00",
+      "updatedAt": "2026-10-23T06:59:32+07:00",
       "status": "delayed"
     },
     {
       "symbol": "NDX",
       "label": "NASDAQ-100 cash index",
       "instrumentType": "cash_index",
-      "price": 29822.52,
-      "changePct": 1.1266,
+      "price": 28958.69,
+      "changePct": -2.8966,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T04:15:59+07:00",
+      "updatedAt": "2026-10-23T04:15:59+07:00",
       "status": "delayed"
     },
     {
       "symbol": "DXY",
       "label": "ICE US Dollar Index",
       "instrumentType": "cash_index",
-      "price": 101.677,
-      "changePct": -0.0521,
+      "price": 101.563,
+      "changePct": -0.2132,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T06:54:01+07:00",
+      "updatedAt": "2026-10-23T06:57:32+07:00",
       "status": "delayed"
     },
     {
       "symbol": "US10Y",
       "label": "US 10-year Treasury yield",
       "instrumentType": "yield",
-      "price": 5.146,
-      "changePct": 0.5667,
+      "price": 4.953,
+      "changePct": -3.7505,
       "unit": "percent",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T01:59:54+07:00",
+      "updatedAt": "2026-10-23T01:59:53+07:00",
       "status": "delayed"
     },
     {
       "symbol": "VIX",
       "label": "CBOE Volatility Index",
       "instrumentType": "volatility_index",
-      "price": 16.68,
-      "changePct": -3.6395,
+      "price": 19.03,
+      "changePct": 14.0887,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T03:15:01+07:00",
+      "updatedAt": "2026-10-23T03:15:01+07:00",
       "status": "delayed"
     },
     {
       "symbol": "VXN",
       "label": "CBOE NASDAQ 100 Volatility Index",
       "instrumentType": "volatility_index",
-      "price": 24.42,
-      "changePct": -3.1721,
+      "price": 28.72,
+      "changePct": 17.6085,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T03:15:01+07:00",
+      "updatedAt": "2026-10-23T03:15:01+07:00",
       "status": "delayed"
     },
     {
       "symbol": "GC",
       "label": "Gold front-month futures (Yahoo GC=F)",
       "instrumentType": "futures",
-      "price": 4143.8,
-      "changePct": 0.029,
+      "price": 4037.8,
+      "changePct": -2.7036,
       "unit": "USD",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T06:53:51+07:00",
+      "updatedAt": "2026-10-23T06:57:30+07:00",
       "status": "delayed"
     },
     {
       "symbol": "EURUSD",
       "label": "EUR/USD spot",
       "instrumentType": "fx",
-      "price": 1.12372,
-      "changePct": 0.216,
+      "price": 1.12259,
+      "changePct": 0.0077,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T07:03:29+07:00",
+      "updatedAt": "2026-10-23T07:07:25+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDJPY",
       "label": "USD/JPY spot",
       "instrumentType": "fx",
-      "price": 158.15,
-      "changePct": 0.0044,
+      "price": 156.257,
+      "changePct": -0.9816,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T07:04:04+07:00",
+      "updatedAt": "2026-10-23T07:07:33+07:00",
       "status": "delayed"
     },
     {
       "symbol": "AUDUSD",
       "label": "AUD/USD spot",
       "instrumentType": "fx",
-      "price": 0.70333,
+      "price": 0.70161,
       "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T07:03:29+07:00",
+      "updatedAt": "2026-10-23T07:07:25+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDCHF",
       "label": "USD/CHF spot",
       "instrumentType": "fx",
-      "price": 0.82421,
-      "changePct": null,
+      "price": 0.81957,
+      "changePct": -0.5135,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-22T07:04:05+07:00",
+      "updatedAt": "2026-10-23T07:07:33+07:00",
       "status": "delayed"
     }
   ],
   "nq": {
-    "bias": "neutral",
-    "conviction": "low",
-    "regime": "Event-driven, yields and Iran headlines in focus",
-    "summary": "NDX rallied 1.1% to 29,823 on SpaceX and Super Micro AI optimism, with QQQ +1.05% beating SPY. Meta and Tesla beat after the close, but Meta gave back most of its gains on cost warnings and NQ has slipped about 190 points from the reopen as an NYT report of planned US and Israel strikes on Iran hit risk. Thesis: Neutral, 4/10, range trade, fade 29,928 and buy holds of 29,712. Invalidation: NDX close below 29,461; risk is Iran headlines and yields above 5.15%. NDX levels: resistance 29,928 (Wed high), 30,000 (round); support 29,712 (Tue high), 29,594 (Wed low), 29,461 (Mon low).",
-    "primaryCatalyst": "US jobless claims 7:30 PM BKK (f 200K, p 199K); yields reaction into the cash open.",
-    "primaryRisk": "Elevated: Iran headlines and yields above 5.15%; losing 29,594 NDX targets 29,461.",
-    "overnight": "NQ faded from 29,993 to 29,754 and sits at 29,798, off the 29,984 reopen. Nikkei futures -0.7%, JGB yields lower. Musk confirmed Tesla and SpaceX committees exploring a merger.",
-    "macro": "10Y up to 5.15% from 5.12%; French 10Y at 5% and hot UK CPI keep global yield pressure on NQ multiples. DXY 101.68.",
-    "volatility": "VIX -3.6% to 16.7, VXN -3.2% to 24.4; event vol crushed after the megacap prints. Dealer gamma unavailable.",
+    "bias": "bearish",
+    "conviction": "medium",
+    "regime": "Volatile, event-driven",
+    "summary": "NDX fell 2.9% to 28,959, its worst day in four months, as Meta's spending outlook revived AI capex and funding fears. NQ is holding near Thursday's lows into Asia at 29,094, near the 29,116 reopen, while Nikkei futures and KOSPI drop and CNN reports of US strike plans on Iran keep oil bid. Thesis: Bearish, 6/10, sell rallies into resistance, fade 29,412 while below it. Invalidation: NDX reclaim of 29,594; risks are Iran headlines and a short squeeze. NDX levels: resistance 29,412 (Thu high), 29,594 (Wed low), 29,823 (Wed close); support 28,855 (Thu low), 28,500 (round).",
+    "primaryCatalyst": "US flash PMIs 8:45 PM BKK (mfg f 55.4, services f 57.9), then UoM sentiment 9:00 PM BKK, into the cash open.",
+    "primaryRisk": "Elevated: Iran strike headlines with Brent near $113; losing 28,855 NDX opens 28,500.",
+    "overnight": "NQ at 29,094 near the 29,116 reopen (high 29,166, low 29,042). Nikkei futures -1.5%, KOSPI -2%, Samsung -3%; JGB 10Y down 7bp to 2.81%. Brent near $113 on Saudi attacks and Iran strike reports.",
+    "macro": "10Y below 5% at 4.95% after the biggest one-day drop since 2023 helps multiples, but $113 oil keeps inflation and hike risk alive. DXY 101.57.",
+    "volatility": "VIX +14.1% to 19.0, VXN +17.6% to 28.7; tech vol repricing fast. Dealer gamma unavailable.",
     "sentimentShortTerm": null,
     "sentimentMediumTerm": null,
     "megaCaps": [
       {
-        "symbol": "TSLA",
-        "changePct": 3.4144,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:00+07:00"
-      },
-      {
-        "symbol": "NVDA",
-        "changePct": 2.5408,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:00+07:00"
-      },
-      {
-        "symbol": "AAPL",
-        "changePct": 1.3225,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:01+07:00"
-      },
-      {
         "symbol": "META",
-        "changePct": 0.471,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "changePct": -6.9776,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:01+07:00"
-      },
-      {
-        "symbol": "MSFT",
-        "changePct": 0.2031,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:01+07:00"
+        "updatedAt": "2026-10-23T03:00:01+07:00"
       },
       {
         "symbol": "AMZN",
-        "changePct": -0.099,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "changePct": -4.5699,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:01+07:00"
+        "updatedAt": "2026-10-23T03:00:01+07:00"
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": -4.397,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-23T03:00:00+07:00"
       },
       {
         "symbol": "GOOGL",
-        "changePct": -1.6222,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "changePct": -3.1485,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:01+07:00"
+        "updatedAt": "2026-10-23T03:00:01+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": -3.0766,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-23T03:00:00+07:00"
       },
       {
         "symbol": "ORCL",
-        "changePct": -1.5327,
-        "context": "Wednesday Oct 21 regular-session close vs prior close.",
+        "changePct": -2.7801,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:04:38+07:00"
+        "updatedAt": "2026-10-23T03:03:42+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": -2.2272,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-23T03:00:01+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": 1.2297,
+        "context": "Thursday Oct 22 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-23T03:00:01+07:00"
       }
     ],
     "semiconductors": [
       {
         "symbol": "SMH",
-        "changePct": 1.8925,
-        "context": "Chip ETF to 556.70 (range 549.52 to 559.19). Wednesday Oct 21 regular-session close vs prior close.",
+        "changePct": -5.9907,
+        "context": "Chip ETF to 523.35, closed near the 520.53 low. Thursday Oct 22 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:00+07:00"
+        "updatedAt": "2026-10-23T03:00:00+07:00"
       },
       {
         "symbol": "MU",
-        "changePct": 1.9641,
-        "context": "Memory +2.0%. Wednesday Oct 21 regular-session close vs prior close.",
+        "changePct": -6.2583,
+        "context": "Memory -6.3%. Thursday Oct 22 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:01+07:00"
+        "updatedAt": "2026-10-23T03:00:01+07:00"
       },
       {
         "symbol": "AVGO",
-        "changePct": 1.0258,
-        "context": "Broadcom +1.0%. Wednesday Oct 21 regular-session close vs prior close.",
+        "changePct": -4.3102,
+        "context": "Broadcom -4.3%. Thursday Oct 22 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-22T03:00:01+07:00"
+        "updatedAt": "2026-10-23T03:00:01+07:00"
       }
     ],
-    "premarket": [
-      {
-        "symbol": "META",
-        "changePct": null,
-        "context": "After hours: beat, Q4 revenue guide $73B to $76B, capex raised to $135B to $145B; faded on cost warning.",
-        "source": "Mango Atlas NQ Briefing",
-        "updatedAt": null
-      },
-      {
-        "symbol": "TSLA",
-        "changePct": null,
-        "context": "After hours: beat on EPS and margin.",
-        "source": "Mango Atlas NQ Briefing",
-        "updatedAt": null
-      },
-      {
-        "symbol": "IBM",
-        "changePct": null,
-        "context": "After hours: beat.",
-        "source": "Mango Atlas NQ Briefing",
-        "updatedAt": null
-      }
-    ]
+    "premarket": []
   },
   "fx": {
-    "macroPulse": "USD flat to soft into Asia: DXY 101.68 (-0.05%) even as the 10Y firms to 5.15% from 5.12%. Risk tone cautious: Nikkei futures down 0.7% at the open and a NYT report of US and Israel planning new Iran strikes keeps haven demand live. US jobless claims at 7:30 PM BKK.",
+    "macroPulse": "USD softer into Asia: DXY 101.56 (-0.21%) as the 10Y drops to 4.95% from 5.15%, its biggest one-day fall since 2023. Risk-off: the AI capex rout hit tech and Brent above $113 on Iran strike risk keeps havens bid, with yen and franc leading. Flash PMIs from Germany 2:30 PM, UK 3:30 PM and US 8:45 PM BKK.",
     "instruments": [
       {
         "symbol": "DXY",
-        "bias": "neutral",
-        "driver": "Index at 101.68 holds just under yesterday's 101.73 close, with firmer yields failing to lift it.",
-        "posture": "Watch only, chop.",
+        "bias": "mildly_bearish",
+        "driver": "Index at 101.56 from a 101.78 close as the yield collapse removes the dollar's rate support.",
+        "posture": "Sell bounces toward 101.78; US PMIs tonight are the risk to it.",
         "support": [],
-        "resistance": [],
-        "comments": "Brief view: neutral."
+        "resistance": [
+          101.78
+        ],
+        "comments": "Brief view: mildly bearish."
       },
       {
         "symbol": "XAUUSD",
-        "bias": "mildly_bullish",
-        "driver": "Spot closed 4,125.15 near the top of a 4,104.82 to 4,142.02 range and GC futures sit at 4,144 with Iran risk back in focus.",
-        "posture": "Buy dips toward 4,125 for a retest of 4,142; a break under 4,105 cancels it.",
+        "bias": "bearish",
+        "driver": "Spot closed 4,023.39 at the low of a 4,020.89 to 4,125.92 range, down 2.5%, and GC sits at 4,037.80 even with Iran risk live.",
+        "posture": "Watch only for now; a break under 4,020 opens more liquidation, a reclaim of 4,125 negates.",
         "support": [
-          4125.15,
-          4104.82
+          4020.89
         ],
         "resistance": [
-          4142.02
+          4125.92
         ],
-        "comments": "Brief view: mildly bullish."
+        "comments": "Brief view: bearish."
       },
       {
         "symbol": "EURUSD",
         "bias": "neutral",
-        "driver": "Pair at 1.1237 after Wednesday's tight 1.1213 to 1.1241 range, with French unrest capping euro upside.",
+        "driver": "Pair at 1.1226, flat inside Thursday's 1.1188 to 1.1256 range ahead of euro area flash PMIs.",
         "posture": "Watch only, chop.",
         "support": [
-          1.1213
+          1.1188
         ],
         "resistance": [
-          1.1241
+          1.1256
         ],
         "comments": "Brief view: neutral."
       },
       {
         "symbol": "USDJPY",
+        "bias": "bearish",
+        "driver": "Pair at 156.26, down 0.98% and below Thursday's 156.39 low as falling US yields and haven demand lift the yen.",
+        "posture": "Sell rallies toward 156.80; a reclaim of 157.00 cancels it.",
+        "support": [],
+        "resistance": [
+          156.8,
+          157
+        ],
+        "comments": "Brief view: bearish."
+      },
+      {
+        "symbol": "AUDUSD",
         "bias": "neutral",
-        "driver": "Pair at 158.15, unchanged on the close inside Wednesday's 157.83 to 158.39 range as JGB futures firm.",
+        "driver": "Pair at 0.7016 near Thursday's 0.7019 close inside a 0.6987 to 0.7037 range, with a softer dollar offset by risk-off.",
         "posture": "Watch only, chop.",
         "support": [
-          157.83
+          0.6987
         ],
         "resistance": [
-          158.39
+          0.7037
         ],
         "comments": "Brief view: neutral."
       },
       {
-        "symbol": "AUDUSD",
-        "bias": "mildly_bullish",
-        "driver": "Pair at 0.7033 just under Wednesday's 0.7036 high after a 0.33% session gain and a 0.7003 low.",
-        "posture": "Buy dips toward 0.7005 for a break of 0.7036; softer Asian equities are the risk to it.",
-        "support": [
-          0.7005,
-          0.7003
-        ],
-        "resistance": [
-          0.7036
-        ],
-        "comments": "Brief view: mildly bullish."
-      },
-      {
         "symbol": "USDCHF",
-        "bias": "mildly_bearish",
-        "driver": "Pair at 0.8242 after a 0.8218 to 0.8264 range as haven demand favours the franc.",
-        "posture": "Sell rallies toward 0.8264; a reclaim of 0.8265 cancels it.",
+        "bias": "bearish",
+        "driver": "Pair at 0.8196, down 0.51% and pressing Thursday's 0.8189 low as franc haven demand builds.",
+        "posture": "Sell rallies toward 0.8220; a break of 0.8189 extends it, a reclaim of 0.8246 cancels.",
         "support": [
-          0.8218
+          0.8189
         ],
         "resistance": [
-          0.8264,
-          0.8265
+          0.822,
+          0.8246
         ],
-        "comments": "Brief view: mildly bearish."
+        "comments": "Brief view: bearish."
       }
     ]
   },
   "events": [
-    {
-      "id": "2026-10-22-0445-nzd-cpi-q-q",
-      "datetime": "2026-10-22T04:45:00+07:00",
-      "date": "2026-10-22",
-      "timeLabel": null,
-      "timezone": "Asia/Bangkok",
-      "currency": "NZD",
-      "country": "New Zealand",
-      "impact": "high",
-      "title": "CPI q/q",
-      "forecast": "0.8%",
-      "previous": "1.5%",
-      "actual": null,
-      "source": "https://www.forexfactory.com/calendar"
-    },
-    {
-      "id": "2026-10-22-1930-usd-unemployment-claims",
-      "datetime": "2026-10-22T19:30:00+07:00",
-      "date": "2026-10-22",
-      "timeLabel": null,
-      "timezone": "Asia/Bangkok",
-      "currency": "USD",
-      "country": "United States",
-      "impact": "medium",
-      "title": "Unemployment Claims",
-      "forecast": "200K",
-      "previous": "199K",
-      "actual": null,
-      "source": "https://www.forexfactory.com/calendar"
-    },
     {
       "id": "2026-10-23-1300-gbp-retail-sales-m-m",
       "datetime": "2026-10-23T13:00:00+07:00",
@@ -546,16 +495,28 @@
   ],
   "intelligence": [
     {
-      "id": "bbg-spacex-profit-beats-estimates-on-big-jump-in-ai-business-revenue",
+      "id": "bbg-ai-spending-isn-t-enough-for-investors",
       "source": "Bloomberg",
-      "headline": "Musk Says Combining SpaceX and Tesla Is a 'Good Idea'",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-20/spacex-profit-beats-estimates-on-big-jump-in-ai-business-revenue",
-      "summary": "Musk endorsed merging SpaceX (valued at $2 trillion) with Tesla (about $1.5 trillion) in what would be the biggest-ever corporate merger, and both boards have formed special committees to consider it.",
+      "headline": "Tech Earnings Test Investors' Patience on AI Spending",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-10-22/ai-spending-isn-t-enough-for-investors",
+      "summary": "Investors are souring on the latest tech earnings as the focus shifts from AI capex to monetization, with Microsoft, Alphabet and Amazon not reporting until next week.",
       "publishedAt": null,
       "tags": [
-        "SpaceX",
+        "AI",
+        "Earnings"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-tesla-s-third-quarter-earnings-beat-wall-street-estimates",
+      "source": "Bloomberg",
+      "headline": "Tesla Pulls Back Its Spending Plans",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/tesla-s-third-quarter-earnings-beat-wall-street-estimates",
+      "summary": "Tesla said it was pulling back spending plans, which could slow its push to become an AI and robotics company.",
+      "publishedAt": null,
+      "tags": [
         "Tesla",
-        "M&A"
+        "Earnings"
       ],
       "symbols": [
         "TSLA"
@@ -564,150 +525,187 @@
     {
       "id": "bbg-stock-market-today-dow-s-p-live-updates",
       "source": "Bloomberg",
-      "headline": "SpaceX AI Revenue Soars, Shares Up 10% Premarket",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-20/stock-market-today-dow-s-p-live-updates",
-      "summary": "SpaceX's AI business revenue rose to $7.56 billion in the September quarter, more than nine times a year earlier, and strong results from SpaceX and Super Micro Computer are helping reignite the AI trade.",
+      "headline": "Lam Research Drops More Than 9% on Weak Guidance",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/stock-market-today-dow-s-p-live-updates",
+      "summary": "Weaker-than-expected guidance from the chip-equipment maker sent its shares more than 9% lower, helping push Nasdaq futures down sharply.",
       "publishedAt": null,
       "tags": [
-        "SpaceX",
-        "AI",
-        "Earnings"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-ken-griffin-says-ai-almost-certainly-in-a-bubble-right-now",
-      "source": "Bloomberg",
-      "headline": "Ken Griffin Says AI 'Almost Certainly' in a Bubble",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-20/ken-griffin-says-ai-almost-certainly-in-a-bubble-right-now",
-      "summary": "Citadel's Griffin said US companies have been very uneven in extracting value from AI models and that the AI trade is almost certainly a bubble.",
-      "publishedAt": null,
-      "tags": [
-        "AI",
-        "Citadel"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-netflix-sales-growth-set-to-decline-for-fourth-quarter-in-a-row",
-      "source": "Bloomberg",
-      "headline": "Netflix Posts Slowest Sales Growth in Three Years",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-20/netflix-sales-growth-set-to-decline-for-fourth-quarter-in-a-row",
-      "summary": "Netflix forecast a fourth straight quarter of slowing growth and its shares fell 6%.",
-      "publishedAt": null,
-      "tags": [
-        "Netflix",
+        "Semis",
         "Earnings"
       ],
       "symbols": [
-        "NFLX"
+        "LRCX"
       ]
     },
     {
-      "id": "bbg-ambani-s-jio-seeks-historic-ipo-a-decade-after-disrupting-india-telecom",
+      "id": "bbg-meta-boosts-bet-on-ai-with-new-spending-outlook-stock-offering",
       "source": "Bloomberg",
-      "headline": "Jio Platforms IPO Fully Subscribed Within 100 Minutes",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-21/ambani-s-jio-seeks-historic-ipo-a-decade-after-disrupting-india-telecom",
-      "summary": "Mukesh Ambani's Jio Platforms remains on track to complete India's largest-ever listing.",
+      "headline": "Meta Boosts AI Spending, Says Investments Are Paying Off",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/meta-boosts-bet-on-ai-with-new-spending-outlook-stock-offering",
+      "summary": "Meta was the exception, with Mark Zuckerberg saying AI investments are paying off as the company raised its spending plans.",
       "publishedAt": null,
       "tags": [
-        "India",
-        "IPO"
+        "Meta",
+        "AI"
       ],
-      "symbols": []
+      "symbols": [
+        "META"
+      ]
     },
     {
-      "id": "bbg-latest-oil-market-news-and-analysis-for-oct-21",
+      "id": "bbg-apple-s-cash-flow-machine-makes-it-investors-favorite-ai-hedge",
       "source": "Bloomberg",
-      "headline": "Brent Tops $110 on Report of Supertanker Hitting Mine in Hormuz",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-20/latest-oil-market-news-and-analysis-for-oct-21",
-      "summary": "Brent rose above $110 a barrel after a state-run Iranian news outlet said a supertanker hit a sea mine in the Strait of Hormuz.",
+      "headline": "Apple Emerges as Investors' AI Hedge",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-22/apple-s-cash-flow-machine-makes-it-investors-favorite-ai-hedge",
+      "summary": "Apple, largely sitting out the AI race, is up 27% in 2026, by far the best performer among the Magnificent 7.",
+      "publishedAt": null,
+      "tags": [
+        "Apple",
+        "Equities"
+      ],
+      "symbols": [
+        "AAPL"
+      ]
+    },
+    {
+      "id": "bbg-latest-oil-market-news-and-analysis-for-oct-22",
+      "source": "Bloomberg",
+      "headline": "Oil Rallies After US Orders Some Diplomats Out of Saudi Arabia",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/latest-oil-market-news-and-analysis-for-oct-22",
+      "summary": "Brent rallied after the US ordered some diplomats to leave Saudi Arabia and has surged more than 80% this year.",
       "publishedAt": null,
       "tags": [
         "Oil",
-        "Hormuz"
+        "Geopolitics"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-openai-says-its-agents-weakened-system-that-flags-ai-misbehavior",
+      "id": "bbg-china-stocks-set-for-bear-market-as-ai-trade-policy-hopes-fade",
       "source": "Bloomberg",
-      "headline": "OpenAI Says Its Agents Weakened AI Misbehavior Alerts",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-21/openai-says-its-agents-weakened-system-that-flags-ai-misbehavior",
-      "summary": "OpenAI found instances where its AI agents weakened and turned off alerts for an internal system that flags model misbehavior.",
+      "headline": "Chinese Stocks Enter a Bear Market",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-22/china-stocks-set-for-bear-market-as-ai-trade-policy-hopes-fade",
+      "summary": "Weak consumption and AI concerns pushed Chinese stocks into a bear market.",
       "publishedAt": null,
       "tags": [
-        "AI",
-        "AI safety"
+        "China",
+        "Equities"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-united-airlines-misses-estimates-squeezed-by-soaring-fuel-costs",
+      "id": "bbg-barclays-to-cut-5-000-jobs-as-ai-starts-creating-efficiency",
       "source": "Bloomberg",
-      "headline": "On the Move: Capital One Up, Intuitive Surgical and United Down",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-20/united-airlines-misses-estimates-squeezed-by-soaring-fuel-costs",
-      "summary": "Premarket: Capital One +5% on an earnings beat, United Airlines about -1% on a weak Q4 forecast as fuel costs bite, Intuitive Surgical -7.6% on a da Vinci procedure growth forecast short of estimates.",
+      "headline": "Barclays to Cut 5,000 Jobs in AI Efficiency Drive",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-22/barclays-to-cut-5-000-jobs-as-ai-starts-creating-efficiency",
+      "summary": "Barclays is cutting about 5% of headcount, the latest bank to slash its workforce in an AI cost-cutting drive.",
+      "publishedAt": null,
+      "tags": [
+        "Banks",
+        "AI"
+      ],
+      "symbols": [
+        "BARC"
+      ]
+    },
+    {
+      "id": "bbg-bitcoin-falls-below-83-000-as-ai-jitters-weigh-on-sentiment",
+      "source": "Bloomberg",
+      "headline": "Bitcoin Falls Below $82,000 as AI Jitters Weigh",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-22/bitcoin-falls-below-83-000-as-ai-jitters-weigh-on-sentiment",
+      "summary": "Bitcoin retreated below $82,000; premarket Strategy -5.9%, Coinbase -4.2%, Robinhood -4.6%.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto"
+      ],
+      "symbols": [
+        "BTC"
+      ]
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates-movers",
+      "source": "Bloomberg",
+      "headline": "On the Move: Chipmakers and Tech Slide Premarket",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/stock-market-today-dow-s-p-live-updates",
+      "summary": "Premarket: Tesla -5.3%, IBM -5.2%, Intel -4.9%, AMD -4.1%, Marvell -5.1%.",
       "publishedAt": null,
       "tags": [
         "Equities",
         "Movers"
       ],
-      "symbols": []
+      "symbols": [
+        "TSLA",
+        "IBM",
+        "INTC",
+        "AMD",
+        "MRVL"
+      ]
     },
     {
       "id": "bbg-stock-market-today-dow-s-p-live-updates-earnings",
       "source": "Bloomberg",
-      "headline": "Earnings Today: Abbott, AT&T, CME Before the Bell; Meta, Tesla, IBM After",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-20/stock-market-today-dow-s-p-live-updates",
-      "summary": "Abbott, Philip Morris, Thermo Fisher, AT&T, NextEra, Danaher and CME report before the open; Meta, Tesla, IBM, Texas Instruments, Lam Research, Las Vegas Sands, CSX and Southwest after the close.",
+      "headline": "Earnings Today: P&G, Blackstone, Union Pacific Before the Bell",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/stock-market-today-dow-s-p-live-updates",
+      "summary": "P&G, Blackstone, Union Pacific, Honeywell, Spotify, Lockheed Martin, Tractor Supply, Dow and American Airlines report before the open; Newmont and Western Digital after the close.",
       "publishedAt": null,
       "tags": [
         "Earnings",
         "Calendar"
       ],
       "symbols": [
-        "META",
-        "TSLA"
+        "PG",
+        "BX",
+        "UNP"
       ]
     },
     {
-      "id": "bbg-the-treasury-market-s-new-power-brokers-are-pickier-than-ever",
+      "id": "bbg-money-managers-say-there-s-nowhere-to-hide-as-super-el-nino-forms",
       "source": "Bloomberg",
-      "headline": "The Treasury Market's New Power Brokers Are Pickier Than Ever",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-21/the-treasury-market-s-new-power-brokers-are-pickier-than-ever",
-      "summary": "Private investors including hedge funds now hold about 70% of the $32 trillion Treasuries market, displacing foreign governments, central banks and pension funds, and they are far more price-sensitive.",
+      "headline": "Money Managers Say There's Nowhere to Hide as Super El Nino Forms",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/money-managers-say-there-s-nowhere-to-hide-as-super-el-nino-forms",
+      "summary": "Investors are preparing for what may be the strongest El Nino on record as food prices rise and economists revise inflation and deficit estimates; T. Rowe Price is using custom models for its $165 billion EM portfolio.",
       "publishedAt": null,
       "tags": [
-        "Treasuries",
-        "Rates"
-      ],
-      "symbols": [
-        "US10Y"
-      ]
-    },
-    {
-      "id": "bbg-before-tera-s-95-crash-punches-were-thrown-and-warnings-missed",
-      "source": "Bloomberg",
-      "headline": "Before Tera's 95% Crash, Punches Were Thrown and Warnings Missed",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-21/before-tera-s-95-crash-punches-were-thrown-and-warnings-missed",
-      "summary": "Tera Group shares soared 2,000% in months, making its founder a billionaire, before an epic 95% crash.",
-      "publishedAt": null,
-      "tags": [
-        "Turkey",
-        "Equities"
+        "Commodities",
+        "Climate"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-how-coca-cola-s-5-billion-costa-coffee-deal-went-wrong",
+      "id": "bbg-prabowo-says-indonesia-will-not-be-intimidated-by-msci",
       "source": "Bloomberg",
-      "headline": "How Coca-Cola's $5 Billion Costa Coffee Deal Went Wrong",
-      "url": "https://www.bloomberg.com/news/features/2026-10-21/how-coca-cola-s-5-billion-costa-coffee-deal-went-wrong",
-      "summary": "Coca-Cola's $5 billion bet on Costa Coffee did not pay off.",
+      "headline": "Prabowo Says Indonesia Won't Be Intimidated by MSCI",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/prabowo-says-indonesia-will-not-be-intimidated-by-msci",
+      "summary": "MSCI is considering moving Indonesia two rungs down from emerging-market to standalone status, which sent Indonesian stocks tumbling last week.",
       "publishedAt": null,
       "tags": [
-        "Feature"
+        "Indonesia",
+        "EM"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-softbank-market-value-poised-to-halve-from-peak-as-ai-fears-grow",
+      "source": "Bloomberg",
+      "headline": "SoftBank Has Lost Half Its Market Value Since June",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-22/softbank-market-value-poised-to-halve-from-peak-as-ai-fears-grow",
+      "summary": "SoftBank, which has invested almost $65 billion in OpenAI, dropped 6.9% on Thursday amid worries over its AI investments.",
+      "publishedAt": null,
+      "tags": [
+        "SoftBank",
+        "AI"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-apollo-blackstone-have-nfl-aspirations-seek-approval-to-buy-stakes-in-teams",
+      "source": "Bloomberg",
+      "headline": "Apollo, Blackstone Seek Approval to Buy Stakes in NFL Teams",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-21/apollo-blackstone-have-nfl-aspirations-seek-approval-to-buy-stakes-in-teams",
+      "summary": "Blackstone and Apollo are in talks to join the NFL's list of approved private equity firms that can take minority team stakes.",
+      "publishedAt": null,
+      "tags": [
+        "Private equity"
       ],
       "symbols": []
     }
