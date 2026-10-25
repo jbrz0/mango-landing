@@ -1,6 +1,7 @@
 import '../styles.css';
 import './labs.css';
 import './gex.css';
+import { wallsChart, exposureLabel, type WallsRange } from '../components/gex-walls';
 import { pageShell, startClock, panelTitle, icon } from './shared';
 import { escape as e } from '../lib/format';
 import { snapshotSchema, analyze, aggregate, type Snapshot, type Book } from '../lib/gex/model';
@@ -15,6 +16,7 @@ let book: Book | null = null;
 let horizon = 30;
 let view = 'heatmap';
 let range = .04;
+let wallsRange: WallsRange = 'levels';
 let step = 2;
 let renderId = 0;
 let loading = false;
@@ -61,7 +63,7 @@ ${metric('CALL WALL', b.callWall ? '$' + price(b.callWall.strike) : '—', b.cal
 ${metric('PUT WALL', b.putWall ? '$' + price(b.putWall.strike) : '—', b.putWall ? distance(b.putWall.strike, s.spot) : 'No put exposure in range', 'gex-negative')}
 ${metric('NEAREST GAMMA FLIP', b.flips.length ? '$' + price(b.flips[0]) : 'No crossing', b.flips.length ? `${distance(b.flips[0], s.spot)}${b.flips.length > 1 ? ' · multiple flips' : ''}` : 'None found within ±20% of spot')}
 </div>
-<div class="gex-main-grid"><section class="intel-panel gex-map-panel" aria-label="Gamma exposure map">${panelTitle('01', 'The gamma map', `${b.contracts.length.toLocaleString()} CONTRACTS · NEXT ${horizon} DAYS`)}<div class="gex-chart-toolbar"><div class="gex-segments" role="group" aria-label="Chart view"><button data-view="heatmap" aria-pressed="${view === 'heatmap'}">Heatmap</button><button data-view="profile" aria-pressed="${view === 'profile'}">By strike</button></div><label class="gex-range-label">Spot range <select id="gex-range" aria-label="Strike range">${[.02,.04,.08].map(v => `<option value="${v}" ${v === range ? 'selected' : ''}>±${v*100}%</option>`).join('')}</select></label></div><div class="gex-chart-key"><span><i class="gex-key-negative"></i> PUTS − / NEGATIVE NET</span><span><i class="gex-key-positive"></i> CALLS + / POSITIVE NET</span><span>PER 1% MOVE</span></div><div id="gex-chart"></div><div class="gex-inspector" id="gex-inspector" aria-live="polite">Select a cell to inspect exposure. The spot marker uses the nearest strike bucket.</div></section>
+<div class="gex-main-grid"><section class="intel-panel gex-map-panel" aria-label="Gamma exposure map">${panelTitle('01', 'The gamma map', `${b.contracts.length.toLocaleString()} CONTRACTS · NEXT ${horizon} DAYS`)}<div class="gex-chart-toolbar"><div class="gex-segments" role="group" aria-label="Chart view"><button data-view="heatmap" aria-pressed="${view === 'heatmap'}">Heatmap</button><button data-view="walls" aria-pressed="${view === 'walls'}">Walls</button><button data-view="profile" aria-pressed="${view === 'profile'}">By strike</button></div><label class="gex-range-label">Spot range <select id="gex-range" aria-label="Strike range">${view === 'walls' ? `<option value="levels" ${wallsRange === 'levels' ? 'selected' : ''}>Fit key levels</option>` : ''}${[.02,.04,.08].map(v => `<option value="${v}" ${v === (view === 'walls' ? wallsRange : range) ? 'selected' : ''}>±${v*100}%</option>`).join('')}</select></label></div><div class="gex-chart-key"><span><i class="gex-key-negative"></i> PUTS − / NEGATIVE NET</span><span><i class="gex-key-positive"></i> CALLS + / POSITIVE NET</span><span>PER 1% MOVE</span></div><div id="gex-chart"></div><div class="gex-inspector" id="gex-inspector" aria-live="polite">Select a cell to inspect exposure. The spot marker uses the nearest strike bucket.</div></section>
 <aside class="gex-read intel-panel">${panelTitle('02', 'The Atlas read', 'MODELED CONTEXT')}<div class="gex-regime ${b.regime === 'Negative' ? 'gex-negative' : 'gex-positive'}"><span>${b.regime.toUpperCase()} GAMMA</span><h2>${b.regime === 'Positive' ? 'A tendency to<br>absorb the move.' : b.regime === 'Negative' ? 'More room for<br>moves to travel.' : 'A finely balanced<br>options book.'}</h2><p>${b.regime === 'Positive' ? 'Under the sign convention, hedging may lean against price moves. Watch for rejection around concentrated levels.' : b.regime === 'Negative' ? 'Under the sign convention, hedging may reinforce price moves. A break can extend; a wall alone is no reason to fade it.' : 'Calls and puts largely offset. Small changes in spot or positioning could change the modeled sign.'}</p></div>
 <ol class="gex-observations"><li><span>01 / THE PIVOT</span><p>${b.flips.length ? `The nearest modeled flip is <b>$${price(b.flips[0])}</b>, ${e(distance(b.flips[0], s.spot))}. A crossing changes the modeled regime; it is not a trade trigger.` : 'The model has no gamma crossing within ±20% of spot. There is no reliable flip level to display for this book.'}</p></li><li><span>02 / THE CONCENTRATION</span><p>${b.callWall && b.putWall ? `Largest nearby concentrations: calls at <b>$${price(b.callWall.strike)}</b> and puts at <b>$${price(b.putWall.strike)}</b>. ${s.spot >= Math.min(b.callWall.strike,b.putWall.strike) && s.spot <= Math.max(b.callWall.strike,b.putWall.strike) ? 'Spot sits between them.' : 'Spot is outside the two wall levels.'}` : 'Nearby concentrations are limited in this window.'}</p></li><li><span>03 / WHAT CAN CHANGE</span><p><b>${(b.expiryShare*100).toFixed(1)}%</b> of gross exposure expires ${b.nearestExpiry ? e(shortDate(b.nearestExpiry)) : 'next'}. Expiry, fresh open interest and a change in IV can redraw this map.</p></li></ol><div class="gex-balance"><div><span>CALLS ${money(b.call)}</span><span>PUTS ${money(b.put)}</span></div><div class="gex-balance-track"><i style="width:${b.call / b.gross * 100}%"></i></div><small>Gross ${money(b.gross)} · net / gross ${(Math.abs(b.net) / b.gross * 100).toFixed(1)}%</small></div></aside></div>
 <div class="gex-lower"><section class="intel-panel gex-session">${panelTitle('03', 'Price, in context', e(stamp(s.quoteAsOf)))}<div class="gex-session-inner"><div><span class="control-label">FROM SESSION OPEN</span><strong class="${s.spot >= s.open ? 'positive-text' : 'negative-text'}">${s.spot >= s.open ? '+' : '−'}${(Math.abs(s.spot / s.open - 1)*100).toFixed(2)}%</strong><p>${s.spot >= s.open ? 'Above' : 'Below'} the $${price(s.open)} open. ${s.high > s.low ? `${Math.round((s.spot-s.low)/(s.high-s.low)*100)}% of the way up the reported session range.` : 'No session range available.'}</p></div><div class="gex-session-range"><span class="control-label">REPORTED SESSION RANGE</span><div class="gex-price-track"><i style="left:${Math.max(0,Math.min(100,(s.spot-s.low)/(s.high-s.low || 1)*100))}%"><span>$${price(s.spot)}</span></i></div><div class="gex-price-labels"><span>LOW $${price(s.low)}</span><span>HIGH $${price(s.high)}</span></div><p>A range snapshot, not an intraday chart. Confirm rejection or acceptance on your price chart.</p></div></div></section><section class="intel-panel gex-watch">${panelTitle('04', 'Levels to watch', 'CONDITIONAL, NOT SIGNALS')}<div class="gex-watch-inner">${watchLevels(b,s)}</div></section></div>
@@ -73,9 +75,23 @@ function watchLevels(b: Book, s: Snapshot) {
   const below = b.levels.filter(r => r.strike < s.spot && r.strike >= s.spot * .9).sort((a,b) => b.gross-a.gross)[0];
   return [above, below].map((r,i) => r ? `<div class="gex-watch-row"><span class="gex-watch-price">$${price(r.strike)}<small>${i === 0 ? 'ABOVE' : 'BELOW'} SPOT</small></span><p><b>${i === 0 ? 'If price pushes higher' : 'If price moves lower'}</b>${b.regime === 'Positive' ? 'Watch whether price rejects this concentration or holds beyond it. Acceptance weakens the local pinning idea.' : 'Watch for acceptance through this concentration. Negative gamma can amplify movement in either direction.'}<small>${money(r.gross)} gross exposure · ${money(r.net, true)} net</small></p></div>` : '').join('');
 }
+function fitWallsChart() {
+  const svg = document.querySelector<SVGElement>('.gex-walls');
+  if (!svg) return;
+  const compact = svg.parentElement!.clientWidth < 560;
+  svg.classList.toggle('is-compact', compact);
+  svg.setAttribute('viewBox', compact ? '0 0 670 610' : '0 0 846 610');
+}
+window.addEventListener('resize', fitWallsChart);
 function renderChart() {
   if (!snapshot || !book) return;
   const s = snapshot, b = book;
+  if (view === 'walls') {
+    document.querySelector('#gex-chart')!.innerHTML = wallsChart(s, b, wallsRange);
+    fitWallsChart();
+    document.querySelector('#gex-inspector')!.textContent = 'Hover, focus or select a strike for call, put and net exposure. Dashed lines show exact prices; labels move apart when levels are close.';
+    return;
+  }
   step = range === .02 ? 1 : range === .04 ? 2 : 5;
   const center = Math.round(s.spot / step) * step;
   const count = Math.ceil(s.spot * range / step);
@@ -133,7 +149,33 @@ document.addEventListener('click',event=>{
   const v=target.closest<HTMLButtonElement>('[data-view]');
   if(v) { view=v.dataset.view!; render(); document.querySelector<HTMLButtonElement>(`[data-view="${view}"]`)?.focus({preventScroll:true}); }
 });
-document.addEventListener('change',event=>{const target=event.target as HTMLSelectElement;if(target.id==='gex-range') {range=Number(target.value); renderChart();}});
+document.addEventListener('change',event=>{
+  const target=event.target as HTMLSelectElement;
+  if(target.id==='gex-range') {
+    if(view === 'walls') wallsRange = target.value === 'levels' ? 'levels' : Number(target.value);
+    else range=Number(target.value);
+    renderChart();
+  }
+});
+function inspectWall(target: EventTarget | null) {
+  if (!(target instanceof Element)) return;
+  const row = target.closest<SVGElement>('[data-wall-strike]');
+  if (!row) return;
+  const d = row.dataset;
+  document.querySelector('#gex-inspector')!.innerHTML = `<b>$${price(Number(d.wallStrike))} strike bucket</b><span>Calls ${exposureLabel(Number(d.wallCall))} / Puts ${exposureLabel(Number(d.wallPut))} / <strong>Net ${exposureLabel(Number(d.wallNet),true)}</strong></span>`;
+  document.querySelectorAll('[data-wall-strike][aria-pressed]').forEach(el=>el.removeAttribute('aria-pressed'));
+  row.setAttribute('aria-pressed','true');
+}
+const chartRoot = document.querySelector('#gex-content')!;
+chartRoot.addEventListener('pointerover',event=>inspectWall(event.target));
+chartRoot.addEventListener('focusin',event=>inspectWall(event.target));
+chartRoot.addEventListener('click',event=>inspectWall(event.target));
+chartRoot.addEventListener('keydown',event=>{
+  const keyEvent = event as KeyboardEvent;
+  if (keyEvent.target instanceof Element && keyEvent.target.closest('[data-wall-strike]') && ['Enter',' '].includes(keyEvent.key)) {
+    keyEvent.preventDefault(); inspectWall(keyEvent.target);
+  }
+});
 document.querySelector('#reload-gex')!.addEventListener('click',()=>void load());
 setInterval(()=>{if(snapshot) status();},60_000);
 void load();

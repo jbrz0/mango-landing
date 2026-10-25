@@ -117,3 +117,58 @@
 @media(max-width:900px) { .gex-main-grid { grid-template-columns:minmax(0,1fr); } .gex-read { display:grid; grid-template-columns:1fr 1fr; } .gex-read>.intel-panel-title { grid-column:1/-1; } .gex-regime { margin-bottom:24px; border-bottom:0; } .gex-balance { grid-column:1/-1; padding-top:8px; } .gex-observations li { padding:15px 0; } .gex-metrics { grid-template-columns:repeat(3,minmax(0,1fr)); } .gex-metric { border-bottom:1px solid var(--border); } .gex-metric:nth-child(3) { border-right:0; } .gex-metric:nth-child(n+4) { border-bottom:0; } .gex-metric strong { font-size:25px; } .gex-lower { grid-template-columns:1fr; } .gex-method-grid { grid-template-columns:1fr; gap:22px; } }
 @media(max-width:600px) { .gex-intro { padding-top:32px; } .gex-intro h1 { font-size:43px; } .gex-intro p { font-size:12px; } .gex-identity { display:none; } .gex-status { gap:5px 15px; font-size:8px; } .gex-status-label { width:100%; } .gex-controls { gap:4px; padding:15px 0; } .gex-book-controls { gap:9px; } .gex-book-controls>.control-label { width:100%; } .gex-reload { margin-left:auto; margin-top:5px; font-size:10px; } .gex-segments button { padding:5px 9px; font-size:10px; } .gex-metric { padding:14px 11px; } .gex-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .gex-metric:nth-child(3) { border-right:1px solid var(--border); } .gex-metric:nth-child(even) { border-right:0; } .gex-metric:nth-child(4) { border-bottom:1px solid var(--border); } .gex-metric:last-child { grid-column:1/-1; } .gex-metric strong { font-size:23px; } .gex-read { display:block; } .gex-regime { border-bottom:1px solid var(--border); margin-bottom:0; } .gex-regime h2 { font-size:30px; } .gex-balance { padding-top:20px; } .gex-chart-toolbar { padding-inline:12px; } .gex-chart-key { margin-inline:12px; font-size:7px; } .gex-heatmap-scroll { margin-inline:9px; } .gex-watch-row { gap:16px; } .gex-watch-price { min-width:85px; font-size:19px; } .gex-profile { margin-inline:12px; } .gex-profile-head,.gex-profile-row { grid-template-columns:54px minmax(0,1fr) minmax(0,1fr) 65px; } .gex-profile-scale { margin-left:54px; margin-right:65px; } }
 @media(prefers-reduced-motion:reduce) { .gex-heatmap td button { transition:none; } }
+
+/* A shared dollar scale makes call and put concentrations directly comparable. */
+.gex-chart-toolbar { flex-wrap:wrap; }
+.gex-range-label { margin-left:auto; }
+.gex-walls-levels { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--border); border-block:1px solid var(--border); margin:0 20px 18px; }
+.gex-wall-level { background:#0b0b0b; padding:13px 10px; min-width:0; }
+.gex-wall-level>span { display:block; font:8px var(--mono); color:var(--muted); letter-spacing:.04em; }
+.gex-wall-level>strong { display:block; font:18px var(--mono); letter-spacing:-.04em; margin:6px 0; }
+.gex-wall-level>small { display:block; font:8px/1.6 var(--mono); color:var(--muted); }
+.gex-wall-level.is-call { color:var(--accent); }
+.gex-wall-level.is-put { color:#b39aef; }
+.gex-wall-level.is-spot { color:var(--cream); }
+.gex-wall-level.is-flip { color:#c6b8e8; }
+.gex-walls-scroll { margin:0 12px; overflow-x:auto; scrollbar-color:#51432d #111; }
+svg.gex-walls { display:block; width:100%; height:auto; min-width:690px; overflow:visible; font-family:var(--mono); }
+.walls-heading { font-size:8px; fill:var(--muted); letter-spacing:.06em; }
+.walls-heading.walls-put { fill:#b39aef; }
+.walls-heading.walls-call { fill:var(--accent); }
+.walls-axis { font-size:9px; fill:#aaa59a; }
+.walls-grid { stroke:#fef3dc0a; stroke-width:1; }
+.walls-zero { stroke:#fef3dc44; }
+.walls-bar { pointer-events:none; }
+.walls-put-bar { fill:#9b77ee; fill-opacity:.75; }
+.walls-call-bar { fill:var(--accent); fill-opacity:.75; }
+.walls-wall-bar { fill-opacity:1; stroke:currentColor; stroke-width:.8; }
+.walls-put-bar.walls-wall-bar { color:#d1baff; }
+.walls-call-bar.walls-wall-bar { color:#ffcb7f; }
+.walls-hit { fill:transparent; }
+.walls-strike { cursor:crosshair; outline:none; }
+.walls-strike:hover .walls-hit,.walls-strike:focus-visible .walls-hit,.walls-strike[aria-pressed=true] .walls-hit { fill:#ffffff0c; stroke:#fef3dc66; stroke-width:1; }
+.walls-strike:hover .walls-bar,.walls-strike:focus-visible .walls-bar,.walls-strike[aria-pressed=true] .walls-bar { fill-opacity:1; }
+.walls-marker { pointer-events:none; color:var(--cream); }
+.walls-marker.is-call { color:var(--accent); }
+.walls-marker.is-put { color:#b39aef; }
+.walls-marker.is-flip { color:#c6b8e8; }
+.walls-level-line { stroke:currentColor; stroke-dasharray:3 4; stroke-opacity:.8; stroke-width:1; }
+.walls-marker.is-spot .walls-level-line { stroke-width:1.5; stroke-dasharray:5 3; }
+.walls-connector { stroke:currentColor; fill:none; stroke-width:1; stroke-opacity:.6; }
+.walls-level-box { fill:#12110f; stroke:currentColor; stroke-width:.6; }
+.walls-level-name { fill:currentColor; font-size:7px; letter-spacing:.03em; }
+.walls-level-price { fill:currentColor; font-size:10px; font-weight:600; }
+.gex-walls-caption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; padding:12px 20px 16px; color:var(--muted); font:8px/1.6 var(--mono); }
+@media(max-width:600px) {
+  .gex-walls-levels { grid-template-columns:repeat(2,minmax(0,1fr)); margin-inline:12px; }
+  .gex-wall-level { padding:12px; }
+  .gex-wall-level>strong { font-size:20px; }
+  .gex-walls-scroll { margin-inline:8px; }
+  .gex-walls-caption { padding-inline:12px; }
+}
+
+/* On narrow panels, level cards replace the right label rail so both bar directions stay visible. */
+svg.gex-walls.is-compact { min-width:0; }
+.gex-walls.is-compact .walls-level-box,.gex-walls.is-compact .walls-level-name,.gex-walls.is-compact .walls-level-price,.gex-walls.is-compact .walls-connector { display:none; }
+.gex-walls.is-compact .walls-axis { font-size:15px; }
+.gex-walls.is-compact .walls-heading { font-size:13px; }
