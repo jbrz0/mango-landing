@@ -82,9 +82,11 @@
 .gex-profile-row small { font-size:6px; display:block; }
 .gex-profile-row.gex-spot-row { border-block:1px dashed #fef3dc99; }
 .gex-put-bar,.gex-call-bar { height:100%; display:flex; align-items:center; border-right:1px solid #fef3dc14; }
-.gex-put-bar { justify-content:flex-end; }
-.gex-profile-row i { display:block; height:13px; background:#9b77ee; }
-.gex-call-bar i { background:var(--accent); }
+.gex-call-bar { justify-content:flex-end; }
+.gex-profile-row i { display:block; height:13px; background:var(--bearish); }
+.gex-call-bar i { background:var(--bullish); }
+.gex-profile .gex-positive { color:var(--bullish); }
+.gex-profile .gex-negative { color:var(--bearish); }
 .gex-profile-scale { margin-left:70px; margin-right:75px; display:flex; justify-content:space-between; padding:12px 0; color:var(--muted); font-size:8px; }
 .gex-lower { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:24px; margin-top:24px; }
 .gex-session-inner { padding:24px; }
