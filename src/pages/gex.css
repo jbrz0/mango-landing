@@ -126,31 +126,31 @@
 .gex-wall-level>span { display:block; font:8px var(--mono); color:var(--muted); letter-spacing:.04em; }
 .gex-wall-level>strong { display:block; font:18px var(--mono); letter-spacing:-.04em; margin:6px 0; }
 .gex-wall-level>small { display:block; font:8px/1.6 var(--mono); color:var(--muted); }
-.gex-wall-level.is-call { color:var(--accent); }
-.gex-wall-level.is-put { color:#b39aef; }
+.gex-wall-level.is-call { color:var(--bullish); }
+.gex-wall-level.is-put { color:var(--bearish); }
 .gex-wall-level.is-spot { color:var(--cream); }
 .gex-wall-level.is-flip { color:#c6b8e8; }
 .gex-walls-scroll { margin:0 12px; overflow-x:auto; scrollbar-color:#51432d #111; }
 svg.gex-walls { display:block; width:100%; height:auto; min-width:690px; overflow:visible; font-family:var(--mono); }
 .walls-heading { font-size:8px; fill:var(--muted); letter-spacing:.06em; }
-.walls-heading.walls-put { fill:#b39aef; }
-.walls-heading.walls-call { fill:var(--accent); }
+.walls-heading.walls-put { fill:var(--bearish); }
+.walls-heading.walls-call { fill:var(--bullish); }
 .walls-axis { font-size:9px; fill:#aaa59a; }
 .walls-grid { stroke:#fef3dc0a; stroke-width:1; }
 .walls-zero { stroke:#fef3dc44; }
 .walls-bar { pointer-events:none; }
-.walls-put-bar { fill:#9b77ee; fill-opacity:.75; }
-.walls-call-bar { fill:var(--accent); fill-opacity:.75; }
+.walls-put-bar { fill:var(--bearish); fill-opacity:.8; }
+.walls-call-bar { fill:var(--bullish); fill-opacity:.8; }
 .walls-wall-bar { fill-opacity:1; stroke:currentColor; stroke-width:.8; }
-.walls-put-bar.walls-wall-bar { color:#d1baff; }
-.walls-call-bar.walls-wall-bar { color:#ffcb7f; }
+.walls-put-bar.walls-wall-bar { color:var(--bearish); }
+.walls-call-bar.walls-wall-bar { color:var(--bullish); }
 .walls-hit { fill:transparent; }
 .walls-strike { cursor:crosshair; outline:none; }
 .walls-strike:hover .walls-hit,.walls-strike:focus-visible .walls-hit,.walls-strike[aria-pressed=true] .walls-hit { fill:#ffffff0c; stroke:#fef3dc66; stroke-width:1; }
 .walls-strike:hover .walls-bar,.walls-strike:focus-visible .walls-bar,.walls-strike[aria-pressed=true] .walls-bar { fill-opacity:1; }
 .walls-marker { pointer-events:none; color:var(--cream); }
-.walls-marker.is-call { color:var(--accent); }
-.walls-marker.is-put { color:#b39aef; }
+.walls-marker.is-call { color:var(--bullish); }
+.walls-marker.is-put { color:var(--bearish); }
 .walls-marker.is-flip { color:#c6b8e8; }
 .walls-level-line { stroke:currentColor; stroke-dasharray:3 4; stroke-opacity:.8; stroke-width:1; }
 .walls-marker.is-spot .walls-level-line { stroke-width:1.5; stroke-dasharray:5 3; }
@@ -172,3 +172,11 @@ svg.gex-walls.is-compact { min-width:0; }
 .gex-walls.is-compact .walls-level-box,.gex-walls.is-compact .walls-level-name,.gex-walls.is-compact .walls-level-price,.gex-walls.is-compact .walls-connector { display:none; }
 .gex-walls.is-compact .walls-axis { font-size:15px; }
 .gex-walls.is-compact .walls-heading { font-size:13px; }
+
+.gex-key-call,.gex-key-put { display:inline-block; width:6px; height:6px; }
+.gex-key-call { background:var(--bullish); }
+.gex-key-put { background:var(--bearish); }
+.gex-walls-view .gex-metric:nth-child(3),.gex-walls-view .gex-balance>div:first-child>span:first-child { color:var(--bullish); }
+.gex-walls-view .gex-metric:nth-child(4),.gex-walls-view .gex-balance>div:first-child { color:var(--bearish); }
+.gex-walls-view .gex-balance-track { background:var(--bearish); }
+.gex-walls-view .gex-balance-track i { background:var(--bullish); }
