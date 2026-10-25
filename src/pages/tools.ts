@@ -1,3 +1,4 @@
+import '../lib/analytics';
 import '../styles.css';
 import './labs.css';
 import { pageShell, startClock, icon, blank } from './shared';

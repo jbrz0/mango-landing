@@ -1,3 +1,4 @@
+import './lib/analytics';
 import './styles.css';
 import { shell, renderData, renderChanges, feed, events } from './components/dashboard';
 import { chartPanel, attachChart } from './components/chart';

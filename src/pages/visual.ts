@@ -1,3 +1,4 @@
+import '../lib/analytics';
 import './visual.css';
 import { day, escape as e, timestamp, zoneName } from '../lib/format';
 import { loadArchive, loadDashboard } from '../lib/intel/load';

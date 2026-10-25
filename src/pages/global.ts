@@ -1,3 +1,4 @@
+import '../lib/analytics';
 import '../styles.css';
 import './labs.css';
 import { geoGraticule10, geoNaturalEarth1, geoPath } from 'd3-geo';

@@ -1,3 +1,4 @@
+import '../lib/analytics';
 import '../styles.css';
 import './calculator-futures.css';
 import { calculateFutures, contractFromUrl, contracts, futuresSymbols, parseFuturesNumber, type CalculationSource } from '../lib/futures';
