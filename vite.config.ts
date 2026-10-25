@@ -6,7 +6,7 @@ import macroHandler from './api/macro';
 import equitiesHandler from './api/equities';
 import globalHandler from './api/global';
 
-export const pageInputs = { home: resolve('index.html'), global: resolve('global.html'), tools: resolve('tools.html'), visual: resolve('visual.html'), futuresCalculator: resolve('tools/calculator-futures.html') };
+export const pageInputs = { home: resolve('index.html'), gex: resolve('gex.html'), global: resolve('global.html'), tools: resolve('tools.html'), visual: resolve('visual.html'), futuresCalculator: resolve('tools/calculator-futures.html') };
 
 export function intelligencePlugin(dataDirectory = resolve('data/intel')): Plugin {
   return {

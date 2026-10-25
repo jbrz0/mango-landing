@@ -15,7 +15,8 @@
     "test:e2e": "playwright test",
     "intel:update": "tsx scripts/intel.ts update",
     "intel:validate": "tsx scripts/intel.ts validate",
-    "intel:publish": "tsx scripts/publish.ts"
+    "intel:publish": "tsx scripts/publish.ts",
+    "gex:update": "tsx scripts/gex.ts"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

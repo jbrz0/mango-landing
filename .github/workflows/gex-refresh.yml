@@ -1,0 +1,63 @@
+name: Refresh QQQ gamma snapshot
+on:
+  workflow_dispatch:
+  schedule:
+    # Paired UTC schedules cover US daylight saving time. The gate selects three daily captures.
+    - cron: '0 14 * * 1-5'
+    - cron: '0 15 * * 1-5'
+    - cron: '30 16 * * 1-5'
+    - cron: '30 17 * * 1-5'
+    - cron: '15 19 * * 1-5'
+    - cron: '15 20 * * 1-5'
+permissions:
+  contents: read
+concurrency:
+  group: gex-snapshot
+  cancel-in-progress: false
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      capture: ${{ steps.window.outputs.capture }}
+    steps:
+      - id: window
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo 'capture=true' >> "$GITHUB_OUTPUT"
+          else
+            offset=$(TZ=America/New_York date +%z)
+            case "$offset/$EVENT_SCHEDULE" in
+              '-0400/0 14 * * 1-5'|'-0400/30 16 * * 1-5'|'-0400/15 19 * * 1-5'|'-0500/0 15 * * 1-5'|'-0500/30 17 * * 1-5'|'-0500/15 20 * * 1-5')
+                echo 'capture=true' >> "$GITHUB_OUTPUT" ;;
+              *) echo 'capture=false' >> "$GITHUB_OUTPUT" ;;
+            esac
+          fi
+  refresh:
+    needs: gate
+    if: needs.gate.outputs.capture == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run gex:update
+      - name: Publish validated snapshot
+        run: |
+          git add public/data/gex/current.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'data: refresh QQQ gamma snapshot'
+          git pull --rebase origin main
+          git push origin HEAD:main
