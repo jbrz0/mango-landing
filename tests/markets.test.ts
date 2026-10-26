@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createMarketLoader, parseCboe, parseTreasury } from '../server/market-data';
-import { dailyStatus, macroResponseSchema } from '../src/lib/markets/schema';
+import { dailyStatus, macroResponseSchema, treasuryYieldUrl } from '../src/lib/markets/schema';
 
 const csv = 'DATE,OPEN,HIGH,LOW,CLOSE\n09/29/2026,16,17,15,16.04\n09/30/2026,16,17,15,16.34\n';
 function treasury(rows: Array<[string, string | null]>) {
@@ -66,6 +66,10 @@ test('Treasury year rollover accepts an empty year or its first observation', as
 test('daily age allows weekends while flagging old or failed observations', () => {
   const data = { symbol: 'VIX' as const, points: parseCboe(csv, '2026-10-01'), retrievedAt: '2026-10-01T00:00:00Z', refreshFailed: false };
   assert.equal(dailyStatus(data, Date.parse('2026-10-04T12:00:00Z')), 'Daily observation');
-  assert.equal(dailyStatus(data, Date.parse('2026-10-08T12:00:00Z')), 'Stale daily data');
+  assert.equal(dailyStatus(data, Date.parse('2026-10-08T12:00:00Z')), 'Last published observation');
   assert.equal(dailyStatus({ ...data, refreshFailed: true }), 'Refresh failed · Last known');
+});
+
+test('the US10Y source link opens the current-year Treasury par yield table', () => {
+  assert.equal(treasuryYieldUrl(new Date('2026-10-26T00:00:00Z')), 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026');
 });

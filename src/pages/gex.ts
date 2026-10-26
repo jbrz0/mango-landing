@@ -38,14 +38,15 @@ function freshness(s: Snapshot) {
   const minutes = Number(part('hour')) * 60 + Number(part('minute'));
   const session = !['Sat','Sun'].includes(part('weekday')) && minutes >= 570 && minutes < 960;
   const oldQuote = now - +new Date(s.quoteAsOf) > 4 * 3600_000;
-  if (age > 4 * 86400_000 || (session && (age > 4 * 3600_000 || oldQuote))) return { label: 'STALE SNAPSHOT', stale: true };
+  if (age > 4 * 86400_000 || (session && (age > 4 * 3600_000 || oldQuote))) return { label: 'LAST SAVED SNAPSHOT', stale: true };
   return { label: session ? 'SCHEDULED SNAPSHOT' : 'OUTSIDE REGULAR HOURS', stale: false };
 }
 function status(failed = false) {
   const el = document.querySelector('#gex-status')!;
   if (!snapshot) { el.textContent = 'Snapshot unavailable. Try checking for an update shortly.'; el.classList.add('is-stale'); return; }
   const f = freshness(snapshot);
-  el.classList.toggle('is-stale', f.stale || failed);
+  el.classList.toggle('is-stale', failed);
+  if (f.stale) console.warn('[mango-atlas] GEX snapshot is older than the capture schedule; showing last saved snapshot');
   el.innerHTML = `<span class="gex-status-label">${failed ? 'UPDATE CHECK FAILED · LAST SAVED SNAPSHOT' : f.label}</span><span>Quote ${e(stamp(snapshot.quoteAsOf))}</span><span>Chain ${e(stamp(snapshot.chainAsOf))}</span><span>Captured ${e(stamp(snapshot.retrievedAt))} · delayed data</span>`;
 }
 function metric(label: string, value: string, detail: string, color = '') {

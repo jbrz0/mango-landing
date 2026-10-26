@@ -89,7 +89,6 @@ h1, h2, h3, p { margin: 0; }
 .data-status { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--muted); min-height: 36px; padding: 0 0 14px; }
 .data-status > div { display: flex; gap: 10px; align-items: center; }
 .status-label { border: 1px solid #ff990a2e; color: var(--warning); font: 11px var(--mono); letter-spacing: .05em; padding: 3px 6px; white-space: nowrap; }
-.data-status.stale .status-label { background: #ff990a15; }
 .data-note { color: var(--faint); font-size: 12px; }
 .ticker-strip { display: flex; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #333 transparent; border: 1px solid var(--border); background: var(--surface); margin-bottom: 18px; }
 .ticker { flex: 1 0 160px; padding: 15px 17px 13px; border-right: 1px solid var(--border); min-width: 0; }

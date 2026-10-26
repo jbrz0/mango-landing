@@ -1,6 +1,6 @@
 import '../lib/analytics';
 import './visual.css';
-import { day, escape as e, timestamp, zoneName } from '../lib/format';
+import { day, escape as e, isStale, timestamp, zoneName } from '../lib/format';
 import { loadArchive, loadDashboard } from '../lib/intel/load';
 import type { Intel } from '../lib/intel/schema';
 import { buildLens, buildShiftLens, LENSES, type LensId, type VisualLens, type VisualNode } from './visual-data';
@@ -118,6 +118,7 @@ function changeLens(id: LensId, preserveSelection = false) {
 }
 function renderBrief(data: Intel) {
   current = data; cached.set(data.asOfDate, data); dateSelect.value = data.asOfDate;
+  if (data.asOfDate === latestDate && isStale(data.asOfDate)) console.warn(`[mango-atlas] brief ${data.asOfDate} is older than the scheduled brief; showing last good data`);
   query('#brief-meta').textContent = `${data.asOfDate !== latestDate ? 'ARCHIVED BRIEF' : 'PUBLISHED SNAPSHOT'} · ${timestamp(data.generatedAt)}${loadingHistory ? ' · MAPPING ARCHIVE' : ''}`;
   changeLens(active, true);
 }

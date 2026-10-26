@@ -16,7 +16,8 @@
     "intel:update": "tsx scripts/intel.ts update",
     "intel:validate": "tsx scripts/intel.ts validate",
     "intel:publish": "tsx scripts/publish.ts",
-    "gex:update": "tsx scripts/gex.ts"
+    "gex:update": "tsx scripts/gex.ts",
+    "health": "tsx scripts/health-check.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

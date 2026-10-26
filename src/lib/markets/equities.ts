@@ -12,6 +12,6 @@ export type EquityResponse = z.infer<typeof equityResponseSchema>;
 export const EQUITY_TTL = 15 * 60_000;
 export function equityStatus(quote: EquityQuote, now = Date.now()) {
   if (quote.refreshFailed || now - Date.parse(quote.retrievedAt) > 2 * EQUITY_TTL) return 'Refresh delayed · Last known';
-  if (now - Date.parse(quote.updatedAt) > 5 * 86400_000) return 'Stale price';
+  if (now - Date.parse(quote.updatedAt) > 5 * 86400_000) return 'Last available price';
   return 'Regular session';
 }

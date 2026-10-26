@@ -55,7 +55,7 @@ function renderSignals() {
     meter('01 / MARKET REGIME', e(readable(briefing?.overview?.sentiment)), briefing ? `${e(readable(briefing.overview?.confidence))} confidence · Research view` : 'Published briefing unavailable', briefing?.overview?.sentiment ? ({ bearish: 10, mildly_bearish: 30, neutral: 50, mildly_bullish: 70, bullish: 90 }[briefing.overview.sentiment]) : null) +
     meter('02 / EQUITY VOLATILITY', v ? `${v.value.toFixed(2)} <small>VIX</small>` : '—', v ? `Cboe · ${day(v.date)} · ${dailyStatus(vix!)}` : 'Official daily close unavailable', v ? v.value / 50 * 100 : null, 'cream') +
     meter('03 / COST OF MONEY', y ? `${y.value.toFixed(2)}<small>% US10Y</small>` : '—', y ? `US Treasury · ${day(y.date)} · ${dailyStatus(yield10!)}` : 'Official daily yield unavailable', y ? y.value / 8 * 100 : null, 'cream') +
-    meter('04 / CRYPTO SENTIMENT', sentiment ? `${sentiment.value}<small>/ 100</small>` : '—', sentiment ? `${e(sentiment.label)} · Alternative.me · ${day(sentiment.updatedAt)}${Date.now() - Date.parse(sentiment.updatedAt) > 48 * 3600_000 ? ' · Stale' : ''}` : 'Fear & Greed index unavailable', sentiment?.value ?? null);
+    meter('04 / CRYPTO SENTIMENT', sentiment ? `${sentiment.value}<small>/ 100</small>` : '—', sentiment ? `${e(sentiment.label)} · Alternative.me · ${day(sentiment.updatedAt)}` : 'Fear & Greed index unavailable', sentiment?.value ?? null);
 }
 
 const body = `<div class="lab-intro"><div><div class="lab-kicker"><span class="status-dot"></span>MANGO ATLAS / GLOBAL INTEL</div><h1>Global <span>Intel</span></h1><p>Connect the macro forces. Find the market context.</p></div><div class="intro-coordinate mono"><span>GLOBAL OBSERVATION DESK</span><span id="brief-status">Loading published briefing…</span><button id="refresh-global" class="refresh-button">Refresh feeds ${icon('activity')}</button></div></div>
@@ -73,8 +73,7 @@ function renderAssets() {
     const quote = globalData?.quotes.find(q => q.symbol === asset.symbol);
     const change = quote?.changePct ?? null;
     const tone = change === null ? '' : change >= 0 ? 'up' : 'down';
-    const stale = quote && Date.now() - Date.parse(quote.updatedAt) > 5 * 86400_000;
-    return `<article class="asset-tile ${tone}"><div class="asset-top"><span>${e(asset.label)}</span><span>${asset.group === 'Crypto' ? '◈' : asset.group === 'Commodities' ? '◇' : '+'}</span></div><strong class="asset-change">${change === null ? '—' : signed(change)}</strong><div class="asset-price mono">${quote ? new Intl.NumberFormat('en-US', { maximumFractionDigits: asset.group === 'FX' ? 4 : 2 }).format(quote.price) : 'Data unavailable'}</div>${quote ? sparkline(quote.history) : '<div class="spark-placeholder" aria-hidden="true"></div>'}<span class="asset-kind">${e(asset.type)}</span><span class="asset-date">${quote ? `${e(timestamp(quote.updatedAt))}${quote.refreshFailed ? ' · Refresh failed / Last known' : stale ? ' · Stale' : ''}` : 'Waiting for provider'}</span></article>`;
+    return `<article class="asset-tile ${tone}"><div class="asset-top"><span>${e(asset.label)}</span><span>${asset.group === 'Crypto' ? '◈' : asset.group === 'Commodities' ? '◇' : '+'}</span></div><strong class="asset-change">${change === null ? '—' : signed(change)}</strong><div class="asset-price mono">${quote ? new Intl.NumberFormat('en-US', { maximumFractionDigits: asset.group === 'FX' ? 4 : 2 }).format(quote.price) : 'Data unavailable'}</div>${quote ? sparkline(quote.history) : '<div class="spark-placeholder" aria-hidden="true"></div>'}<span class="asset-kind">${e(asset.type)}</span><span class="asset-date">${quote ? `${e(timestamp(quote.updatedAt))}${quote.refreshFailed ? ' · Refresh failed / Last known' : ''}` : 'Waiting for provider'}</span></article>`;
   }).join('');
   document.querySelector('#quote-status')!.textContent = globalData ? `${globalData.quotes.length} / ${assets.length} feeds available · Retrieved ${time(globalData.retrievedAt)}${globalRefreshFailed ? ' · Refresh failed / Last known' : ''}` : 'Market feeds unavailable';
 }
@@ -143,7 +142,8 @@ async function refresh() {
   await Promise.allSettled([
     loadDashboard().then(result => {
       briefing = result.current ? localizeResearch(result.current) : null;
-      document.querySelector('#brief-status')!.textContent = briefing ? `${result.fallback ? 'Recovered briefing' : 'Research'} / ${day(briefing.asOfDate)}${isStale(briefing.generatedAt) ? ' / Stale' : ''}` : 'Published briefing unavailable';
+      if (briefing && isStale(briefing.asOfDate)) console.warn(`[mango-atlas] brief ${briefing.asOfDate} is older than the scheduled brief; showing last good data`);
+      document.querySelector('#brief-status')!.textContent = briefing ? `${result.fallback ? 'Recovered briefing' : 'Research'} / ${day(briefing.asOfDate)}` : 'Published briefing unavailable';
       renderSignals(); renderEvents(); renderRegion(); renderNews();
     }),
     fetch('/api/global', { signal: AbortSignal.timeout(18_000) }).then(async r => { if (!r.ok) throw new Error('Feed unavailable'); globalData = globalSchema.parse(await r.json()); globalRefreshFailed = false; }).catch(() => { globalRefreshFailed = true; }).finally(() => { renderSignals(); renderAssets(); renderRegion(); renderNews(); }),

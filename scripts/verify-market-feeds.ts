@@ -76,7 +76,7 @@ try {
         if (instrument.daily) {
           await expect(page.locator('.daily-canvas canvas').first()).toBeVisible({ timeout: 20_000 });
           detail = await page.locator('.daily-readout').innerText();
-          expect(detail).toMatch(/\d/); expect(detail).not.toMatch(/failed|Stale/);
+          expect(detail).toMatch(/\d/); expect(detail).not.toMatch(/failed|Last available|Last published/);
           await page.getByRole('button', { name: '1Y', exact: true }).click();
         } else {
           const body = page.frameLocator('#chart-host iframe').locator('body');
