@@ -6,15 +6,23 @@ test.beforeEach(async ({page})=>{
   await page.clock.setFixedTime(new Date(snapshot.retrievedAt));
   await page.route('**/data/gex/current.json',route=>route.fulfill({json:snapshot}));
 });
-for(const width of [320,390,768,1440]) {
+for(const width of [320,390,768,1024,1440]) {
   test(`GEX renders real saved data and fits ${width}px`,async({page})=>{
     const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
     await page.setViewportSize({width,height:1000});await page.goto('/gex');
     await expect(page.locator('.gex-metric').first()).toContainText(snapshot.spot.toFixed(2));
     await expect(page.locator('.gex-heatmap')).toBeVisible();
     await expect(page.locator('.site-nav a[href="/gex"]')).toHaveCount(0);
+    await expect(page.locator('.site-nav a[aria-current="page"]')).toHaveAttribute('href','/tools');
     await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    for(const [label,mode] of [['Heatmap','heatmap'],['Walls','walls'],['By strike','profile']]) {
+      await page.getByRole('button',{name:label,exact:true}).click();
+      const small = await page.locator('#main').evaluate(root=>[...root.querySelectorAll<HTMLElement>('*')].filter(el=>el.getBoundingClientRect().width>1 && el.getBoundingClientRect().height>1 && [...el.childNodes].some(n=>n.nodeType===Node.TEXT_NODE && n.textContent?.trim()) && !el.closest('.sr-only') && parseFloat(getComputedStyle(el).fontSize)<14).map(el=>({tag:el.tagName,className:el.getAttribute('class'),size:getComputedStyle(el).fontSize})));
+      expect(small,`${mode} has no tiny visible text at ${width}px`).toEqual([]);
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    }
+    await expect(page.locator('.gex-context-copy')).toHaveCSS('font-size','16px');
     expect(errors).toEqual([]);
   });
 }
@@ -48,7 +56,7 @@ test('old data during a trading session is shown as the last saved snapshot',asy
   await expect(page.locator('#gex-read-freshness')).toContainText('not current positioning');
 });
 
-for (const width of [320,390,768,1440]) {
+for (const width of [320,390,768,1024,1440]) {
   test(`Walls chart exposes key levels and fits ${width}px`, async({page})=>{
     const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
     await page.setViewportSize({width,height:1000});await page.goto('/gex');
@@ -56,6 +64,8 @@ for (const width of [320,390,768,1440]) {
     await expect(page.locator('.gex-walls')).toBeVisible();
     await expect(page.locator('#gex-range')).toHaveValue('levels');
     expect(await page.locator('.gex-walls-scroll').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+    const textSizes = await page.locator('.walls-axis').evaluateAll(els=>els.map(el=>parseFloat(getComputedStyle(el).fontSize)*(el as SVGGraphicsElement).getScreenCTM()!.a));
+    expect(Math.min(...textSizes)).toBeGreaterThanOrEqual(13.99);
     for(const [kind,index] of [['call',2],['put',3],['spot',0],['flip',4]] as const) {
       const exact = (await page.locator('.gex-metric strong').nth(index).innerText()).replace('$','');
       await expect(page.locator(`[data-wall-marker="${kind}"] .walls-level-price`)).toHaveText(exact);

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { assets } from '../../src/lib/global/schema';
+import gexSnapshot from '../../public/data/gex/current.json' with { type: 'json' };
 const now = '2026-10-09T18:00:00.000Z';
 const globalFixture = {
   retrievedAt: now,
@@ -25,7 +26,7 @@ for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
       await expect(page.locator('h1')).toBeVisible();
       await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
       if (route === 'global') { await expect(page.locator('#quote-status')).toContainText('12 / 12'); await expect(page.locator('.map-node')).toHaveCount(4); }
-      else { await expect(page.locator('.product-card')).toHaveCount(6); await expect(page.locator('#calculator, #calc-form')).toHaveCount(0); }
+      else { await expect(page.locator('.product-card')).toHaveCount(7); await expect(page.locator('#calculator, #calc-form')).toHaveCount(0); }
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       expect(errors).toEqual([]);
     });
@@ -87,8 +88,8 @@ test('calculator entry points open the standalone page and outdated entries are 
   const localCalculatorUrl = new URL('/tools/calculator-futures', page.url()).href;
   // Keep navigation local while exercising the exact production links.
   await page.route(calculatorUrl, route => route.fulfill({ status: 302, headers: { location: localCalculatorUrl } }));
-  await expect(page.locator('#catalog-count')).toHaveText('6 / 6 TOOLS');
-  await expect(page.locator('.toolkit-heading')).toContainText('6 tools to start');
+  await expect(page.locator('#catalog-count')).toHaveText('7 / 7 TOOLS');
+  await expect(page.locator('.toolkit-heading')).toContainText('7 tools to start');
   await expect(page.getByText('Futures Session Dashboard', { exact: true })).toHaveCount(0);
   await expect(page.locator('a[href*="N0Gy9U5Q"], a[href="#calculator"], #calculator, #calc-form')).toHaveCount(0);
   await expect(page.locator('.featured-calculator')).toHaveCount(0);
@@ -101,6 +102,33 @@ test('calculator entry points open the standalone page and outdated entries are 
   await expect(page).toHaveURL(localCalculatorUrl);
   await expect(page.getByRole('heading', { name: 'Futures calculator.' })).toBeVisible();
 });
+
+for (const width of [320,390,1440]) {
+  test(`GEX catalog entry has a preview, useful details and a working destination at ${width}px`, async({page})=>{
+    await page.clock.setFixedTime(new Date(gexSnapshot.retrievedAt));
+    await page.route('**/data/gex/current.json',route=>route.fulfill({json:gexSnapshot}));
+    await page.setViewportSize({width,height:1000});
+    await page.goto('/tools');
+    await page.locator('[data-category="Utilities"]').click();
+    await expect(page.locator('.product-card')).toHaveCount(2);
+    await page.locator('#tool-search').fill('GEX');
+    await expect(page.locator('.product-card')).toHaveCount(1);
+    const card=page.locator('.product-card');
+    await expect(card.getByRole('heading',{name:'QQQ Gamma Exposure',exact:true})).toBeVisible();
+    await expect(card.locator('.visual-gex .art-gex-map')).toBeVisible();
+    await expect(card.locator('a[href="/gex"]')).toBeVisible();
+    await card.getByRole('button',{name:'View details'}).click();
+    await expect(page.getByRole('dialog')).toContainText('Published delayed Cboe snapshots and daily open interest');
+    await expect(page.getByRole('dialog').getByRole('link',{name:'Open gamma exposure'})).toHaveAttribute('href','/gex');
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    await page.keyboard.press('Escape');
+    await card.getByRole('link',{name:'Open gamma exposure'}).focus();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/gex$/);
+    await expect(page.locator('.gex-metric')).toHaveCount(5);
+    await expect(page.locator('.site-nav a[aria-current="page"]')).toHaveAttribute('href','/tools');
+  });
+}
 test('dashboard navigation includes the public site pages and keeps section shortcuts separate', async ({ page }) => {
   await page.route('https://s3.tradingview.com/**', route => route.abort());
   await page.route('**/api/equities', route => route.fulfill({ json: { quotes: [], unavailable: [] } }));

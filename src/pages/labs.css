@@ -223,6 +223,14 @@
 .product-actions > span { font:9px var(--mono); color:var(--faint); }
 .catalog-count { font-size:9px; color:var(--faint); margin:18px 0 42px; letter-spacing:.08em; }
 /* Small product illustrations, abstract previews rather than supplied market data. */
+.art-gex { width:min(280px,calc(100% - 40px)); font-family:var(--mono); }
+.art-gex>span { display:block; color:var(--cream); font-size:12px; letter-spacing:.03em; margin-bottom:12px; }
+.art-gex-map { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:3px; border-block:1px solid #ff990a70; padding:6px 0; }
+.art-gex-map i { display:block; height:13px; background:var(--cell); opacity:var(--strength); }
+.art-gex small { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin-top:10px; color:var(--muted); font-size:9px; }
+.art-gex b,.art-gex em { font-style:normal; font-weight:400; }
+.art-gex b { color:#00e676; }
+.art-gex em { color:#ff3355; }
 .art-equation { text-align:center; font-family:var(--mono); }
 .art-equation > span { display:block; font-size:7px; letter-spacing:.1em; color:#b49461; }
 .art-equation b { font-size:19px; font-weight:400; display:block; margin:12px 0 5px; color:#b4a17f; }
