@@ -1,9 +1,13 @@
 import { z } from 'zod';
 
+// Treasury's daily par yield table. Without a year filter it opens on 1990, so link the current year (Treasury's own default link).
+export const TREASURY_YIELD_URL = 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve';
+export const treasuryYieldUrl = (now = new Date()) => `${TREASURY_YIELD_URL}&field_tdr_date_value=${now.getUTCFullYear()}`;
+
 export const macroDefinitions = {
   VIX: { label: 'Equity volatility', source: 'Cboe', sourceUrl: 'https://www.cboe.com/tradable_products/vix/vix_historical_data/', unit: 'points' },
   VXN: { label: 'Nasdaq volatility', source: 'Cboe', sourceUrl: 'https://www.cboe.com/tradable_products/vix/vix_historical_data/', unit: 'points' },
-  US10Y: { label: 'US 10Y Treasury', source: 'US Treasury', sourceUrl: 'https://home.treasury.gov/resource-center-data-chart-center/interest-rates', unit: 'percent' },
+  US10Y: { label: 'US 10Y Treasury', source: 'US Treasury', sourceUrl: treasuryYieldUrl(), unit: 'percent' },
 } as const;
 export type MacroSymbol = keyof typeof macroDefinitions;
 export const dateSchema = z.iso.date();
@@ -22,9 +26,9 @@ export type DailyPoint = z.infer<typeof pointSchema>;
 export type MacroSeries = z.infer<typeof seriesSchema>;
 export type MacroResponse = z.infer<typeof macroResponseSchema>;
 
-// A weekend or ordinary US holiday should not label a daily observation stale.
+// A weekend or ordinary US holiday should not flag a daily observation as old.
 export function dailyStatus(series: MacroSeries, now = Date.now()) {
   if (series.refreshFailed) return 'Refresh failed · Last known';
   const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
-  return Date.parse(today) - Date.parse(series.points.at(-1)!.date) > 5 * 86400_000 ? 'Stale daily data' : 'Daily observation';
+  return Date.parse(today) - Date.parse(series.points.at(-1)!.date) > 5 * 86400_000 ? 'Last published observation' : 'Daily observation';
 }

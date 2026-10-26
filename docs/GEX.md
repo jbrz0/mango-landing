@@ -1,6 +1,6 @@
 # Mango Atlas Gamma Map
 
-Route: `/gex` (separate Vite entry). Deliberately absent from navigation and marked `noindex,nofollow`. It is publicly accessible, not an authenticated private page.
+Route: `/gex` (separate Vite entry). Deliberately absent from navigation, but public and indexable (listed in `public/sitemap.xml`).
 
 ## Data and operations
 

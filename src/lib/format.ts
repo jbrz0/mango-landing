@@ -31,9 +31,16 @@ export function expectedBriefDate(now = Date.now()): string {
   while ([0, 6].includes(new Date(`${date}T12:00:00Z`).getUTCDay())) date = addDays(date, -1);
   return date;
 }
-// Stale means a newer scheduled brief should already exist. Holidays without a publish are reported as stale.
+// Stale means a newer scheduled brief should already exist (holidays count as stale).
+// Internal only: used by npm run health, tests and console warnings, never shown as a UI label.
 export const isStale = (asOfDate: string, now = Date.now()) => asOfDate < expectedBriefDate(now);
 export const notToday = (generatedAt: string, now = new Date()) => dateKey(generatedAt) !== dateKey(now);
 
 // All research text is escaped before entering a template. No markdown or HTML from feeds is rendered.
 export const escape = (input: string | number | null | undefined) => String(input ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+
+// Publishers such as Bloomberg put the article date in the URL path; used when publishedAt is not supplied.
+export function sourceDate(url: string): string | null {
+  const match = /\/(20\d{2}-\d{2}-\d{2})\//.exec(url);
+  return match && !Number.isNaN(Date.parse(`${match[1]}T12:00:00Z`)) ? match[1] : null;
+}

@@ -12,7 +12,7 @@ for(const width of [320,390,768,1440]) {
     await expect(page.locator('.gex-metric').first()).toContainText(snapshot.spot.toFixed(2));
     await expect(page.locator('.gex-heatmap')).toBeVisible();
     await expect(page.locator('.site-nav a[href="/gex"]')).toHaveCount(0);
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex,nofollow');
+    await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     expect(errors).toEqual([]);
   });
@@ -41,9 +41,9 @@ test('failed update checks preserve dated data, and a cold failure never invents
   await page.reload();await expect(page.locator('#gex-content')).toContainText('The map is waiting for data');
   await expect(page.locator('.gex-metric')).toHaveCount(0);
 });
-test('old data during a trading session is explicitly stale',async({page})=>{
+test('old data during a trading session is shown as the last saved snapshot',async({page})=>{
   await page.clock.setFixedTime(new Date('2026-10-29T18:00:00Z'));
-  await page.goto('/gex');await expect(page.locator('#gex-status')).toContainText('STALE SNAPSHOT');
+  await page.goto('/gex');await expect(page.locator('#gex-status')).toContainText('LAST SAVED SNAPSHOT');await expect(page.locator('#gex-status')).not.toContainText(/stale/i);
 });
 
 for (const width of [320,390,768,1440]) {

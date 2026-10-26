@@ -336,13 +336,13 @@ export function buildShiftLens(data: Intel, history: Intel[]): VisualLens {
     else if (before.price === 0) reason = 'The previous price is zero, so a percent difference cannot be computed.';
     return {
       id: `shift:${item.symbol}`, label: item.symbol, value: metric === null ? 'Not comparable' : signed(metric), group: marketFamily(item.symbol, item.instrumentType), color: metric === null ? COLOR.missing : moveColor(metric), metric, shape: 'bar' as const,
-      note: `${item.label}. Stored quote comparison over the published briefing interval ${interval}. Quote observation times can predate either briefing and may be stale. ${reason || 'The column measures the difference between the two stored prices.'}`,
+      note: `${item.label}. Stored quote comparison over the published briefing interval ${interval}. Quote observation times can predate either briefing. ${reason || 'The column measures the difference between the two stored prices.'}`,
       details: [
         field('Instrument', item.label), field('Briefing interval', interval), field('Previous snapshot', price(before?.price ?? null, before?.unit ?? item.unit)), field('Current snapshot', price(item.price, item.unit)),
         field('Snapshot difference', metric === null ? 'Not comparable' : signed(metric)), field('Exact snapshot difference (%)', metric), field('Calculation', '(current stored price − previous stored price) / absolute previous stored price × 100'),
         field('Previous observed', before?.updatedAt ? timestamp(before.updatedAt) : null), field('Previous observation timestamp', before?.updatedAt), field('Current observed', item.updatedAt ? timestamp(item.updatedAt) : null), field('Current observation timestamp', item.updatedAt),
         field('Previous source', before?.source), field('Current source', item.source), field('Previous instrument type', before ? readable(before.instrumentType) : null), field('Current instrument type', readable(item.instrumentType)), field('Previous unit', before?.unit), field('Current unit', item.unit),
-        ...(reason ? [field('Comparison unavailable', reason)] : []), field('Timing', 'Stored quote observations can be stale or unchanged across briefings. This comparison does not establish a daily session return.'),
+        ...(reason ? [field('Comparison unavailable', reason)] : []), field('Timing', 'Stored quote observations can be older than, or unchanged across, briefings. This comparison does not establish a daily session return.'),
       ],
     };
   });

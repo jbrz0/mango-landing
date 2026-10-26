@@ -36,32 +36,43 @@ for (const width of [390, 1440]) {
 
 async function publishFriday(page: Page) {
   const data = { ...structuredClone(fixture), kind: 'briefing', asOfDate: '2026-01-16', generatedAt: '2026-01-16T08:35:00+07:00' };
-  data.intelligence = data.intelligence.map((item: { publishedAt: string | null }) => ({ ...item, publishedAt: null }));
+  data.intelligence = data.intelligence.map((item: { publishedAt: string | null }, i: number) => ({ ...item, publishedAt: null, ...(i === 0 ? { url: 'https://www.bloomberg.com/news/articles/2026-01-15/example-story' } : {}) }));
   await page.route('https://s3.tradingview.com/**', route => route.abort());
   await page.route('**/api/**', route => route.fulfill({ status: 503, json: {} }));
   await page.route('**/data/intel/current.json', route => route.fulfill({ json: data }));
   await page.route('**/data/intel/manifest.json', route => route.fulfill({ json: { dates: ['2026-01-16'] } }));
 }
 
-test('a Friday brief is not stale over the weekend or before the Monday publish', async ({ page }) => {
+const noStaleText = async (page: Page) => expect(await page.locator('body').innerText()).not.toMatch(/stale|predate/i);
+
+test('a Friday brief keeps its real date over the weekend and before the Monday publish', async ({ page }) => {
   await publishFriday(page);
   for (const instant of ['2026-01-18T05:00:00Z', '2026-01-19T01:00:00Z']) {
     await page.clock.setFixedTime(new Date(instant));
     await page.goto('/');
     await expect(page.locator('#data-status')).toContainText('PREVIOUS BRIEF');
-    await expect(page.locator('#data-status')).not.toContainText('STALE');
+    await expect(page.locator('#data-status')).toContainText('16 Jan');
+    await noStaleText(page);
   }
-  await expect(page.locator('#intelligence')).toContainText('may predate this brief');
+  // An untimed story shows its source date neutrally when the publisher URL carries one.
+  await expect(page.locator('.story').first().locator('time')).toHaveAttribute('datetime', '2026-01-15');
 });
 
-test('a missed weekday publish is labelled stale on every briefing page', async ({ page }) => {
+test('a missed weekday publish shows no stale label, keeps the true date and warns in the console', async ({ page }) => {
+  const warnings: string[] = [];
+  page.on('console', message => { if (message.type() === 'warning') warnings.push(message.text()); });
   await publishFriday(page);
-  await page.clock.setFixedTime(new Date('2026-01-19T04:00:00Z')); // Monday 11:00 BKK
+  await page.clock.setFixedTime(new Date('2026-01-19T04:00:00Z')); // Monday 11:00 BKK, the Monday brief is overdue
   await page.goto('/');
-  await expect(page.locator('#data-status')).toContainText('STALE');
-  await expect(page.locator('#data-status')).toContainText('Newer brief expected 19 Jan 2026');
+  await expect(page.locator('#data-status')).toContainText('PREVIOUS BRIEF');
+  await expect(page.locator('#data-status')).toContainText('16 Jan');
+  await expect(page.locator('#data-status')).not.toContainText('LATEST');
+  await noStaleText(page);
   await page.goto('/global');
-  await expect(page.locator('#brief-status')).toContainText('Stale');
+  await expect(page.locator('#brief-status')).toContainText('16 Jan 2026');
+  await noStaleText(page);
   await page.goto('/visual');
-  await expect(page.locator('#brief-meta')).toContainText('STALE BRIEF');
+  await expect(page.locator('#brief-meta')).toContainText('PUBLISHED SNAPSHOT');
+  await noStaleText(page);
+  expect(warnings.filter(text => text.includes('[mango-atlas] brief 2026-01-16')).length).toBeGreaterThanOrEqual(3);
 });

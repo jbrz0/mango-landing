@@ -118,7 +118,8 @@ function changeLens(id: LensId, preserveSelection = false) {
 }
 function renderBrief(data: Intel) {
   current = data; cached.set(data.asOfDate, data); dateSelect.value = data.asOfDate;
-  query('#brief-meta').textContent = `${data.asOfDate !== latestDate ? 'ARCHIVED BRIEF' : isStale(data.asOfDate) ? 'STALE BRIEF' : 'PUBLISHED SNAPSHOT'} · ${timestamp(data.generatedAt)}${loadingHistory ? ' · MAPPING ARCHIVE' : ''}`;
+  if (data.asOfDate === latestDate && isStale(data.asOfDate)) console.warn(`[mango-atlas] brief ${data.asOfDate} is older than the scheduled brief; showing last good data`);
+  query('#brief-meta').textContent = `${data.asOfDate !== latestDate ? 'ARCHIVED BRIEF' : 'PUBLISHED SNAPSHOT'} · ${timestamp(data.generatedAt)}${loadingHistory ? ' · MAPPING ARCHIVE' : ''}`;
   changeLens(active, true);
 }
 async function showBrief(date: string) {

@@ -2,7 +2,7 @@
 // Usage: npm run health -- [baseUrl] [--json]
 // Exit 0: no failures (warnings may be present). Exit 1: at least one failure.
 import { parseIntel, validationError } from '../src/lib/intel/schema';
-import { expectedBriefDate, isStale } from '../src/lib/format';
+import { expectedBriefDate, isStale, sourceDate } from '../src/lib/format';
 import { macroResponseSchema, dailyStatus } from '../src/lib/markets/schema';
 import { equityResponseSchema } from '../src/lib/markets/equities';
 import { globalSchema } from '../src/lib/global/schema';
@@ -48,9 +48,9 @@ await check('intel current.json', async () => {
   let intel;
   try { intel = parseIntel(await response.json(), true, now); } catch (error) { return add('intel current.json', 'fail', `invalid: ${validationError(error)}`); }
   const expected = expectedBriefDate(now);
-  add('intel current.json', isStale(intel.asOfDate, now) ? 'fail' : 'ok', `asOfDate ${intel.asOfDate}, generatedAt ${intel.generatedAt}, expected ≥ ${expected}${isStale(intel.asOfDate, now) ? ' (site shows STALE)' : ''}`);
-  const undated = intel.intelligence.filter(item => !item.publishedAt).length;
-  if (intel.intelligence.length && undated === intel.intelligence.length) add('intel wire timestamps', 'warn', `${undated}/${undated} stories have no publishedAt (may be a previous issue)`);
+  add('intel current.json', isStale(intel.asOfDate, now) ? 'fail' : 'ok', `asOfDate ${intel.asOfDate}, generatedAt ${intel.generatedAt}, expected ≥ ${expected}${isStale(intel.asOfDate, now) ? ' (newer brief overdue; site is serving the last good brief with its real date)' : ''}`);
+  const undated = intel.intelligence.filter(item => !item.publishedAt && !sourceDate(item.url)).length;
+  if (intel.intelligence.length && undated === intel.intelligence.length) add('intel wire timestamps', 'warn', `${undated}/${undated} stories have no publishedAt or URL date (may be a previous issue)`);
   const manifest = await (await get('/data/intel/manifest.json')).response.json() as { dates?: string[] };
   add('intel manifest.json', manifest.dates?.includes(intel.asOfDate) ? 'ok' : 'fail', `${manifest.dates?.length ?? 0} dates, latest ${manifest.dates?.[0] ?? 'none'}`);
 });

@@ -173,9 +173,10 @@ test('populated mobile: events in ICT, FX levels, feed filtering, escaped resear
   await expect(page.locator('#briefing-quotes')).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
-test('stale research is marked and the available Nasdaq chart is explicitly a CFD', async ({ page }) => {
+test('overdue research keeps its date without a stale label and the available Nasdaq chart is explicitly a CFD', async ({ page }) => {
   await populated(page); await page.clock.setFixedTime(new Date('2026-01-18T05:00:00Z')); await page.goto('/');
-  await expect(page.locator('#data-status')).toContainText('STALE');
+  await expect(page.locator('#data-status')).toContainText('PREVIOUS BRIEF');
+  await expect(page.locator('#data-status')).not.toContainText('STALE');
   await page.getByRole('button', { name: 'NAS100 CFD chart' }).click();
   await expect(page.locator('#chart-instrument')).toHaveText('NAS100 · Nasdaq 100 CFD');
   await expect(page.locator('#chart-detail')).toContainText('not NQ futures');
