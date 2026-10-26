@@ -42,6 +42,6 @@ async function update() {
   await mkdir(resolve('public/data/gex'), { recursive: true });
   await writeFile(`${path}.tmp`, JSON.stringify(snapshot) + '\n');
   await rename(`${path}.tmp`, path);
-  console.log(`Published QQQ snapshot: ${snapshot.contracts.length} contracts, quote ${snapshot.quoteAsOf}, chain ${snapshot.chainAsOf}`);
+  console.log(`Published QQQ snapshot: ${snapshot.contracts.length} option series, quote ${snapshot.quoteAsOf}, chain ${snapshot.chainAsOf}`);
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) update().catch(error => { console.error(error instanceof Error ? error.message : 'GEX refresh failed'); process.exitCode = 1; });

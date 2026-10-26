@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { aggregate, exposure, netAt, gammaFlips, easternTimestamp, expiryTime, analyze, type Contract } from '../src/lib/gex/model';
+import { aggregate, exposure, netAt, gammaFlips, easternTimestamp, expiryTime, analyze, snapshotSchema, freshness, type Contract } from '../src/lib/gex/model';
 import { parseChain } from '../scripts/gex';
 
 const asOf = '2026-10-23T15:00:00.000Z';
@@ -46,4 +46,115 @@ test('expiry selection excludes expired contracts and returns empty windows hone
   assert.equal(analyze(s,1).contracts.length,0);
   assert.equal(analyze(s,30).contracts.length,12);
   s.chainAsOf='2026-10-30T20:00:01Z'; assert.equal(analyze(s,90).contracts.length,0);
+});
+
+test('calendar windows include the whole final expiry date and exclude the next date', () => {
+  const s = parseChain(provider(), new Date('2026-10-23T16:00:00Z'));
+  s.contracts.push({ ...s.contracts[0], expiry: '2026-10-31' });
+  assert.equal(analyze(s, 7).contracts.length, 12);
+  assert.equal(analyze(s, 8).contracts.length, 13);
+  s.chainAsOf = '2026-10-30T19:59:59Z';
+  assert.equal(analyze(s, 0).contracts.length, 12);
+  s.chainAsOf = '2026-10-30T20:00:00Z';
+  assert.equal(analyze(s, 0).contracts.length, 0);
+});
+
+test('walls use exact strikes while chart buckets preserve totals', () => {
+  const s = parseChain(provider(), new Date('2026-10-23T16:00:00Z'));
+  s.contracts = [
+    { ...contracts[0], strike: 100.1, oi: 600 },
+    { ...contracts[0], strike: 100.4, oi: 600 },
+    { ...contracts[0], strike: 101, oi: 1000 },
+    { ...contracts[1], strike: 99.5 },
+    { ...contracts[0], strike: 150, oi: 100000 },
+  ];
+  const b = analyze(s, 30);
+  assert.equal(b.callWall?.strike, 101);
+  assert.equal(b.putWall?.strike, 99.5);
+  assert.equal(b.levels.length, 5);
+  assert.equal(b.net, b.contracts.reduce((v, c) => v + (c.side === 'C' ? 1 : -1) * exposure(c, s.spot), 0));
+  for (const step of [1, 2, 5]) {
+    const rows = aggregate(b.contracts, s.spot, step);
+    assert.equal(rows.reduce((v, r) => v + r.net, 0), b.net);
+    assert.equal(rows.reduce((v, r) => v + r.gross, 0), b.gross);
+  }
+});
+
+test('expiry contributions reconcile to full-book gross and signed net; largest need not be nearest', () => {
+  const s = parseChain(provider(), new Date('2026-10-23T16:00:00Z'));
+  s.contracts.push({ ...contracts[1], expiry: '2026-11-06', oi: 100000 });
+  const b = analyze(s, 30);
+  assert.equal(b.nearestExpiry, '2026-10-30');
+  assert.equal(b.largestExpiry?.expiry, '2026-11-06');
+  assert.ok(b.largestExpiry!.net < 0);
+  assert.equal(b.expiries.reduce((sum, r) => sum + r.gross, 0), b.gross);
+  assert.equal(b.expiries.reduce((sum, r) => sum + r.net, 0), b.net);
+});
+
+test('flip scan detects an exact grid zero and multiple non-monotonic crossings', () => {
+  const symmetric = contracts.map(c => ({ ...c, oi: 1000 }));
+  assert.equal(netAt(symmetric, 100, 100, asOf), 0);
+  assert.ok(gammaFlips(symmetric, 100, asOf).some(f => Math.abs(f - 100) < 1e-6));
+  const multi: Contract[] = [
+    { ...contracts[0], strike: 100, gamma: .08, oi: 1000, iv: .15 },
+    { ...contracts[1], strike: 95, gamma: .02, oi: 1000, iv: .15 },
+    { ...contracts[1], strike: 105, gamma: .02, oi: 1000, iv: .15 },
+  ];
+  const flips = gammaFlips(multi, 100, asOf);
+  assert.equal(flips.length, 2);
+  assert.ok(flips.some(f => f < 100) && flips.some(f => f > 100));
+  for (const f of flips) assert.ok(netAt(multi, 100, f - .001, asOf) * netAt(multi, 100, f + .001, asOf) < 0);
+  const s = parseChain(provider(), new Date('2026-10-23T16:00:00Z'));
+  s.contracts = multi;
+  assert.equal(analyze(s, 30).regime, 'Positive');
+  assert.deepEqual(gammaFlips([], 100, asOf), []);
+  assert.deepEqual(gammaFlips([symmetric[0], { ...symmetric[0], side: 'P' }], 100, asOf), []);
+  assert.deepEqual(gammaFlips([{ ...symmetric[0], oi: 1 }, { ...symmetric[1], oi: 1e12 }], 100, asOf), []);
+});
+
+test('anchored scenario agrees with independent Black-Scholes gamma ratios', () => {
+  const gamma = (c: Contract, spot: number) => {
+    const t = (expiryTime(c.expiry) - +new Date(asOf)) / (365.25 * 86400_000);
+    const d1 = (Math.log(spot / c.strike) + .5 * c.iv ** 2 * t) / (c.iv * Math.sqrt(t));
+    return Math.exp(-.5 * d1 ** 2) / (Math.sqrt(2 * Math.PI) * spot * c.iv * Math.sqrt(t));
+  };
+  for (const spot of [80, 95, 100, 105, 120]) {
+    const expected = contracts.reduce((sum, c) => sum + (c.side === 'C' ? 1 : -1) * exposure(c, spot) * gamma(c, spot) / gamma(c, 100), 0);
+    assert.ok(Math.abs(netAt(contracts, 100, spot, asOf) - expected) < Math.max(1e-6, Math.abs(expected) * 1e-10));
+  }
+});
+
+test('snapshot validation rejects fractional OI, invalid dates, duplicate series and inconsistent source time', () => {
+  const s = parseChain(provider(), new Date('2026-10-23T16:00:00Z'));
+  assert.equal(snapshotSchema.safeParse({ ...s, contracts: [...s.contracts, s.contracts[0]] }).success, false);
+  for (const change of [{ oi: .5 }, { expiry: '2026-02-30' }]) {
+    assert.equal(snapshotSchema.safeParse({ ...s, contracts: s.contracts.map((c, i) => i ? c : { ...c, ...change }) }).success, false);
+  }
+  assert.equal(snapshotSchema.safeParse({ ...s, quoteAsOf: '2026-10-24T16:00:00Z' }).success, false);
+});
+
+test('log-space repricing retains finite exposure when the intermediate gamma ratio would overflow', () => {
+  const c = { ...contracts[0], gamma: 1e-300, iv: .008 };
+  const t = (expiryTime(c.expiry) - +new Date(asOf)) / (365.25 * 86400_000);
+  const d0 = (Math.log(100 / c.strike) + c.iv * c.iv * t / 2) / (c.iv * Math.sqrt(t));
+  const d1 = (Math.log(105 / c.strike) + c.iv * c.iv * t / 2) / (c.iv * Math.sqrt(t));
+  assert.ok((d0*d0-d1*d1)/2 > 709);
+  const expected = Math.exp(Math.log(exposure(c, 105)) + Math.log(100 / 105) + (d0*d0-d1*d1)/2);
+  const actual = netAt([c], 100, 105, asOf);
+  assert.ok(Number.isFinite(actual) && actual > 1e100);
+  assert.ok(Math.abs(actual / expected - 1) < 1e-10);
+});
+
+test('freshness considers chain and quote age even if the capture is new', () => {
+  const s = parseChain(provider(), new Date('2026-10-23T16:00:00Z'));
+  const now = +new Date('2026-10-26T15:00:00Z');
+  const fresh = { ...s, retrievedAt: new Date(now).toISOString(), chainAsOf: '2026-10-26T14:45:00Z', quoteAsOf: '2026-10-26T14:30:00Z' };
+  assert.equal(freshness(fresh, now).stale, false);
+  assert.equal(freshness({ ...fresh, chainAsOf: s.chainAsOf }, now).stale, true);
+  assert.equal(freshness({ ...fresh, quoteAsOf: s.quoteAsOf }, now).stale, true);
+  assert.equal(freshness(s, +new Date('2026-10-24T15:00:00Z')).stale, false);
+  assert.equal(freshness(s, +new Date('2026-10-31T15:00:00Z')).stale, true);
+  const empty = analyze({ ...s, contracts: [] }, 30);
+  assert.equal(empty.gross, 0); assert.equal(empty.net, 0); assert.equal(empty.largestExpiry, null);
+  assert.deepEqual(empty.flips, []); assert.deepEqual(empty.upside, []); assert.deepEqual(empty.downside, []);
 });

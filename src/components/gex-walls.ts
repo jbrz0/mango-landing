@@ -3,7 +3,7 @@ import { aggregate, type Snapshot, type Book, type Exposure } from '../lib/gex/m
 export type WallsRange = number | 'levels';
 type WallsBook = Pick<Book, 'contracts' | 'flips'> & { callWall: Exposure | null; putWall: Exposure | null };
 const price = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-export const exposureLabel = (n: number, signed = false) => `${n < 0 ? '−' : signed && n > 0 ? '+' : ''}$${Math.abs(n) >= 1e9 ? (Math.abs(n) / 1e9).toFixed(2) + 'B' : (Math.abs(n) / 1e6).toFixed(1) + 'M'}`;
+export const exposureLabel = (n: number, signed = false) => `${n < 0 ? '−' : signed && n > 0 ? '+' : ''}$${Math.abs(n) >= 1e9 ? (Math.abs(n) / 1e9).toFixed(2) + 'B' : Math.abs(n) >= 1e6 ? (Math.abs(n) / 1e6).toFixed(1) + 'M' : Math.abs(n) >= 1e3 ? (Math.abs(n) / 1e3).toFixed(1) + 'K' : Math.abs(n).toFixed(0)}`;
 
 export function wallsGeometry(s: Snapshot, b: WallsBook, selection: WallsRange) {
   const markers = [
