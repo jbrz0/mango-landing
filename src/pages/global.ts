@@ -143,7 +143,7 @@ async function refresh() {
   await Promise.allSettled([
     loadDashboard().then(result => {
       briefing = result.current ? localizeResearch(result.current) : null;
-      document.querySelector('#brief-status')!.textContent = briefing ? `${result.fallback ? 'Recovered briefing' : 'Research'} / ${day(briefing.asOfDate)}${isStale(briefing.generatedAt) ? ' / Stale' : ''}` : 'Published briefing unavailable';
+      document.querySelector('#brief-status')!.textContent = briefing ? `${result.fallback ? 'Recovered briefing' : 'Research'} / ${day(briefing.asOfDate)}${isStale(briefing.asOfDate) ? ' / Stale' : ''}` : 'Published briefing unavailable';
       renderSignals(); renderEvents(); renderRegion(); renderNews();
     }),
     fetch('/api/global', { signal: AbortSignal.timeout(18_000) }).then(async r => { if (!r.ok) throw new Error('Feed unavailable'); globalData = globalSchema.parse(await r.json()); globalRefreshFailed = false; }).catch(() => { globalRefreshFailed = true; }).finally(() => { renderSignals(); renderAssets(); renderRegion(); renderNews(); }),

@@ -55,7 +55,7 @@ test('rejects schema drift, invalid enums, missing timestamps and malformed coll
 test('rejects future generation time and handles Bangkok date boundaries', () => {
   assert.throws(() => parseIntel(fixture(), true, Date.parse('2026-01-14T00:00:00Z')), /future/);
   assert.equal(bangkokDate('2026-01-14T18:00:00Z'), '2026-01-15');
-  assert.equal(isStale('2026-01-15T00:00:00Z', Date.parse('2026-01-17T00:00:00Z')), true);
+  assert.equal(isStale('2026-01-15', Date.parse('2026-01-17T00:00:00Z')), true);
 });
 test('only compares known values and safely escapes research text', () => {
   const before = parseIntel(fixture()); const after = structuredClone(before);

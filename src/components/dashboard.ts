@@ -1,6 +1,6 @@
 import type { Intel, EconomicEvent } from '../lib/intel/schema';
 import { changesSince } from '../lib/intel/compare';
-import { escape as e, day, time, number, readable, isStale, notToday, timestamp, zoneName, dateKey, addDays, displayTimeZone } from '../lib/format';
+import { escape as e, day, time, number, readable, isStale, expectedBriefDate, notToday, timestamp, zoneName, dateKey, addDays, displayTimeZone } from '../lib/format';
 import { localizeResearch } from '../lib/intel/localize';
 import { refreshEquityQuotes } from './equities';
 import { badge, empty, metric, sectionHeader, arrow } from './primitives';
@@ -83,7 +83,7 @@ export function feed(data: Intel | null, filter = 'All') {
   const visible = filter === 'All' ? all : all.filter(item => item.tags.includes(filter));
   return `${sectionHeader('feed-title', 'Intelligence wire', '04 / CONTEXT THAT MATTERS')}
   ${all.length ? `<div class="feed-filters" role="group" aria-label="Filter intelligence">${tags.map(tag => `<button data-feed-filter="${e(tag)}" aria-pressed="${filter === tag}">${e(tag)}</button>`).join('')}</div><div class="stories">${visible.map(item => `<article class="story"><div class="story-meta"><span>${e(item.source)}</span><time${item.publishedAt ? ` datetime="${e(item.publishedAt)}"` : ''}>${item.publishedAt ? `${e(timestamp(item.publishedAt))}` : 'Time not supplied'}</time></div><h3><a href="${e(item.url)}" target="_blank" rel="noopener noreferrer">${e(item.headline)} ${arrow}</a></h3><p>${e(item.summary)}</p><div class="story-tags">${item.tags.map(tag => `<span>${e(tag)}</span>`).join('')}${item.symbols.map(symbol => `<span>${stocks.has(symbol) ? stockIdentity(symbol) : e(symbol)}</span>`).join('')}</div></article>`).join('')}</div>` : empty('The wire is quiet for now', 'Short, sourced story summaries will appear here when published. Original articles stay with their publishers.')}
-  <p class="section-note">Mango Atlas summaries. Links open the original reporting.</p>`;
+  <p class="section-note">Mango Atlas summaries. Links open the original reporting.${all.some(item => !item.publishedAt) ? ' Stories without a time come from the latest available issue and may predate this brief.' : ''}</p>`;
 }
 
 export function renderData(data: Intel | null, historical: boolean, fallback = false) {
@@ -96,8 +96,8 @@ export function renderData(data: Intel | null, historical: boolean, fallback = f
   document.querySelector('#intelligence')!.innerHTML = feed(data);
   if (data?.nq) void refreshEquityQuotes();
   const status = document.querySelector('#data-status')!;
-  status.classList.toggle('stale', !!data && !historical && isStale(data.generatedAt));
-  status.innerHTML = data ? `<div><span class="status-label">${historical ? 'ARCHIVE' : isStale(data.generatedAt) ? 'STALE' : notToday(data.generatedAt) ? 'PREVIOUS BRIEF' : 'LATEST BRIEF'}</span><span>${historical ? 'Published' : 'Last updated'} <time datetime="${e(data.generatedAt)}">${e(timestamp(data.generatedAt))}</time>${fallback ? ' · Recovered from a valid archive' : ''}</span></div><span class="data-note">${historical ? 'Historical research · Quotes and charts remain current' : 'Daily research · Market feeds update independently'}</span>` : '<span class="status-label">UNAVAILABLE</span><span>Research could not be loaded. Public charts remain available.</span><button class="text-button" id="retry-data">Retry</button>';
+  status.classList.toggle('stale', !!data && !historical && isStale(data.asOfDate));
+  status.innerHTML = data ? `<div><span class="status-label">${historical ? 'ARCHIVE' : isStale(data.asOfDate) ? 'STALE' : notToday(data.generatedAt) ? 'PREVIOUS BRIEF' : 'LATEST BRIEF'}</span><span>${historical ? 'Published' : 'Last updated'} <time datetime="${e(data.generatedAt)}">${e(timestamp(data.generatedAt))}</time>${fallback ? ' · Recovered from a valid archive' : ''}${!historical && isStale(data.asOfDate) ? ` · Newer brief expected ${e(day(expectedBriefDate()))}` : ''}</span></div><span class="data-note">${historical ? 'Historical research · Quotes and charts remain current' : 'Daily research · Market feeds update independently'}</span>` : '<span class="status-label">UNAVAILABLE</span><span>Research could not be loaded. Public charts remain available.</span><button class="text-button" id="retry-data">Retry</button>';
   document.querySelector('#retry-data')?.addEventListener('click', () => location.reload());
 }
 

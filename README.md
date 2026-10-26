@@ -38,6 +38,10 @@ npm run test:e2e
 
 `PLAYWRIGHT_CHANNEL=chrome` optionally uses an installed Chrome for local tests. The tests cover 375/390/430/1440px layouts, no overflow, data failure, archive comparisons, event times, FX expansion, news filters, safe text rendering, chart failure, links and redirects. Third-party chart availability is tested separately in a real browser, not asserted by deterministic CI.
 
+## Health check
+
+`npm run health` makes read-only GET requests to the public site (default `https://www.mangoatlas.xyz`; pass another base URL or set `HEALTH_BASE_URL`, e.g. a Vercel preview). It checks every page, the `/daily` redirect, `current.json` (schema and weekday freshness: a brief is due after 10:30 BKK, Monday to Friday), the archive manifest, the QQQ gamma snapshot age, and the `/api/macro`, `/api/equities` and `/api/global` bodies (`/api/global` returns 200 even when partly degraded). Each line is `OK`, `WARN` or `FAIL`; add `--json` for machine-readable output. Exit code 1 means at least one failure. It needs no credentials and never writes.
+
 ## Structure
 
 ```text

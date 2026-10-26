@@ -21,7 +21,18 @@ export const timestamp = (iso: string) => `${day(iso)} · ${time(iso)} ${zoneLab
 export const addDays = (date: string, days: number) => new Date(Date.parse(`${date}T12:00:00Z`) + days * 86400_000).toISOString().slice(0, 10);
 export const signed = (value: number | null) => value === null ? 'No change data' : `${value > 0 ? '+' : ''}${value.toFixed(2)}%`;
 export const number = (value: number, digits = 2) => new Intl.NumberFormat('en-US', { maximumFractionDigits: digits }).format(value);
-export const isStale = (generatedAt: string, now = Date.now()) => now - Date.parse(generatedAt) > 36 * 60 * 60_000;
+// The publisher runs on Bangkok weekdays at about 08:32 and normally lands before 09:30.
+// A brief is due once 10:30 BKK has passed on a weekday; weekends carry Friday's brief.
+export const BRIEF_DUE_MINUTES_BKK = 10 * 60 + 30;
+export function expectedBriefDate(now = Date.now()): string {
+  const bangkok = new Date(now + 7 * 3600_000); // Asia/Bangkok has no daylight saving time.
+  let date = bangkok.toISOString().slice(0, 10);
+  if (bangkok.getUTCHours() * 60 + bangkok.getUTCMinutes() < BRIEF_DUE_MINUTES_BKK) date = addDays(date, -1);
+  while ([0, 6].includes(new Date(`${date}T12:00:00Z`).getUTCDay())) date = addDays(date, -1);
+  return date;
+}
+// Stale means a newer scheduled brief should already exist. Holidays without a publish are reported as stale.
+export const isStale = (asOfDate: string, now = Date.now()) => asOfDate < expectedBriefDate(now);
 export const notToday = (generatedAt: string, now = new Date()) => dateKey(generatedAt) !== dateKey(now);
 
 // All research text is escaped before entering a template. No markdown or HTML from feeds is rendered.
