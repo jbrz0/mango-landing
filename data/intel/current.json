@@ -1,28 +1,29 @@
 {
   "schemaVersion": 1,
   "kind": "briefing",
-  "asOfDate": "2026-10-26",
-  "generatedAt": "2026-10-26T08:38:04+07:00",
+  "asOfDate": "2026-10-27",
+  "generatedAt": "2026-10-27T08:34:06+07:00",
   "timezone": "Asia/Bangkok",
   "provenance": {
     "source": "Mango Atlas Grokbot daily intelligence",
-    "note": "Compiled 2026-10-26 BKK from Daily Briefing (7:09 AM BKK), NQ Briefing (7:13 AM BKK), FX Briefing (7:10 AM BKK), ForexFactory week calendar JSON (fetched Oct 26 6:04 AM BKK; High/Medium only, today onward; actuals not captured), the latest Mango Atlas Bloomberg Markets Daily summaries (Friday Oct 23 issue; no Monday issue yet; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs (changePct nulled where Yahoo's prior close was not confirmed by the briefs: EURUSD, USDJPY, AUDUSD, USDCHF). No premarket movers reported. No invented prices, levels, or enums."
+    "note": "Compiled 2026-10-27 BKK from Daily Briefing (7:05 AM BKK), NQ Briefing (7:13 AM BKK), FX Briefing (7:02 AM BKK), ForexFactory week calendar JSON (fetched Oct 27 6:02 AM BKK; High/Medium only, today onward; actuals not captured), the latest Mango Atlas Bloomberg Markets Daily summaries (Monday Oct 26 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs (changePct nulled where Yahoo's prior close was not confirmed by the briefs: NQ, EURUSD, USDJPY, AUDUSD, USDCHF). No premarket movers reported. No invented prices, levels, or enums."
   },
   "overview": {
-    "sentiment": "bearish",
+    "sentiment": "neutral",
     "confidence": "medium",
     "volatilityOutlook": "rising",
-    "oneLineTake": "The Monday bounce is fragile with the Fed, megacap earnings and Iran all landing this week, so keep short premium small and own some downside protection.",
+    "oneLineTake": "Monday's bounce bought time, not conviction, so stay light on short premium into the Fed and megacap earnings and keep downside protection on.",
     "themes": [
-      "AI trade under trial: Meta's capex and funding worries, chip weakness and neocloud credit stress drove last week's tech selloff. QQQ closed flat Friday at 704.40 after the Nasdaq 100's 3% drop Thursday, while SPY slipped 0.5% to 759.97.",
-      "Oil shock is back: Brent topped $113 last week, its highest since May, on Iran strike risk, Houthi attacks and tanker rates. Crude is dipping at the open and equity futures are bouncing.",
-      "Bonds are the hedge again: the 10-year fell to 4.96% (Oct 22) in the biggest yield drop since the 2023 banking crisis, a flight to safety that trimmed Fed hike bets.",
-      "Event-heavy week: the Fed decision, Microsoft, Alphabet and Amazon earnings, and about 36% of the S&P 500 reporting. Earnings strength rests on a handful of megacaps."
+      "Relief rally, not a regime change: Anthropic's IPO filing pulled AI names off the floor. QQQ rose 1.1% to 712.20 and SPY gained 0.7% to 765.37, but last week's capex and credit worries remain unresolved, and futures are flat overnight.",
+      "The AI funding wave is the story: Meta's giant stock offering, SpaceX chip debt, record high-grade bond sales and Anthropic flagging more debt. Investors now want returns on AI spending, not just bigger budgets.",
+      "Oil eased but stays the macro wildcard: crude ticked lower as Saudi Arabia and Iran held talks and Iran signaled flexibility, yet Trump says he will soon decide whether to make a deal or \"finish it off.\" Houthi attacks keep supply risk live.",
+      "Packed catalyst week: the Fed decides Wednesday with a hold expected, Microsoft, Alphabet and Amazon report, and over a third of the S&P 500 posts results. The 10-year sat at 5.00% on Oct 23 after a sharp two-week drop in yields.",
+      "Brazil shock: Lula's surprise win crushed Brazilian assets, a reminder that election risk can gap markets fast ahead of US midterms."
     ],
     "risks": [
-      "A hawkish Fed with oil above $100 revives the stagflation trade and breaks the bond hedge.",
-      "Weak megacap capex guidance deepens the AI unwind, with NQ hit hardest.",
-      "A US move on Iran, or midterm election noise, triggers gap risk in oil and indices."
+      "Weak megacap capex or cloud guidance reignites the AI unwind, with NQ most exposed.",
+      "A hawkish Fed with oil elevated revives the stagflation trade and breaks the bond hedge.",
+      "An Iran decision either way gaps oil and indices overnight."
     ]
   },
   "markets": [
@@ -30,121 +31,121 @@
       "symbol": "NQ",
       "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
       "instrumentType": "futures",
-      "price": 29141.25,
-      "changePct": 0.0807,
+      "price": 29557.75,
+      "changePct": null,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-26T06:59:32+07:00",
+      "updatedAt": "2026-10-27T07:03:10+07:00",
       "status": "delayed"
     },
     {
       "symbol": "NDX",
       "label": "NASDAQ-100 cash index",
       "instrumentType": "cash_index",
-      "price": 28957.53,
-      "changePct": -0.004,
+      "price": 29273.4,
+      "changePct": 1.0908,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-24T04:15:59+07:00",
+      "updatedAt": "2026-10-27T04:15:59+07:00",
       "status": "delayed"
     },
     {
       "symbol": "DXY",
       "label": "ICE US Dollar Index",
       "instrumentType": "cash_index",
-      "price": 101.673,
-      "changePct": -0.1346,
+      "price": 102.024,
+      "changePct": 0.2397,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-26T06:58:23+07:00",
+      "updatedAt": "2026-10-27T06:52:22+07:00",
       "status": "delayed"
     },
     {
       "symbol": "US10Y",
       "label": "US 10-year Treasury yield",
       "instrumentType": "yield",
-      "price": 4.988,
-      "changePct": 0.7066,
+      "price": 4.986,
+      "changePct": -0.0401,
       "unit": "percent",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-24T01:59:56+07:00",
+      "updatedAt": "2026-10-27T01:59:52+07:00",
       "status": "delayed"
     },
     {
       "symbol": "VIX",
       "label": "CBOE Volatility Index",
       "instrumentType": "volatility_index",
-      "price": 19.45,
-      "changePct": 2.207,
+      "price": 18.39,
+      "changePct": -5.4499,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-24T03:15:01+07:00",
+      "updatedAt": "2026-10-27T03:15:01+07:00",
       "status": "delayed"
     },
     {
       "symbol": "VXN",
       "label": "CBOE NASDAQ 100 Volatility Index",
       "instrumentType": "volatility_index",
-      "price": 28.3,
-      "changePct": -1.4624,
+      "price": 26.4,
+      "changePct": -6.7138,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-24T03:15:01+07:00",
+      "updatedAt": "2026-10-27T03:15:01+07:00",
       "status": "delayed"
     },
     {
       "symbol": "GC",
       "label": "Gold front-month futures (Yahoo GC=F)",
       "instrumentType": "futures",
-      "price": 4011.2,
-      "changePct": 0.0823,
+      "price": 4019.1,
+      "changePct": 0.2795,
       "unit": "USD",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-26T06:58:24+07:00",
+      "updatedAt": "2026-10-27T06:52:25+07:00",
       "status": "delayed"
     },
     {
       "symbol": "EURUSD",
       "label": "EUR/USD spot",
       "instrumentType": "fx",
-      "price": 1.12196,
+      "price": 1.11794,
       "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-26T07:07:44+07:00",
+      "updatedAt": "2026-10-27T07:01:44+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDJPY",
       "label": "USD/JPY spot",
       "instrumentType": "fx",
-      "price": 156.98,
+      "price": 157.504,
       "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-26T07:08:24+07:00",
+      "updatedAt": "2026-10-27T07:02:24+07:00",
       "status": "delayed"
     },
     {
       "symbol": "AUDUSD",
       "label": "AUD/USD spot",
       "instrumentType": "fx",
-      "price": 0.70309,
+      "price": 0.7021,
       "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-26T07:06:44+07:00",
+      "updatedAt": "2026-10-27T07:00:44+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDCHF",
       "label": "USD/CHF spot",
       "instrumentType": "fx",
-      "price": 0.82429,
+      "price": 0.82771,
       "changePct": null,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-10-26T07:08:24+07:00",
+      "updatedAt": "2026-10-27T07:02:25+07:00",
       "status": "delayed"
     }
   ],
@@ -152,160 +153,159 @@
     "bias": "neutral",
     "conviction": "low",
     "regime": "Volatile, event-driven",
-    "summary": "NDX held flat Friday at 28,958 after Thursday's 2.9% drop, so the AI capex selloff paused but did not reverse. NQ popped at the reopen and gave most of it back. The Fed plus Microsoft, Alphabet and Amazon earnings this week decide the next leg. Thesis: Neutral, 5/10, range trade edges; fade 29,412, buy holds of 28,826. Invalidation: NDX close below 28,826. NDX levels: resistance 29,161 (Fri high), 29,412 (Thu high), 29,594; support 28,826 (Fri low), 28,500, 28,000.",
-    "primaryCatalyst": "FOMC decision Thu 1:00 AM BKK (presser 1:30 AM), plus Microsoft, Alphabet and Amazon earnings this week.",
-    "primaryRisk": "Elevated: Iran headlines and megacap guidance; losing 28,826 NDX opens 28,500.",
-    "overnight": "NQ at 29,141 (+0.08%), faded from a 29,268 reopen (high 29,344, low 29,094), giving back an early gain of about 0.5%. Brent eased about 0.7% to near $116 after a 6% weekly rally.",
-    "macro": "10Y just under 5% at 4.99% after last week's sharp drop supports multiples, but oil above $100 keeps inflation and hawkish Fed risk alive. DXY 101.67. No US data today; German ifo 4:00 PM BKK, CB Confidence Tue 9:00 PM, GDP and Core PCE Thu 7:30 PM.",
-    "volatility": "VIX +2.2% to 19.5, VXN -1.5% to 28.3; tech vol still elevated. Dealer gamma unavailable.",
+    "summary": "NDX rallied 1.1% to 29,273 Monday as the Anthropic IPO filing revived AI names, and NQ is holding near its overnight high. Vol eased but the bounce has not cleared last week's highs. The Fed and Microsoft, Alphabet and Amazon earnings later this week decide whether this is a turn or a pause. Bias: neutral to mildly bullish, relief bounce into the Fed. Thesis: Neutral+, 5/10, buy holds of 29,161 and trim into 29,404 to 29,594. Invalidation: NDX close below 29,012. NDX levels: resistance 29,404 (Mon high), 29,594, 30,000; support 29,161, 29,012 (Mon low), 28,826 (Fri low).",
+    "primaryCatalyst": "CB Consumer Confidence 9:00 PM BKK (f 81.2, p 81.9); FOMC Thu 1:00 AM BKK; Microsoft and Alphabet report Wed after the close, Amazon Thu.",
+    "primaryRisk": "Elevated: Iran headlines and megacap guidance; losing 29,161 NDX opens a retest of 29,012.",
+    "overnight": "NQ at 29,558, up from a 29,481 session open (high 29,564, low 29,412), firm in Asia with Nikkei futures and Korean chip names higher. Oil eased on Iran talks headlines.",
+    "macro": "10Y just under 5% at 4.99% supports multiples; a firmer dollar (DXY 102.01) and oil near triple digits keep hawkish Fed risk alive. ADP weekly 7:15 PM and CB Confidence 9:00 PM BKK today.",
+    "volatility": "VIX -5.5% to 18.4, VXN -6.7% to 26.4; tech vol cooling but still elevated. Dealer gamma unavailable.",
     "sentimentShortTerm": null,
     "sentimentMediumTerm": null,
     "megaCaps": [
       {
-        "symbol": "MSFT",
-        "changePct": 0.6582,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
+        "symbol": "TSLA",
+        "changePct": 5.212,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:01+07:00"
-      },
-      {
-        "symbol": "ORCL",
-        "changePct": 0.4939,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:02:48+07:00"
-      },
-      {
-        "symbol": "AAPL",
-        "changePct": -0.1407,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:01+07:00"
-      },
-      {
-        "symbol": "AVGO",
-        "changePct": -0.4826,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
-        "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:01+07:00"
+        "updatedAt": "2026-10-27T03:00:00+07:00"
       },
       {
         "symbol": "NVDA",
-        "changePct": -0.589,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
+        "changePct": 2.3891,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:00+07:00"
+        "updatedAt": "2026-10-27T03:00:00+07:00"
       },
       {
-        "symbol": "TSLA",
-        "changePct": -0.63,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
+        "symbol": "AVGO",
+        "changePct": 2.3284,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:00+07:00"
+        "updatedAt": "2026-10-27T03:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 1.5424,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-27T03:00:01+07:00"
       },
       {
         "symbol": "AMZN",
-        "changePct": -0.9506,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
+        "changePct": 0.4395,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:01+07:00"
+        "updatedAt": "2026-10-27T03:00:01+07:00"
       },
       {
-        "symbol": "META",
-        "changePct": -0.9602,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
+        "symbol": "ORCL",
+        "changePct": -0.0793,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:01+07:00"
+        "updatedAt": "2026-10-27T03:04:31+07:00"
       },
       {
         "symbol": "GOOGL",
-        "changePct": -1.2368,
-        "context": "Friday Oct 23 regular-session close vs prior close.",
+        "changePct": -1.0649,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:01+07:00"
+        "updatedAt": "2026-10-27T03:00:01+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": -1.0986,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-27T03:00:01+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": -1.8767,
+        "context": "Monday Oct 26 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-10-27T03:00:01+07:00"
       }
     ],
     "semiconductors": [
       {
         "symbol": "SMH",
-        "changePct": 0.7357,
-        "context": "Chip ETF to 527.20, bounce after Thursday's hit. Friday Oct 23 regular-session close vs prior close.",
+        "changePct": 2.7352,
+        "context": "Chip ETF to 541.62; chips led the AI relief. Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:00+07:00"
+        "updatedAt": "2026-10-27T03:00:01+07:00"
       },
       {
         "symbol": "MU",
-        "changePct": 2.4589,
-        "context": "Memory to 877.55, bounce after Thursday's 6% drop. Friday Oct 23 regular-session close vs prior close.",
+        "changePct": 2.9799,
+        "context": "Memory to 903.70; chips led the AI relief. Monday Oct 26 regular-session close vs prior close.",
         "source": "Yahoo Finance",
-        "updatedAt": "2026-10-24T03:00:01+07:00"
+        "updatedAt": "2026-10-27T03:00:01+07:00"
       }
     ],
     "premarket": []
   },
   "fx": {
-    "macroPulse": "USD steady into Asia: DXY 101.67 (-0.13%) with the 10Y closing Friday at 4.99% from 4.95% and the Fed decision due this week. Risk tone fragile: crude dips at the open after last week's Iran-driven rally, equity futures bounce, yen a touch softer. German ifo 4:00 PM and UK CBI Realized Sales 6:00 PM BKK.",
+    "macroPulse": "USD bid into Asia: DXY 102.02 (+0.24%) above Monday's 101.78 close, with the 10Y near 4.99% and the Fed decision due this week. Risk tone steadier after last week's tech selloff, but yen and franc are the weak spots and gold is back above 4,000. BOJ Core CPI 12:00 PM and US CB Consumer Confidence 9:00 PM BKK.",
     "instruments": [
       {
         "symbol": "DXY",
-        "bias": "neutral",
-        "driver": "Index at 101.67, under Friday's 101.81 close and inside a tight 101.67 to 101.79 range as desks wait on the Fed.",
-        "posture": "Watch only, chop; staying under 101.81 keeps the soft tilt.",
+        "bias": "mildly_bullish",
+        "driver": "Index at 102.02, up from the 101.78 close as EURUSD and the yen sold off through Monday.",
+        "posture": "Holding above 101.78 keeps the bid; a slip back under it puts it back to chop.",
         "support": [
-          101.67
+          101.78
+        ],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "neutral",
+        "driver": "Spot closed Monday at 4,005.25 after a 3,977.90 to 4,029.66 range, and GC is at 4,019.10 (+0.28%) even with the dollar firm.",
+        "posture": "Watch only, chop; acceptance above 4,030 opens upside, a loss of 3,978 reopens liquidation.",
+        "support": [
+          3978
         ],
         "resistance": [
-          101.79,
-          101.81
+          4030
         ],
         "comments": "Brief view: neutral."
       },
       {
-        "symbol": "XAUUSD",
+        "symbol": "EURUSD",
         "bias": "bearish",
-        "driver": "Spot closed Friday at 3,997.11, below 4,000 and down from Thursday's 4,023.39, and GC at 4,011.20 is barely bid despite Iran risk.",
-        "posture": "Acceptance under 4,000 opens more liquidation; a reclaim of 4,023 negates.",
+        "driver": "Pair at 1.1179 after a 0.39% drop Monday to a 1.1173 close, near the 1.1167 low.",
+        "posture": "Sell rallies toward 1.1200; a reclaim of 1.1227 negates.",
         "support": [
-          4000
+          1.1167
         ],
         "resistance": [
-          4023.39
+          1.12,
+          1.1227
         ],
         "comments": "Brief view: bearish."
       },
       {
-        "symbol": "EURUSD",
-        "bias": "neutral",
-        "driver": "Pair at 1.1220, flat on Friday's 1.1217 close inside a 1.1206 to 1.1228 range ahead of German ifo.",
-        "posture": "Watch only, chop.",
-        "support": [
-          1.1206
-        ],
-        "resistance": [
-          1.1228
-        ],
-        "comments": "Brief view: neutral."
-      },
-      {
         "symbol": "USDJPY",
-        "bias": "mildly_bullish",
-        "driver": "Pair at 156.98, above Friday's 156.83 close and pressing the 157.07 session high after yields firmed Friday.",
-        "posture": "Buy dips toward 156.80; a break under the 156.77 session low negates.",
+        "bias": "bullish",
+        "driver": "Pair at 157.50 after a 0.44% gain Monday, sitting under the 157.64 high ahead of BOJ Core CPI at 12:00 PM.",
+        "posture": "Buy dips toward 157.20; a break under 156.65 negates.",
         "support": [
-          156.8,
-          156.77
+          157.2,
+          156.65
         ],
         "resistance": [
-          157.07
+          157.64
         ],
-        "comments": "Brief view: mildly bullish."
+        "comments": "Brief view: bullish."
       },
       {
         "symbol": "AUDUSD",
         "bias": "neutral",
-        "driver": "Pair at 0.7031, flat on Friday's 0.7029 close and holding the 0.70 handle as crude eases.",
+        "driver": "Pair at 0.7021, slightly under Monday's 0.7029 open and holding the 0.70 handle above the 0.7007 low.",
         "posture": "Watch only, chop.",
         "support": [
+          0.7007,
           0.7
         ],
         "resistance": [],
@@ -313,16 +313,16 @@
       },
       {
         "symbol": "USDCHF",
-        "bias": "neutral",
-        "driver": "Pair at 0.8243, near Friday's 0.8238 close inside a 0.8229 to 0.8252 range.",
-        "posture": "Watch only, chop.",
+        "bias": "mildly_bullish",
+        "driver": "Pair at 0.8277 after a 0.47% gain Monday, pressing the 0.8279 high.",
+        "posture": "A clean break of 0.8279 favours more upside; under 0.8250 it fades back to chop.",
         "support": [
-          0.8229
+          0.825
         ],
         "resistance": [
-          0.8252
+          0.8279
         ],
-        "comments": "Brief view: neutral."
+        "comments": "Brief view: mildly bullish."
       }
     ]
   },
@@ -337,7 +337,7 @@
       "country": "United States",
       "impact": "medium",
       "title": "CB Consumer Confidence",
-      "forecast": "80.5",
+      "forecast": "81.2",
       "previous": "81.9",
       "actual": null,
       "source": "https://www.forexfactory.com/calendar"
@@ -622,7 +622,7 @@
       "country": "United States",
       "impact": "medium",
       "title": "Advance GDP Price Index q/q",
-      "forecast": "3.5%",
+      "forecast": "3.3%",
       "previous": "6.2%",
       "actual": null,
       "source": "https://www.forexfactory.com/calendar"
@@ -763,8 +763,8 @@
       "source": "https://www.forexfactory.com/calendar"
     },
     {
-      "id": "2026-10-30-1329-eur-german-prelim-cpi-m-m",
-      "datetime": "2026-10-30T13:29:00+07:00",
+      "id": "2026-10-30-1429-eur-german-prelim-cpi-m-m",
+      "datetime": "2026-10-30T14:29:00+07:00",
       "date": "2026-10-30",
       "timeLabel": null,
       "timezone": "Asia/Bangkok",
@@ -825,24 +825,37 @@
   ],
   "intelligence": [
     {
-      "id": "bbg-us-midterm-elections-2026-what-results-could-mean-for-wall-street",
+      "id": "bbg-brazil-markets-brace-for-rout-on-lula-s-improbable-election-win",
       "source": "Bloomberg",
-      "headline": "US Election Angst Looms for Stocks and the AI Boom",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/us-midterm-elections-2026-what-results-could-mean-for-wall-street",
-      "summary": "With the midterms less than two weeks away, a Democratic sweep is seen as bad for stocks and AI, but Trump's veto points to gridlock, and the S&P 500 has risen in the 12 months after every postwar midterm, per Wells Fargo.",
+      "headline": "Brazil Markets Brace for Rout on Lula's Improbable Win",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/brazil-markets-brace-for-rout-on-lula-s-improbable-election-win",
+      "summary": "A Brazil equity ETF is down 27% in US premarket, Bradesco is down 27%, Itau 28% and XP 39%, with currency derivatives pointing to a more than 10% plunge in the real.",
       "publishedAt": null,
       "tags": [
-        "Election",
-        "Equities"
+        "Brazil",
+        "EM"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "id": "bbg-lula-wins-a-record-fourth-term-in-brazil-in-a-surprise-comeback",
       "source": "Bloomberg",
-      "headline": "Stocks Stabilize After AI Rout as Oil Keeps Climbing",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/stock-market-today-dow-s-p-live-updates",
-      "summary": "Stocks are stabilizing after yesterday's rout in the AI trade, though further gains in oil prices are keeping sentiment cautious.",
+      "headline": "Lula Wins a Record Fourth Term in Surprise Comeback",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-25/lula-wins-a-record-fourth-term-in-brazil-in-a-surprise-comeback",
+      "summary": "Lula came from behind to defeat Flavio Bolsonaro, the candidate many investors preferred, and Bolsonaro called for the result to be annulled.",
+      "publishedAt": null,
+      "tags": [
+        "Brazil",
+        "Politics"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-us-equity-futures-climb-as-crude-oil-price-dips-markets-wrap",
+      "source": "Bloomberg",
+      "headline": "US Equity Futures Climb as Crude Dips",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-25/us-equity-futures-climb-as-crude-oil-price-dips-markets-wrap",
+      "summary": "Stocks elsewhere started the week positive as oil retreated from a six-month high ahead of a busy slate of tech earnings.",
       "publishedAt": null,
       "tags": [
         "Equities",
@@ -851,11 +864,24 @@
       "symbols": []
     },
     {
-      "id": "bbg-euro-zone-business-activity-slowed-as-france-unrest-weighs",
+      "id": "bbg-top-saudi-turkish-officials-travel-to-iran-to-quell-war-tension",
       "source": "Bloomberg",
-      "headline": "Euro-Zone Business Activity Slows as France Unrest Weighs",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-23/euro-zone-business-activity-slowed-as-france-unrest-weighs",
-      "summary": "The euro area's private sector slowed more than expected in October, weighed down by France's fiscal and political tensions.",
+      "headline": "Saudi, Turkish Officials Travel to Iran to Quell War Tension",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/top-saudi-turkish-officials-travel-to-iran-to-quell-war-tension",
+      "summary": "Top security officials from Saudi Arabia, Pakistan and Turkey meet Iran's leaders today to revive talks aimed at preventing a broader Middle East war.",
+      "publishedAt": null,
+      "tags": [
+        "Geopolitics",
+        "Middle East"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-germany-s-business-outlook-unexpectedly-improves-for-sixth-month",
+      "source": "Bloomberg",
+      "headline": "German Business Outlook Improves for Sixth Month",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/germany-s-business-outlook-unexpectedly-improves-for-sixth-month",
+      "summary": "Germany's business outlook unexpectedly brightened for a sixth straight month, underscoring the economy's rebound.",
       "publishedAt": null,
       "tags": [
         "Europe",
@@ -864,194 +890,135 @@
       "symbols": []
     },
     {
-      "id": "bbg-sk-hynix-scraps-solidigm-us-ipo-after-shareholder-concerns",
+      "id": "bbg-chinese-carmakers-overtake-japan-europe-byd-chery-toyota-nissan",
       "source": "Bloomberg",
-      "headline": "SK Hynix Scraps Solidigm US IPO",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/sk-hynix-scraps-solidigm-us-ipo-after-shareholder-concerns",
-      "summary": "SK Hynix scrapped plans for a potential $10 billion US listing of its Solidigm unit as investors grow uneasy over the AI boom.",
-      "publishedAt": null,
-      "tags": [
-        "Semis",
-        "IPO"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-gucci-sales-trail-estimates-on-china-slump-as-turnaround-falters",
-      "source": "Bloomberg",
-      "headline": "Gucci Sales Trail Estimates on China Slump",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/gucci-sales-trail-estimates-on-china-slump-as-turnaround-falters",
-      "summary": "Kering shares plunged on disappointing Gucci sales, with weakness in China undermining the brand's turnaround.",
-      "publishedAt": null,
-      "tags": [
-        "Luxury",
-        "Earnings"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-jetblue-jblu-stock-bonds-plunge-to-record-lows-signaling-danger",
-      "source": "Bloomberg",
-      "headline": "JetBlue Stocks and Bonds Plunge to Record Lows",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/jetblue-jblu-stock-bonds-plunge-to-record-lows-signaling-danger",
-      "summary": "JetBlue's stocks and bonds plunged, signaling mounting investor doubts about the airline's financial outlook.",
-      "publishedAt": null,
-      "tags": [
-        "Airlines",
-        "Credit"
-      ],
-      "symbols": [
-        "JBLU"
-      ]
-    },
-    {
-      "id": "bbg-spacex-in-talks-to-access-80-000-cell-sites-for-wireless-network",
-      "source": "Bloomberg",
-      "headline": "SpaceX Seeks Access to 80,000 US Cell Sites",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/spacex-in-talks-to-access-80-000-cell-sites-for-wireless-network",
-      "summary": "Tower operators rose premarket (Crown Castle +6.3%, American Tower +4.1%, SBA +4.8%) while T-Mobile, Verizon and AT&T slid about 3% each.",
-      "publishedAt": null,
-      "tags": [
-        "Telecom",
-        "Premarket"
-      ],
-      "symbols": [
-        "CCI",
-        "AMT",
-        "SBAC"
-      ]
-    },
-    {
-      "id": "bbg-western-digital-gives-solid-outlook-hikes-dividend-on-ai-demand",
-      "source": "Bloomberg",
-      "headline": "Western Digital Dips Despite Solid Outlook",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/western-digital-gives-solid-outlook-hikes-dividend-on-ai-demand",
-      "summary": "Western Digital dipped about 1% as better-than-expected results failed to impress amid questions over AI spending; Deckers slid 8.5% on a guidance cut.",
-      "publishedAt": null,
-      "tags": [
-        "Tech",
-        "Earnings"
-      ],
-      "symbols": [
-        "WDC"
-      ]
-    },
-    {
-      "id": "bbg-volvo-profit-rises-truck-demand-north-america-europe",
-      "source": "Bloomberg",
-      "headline": "Volvo Car Sinks 28% After Weak Quarter",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-23/volvo-profit-rises-truck-demand-north-america-europe",
-      "summary": "Volvo Car sank 28% in Stockholm as cratering China sales and US tariffs complicate its turnaround; AmEx and Rogers report before the open.",
+      "headline": "Chinese Carmakers Overtake Japan in Europe",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/chinese-carmakers-overtake-japan-europe-byd-chery-toyota-nissan",
+      "summary": "Chinese automakers such as BYD and Chery outsold Japanese rivals in Europe for the first time last quarter.",
       "publishedAt": null,
       "tags": [
         "Autos",
-        "Earnings"
+        "China"
       ],
       "symbols": []
     },
     {
-      "id": "bbg--paralyzed-us-ipo-market-asks-if-there-s-life-after-anthropic",
+      "id": "bbg-fed-set-to-lead-g7-trio-in-hawkish-rate-pause-eco-week-ahead",
       "source": "Bloomberg",
-      "headline": "Paralyzed US IPO Market Waits on Anthropic",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/-paralyzed-us-ipo-market-asks-if-there-s-life-after-anthropic",
-      "summary": "October is on track to be the slowest month of the year for US listings by volume after $162.6 billion was raised through September, with Anthropic's debut expected next month.",
+      "headline": "Fed, ECB and BOJ Set for Hawkish Rate Pause",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-24/fed-set-to-lead-g7-trio-in-hawkish-rate-pause-eco-week-ahead",
+      "summary": "The Fed (Wednesday), ECB (Thursday) and BOJ (Friday) are expected to hold rates; earnings include Alphabet and Microsoft Wednesday and Amazon, Intel, Eli Lilly and Mastercard Thursday.",
       "publishedAt": null,
       "tags": [
-        "IPO",
+        "Central banks",
+        "Week ahead"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-ai-spending-fears-threaten-to-swamp-big-tech-s-strong-earnings",
+      "source": "Bloomberg",
+      "headline": "AI Spending Fears Threaten to Swamp Big Tech Earnings",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-25/ai-spending-fears-threaten-to-swamp-big-tech-s-strong-earnings",
+      "summary": "Alphabet, Microsoft and Amazon results will be scrutinized for AI spending plans and whether those investments are paying off; BNY Wealth's Kevin Shea calls it a pivotal season.",
+      "publishedAt": null,
+      "tags": [
+        "Megacaps",
         "AI"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-treasuries-link-to-ai-shows-sharp-shift-as-haven-trade-returns",
+      "id": "bbg-goldman-cuts-kospi-12-month-target-by-25-as-ai-trade-unravels",
       "source": "Bloomberg",
-      "headline": "Treasuries Are Working as a Hedge Again",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-23/treasuries-link-to-ai-shows-sharp-shift-as-haven-trade-returns",
-      "summary": "Bonds are offering protection against the tech selloff this week, which Nomura's Charlie McElligott ties to a repricing of a US growth scare.",
+      "headline": "Goldman Cuts Kospi Target by 25%",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-25/goldman-cuts-kospi-12-month-target-by-25-as-ai-trade-unravels",
+      "summary": "Goldman cut its Kospi target 25% after the index plunged more than a third from its June peak; the new target is still more than 60% above current levels.",
       "publishedAt": null,
       "tags": [
-        "Rates",
-        "Haven"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-china-ai-model-stocks-150-billion-drop-shows-no-sign-of-easing",
-      "source": "Bloomberg",
-      "headline": "China AI Model Stocks Lose $150 Billion",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-23/china-ai-model-stocks-150-billion-drop-shows-no-sign-of-easing",
-      "summary": "MiniMax and Zhipu have lost a combined $150 billion in market value from their highs, each down more than 80% since January IPOs.",
-      "publishedAt": null,
-      "tags": [
-        "China",
-        "AI"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-ai-tech-fears-push-global-credit-spreads-to-17-month-high",
-      "source": "Bloomberg",
-      "headline": "AI Tech Fears Push Global Credit Spreads to 17-Month High",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-23/ai-tech-fears-push-global-credit-spreads-to-17-month-high",
-      "summary": "Global credit spreads widened to a 17-month high on AI tech fears.",
-      "publishedAt": null,
-      "tags": [
-        "Credit",
-        "AI"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-hedge-funds-log-widest-daily-drawdown-since-covid-in-stock-rout",
-      "source": "Bloomberg",
-      "headline": "Hedge Funds Log Widest Daily Drop Since Covid",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-23/hedge-funds-log-widest-daily-drawdown-since-covid-in-stock-rout",
-      "summary": "Hedge funds logged their widest daily drawdown since Covid in the stock rout.",
-      "publishedAt": null,
-      "tags": [
-        "Hedge funds",
+        "Korea",
         "Equities"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-french-bond-stress-deepens-as-crisis-era-caution-creeps-back",
+      "id": "bbg-warsh-tells-traders-to-watch-the-data-they-still-follow-the-fed",
       "source": "Bloomberg",
-      "headline": "French Bond Spreads Widen to 15-Year High",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/french-bond-stress-deepens-as-crisis-era-caution-creeps-back",
-      "summary": "French bond stress deepened as spreads widened to a 15-year high.",
+      "headline": "Warsh Tells Traders to Watch the Data. They Still Follow the Fed",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-25/warsh-tells-traders-to-watch-the-data-they-still-follow-the-fed",
+      "summary": "Traders are still keying off Fed signals despite Warsh urging them to watch the data.",
       "publishedAt": null,
       "tags": [
-        "Europe",
+        "Fed",
         "Rates"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-retail-traders-loaded-up-on-ai-spending-winners-before-selloff",
+      "id": "bbg-citadel-co-cio-pablo-salame-says-ai-s-rising-tide-will-sink-some-boats",
       "source": "Bloomberg",
-      "headline": "Retail Traders Loaded Up on AI Winners Before Selloff",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-22/retail-traders-loaded-up-on-ai-spending-winners-before-selloff",
-      "summary": "Retail traders had loaded up on AI spending winners before the selloff.",
+      "headline": "Citadel's Salame: AI's Rising Tide Will Sink Some Boats",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/citadel-co-cio-pablo-salame-says-ai-s-rising-tide-will-sink-some-boats",
+      "summary": "Citadel co-CIO Pablo Salame says AI's rising tide will sink some boats.",
       "publishedAt": null,
       "tags": [
-        "Retail",
+        "AI",
+        "Hedge funds"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg--total-meltdown-in-riskiest-debt-unnerves-market-credit-weekly",
+      "source": "Bloomberg",
+      "headline": "Total Meltdown in Riskiest Corporate Debt Unnerves Market",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-24/-total-meltdown-in-riskiest-debt-unnerves-market-credit-weekly",
+      "summary": "A meltdown in the riskiest corporate debt is unnerving markets.",
+      "publishedAt": null,
+      "tags": [
+        "Credit"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-ai-trade-stumbles-again-as-investors-rediscover-treasury-haven",
+      "source": "Bloomberg",
+      "headline": "AI Trade Stumbles Again as Investors Rediscover Treasury Haven",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-23/ai-trade-stumbles-again-as-investors-rediscover-treasury-haven",
+      "summary": "The AI trade stumbled again as investors moved back into Treasuries as a haven.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
         "AI"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-europe-luxury-lvmh-hermes-trade-at-lowest-valuations-decade",
+      "id": "bbg-sk-hynix-leveraged-funds-to-be-delisted-in-us-as-ai-rally-cools",
       "source": "Bloomberg",
-      "headline": "Europe's Luxury Giants at Decade-Low Valuations",
-      "url": "https://www.bloomberg.com/news/articles/2026-10-23/europe-luxury-lvmh-hermes-trade-at-lowest-valuations-decade",
-      "summary": "Europe's luxury giants trade at their lowest valuations in a decade.",
+      "headline": "SK Hynix Leveraged Funds to Be Delisted in US",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/sk-hynix-leveraged-funds-to-be-delisted-in-us-as-ai-rally-cools",
+      "summary": "Leveraged SK Hynix funds will be delisted in the US as the AI rally cools.",
       "publishedAt": null,
       "tags": [
-        "Luxury",
-        "Valuations"
+        "Semis",
+        "ETFs"
       ],
       "symbols": []
+    },
+    {
+      "id": "bbg-coreweave-rout-sends-warning-sign-to-rest-of-the-stock-market",
+      "source": "Bloomberg",
+      "headline": "CoreWeave Rout Sends Warning Sign to Stock Market",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/coreweave-rout-sends-warning-sign-to-rest-of-the-stock-market",
+      "summary": "The CoreWeave rout is being read as a warning sign for the rest of the stock market.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "Equities"
+      ],
+      "symbols": [
+        "CRWV"
+      ]
     }
   ]
 }
