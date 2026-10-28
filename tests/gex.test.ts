@@ -31,8 +31,21 @@ test('exchange timestamps and expiry account for US DST independently of machine
   assert.equal(expiryTime('2026-11-06'),+new Date('2026-11-06T21:00:00Z'));
 });
 function provider() {
-  return {symbol:'QQQ',timestamp:'2026-10-23 11:00:00',data:{current_price:100,open:99,high:101,low:98,prev_day_close:99,last_trade_time:'2026-10-23T10:59:59',options:Array.from({length:12},(_,i)=>({option:`QQQ261030${i%2?'C':'P'}${String((95+i)*1000).padStart(8,'0')}`,gamma:.02,iv:.25,open_interest:1000}))}};
+  return {symbol:'QQQ',timestamp:'2026-10-23 15:00:00',data:{current_price:100,open:99,high:101,low:98,prev_day_close:99,last_trade_time:'2026-10-23T10:59:59',options:Array.from({length:12},(_,i)=>({option:`QQQ261030${i%2?'C':'P'}${String((95+i)*1000).padStart(8,'0')}`,gamma:.02,iv:.25,open_interest:1000}))}};
 }
+
+test('Cboe generation time is UTC while trade time follows New York daylight saving', () => {
+  for (const [date, chainHour, quoteHour] of [['2026-10-23', '15', '14'], ['2026-11-06', '16', '15']]) {
+    const input = provider();
+    input.timestamp = `${date} ${chainHour}:00:00`;
+    input.data.last_trade_time = `${date}T10:59:59`;
+    input.data.options = input.data.options.map(o => ({ ...o, option: o.option.replace('261030', '261120') }));
+    const now = new Date(`${date}T${chainHour}:01:00Z`);
+    const s = parseChain(input, now);
+    assert.equal(s.chainAsOf, `${date}T${chainHour}:00:00.000Z`);
+    assert.equal(s.quoteAsOf, `${date}T${quoteHour}:59:59.000Z`);
+  }
+});
 test('provider validation rejects wrong identities, future times, duplicate and badly malformed chains', () => {
   const now=new Date('2026-10-23T16:00:00Z');
   const s=parseChain(provider(),now); assert.equal(s.contracts.length,12); assert.equal(s.spot,100);

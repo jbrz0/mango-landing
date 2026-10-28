@@ -51,6 +51,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Verify snapshot parsing
+        run: node --import tsx --test tests/gex.test.ts
       - run: npm run gex:update
       - name: Publish validated snapshot
         run: |

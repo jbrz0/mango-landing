@@ -10,7 +10,9 @@ const providerSchema = z.object({ timestamp: z.string(), symbol: z.literal('QQQ'
 const optionSchema = z.object({ option: z.string().regex(/^QQQ\d{6}[CP]\d{8}$/), gamma: z.number().finite().nonnegative(), iv: z.number().finite().nonnegative(), open_interest: z.number().int().nonnegative() });
 export function parseChain(input: unknown, now = new Date()): Snapshot {
   const x = providerSchema.parse(input), d = x.data;
-  const chainAsOf = easternTimestamp(x.timestamp), quoteAsOf = easternTimestamp(d.last_trade_time);
+  // Cboe's file-generation timestamp is UTC; the underlying trade time is New York local.
+  const chainAsOf = new Date(z.iso.datetime().parse(x.timestamp.replace(' ', 'T') + 'Z')).toISOString();
+  const quoteAsOf = easternTimestamp(d.last_trade_time);
   if (+new Date(chainAsOf) > +now + 5 * 60_000 || +new Date(quoteAsOf) > +now + 5 * 60_000) throw new Error('Provider timestamp is in the future');
   if (+now - +new Date(chainAsOf) > 5 * 86400_000 || +now - +new Date(quoteAsOf) > 5 * 86400_000) throw new Error('Provider data is older than five days');
   let rejected = 0;
