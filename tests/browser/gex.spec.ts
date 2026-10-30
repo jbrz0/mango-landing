@@ -50,10 +50,29 @@ test('failed update checks preserve dated data, and a cold failure never invents
   await page.reload();await expect(page.locator('#gex-content')).toContainText('The map is waiting for data');
   await expect(page.locator('.gex-metric')).toHaveCount(0);
 });
+// The real current.json is refreshed by the data publisher several times a day, so tests that need a
+// specific age must move the snapshot's own timestamps relative to a frozen clock instead of pairing a
+// hard-coded clock with whatever capture is committed (a newer capture would look like it came from the future).
+const shiftSnapshot = (capturedAt: Date) => {
+  const delta = +capturedAt - +new Date(snapshot.retrievedAt);
+  const move = (iso: string) => new Date(+new Date(iso) + delta).toISOString();
+  return { ...snapshot, retrievedAt: move(snapshot.retrievedAt), chainAsOf: move(snapshot.chainAsOf), quoteAsOf: move(snapshot.quoteAsOf) };
+};
 test('old data during a trading session is shown as the last saved snapshot',async({page})=>{
-  await page.clock.setFixedTime(new Date('2026-10-29T18:00:00Z'));
+  const now = new Date('2026-10-29T18:00:00Z'); // Thursday 14:00 New York, inside regular hours
+  const old = shiftSnapshot(new Date(+now - 26 * 3600_000)); // captured the previous session, well past the 4h limit
+  await page.clock.setFixedTime(now);
+  await page.route('**/data/gex/current.json',route=>route.fulfill({json:old}));
   await page.goto('/gex');await expect(page.locator('#gex-status')).toContainText('LAST SAVED SNAPSHOT');await expect(page.locator('#gex-status')).toHaveClass(/is-stale/);
+  await expect(page.locator('#gex-status time').last()).toHaveAttribute('datetime',old.retrievedAt);
+  await expect(page.locator('.gex-metric')).toHaveCount(5);
   await expect(page.locator('#gex-read-freshness')).toContainText('not current positioning');
+});
+test('a recent capture during a trading session is not flagged as old',async({page})=>{
+  const now = new Date('2026-10-29T18:00:00Z');
+  await page.clock.setFixedTime(now);
+  await page.route('**/data/gex/current.json',route=>route.fulfill({json:shiftSnapshot(new Date(+now - 30 * 60_000))}));
+  await page.goto('/gex');await expect(page.locator('#gex-status')).toContainText('SCHEDULED SNAPSHOT');await expect(page.locator('#gex-status')).not.toHaveClass(/is-stale/);
 });
 
 for (const width of [320,390,768,1024,1440]) {
