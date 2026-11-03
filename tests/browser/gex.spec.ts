@@ -58,6 +58,13 @@ const shiftSnapshot = (capturedAt: Date) => {
   const move = (iso: string) => new Date(+new Date(iso) + delta).toISOString();
   return { ...snapshot, retrievedAt: move(snapshot.retrievedAt), chainAsOf: move(snapshot.chainAsOf), quoteAsOf: move(snapshot.quoteAsOf) };
 };
+// Shifting keeps whatever quote/chain lag the committed capture happens to have (an off-hours capture can carry
+// the previous close as its quote, hours older than retrievedAt). Tests that assert a fresh in-session status must
+// set every source timestamp explicitly relative to the frozen clock so they never depend on the committed file.
+const freshSnapshot = (now: Date, ageMinutes: number) => {
+  const at = (minutes: number) => new Date(+now - minutes * 60_000).toISOString();
+  return { ...snapshot, retrievedAt: at(ageMinutes), chainAsOf: at(ageMinutes + 2), quoteAsOf: at(ageMinutes + 1) };
+};
 test('old data during a trading session is shown as the last saved snapshot',async({page})=>{
   const now = new Date('2026-10-29T18:00:00Z'); // Thursday 14:00 New York, inside regular hours
   const old = shiftSnapshot(new Date(+now - 26 * 3600_000)); // captured the previous session, well past the 4h limit
@@ -71,7 +78,7 @@ test('old data during a trading session is shown as the last saved snapshot',asy
 test('a recent capture during a trading session is not flagged as old',async({page})=>{
   const now = new Date('2026-10-29T18:00:00Z');
   await page.clock.setFixedTime(now);
-  await page.route('**/data/gex/current.json',route=>route.fulfill({json:shiftSnapshot(new Date(+now - 30 * 60_000))}));
+  await page.route('**/data/gex/current.json',route=>route.fulfill({json:freshSnapshot(now, 30)}));
   await page.goto('/gex');await expect(page.locator('#gex-status')).toContainText('SCHEDULED SNAPSHOT');await expect(page.locator('#gex-status')).not.toHaveClass(/is-stale/);
 });
 
