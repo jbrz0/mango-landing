@@ -1,0 +1,979 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-11-05",
+  "generatedAt": "2026-11-05T08:35:26+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-11-05 BKK from Daily Briefing (7:06 AM BKK), NQ Briefing (7:08 AM BKK), FX Briefing (7:01 AM BKK), ForexFactory week calendar JSON (fetched Nov 5 6:07 AM BKK; High/Medium only, today onward; actuals not captured; election days shown all-day since FF gives placeholder times), the Mango Atlas Bloomberg Markets Daily summaries (Wednesday Nov 4 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs (changePct nulled for NQ, whose Yahoo prior close was stale, and AUDUSD, whose Yahoo prior conflicted with the brief close). NQ conviction Med mapped to medium; NQ short-term sentiment was headline-only and medium-term was 'cautious', so both left null. Premarket items are from the NQ briefing with no sourced numeric move. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "bullish",
+    "confidence": "medium",
+    "volatilityOutlook": "falling",
+    "oneLineTake": "Election uncertainty is gone and oil and yields are easing, so index vol should compress, but AI and chip dispersion keeps single-name risk elevated.",
+    "themes": [
+      "Midterm relief rally. Democrats took Congress and the Dow jumped 3%, its biggest post-midterm gain in 44 years. SPY closed up 1.65% at 766.81 and QQQ up 0.97% at 691.95.",
+      "Oil and rates are lower. Crude fell below $90 on Iran de-escalation hopes and the 10-year yield slid from 4.95%. Gold and silver rose as the dollar dipped.",
+      "AI dispersion is wide. Megacaps led, with Amazon up 6% and Microsoft and Amazon adding $424B combined, while data center names like Micron and CoreWeave slipped after voters rejected nearly every data center ballot measure.",
+      "Earnings are split. AMD and Uber were strong, while Qualcomm fell 6% on memory shortages, Oracle dropped on a canceled $7B Tencent chip deal, Snap fell 10% and Figma traded lower."
+    ],
+    "risks": [
+      "Gridlock and policy fights with a Democratic Congress, plus AI buildout slowdown risk for capex names.",
+      "Euro zone inflation hit 4% with an ECB hike looming, and US payrolls are ahead after a strong September job openings print.",
+      "Iran conflict headlines can still reprice oil fast."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 28437.17,
+      "changePct": 0.9117,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T05:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 28526.5,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T06:58:04+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 101.492,
+      "changePct": -0.3711,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T06:04:58+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 4.894,
+      "changePct": -1.1712,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T02:59:53+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 16.61,
+      "changePct": -20.2592,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 25.08,
+      "changePct": -17.8513,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 4078.8,
+      "changePct": 3.5123,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T06:51:29+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.1241,
+      "changePct": 0.5187,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T07:01:27+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 158.425,
+      "changePct": 0.3935,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T07:01:30+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.70077,
+      "changePct": null,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T07:01:27+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.81616,
+      "changePct": -0.9033,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-05T07:01:30+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "mildly_bullish",
+    "conviction": "medium",
+    "regime": "Post-event relief, vol compressing",
+    "summary": "NDX rose 0.91% Wednesday to 28,437 after Democrats took Congress, led by AMZN, MSFT and AAPL while chips sold off. Lower yields and oil plus a 20% VIX drop favor buying dips; semis and memory remain the weak link. Thesis: mildly bullish, 6/10, buy dips above 28,276. Invalidation: NDX below 28,085. NDX levels: resistance 28,753 (Mon high), 28,830 (Wed high), 29,000; support 28,385 (Fri close), 28,276 (Wed low), 28,085 (Tue low).",
+    "primaryCatalyst": "US jobless claims 8:30 PM BKK (f 197K); BoE rate decision 7:00 PM (f 4.00%) and Bailey 7:30 PM; Fed's Hammack 8:50 PM and Barkin 9:10 PM.",
+    "primaryRisk": "Normal: chip selling spreading below 28,276 toward 28,085, a BoE surprise, or Iran headlines.",
+    "overnight": "NQ holding near 28,520, under the 28,669 high; ASX 200 up 1.6% early.",
+    "macro": "10Y down to 4.89% and DXY to 101.49 ease pressure on tech multiples; BOJ minutes lean toward more hikes.",
+    "volatility": "VXN 25.1 (-17.9%) vs VIX 16.6 (-20.3%); election premium unwinding. Dealer gamma unavailable.",
+    "sentimentShortTerm": null,
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "MSFT",
+        "changePct": 6.6815,
+        "context": "To 555.80. Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": 6.1191,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": 5.3058,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 3.1782,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": 1.4444,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:00+07:00"
+      },
+      {
+        "symbol": "NVDA",
+        "changePct": -3.1738,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": -3.34,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": -2.7482,
+        "context": "Chip ETF to 504.27. Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": -7.0015,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:00+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": -2.0022,
+        "context": "Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:00:01+07:00"
+      },
+      {
+        "symbol": "ORCL",
+        "changePct": -1.9494,
+        "context": "Canceled Tencent chip deal. Wednesday Nov 4 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-05T04:03:39+07:00"
+      }
+    ],
+    "premarket": [
+      {
+        "symbol": "QCOM",
+        "changePct": null,
+        "context": "Down about 7% on a weak forecast tied to memory shortages.",
+        "source": "Mango Atlas NQ Briefing",
+        "updatedAt": null
+      },
+      {
+        "symbol": "SNAP",
+        "changePct": null,
+        "context": "Down about 10% on a revenue miss.",
+        "source": "Mango Atlas NQ Briefing",
+        "updatedAt": null
+      },
+      {
+        "symbol": "FIG",
+        "changePct": null,
+        "context": "Figma lower after earnings.",
+        "source": "Mango Atlas NQ Briefing",
+        "updatedAt": null
+      }
+    ]
+  },
+  "fx": {
+    "macroPulse": "USD softer into Asia after the midterm result: DXY 101.49 (-0.37%) with the 10Y down to 4.89%. Gold leads risk with GC up 3.51% at 4,078.80, and the BoE decision at 7:00 PM is today's main FX event.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "mildly_bearish",
+        "driver": "Index at 101.49, below yesterday's 101.80 area as the 10Y drops to 4.89%.",
+        "posture": "Watch only; a loss of 101.40 extends, back over 101.80 negates.",
+        "support": [
+          101.4
+        ],
+        "resistance": [
+          101.8
+        ],
+        "comments": "Brief view: mildly bearish."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "bullish",
+        "driver": "Spot closed 4,065.29 (+3.2%) near the 4,071.40 high after a 3,919.63 low, with yields lower.",
+        "posture": "Buy dips toward 4,020; a break of 4,071 extends, under 3,990 negates.",
+        "support": [
+          4020,
+          3990
+        ],
+        "resistance": [
+          4071
+        ],
+        "comments": "Brief view: bullish."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "mildly_bullish",
+        "driver": "Pair at 1.1241 (+0.52%) after a 1.1198 to 1.1273 range on a weaker dollar.",
+        "posture": "Watch only under 1.1273; holding 1.1198 keeps dips bought.",
+        "support": [
+          1.1198
+        ],
+        "resistance": [
+          1.1273
+        ],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "neutral",
+        "driver": "Pair at 158.43 inside a 157.38 to 158.67 range while US yields fall.",
+        "posture": "Watch only, chop between 157.38 and 158.67.",
+        "support": [
+          157.38
+        ],
+        "resistance": [
+          158.67
+        ],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "mildly_bullish",
+        "driver": "Pair at 0.7008 after closing 0.70038 (+0.52%), back above 0.7000 off the 0.6952 low.",
+        "posture": "Watch only; holding 0.7000 favors a test of 0.7022, under 0.6952 negates.",
+        "support": [
+          0.7,
+          0.6952
+        ],
+        "resistance": [
+          0.7022
+        ],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "bearish",
+        "driver": "Pair at 0.8162 (-0.9%) after closing 0.81628 near the 0.8126 low, with SNB's Schlegel at 7:40 PM.",
+        "posture": "Sell rallies toward 0.8200; under 0.8126 extends, over 0.8202 negates.",
+        "support": [
+          0.8126
+        ],
+        "resistance": [
+          0.82,
+          0.8202
+        ],
+        "comments": "Brief view: bearish."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-11-05-1900-gbp-boe-monetary-policy-report",
+      "datetime": "2026-11-05T19:00:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "BOE Monetary Policy Report",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-05-1900-gbp-monetary-policy-summary",
+      "datetime": "2026-11-05T19:00:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "Monetary Policy Summary",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-05-1900-gbp-mpc-official-bank-rate-votes",
+      "datetime": "2026-11-05T19:00:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "MPC Official Bank Rate Votes",
+      "forecast": "7-0-2",
+      "previous": "3-0-6",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-05-1900-gbp-official-bank-rate",
+      "datetime": "2026-11-05T19:00:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "Official Bank Rate",
+      "forecast": "4.00%",
+      "previous": "3.75%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-05-1930-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-11-05T19:30:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-05-1940-chf-snb-chairman-schlegel-speaks",
+      "datetime": "2026-11-05T19:40:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CHF",
+      "country": "Switzerland",
+      "impact": "medium",
+      "title": "SNB Chairman Schlegel Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-05-2030-usd-unemployment-claims",
+      "datetime": "2026-11-05T20:30:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "197K",
+      "previous": "194K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-05-2230-cad-boc-gov-macklem-speaks",
+      "datetime": "2026-11-05T22:30:00+07:00",
+      "date": "2026-11-05",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "medium",
+      "title": "BOC Gov Macklem Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-0100-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-11-06T01:00:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-0400-cad-annual-budget-release",
+      "datetime": "2026-11-06T04:00:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "medium",
+      "title": "Annual Budget Release",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2030-cad-employment-change",
+      "datetime": "2026-11-06T20:30:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "high",
+      "title": "Employment Change",
+      "forecast": "14.6K",
+      "previous": "-68.3K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2030-cad-unemployment-rate",
+      "datetime": "2026-11-06T20:30:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "6.5%",
+      "previous": "6.5%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2030-usd-average-hourly-earnings-m-m",
+      "datetime": "2026-11-06T20:30:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Average Hourly Earnings m/m",
+      "forecast": "0.3%",
+      "previous": "0.1%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2030-usd-non-farm-employment-change",
+      "datetime": "2026-11-06T20:30:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Non-Farm Employment Change",
+      "forecast": "65K",
+      "previous": "29K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2030-usd-unemployment-rate",
+      "datetime": "2026-11-06T20:30:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "4.2%",
+      "previous": "4.2%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2200-cad-ivey-pmi",
+      "datetime": "2026-11-06T22:00:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "medium",
+      "title": "Ivey PMI",
+      "forecast": "57.7",
+      "previous": "58.2",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2200-usd-prelim-uom-consumer-sentiment",
+      "datetime": "2026-11-06T22:00:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Prelim UoM Consumer Sentiment",
+      "forecast": "48.1",
+      "previous": "46.3",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2200-usd-prelim-uom-inflation-expectations",
+      "datetime": "2026-11-06T22:00:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Prelim UoM Inflation Expectations",
+      "forecast": null,
+      "previous": "4.7%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-06-2300-jpy-boj-gov-ueda-speaks",
+      "datetime": "2026-11-06T23:00:00+07:00",
+      "date": "2026-11-06",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "JPY",
+      "country": "Japan",
+      "impact": "high",
+      "title": "BOJ Gov Ueda Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-07-0445-nzd-parliamentary-elections",
+      "datetime": null,
+      "date": "2026-11-07",
+      "timeLabel": "all_day",
+      "timezone": "Asia/Bangkok",
+      "currency": "NZD",
+      "country": "New Zealand",
+      "impact": "high",
+      "title": "Parliamentary Elections",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-stock-bulls-are-glad-this-election-is-finally-over",
+      "source": "Bloomberg",
+      "headline": "Stock Bulls Are Glad This Election Is Finally Over",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-04/stock-bulls-are-glad-this-election-is-finally-over",
+      "summary": "Investors woke to a radically different US political world, with attention now turning to a growing economy, stubborn inflation, rising earnings and AI.",
+      "publishedAt": null,
+      "tags": [
+        "Midterms",
+        "Markets"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-midterm-elections-2026-trump-must-now-contend-with-democrats-in-control",
+      "source": "Bloomberg",
+      "headline": "Trump Must Now Contend With Democrats in Control",
+      "url": "https://www.bloomberg.com/news/features/2026-11-04/midterm-elections-2026-trump-must-now-contend-with-democrats-in-control",
+      "summary": "Democrats swept into power in Congress, with outrage over the cost of living and the Iran war driving a rebuke of Donald Trump.",
+      "publishedAt": null,
+      "tags": [
+        "Midterms",
+        "Politics"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "source": "Bloomberg",
+      "headline": "Stocks and Treasuries Gain, Dollar Falls",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/stock-market-today-dow-s-p-live-updates",
+      "summary": "Stocks and Treasuries gained and the dollar fell after Trump said he would accept the outcome, prompting investors to buy the recent dip.",
+      "publishedAt": null,
+      "tags": [
+        "US",
+        "Equities",
+        "Rates"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-democrats-win-rattles-trump-trades-from-ai-stocks-to-crypto",
+      "source": "Bloomberg",
+      "headline": "Democrats' Win Rattles Trump Trades From AI Stocks to Crypto",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/democrats-win-rattles-trump-trades-from-ai-stocks-to-crypto",
+      "summary": "US equity futures initially slumped overnight before erasing losses as investors bought the dip after stocks fell ahead of the vote on disappointing tech earnings.",
+      "publishedAt": null,
+      "tags": [
+        "Midterms",
+        "Cross-asset"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-treasuries-advance-as-traders-eye-us-votes-refinancing-plans",
+      "source": "Bloomberg",
+      "headline": "Treasuries Advance as Traders Eye Votes, Refinancing Plans",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/treasuries-advance-as-traders-eye-us-votes-refinancing-plans",
+      "summary": "Treasuries rallied on the view that the new political environment may limit the administration's tax and spending plans.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Treasuries"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-franc-yen-emerge-as-fx-winners-as-us-midterms-weaken-dollar",
+      "source": "Bloomberg",
+      "headline": "Franc, Yen Emerge as FX Winners as Midterms Weaken Dollar",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/franc-yen-emerge-as-fx-winners-as-us-midterms-weaken-dollar",
+      "summary": "The dollar sank the most in two months, the clearest knee-jerk casualty of the vote, as gridlock and tougher regulation could damp foreign demand for US assets.",
+      "publishedAt": null,
+      "tags": [
+        "FX",
+        "Dollar"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-ai-data-center-boom-is-set-for-upheaval-after-us-election-rout",
+      "source": "Bloomberg",
+      "headline": "AI Data Center Boom Is Set for Upheaval After US Election Rout",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/ai-data-center-boom-is-set-for-upheaval-after-us-election-rout",
+      "summary": "Data-center and cloud stocks fell after a backlash against data centers helped Democrats win; Iren was down 3.9% and CoreWeave 3.3%.",
+      "publishedAt": null,
+      "tags": [
+        "AI",
+        "Data centers"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-tesla-spacex-shares-take-early-hit-as-midterm-blue-wave-unfolds",
+      "source": "Bloomberg",
+      "headline": "Tesla, SpaceX Shares Take Early Hit as Blue Wave Unfolds",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/tesla-spacex-shares-take-early-hit-as-midterm-blue-wave-unfolds",
+      "summary": "Companies run by Elon Musk slipped, with Tesla down 5% premarket and SpaceX 6.9% lower.",
+      "publishedAt": null,
+      "tags": [
+        "Premarket",
+        "Megacaps"
+      ],
+      "symbols": [
+        "TSLA"
+      ]
+    },
+    {
+      "id": "bbg-global-solar-stocks-jump-as-democrats-hold-early-us-midterm-lead",
+      "source": "Bloomberg",
+      "headline": "Global Solar Stocks Jump as Democrats Win",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/global-solar-stocks-jump-as-democrats-hold-early-us-midterm-lead",
+      "summary": "Orsted jumped 8.1%, First Solar rose 9.2% premarket and Hanwha Solutions surged 19%, while defense names including Lockheed Martin, Northrop Grumman, RTX and General Dynamics fell premarket.",
+      "publishedAt": null,
+      "tags": [
+        "Energy",
+        "Renewables"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-amd-sales-forecast-tops-estimates-on-soaring-ai-chip-demand",
+      "source": "Bloomberg",
+      "headline": "AMD Sales Forecast Tops Estimates on Soaring AI Chip Demand",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/amd-sales-forecast-tops-estimates-on-soaring-ai-chip-demand",
+      "summary": "AMD gave a sales forecast well above analyst projections and the stock jumped 6% premarket.",
+      "publishedAt": null,
+      "tags": [
+        "Earnings",
+        "Semis"
+      ],
+      "symbols": [
+        "AMD"
+      ]
+    },
+    {
+      "id": "bbg-super-micro-gives-outlook-that-tops-estimates-on-server-demand",
+      "source": "Bloomberg",
+      "headline": "Super Micro Outlook Tops Estimates on Server Demand",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/super-micro-gives-outlook-that-tops-estimates-on-server-demand",
+      "summary": "Super Micro rose 8.3% after forecasting revenue above estimates and raising its annual outlook; Arista gained 13% on a stronger revenue forecast and Block rose 6.8% after edging past expectations.",
+      "publishedAt": null,
+      "tags": [
+        "Earnings",
+        "AI"
+      ],
+      "symbols": [
+        "SMCI"
+      ]
+    },
+    {
+      "id": "bbg-novo-boosts-forecast-as-wegovy-pill-beats-estimates",
+      "source": "Bloomberg",
+      "headline": "Novo Boosts Forecast as Wegovy Pill Beats Estimates",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/novo-boosts-forecast-as-wegovy-pill-beats-estimates",
+      "summary": "Novo Nordisk rallied 4.1% in Copenhagen after again raising its forecast on sales of the new Wegovy obesity pill.",
+      "publishedAt": null,
+      "tags": [
+        "Europe",
+        "Healthcare"
+      ],
+      "symbols": [
+        "NVO"
+      ]
+    },
+    {
+      "id": "bbg-cvs-jumps-on-report-it-plans-to-break-up-health-conglomerate",
+      "source": "Bloomberg",
+      "headline": "CVS Plans to Break Up Health Conglomerate",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/cvs-jumps-on-report-it-plans-to-break-up-health-conglomerate",
+      "summary": "CVS Health plans to spin off its retail pharmacy business, according to media reports, in one of the biggest healthcare breakups ever.",
+      "publishedAt": null,
+      "tags": [
+        "Corporate",
+        "Healthcare"
+      ],
+      "symbols": [
+        "CVS"
+      ]
+    },
+    {
+      "id": "bbg-stock-bulls-are-glad-this-election-is-finally-over-2",
+      "source": "Bloomberg",
+      "headline": "Earnings Today: McDonald's, Uber Before the Open; Qualcomm, AppLovin After",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-04/stock-bulls-are-glad-this-election-is-finally-over",
+      "summary": "McDonald's, Uber, CVS, Flutter, Datadog, Kraft Heinz, Circle and Wayfair report before the open; Qualcomm, AppLovin, ARM, MetLife, Nutrien, Expedia, Albemarle, Zillow, Snap, Coherent and Figma after the close.",
+      "publishedAt": null,
+      "tags": [
+        "Earnings",
+        "Calendar"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-oil-loses-its-grip-on-bonds-as-growth-fears-displace-inflation",
+      "source": "Bloomberg",
+      "headline": "Oil Loses Its Grip on Bonds as Growth Fears Displace Inflation",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/oil-loses-its-grip-on-bonds-as-growth-fears-displace-inflation",
+      "summary": "The tight link between Brent and 10-year Treasury yields peaked on Sept. 15 and has since reversed as money managers worry more about growth than inflation.",
+      "publishedAt": null,
+      "tags": [
+        "Oil",
+        "Rates"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-jpmorgan-s-michele-urges-treasury-to-ax-orphan-20-year-bond",
+      "source": "Bloomberg",
+      "headline": "JPMorgan's Michele Urges Treasury to Ax 20-Year Bond",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/jpmorgan-s-michele-urges-treasury-to-ax-orphan-20-year-bond",
+      "summary": "Bob Michele says the Treasury, which announces quarterly debt sales today, should stop issuing the 20-year bond and could shift toward bills.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Treasury"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-bitcoin-etfs-lose-1-billion-as-midterms-binance-hack-weigh-on-sentiment",
+      "source": "Bloomberg",
+      "headline": "Bitcoin ETFs Lose $1 Billion as Midterms, Binance Hack Weigh",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/bitcoin-etfs-lose-1-billion-as-midterms-binance-hack-weigh-on-sentiment",
+      "summary": "$1 billion was pulled from US-listed Bitcoin funds over Friday and Monday as the Binance hack and election concern weighed on sentiment.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto",
+        "ETFs"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-kospi-slumps-as-democrats-us-election-lead-spurs-chip-selloff",
+      "source": "Bloomberg",
+      "headline": "Korean Stocks' Wild Election Day Swings Show AI Trade on Edge",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/kospi-slumps-as-democrats-us-election-lead-spurs-chip-selloff",
+      "summary": "Korean stocks swung wildly on US election day, showing the AI trade on edge.",
+      "publishedAt": null,
+      "tags": [
+        "Asia",
+        "Equities",
+        "AI"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-how-hedge-fund-d-e-shaw-plans-to-stay-king-of-quant",
+      "source": "Bloomberg",
+      "headline": "Quant Pioneer D.E. Shaw Is Tweaking Its Secret Money Machine",
+      "url": "https://www.bloomberg.com/news/features/2026-11-03/how-hedge-fund-d-e-shaw-plans-to-stay-king-of-quant",
+      "summary": "A feature on how D.E. Shaw is adjusting its quant strategy.",
+      "publishedAt": null,
+      "tags": [
+        "Hedge funds",
+        "Quant"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-binance-hackers-used-fake-job-interviews-in-6-3-billion-heist",
+      "source": "Bloomberg",
+      "headline": "Binance Hackers Used Fake Job Interviews in Record Heist",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/binance-hackers-used-fake-job-interviews-in-6-3-billion-heist",
+      "summary": "The Binance hackers used fake job interviews in the record heist.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto",
+        "Security"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-traders-turn-less-bearish-on-treasuries-before-refunding-jobs",
+      "source": "Bloomberg",
+      "headline": "Traders Turn Less Bearish on Treasuries Before Refunding, Jobs",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/traders-turn-less-bearish-on-treasuries-before-refunding-jobs",
+      "summary": "Traders turned less bearish on Treasuries ahead of the refunding and jobs data.",
+      "publishedAt": null,
+      "tags": [
+        "Rates",
+        "Positioning"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-major-hedge-funds-mostly-lose-in-nowhere-to-hide-october",
+      "source": "Bloomberg",
+      "headline": "Major Hedge Funds Mostly Lose in 'Nowhere to Hide' October",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-03/major-hedge-funds-mostly-lose-in-nowhere-to-hide-october",
+      "summary": "Most major hedge funds lost money in October.",
+      "publishedAt": null,
+      "tags": [
+        "Hedge funds"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-hyperliquid-co-founder-jeff-yan-would-like-to-break-into-the-us-market",
+      "source": "Bloomberg",
+      "headline": "The Crypto Mogul Behind Trading Powerhouse Hyperliquid",
+      "url": "https://www.bloomberg.com/news/features/2026-11-03/hyperliquid-co-founder-jeff-yan-would-like-to-break-into-the-us-market",
+      "summary": "Hyperliquid co-founder Jeff Yan would like to break into the US market.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-blackstone-draws-13-billion-as-institutions-back-private-credit",
+      "source": "Bloomberg",
+      "headline": "Blackstone Draws 13 Billion Euros as Institutions Back Private Credit",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-04/blackstone-draws-13-billion-as-institutions-back-private-credit",
+      "summary": "Blackstone drew 13 billion euros as institutions backed private credit.",
+      "publishedAt": null,
+      "tags": [
+        "Private credit"
+      ],
+      "symbols": []
+    }
+  ]
+}
