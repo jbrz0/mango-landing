@@ -1,0 +1,664 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-11-10",
+  "generatedAt": "2026-11-10T08:36:43+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-11-10 BKK from Daily Briefing, NQ Briefing and FX Briefing (all ~7:07 to 7:19 AM BKK), ForexFactory week calendar JSON (fetched Nov 10 6:07 AM BKK; High/Medium only, today onward; actuals not captured; election days shown all-day), the Mango Atlas Bloomberg Markets Daily summaries (Monday Nov 9 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. NQ changePct left null because the Yahoo prior close was stale. NQ conviction Low mapped to low; short/medium-term sentiment were prose-only so left null. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "low",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "A sharp rebound into unresolved Nvidia and liquidity risks leaves the tape two-sided, so respect wide swings and keep short-premium sizing modest.",
+    "themes": [
+      "Equities rebounded hard Monday: QQQ closed 679.35 (+3.54%) and SPY 752.69 (+2.37%), though commentary still argues over whether the AI trade has cracked.",
+      "Nvidia is the headline risk: reports of a widening spy scandal and scrutiny of CEO Jensen Huang keep AI leadership in question while Anthropic's reported IPO roadshow adds supply.",
+      "Liquidity is a worry: pieces on tightening liquidity and a \"Quant Quake II\" selloff point to positioning-driven moves rather than clean trends.",
+      "Oil fell on reports that IAEA inspectors may return to Iran and that Iran eased Hormuz demands. Both are unconfirmed.",
+      "Growth data stays firm: jobless claims near historic lows and GDP nowcasts signal a strong finish to 2026. The 10-year yield was 4.86% as of Nov 6."
+    ],
+    "risks": [
+      "Nvidia investigation fallout hitting megacap AI names.",
+      "Quant and liquidity-driven air pockets after a +3% QQQ day.",
+      "Geopolitical headline reversal on Iran and Hormuz sending oil back up.",
+      "Yields near 4.9% pressuring long-duration tech."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 27907.62,
+      "changePct": 3.3999,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T05:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 28097.75,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T07:05:00+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 101.679,
+      "changePct": 0.1665,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T06:04:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 4.864,
+      "changePct": 0.1029,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T02:59:53+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 19.92,
+      "changePct": -22.3089,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 29.11,
+      "changePct": -14.4327,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T00:54:47+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 4147,
+      "changePct": 1.7694,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T06:57:28+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.12221,
+      "changePct": 0.6711,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T07:07:34+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 158.022,
+      "changePct": -0.1706,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T07:07:35+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.69228,
+      "changePct": 0.7878,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T07:07:34+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.82,
+      "changePct": 0.0561,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-10T07:07:35+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "neutral",
+    "conviction": "low",
+    "regime": "Event-driven, rebound under test",
+    "summary": "NDX ripped +3.4% to 27,908 Monday as oil fell and chips led, even with NVDA down 4.3% on the Huang probe. NQ is holding near 28,100 in a tight overnight range. Tonight's CPI sets whether the rebound extends or fades. Thesis: neutral, 4/10, wait for CPI and trade the reaction. Invalidation: NDX hold above 28,437. NDX levels: resistance 28,026 (Mon H), 28,078 (Thu H), 28,437 (Wed close); support 27,263 (Mon open), 27,228 (Mon L), 26,990 (Fri close).",
+    "primaryCatalyst": "US CPI 8:30 PM BKK; cash open 9:30 PM; Waller 4:00 PM; Logan 10:50 PM.",
+    "primaryRisk": "Elevated: hot CPI lifting the 10Y over 4.90%, and Nvidia/Huang headlines.",
+    "overnight": "NQ 28,098, range 28,018 to 28,108, a quiet 90 point range; Nikkei futures up about 3% early in Asia.",
+    "macro": "10Y 4.86% and DXY 101.68 steady; a hot CPI pushes yields up and hits long-duration tech.",
+    "volatility": "VIX 19.92 (-22%) and VXN 29.11 (-14%), a sharp crush after Monday's rally. Dealer gamma unavailable.",
+    "sentimentShortTerm": null,
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "NVDA",
+        "changePct": -4.2703,
+        "context": "To 178.67; Huang probe overhang. Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:00+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": 5.5357,
+        "context": "Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:00+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": 5.1168,
+        "context": "Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 2.7459,
+        "context": "Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:01+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 1.1834,
+        "context": "Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:01+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": 2.9425,
+        "context": "Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:01+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": 2.4301,
+        "context": "Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:01+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": 5.0543,
+        "context": "Chip ETF to 487.41. Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:00+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": 6.2536,
+        "context": "Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:00+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 8.7814,
+        "context": "AVGO led the semis. Monday Nov 9 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-10T04:00:01+07:00"
+      }
+    ],
+    "premarket": []
+  },
+  "fx": {
+    "macroPulse": "DXY is near 101.68 (+0.17%) while EURUSD and AUDUSD both gained about 0.7% to 0.8% and USDJPY is slightly lower. Gold is up about 1.8% near 4,147 and the US 10Y is near 4.86%, with US CPI the main risk later today.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "neutral",
+        "driver": "Index is near 101.68, up 0.17%, while the dollar ETF UUP closed down 0.17% on the session.",
+        "posture": "Watch only until the 8:30 PM CPI print.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral, pre-CPI."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "mildly_bullish",
+        "driver": "Gold is near 4,147, up 1.77%, and held near the session high of 4,156 despite a 4.86% 10Y yield.",
+        "posture": "Watch only, chasing after a 1.8% jump into CPI is poor risk.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish, extended."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "mildly_bullish",
+        "driver": "Pair is near 1.1222, up 0.67%, trading at the top of its range from 1.1145.",
+        "posture": "Watch only, CPI decides direction.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "neutral",
+        "driver": "Pair is near 158.02, down 0.17%, in a tight range between 157.86 and 158.03.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "mildly_bullish",
+        "driver": "Pair is near 0.6923, up 0.79%, after rising from 0.6869 and holding near the session high.",
+        "posture": "Watch only.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "neutral",
+        "driver": "Pair is near 0.8200, up 0.06%, inside a narrow range of 0.8184 to 0.8200.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-11-10-0025-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-11-10T00:25:00+07:00",
+      "date": "2026-11-10",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-10-1600-usd-fomc-member-waller-speaks",
+      "datetime": "2026-11-10T16:00:00+07:00",
+      "date": "2026-11-10",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "FOMC Member Waller Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-10-2030-usd-core-cpi-m-m",
+      "datetime": "2026-11-10T20:30:00+07:00",
+      "date": "2026-11-10",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core CPI m/m",
+      "forecast": "0.2%",
+      "previous": "0.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-10-2030-usd-cpi-m-m",
+      "datetime": "2026-11-10T20:30:00+07:00",
+      "date": "2026-11-10",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "CPI m/m",
+      "forecast": "0.3%",
+      "previous": "0.6%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-11-1645-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-11-11T16:45:00+07:00",
+      "date": "2026-11-11",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-12-1400-gbp-gdp-m-m",
+      "datetime": "2026-11-12T14:00:00+07:00",
+      "date": "2026-11-12",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "GDP m/m",
+      "forecast": "0.0%",
+      "previous": "0.1%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-12-1400-gbp-prelim-gdp-q-q",
+      "datetime": "2026-11-12T14:00:00+07:00",
+      "date": "2026-11-12",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "Prelim GDP q/q",
+      "forecast": "0.7%",
+      "previous": "0.5%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-12-2030-usd-unemployment-claims",
+      "datetime": "2026-11-12T20:30:00+07:00",
+      "date": "2026-11-12",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "194K",
+      "previous": "189K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-13-0230-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-11-13T02:30:00+07:00",
+      "date": "2026-11-13",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-13-2030-usd-core-ppi-m-m",
+      "datetime": "2026-11-13T20:30:00+07:00",
+      "date": "2026-11-13",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core PPI m/m",
+      "forecast": "0.3%",
+      "previous": "0.7%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-13-2030-usd-ppi-m-m",
+      "datetime": "2026-11-13T20:30:00+07:00",
+      "date": "2026-11-13",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "PPI m/m",
+      "forecast": "0.4%",
+      "previous": "1.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-jensen-huang-puts-200-billion-dent-in-nvidia-s-stock-price",
+      "source": "Bloomberg",
+      "headline": "Jensen Huang Puts $200 Billion Dent in Nvidia's Stock Price",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-09/jensen-huang-puts-200-billion-dent-in-nvidia-s-stock-price",
+      "summary": "Nvidia is down about 4.5% in premarket trading, a roughly $200 billion hit at the open, after CEO Jensen Huang admitted an affair with suspected Chinese spy Huang Le of Singapore-based Megaspeed, raising questions about whether he remains at the company that peaked at $5.8 trillion about a month ago and now stands at $4.5 trillion, second only to Apple, with no immediate direct impact on sales and earnings.",
+      "publishedAt": null,
+      "tags": [
+        "Nvidia",
+        "Spy",
+        "Scandal"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-trump-says-strikes-unlikely-even-as-rubio-slams-iran-s-demands",
+      "source": "Bloomberg",
+      "headline": "Trump Says Strikes Unlikely Even as Rubio Slams Iran's Demands",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-09/trump-says-strikes-unlikely-even-as-rubio-slams-iran-s-demands",
+      "summary": "Donald Trump struck a conciliatory tone about Iran over the weekend, saying it was \"highly unlikely\" he would order extensive strikes.",
+      "publishedAt": null,
+      "tags": [
+        "Geopol",
+        "Iran"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "source": "Bloomberg",
+      "headline": "US Stocks Look Set for Gains After Biggest Weekly Drop Since April 2025",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-08/stock-market-today-dow-s-p-live-updates",
+      "summary": "US stocks look set for gains after the S&P 500's biggest weekly drop since April 2025, with support from cheaper oil prices.",
+      "publishedAt": null,
+      "tags": [
+        "US",
+        "Equities",
+        "Oil"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-citi-strategists-cut-us-stocks-upgrade-europe-after-ai-turmoil",
+      "source": "Bloomberg",
+      "headline": "Citi Strategists Cut US Stocks, Upgrade Europe After AI Turmoil",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-09/citi-strategists-cut-us-stocks-upgrade-europe-after-ai-turmoil",
+      "summary": "Citigroup strategists downgraded US stocks and the global tech sector and upgraded European equities on lower exposure to AI turbulence.",
+      "publishedAt": null,
+      "tags": [
+        "Equities",
+        "Europe",
+        "AI"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-musk-says-tesla-to-return-cybertruck-deposit-to-lot-of-people",
+      "source": "Bloomberg",
+      "headline": "Musk Says Tesla to Return Cybertruck Deposit to Lot of People",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-09/musk-says-tesla-to-return-cybertruck-deposit-to-lot-of-people",
+      "summary": "Tesla will refund Cybertruck deposits to \"a lot\" of customers because it has more orders than it can process before ending production next year, according to Elon Musk.",
+      "publishedAt": null,
+      "tags": [
+        "Tesla"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-hedge-funds-dump-tech-stocks-at-one-of-fastest-paces-on-record",
+      "source": "Bloomberg",
+      "headline": "Hedge Funds Dump Tech Stocks at One of Fastest Paces on Record",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-09/hedge-funds-dump-tech-stocks-at-one-of-fastest-paces-on-record",
+      "summary": "Last week, hedge funds sold global technology stocks at one of the fastest paces on record.",
+      "publishedAt": null,
+      "tags": [
+        "Hedge funds",
+        "Tech"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-berkshire-hathaway-s-operating-earnings-fall-buybacks-rise",
+      "source": "Bloomberg",
+      "headline": "On the Move: Berkshire, Greenfire, Sanofi",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-07/berkshire-hathaway-s-operating-earnings-fall-buybacks-rise",
+      "summary": "Berkshire Hathaway edged up 0.3% in premarket trading after spending about $9.6 billion buying back shares in the third quarter even as operating earnings fell; US-listed Greenfire Resources jumped 36% after Strathcona Resources agreed to buy the company; Sanofi rose 1.9% in Paris after BNP Paribas upgraded the shares to outperform, citing Dupixent; KKR, Constellation Energy and Barrick Mining report before the open, with Take-Two, Occidental Petroleum, Rocket Lab, Skydance and Hims & Hers Health after the close.",
+      "publishedAt": null,
+      "tags": [
+        "Earnings",
+        "Premarket"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-us-inflation-set-to-simmer-down-some-after-recent-pickup",
+      "source": "Bloomberg",
+      "headline": "US Inflation Set to Simmer Down Some After Recent Pickup",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-07/us-inflation-set-to-simmer-down-some-after-recent-pickup",
+      "summary": "Tuesday's October CPI, the last before the Federal Reserve's December meeting when policymakers are expected to boost interest rates, is likely to show prices for US goods and services rose at a slower pace after two uncomfortable months; investors will also watch earnings from CoreWeave and Cisco Systems and the potential kickoff of Anthropic's marketing effort for its IPO.",
+      "publishedAt": null,
+      "tags": [
+        "CPI",
+        "Fed"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-why-many-americans-budgets-feel-stretched-in-a-strong-economy",
+      "source": "Bloomberg",
+      "headline": "Why Many Americans' Budgets Feel Stretched in a Strong Economy",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-08/why-many-americans-budgets-feel-stretched-in-a-strong-economy",
+      "summary": "A rising stock market and a growing economy are no consolation to many Americans who have been squeezed by years of rising costs.",
+      "publishedAt": null,
+      "tags": [
+        "Inflation",
+        "Consumers"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-wall-street-sees-us-hitting-41-1-trillion-debt-cap-in-february",
+      "source": "Bloomberg",
+      "headline": "Wall Street Sees US Hitting $41.1 Trillion Debt Cap in February",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-06/wall-street-sees-us-hitting-41-1-trillion-debt-cap-in-february",
+      "summary": "Wall Street strategists are bracing for the US Treasury to hit the $41.1 trillion borrowing limit as early as February, triggering the need for extraordinary measures before a funding crunch in late 2027.",
+      "publishedAt": null,
+      "tags": [
+        "Treasury",
+        "Debt"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-treasury-rally-gets-new-boost-as-election-hammers-the-ai-trade",
+      "source": "Bloomberg",
+      "headline": "Treasury Rally Gets New Boost as Election Hammers the AI Trade",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-08/treasury-rally-gets-new-boost-as-election-hammers-the-ai-trade",
+      "summary": "Treasuries got a new boost as the election hammered the AI trade.",
+      "publishedAt": null,
+      "tags": [
+        "Treasuries",
+        "AI"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-crypto-s-trump-fueled-washington-boom-reaches-its-endgame",
+      "source": "Bloomberg",
+      "headline": "Crypto's Trump-Fueled Washington Boom Reaches Its Endgame",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-07/crypto-s-trump-fueled-washington-boom-reaches-its-endgame",
+      "summary": "Crypto's Trump-fueled Washington boom has reached its endgame.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto",
+        "Policy"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-wall-street-strategists-call-stock-rout-a-fresh-reason-to-buy",
+      "source": "Bloomberg",
+      "headline": "Wall Street Strategists Call Stock Rout a Fresh Reason to Buy",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-07/wall-street-strategists-call-stock-rout-a-fresh-reason-to-buy",
+      "summary": "Wall Street strategists called the stock rout a fresh reason to buy.",
+      "publishedAt": null,
+      "tags": [
+        "Equities"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-arini-s-hedge-fund-losses-grow-to-32-as-it-sells-some-positions",
+      "source": "Bloomberg",
+      "headline": "Arini Hedge Fund Losses Grow to 32% as It Sells Some Positions",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-06/arini-s-hedge-fund-losses-grow-to-32-as-it-sells-some-positions",
+      "summary": "Arini hedge fund losses grew to 32% as it sold some positions.",
+      "publishedAt": null,
+      "tags": [
+        "Hedge funds"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-taiwan-stocks-gain-as-authorities-move-to-stem-market-rout",
+      "source": "Bloomberg",
+      "headline": "Taiwan Stocks Jump as Authorities Move to Stem Market Rout",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-09/taiwan-stocks-gain-as-authorities-move-to-stem-market-rout",
+      "summary": "Taiwan stocks jumped as authorities moved to stem a market rout.",
+      "publishedAt": null,
+      "tags": [
+        "Taiwan",
+        "Equities"
+      ],
+      "symbols": []
+    }
+  ]
+}
