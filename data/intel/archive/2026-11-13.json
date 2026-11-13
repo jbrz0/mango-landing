@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-11-13",
+  "generatedAt": "2026-11-13T08:34:22+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-11-13 BKK from Daily Briefing (~7:09 AM BKK), NQ Briefing (~7:16 AM) and FX Briefing (~7:05 AM), ForexFactory week calendar JSON (fetched Nov 13 6:01 AM BKK; High/Medium only, today onward; actuals not captured; election days shown all-day), the Mango Atlas Bloomberg Markets Daily summaries (Thursday Nov 12 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. NQ futures changePct left null because Yahoo's prior close was stale. NQ conviction Low mapped to low; short/medium-term sentiment were prose-only so left null. FX support/resistance left empty (briefs had none). No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Nvidia's leadership shock and a 10-year yield back above 5% put equity volatility in expansion, so keep short-premium exposure defined and sized for gap risk.",
+    "themes": [
+      "Nvidia CEO Jensen Huang resigned and the stock closed down over 4%. Indexes ended lower, QQQ -0.32% and SPY -0.35% on the day, with the turmoil framed as a threat to Wall Street's $500 billion AI financing bet.",
+      "Rates are the bigger fear. The 10-year yield jumped back above 5% as oil rose and traders price more Fed hikes. MarketWatch called it the biggest yield surge since 2022. Goolsbee called the inflation report \"borderline disturbing.\"",
+      "Oil is firming after Trump said no Iran deal is needed, which feeds yields and inflation expectations.",
+      "AI dispersion is wide. Cerebras jumped 17% on revenue and a Microsoft deal, AMD rose 5.9% on a $700 target, and Cisco beat. Nebius fell about 17% on a weak outlook and higher capex.",
+      "Housing is weak, with existing-home sales at a 16-year low, and mortgage rates are rising again."
+    ],
+    "risks": [
+      "Nvidia leadership vacuum and a pending investigation could spread to the wider AI complex and chip export policy ahead of the Trump-Xi summit.",
+      "A 10-year above 5% pressures long-duration equities and raises the odds of a rates-led selloff.",
+      "Oil and Strait of Hormuz headlines could add an inflation shock on top of hawkish Fed expectations.",
+      "Anthropic IPO supply and AI funding strain, including SoftBank warnings, could drain liquidity."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 28289.19,
+      "changePct": -0.2998,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T05:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 28577.5,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T07:01:55+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 103.17,
+      "changePct": 0.2526,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T06:04:58+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 5.103,
+      "changePct": 2.1008,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T02:59:54+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 18.7,
+      "changePct": 6.9182,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 28.55,
+      "changePct": 6.7689,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 3884.3,
+      "changePct": -2.9046,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T06:53:10+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.10509,
+      "changePct": -0.3989,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T07:02:31+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 159.903,
+      "changePct": 0.1058,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T07:03:23+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.68078,
+      "changePct": -0.5113,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T07:01:31+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.83622,
+      "changePct": 0.4722,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-13T07:03:24+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "neutral",
+    "conviction": "low",
+    "regime": "Headline-driven, rate-sensitive",
+    "summary": "Huang's exit hit NVDA (-4.3% to 166.19) but NDX recovered from a 27,941 low to close 28,289 (-0.3%) as other AI names caught a bid. The 10Y back above 5.10% and near-certain December hike odds keep PPI as the main risk for multiples. Thesis: neutral, 4/10, wait for PPI and fade extremes. Invalidation: NDX below 27,908 or above 28,594. NDX levels: resistance 28,374 (Wed close), 28,549 (Thu H), 28,594 (Wed H); support 28,103 (Wed L), 27,941 (Thu L), 27,908 (Mon close).",
+    "primaryCatalyst": "US PPI and Core PPI 8:30 PM BKK.",
+    "primaryRisk": "Elevated: PPI, the 10Y and NVDA headlines.",
+    "overnight": "NQ firm in a 28,394 to 28,607 range; 2Y at a one-month high near 4.89%; Japan 5Y up 7 bps.",
+    "macro": "10Y 5.10% and DXY 103.17 (+0.25%) on hike pricing after hot CPI; oil firm on Iran headlines; higher yields pressure long-duration tech.",
+    "volatility": "VIX 18.70 (+6.9%) and VXN 28.55 (+6.8%) rising. Dealer gamma unavailable.",
+    "sentimentShortTerm": null,
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "NVDA",
+        "changePct": -4.3401,
+        "context": "To 166.19; CEO resignation. Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 5.5443,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": 1.6912,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:00+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 1.7891,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": -0.2109,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": 0.4771,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": -0.8207,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 0.3588,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": -1.0316,
+        "context": "Chip ETF to 501.73. Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:00+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": -1.5851,
+        "context": "To 798.44. Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:00:01+07:00"
+      },
+      {
+        "symbol": "ORCL",
+        "changePct": -0.9893,
+        "context": "Thursday Nov 12 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-13T04:04:03+07:00"
+      }
+    ],
+    "premarket": []
+  },
+  "fx": {
+    "macroPulse": "The dollar firmed again, with DXY near 103.17 (+0.25%) and the 10Y near 5.10% (+2.1%) as December Fed hike odds sit near 100% after hot CPI. Gold dropped about 2.9% to near 3,884, EURUSD and AUDUSD slipped, while USDCHF rose and USDJPY edged up toward 160.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "bullish",
+        "driver": "Index is near 103.17, up 0.25%, with the 10Y above 5.10% and hike odds near certain for December.",
+        "posture": "Watch only, PPI at 8:30 PM BKK is the next catalyst.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: bullish, extended."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "bearish",
+        "driver": "Gold is near 3,884, down 2.9%, hit by a stronger dollar and a 10Y above 5%.",
+        "posture": "Watch only, wait for a bounce to fade.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: bearish."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "mildly_bearish",
+        "driver": "Pair is near 1.1051, down 0.4%, with the dollar and yields rising.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bearish."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "mildly_bullish",
+        "driver": "Pair is near 159.90, up 0.11%, tracking higher US yields.",
+        "posture": "Watch only, 160 is close and intervention risk grows near it.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "mildly_bearish",
+        "driver": "Pair is near 0.6808, down 0.51%, pressured by the stronger dollar.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bearish."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "mildly_bullish",
+        "driver": "Pair is near 0.8362, up 0.47%, following dollar strength.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-11-13-0230-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-11-13T02:30:00+07:00",
+      "date": "2026-11-13",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-13-2030-usd-core-ppi-m-m",
+      "datetime": "2026-11-13T20:30:00+07:00",
+      "date": "2026-11-13",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core PPI m/m",
+      "forecast": "0.3%",
+      "previous": "0.7%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-13-2030-usd-ppi-m-m",
+      "datetime": "2026-11-13T20:30:00+07:00",
+      "date": "2026-11-13",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "PPI m/m",
+      "forecast": "0.4%",
+      "previous": "1.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-nvidia-punches-a-hole-in-bull-case-for-ai-stocks",
+      "source": "Bloomberg",
+      "headline": "Nvidia Punches a Hole in Bull Case for AI Stocks",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-12/nvidia-punches-a-hole-in-bull-case-for-ai-stocks",
+      "summary": "Nvidia and the fate of Jensen Huang is all that matters in markets this morning, because a big chunk of the AI trade that has propelled equity markets over the past four years depends on the company's chips. Huang is the co-founder, and under his watch the stock has returned 38% a year since its 1999 IPO, with gains even more stunning since OpenAI kicked off the AI boom in 2022. Joe Gilbert of Integrity Asset Management said he is \"not only the face of AI but arguably the architect of the AI infrastructure\" and that \"it will be difficult if not impossible to replicate Jensen's vision.\" Shar...",
+      "publishedAt": null,
+      "tags": [
+        "Nvidia",
+        "Huang"
+      ],
+      "symbols": [
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "source": "Bloomberg",
+      "headline": "Global Tech Rally Halts as Nvidia Leadership Crisis Hits",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/stock-market-today-dow-s-p-live-updates",
+      "summary": "The global tech rally has come to a halt because of the leadership crisis at Nvidia. A rotation into consumer-linked shares lifted European equities.",
+      "publishedAt": null,
+      "tags": [
+        "US",
+        "Equities"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-uk-economy-defies-headwinds-with-strongest-growth-since-2024",
+      "source": "Bloomberg",
+      "headline": "UK Economy Grew at Fastest Pace in Two and a Half Years",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-12/uk-economy-defies-headwinds-with-strongest-growth-since-2024",
+      "summary": "The UK economy grew at its fastest pace in two and a half years after the rollout of AI fueled spending by businesses.",
+      "publishedAt": null,
+      "tags": [
+        "UK",
+        "Economy"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-siemens-raises-growth-goals-after-ai-boom-drives-record-orders",
+      "source": "Bloomberg",
+      "headline": "Siemens Raises Revenue-Growth Target After Record Orders",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-12/siemens-raises-growth-goals-after-ai-boom-drives-record-orders",
+      "summary": "Siemens raised its revenue-growth target thanks to record orders. The German industrial giant is benefiting from data center construction.",
+      "publishedAt": null,
+      "tags": [
+        "Siemens"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-us-envoys-witkoff-kushner-putin-talks-ukraine-zelenskyy-opportunity",
+      "source": "Bloomberg",
+      "headline": "US Envoys Arrive in Russia for Talks With Putin",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-12/us-envoys-witkoff-kushner-putin-talks-ukraine-zelenskyy-opportunity",
+      "summary": "US envoys Steve Witkoff and Jared Kushner arrived in Russia for talks with Vladimir Putin, pushing for a peace deal to end the war in Ukraine.",
+      "publishedAt": null,
+      "tags": [
+        "Ukraine"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-nvidia-turmoil-lifts-amd-broadcom-on-bets-for-business-gains",
+      "source": "Bloomberg",
+      "headline": "AMD, Broadcom and Alphabet Gain on Bets They May Win Nvidia Business",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-12/nvidia-turmoil-lifts-amd-broadcom-on-bets-for-business-gains",
+      "summary": "Shares of Advanced Micro Devices, Broadcom and Alphabet are gaining on speculation they may win business away from Nvidia.",
+      "publishedAt": null,
+      "tags": [
+        "Amd",
+        "Broadcom"
+      ],
+      "symbols": [
+        "AMD",
+        "AVGO",
+        "GOOGL"
+      ]
+    },
+    {
+      "id": "bbg-alleged-chinese-spy-at-center-of-nvidia-firestorm-is-in-beijing",
+      "source": "Bloomberg",
+      "headline": "Alleged Spy at Center of Nvidia Scandal Has Returned to China",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-12/alleged-chinese-spy-at-center-of-nvidia-firestorm-is-in-beijing",
+      "summary": "Alice Huang, the suspected spy at the center of the scandal, has returned to China, people familiar with the matter said. The allegations are adding to the strains between the US and China, days before Donald Trump travels to Shenzhen for a summit with Xi Jinping.",
+      "publishedAt": null,
+      "tags": [
+        "Nvidia",
+        "China"
+      ],
+      "symbols": [
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-alibaba-shares-drop-7-as-nvidia-saga-triggers-chip-access-fears",
+      "source": "Bloomberg",
+      "headline": "Chinese AI Stocks Tumble on Chip Access Fears",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-12/alibaba-shares-drop-7-as-nvidia-saga-triggers-chip-access-fears",
+      "summary": "Chinese AI stocks are tumbling on concern that access to advanced chips may be curtailed. Alibaba ADRs are down 4.9% while model developers Z.AI and MiniMax sank 9.1% and 7.8%, respectively, in Hong Kong.",
+      "publishedAt": null,
+      "tags": [
+        "China",
+        "AI"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates-2",
+      "source": "Bloomberg",
+      "headline": "On the Move: Dell, Super Micro, CoreWeave, Eli Lilly",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/stock-market-today-dow-s-p-live-updates",
+      "summary": "AI-related stocks sliding in premarket trading include Dell Technologies and Super Micro Computer, down more than 4% each. CoreWeave, which counts Nvidia as a key supplier and investor, is down 4.6%. Eli Lilly gains 3.7% after it won approval in China for a weight-loss tablet. Applied Materials and Nebius Group report before the opening bell. Cisco Systems and Cerebras Systems are up after the close.",
+      "publishedAt": null,
+      "tags": [
+        "Premarket"
+      ],
+      "symbols": [
+        "DELL",
+        "SMCI",
+        "CRWV",
+        "LLY"
+      ]
+    },
+    {
+      "id": "bbg-nvidia-tumbles-as-investors-consider-future-without-ceo-huang",
+      "source": "Bloomberg",
+      "headline": "Analysts Turn Less Bullish on Nvidia as Huang's Future Is Weighed",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/nvidia-tumbles-as-investors-consider-future-without-ceo-huang",
+      "summary": "At the end of last week, 79 of 82 analysts tracked by Bloomberg had buys on Nvidia, a stock that has returned 760,000% since its IPO. Cracks were emerging in that consensus even before the New York Times reported yesterday that Huang had a second extramarital affair, this time with a subordinate. Analysts at Bernstein and Oppenheimer have cut their ratings this week, while Morgan Stanley removed the stock as a top pick. Baird cut its price target to $200 from $500. Dan Ives at Yorkville Ives put the estimated fair value of Nvidia without Huang at $225, versus $300 per share if he stays as C...",
+      "publishedAt": null,
+      "tags": [
+        "Nvidia",
+        "Analysts"
+      ],
+      "symbols": [
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-anthropic-ipo-is-jenga-block-holding-up-next-leg-of-ai-trade",
+      "source": "Bloomberg",
+      "headline": "Anthropic IPO Is the Jenga Block Holding Up the AI Trade",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/anthropic-ipo-is-jenga-block-holding-up-next-leg-of-ai-trade",
+      "summary": "Michael Monaghan, portfolio manager at Founder ETFs, said: \"The Jenga block holding up the AI trade is the Anthropic IPO. So long as that comes out well, the whole sector will catch a bid. If Anthropic's IPO is massively overbought, AI stocks will rip.\" The drama around Huang at Nvidia has only added to the importance of Anthropic's IPO for the market's direction.",
+      "publishedAt": null,
+      "tags": [
+        "Anthropic",
+        "IPO"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-gold-holds-below-4-000-as-market-looks-ahead-to-fed-rate-hike",
+      "source": "Bloomberg",
+      "headline": "Gold Falls for a Third Day, Back Below $4,000 an Ounce",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-12/gold-holds-below-4-000-as-market-looks-ahead-to-fed-rate-hike",
+      "summary": "Gold is falling for a third day, extending a drop back below $4,000 an ounce as persistent US inflation and hawkish remarks from Fed officials fueled expectations for an interest-rate hike next month. Higher borrowing costs are typically a drag on gold as it doesn't pay interest.",
+      "publishedAt": null,
+      "tags": [
+        "Gold",
+        "Fed"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-aging-boomers-are-key-factor-supporting-corporate-bond-market",
+      "source": "Bloomberg",
+      "headline": "Boomers Are Key Factor Supporting Corporate Bond Market",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/aging-boomers-are-key-factor-supporting-corporate-bond-market",
+      "summary": "Boomers are a key factor supporting the corporate bond market.",
+      "publishedAt": null,
+      "tags": [
+        "Credit"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-canada-s-top-pension-merges-active-equities-arm-lays-off-dozens",
+      "source": "Bloomberg",
+      "headline": "Canada's Top Pension Merges Active Equities Arm, Cuts Dozens",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-10/canada-s-top-pension-merges-active-equities-arm-lays-off-dozens",
+      "summary": "Canada's top pension merges its active equities arm and cuts dozens.",
+      "publishedAt": null,
+      "tags": [
+        "Pensions"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-trump-stablecoin-scrubbed-from-uae-linked-prediction-market-site",
+      "source": "Bloomberg",
+      "headline": "Trump Stablecoin Scrubbed From UAE-Linked Prediction Market",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/trump-stablecoin-scrubbed-from-uae-linked-prediction-market-site",
+      "summary": "A Trump stablecoin was scrubbed from a UAE-linked prediction market.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-crypto-s-bid-to-shake-up-stock-trading-revs-up-despite-backlash",
+      "source": "Bloomberg",
+      "headline": "Crypto Bid to Shake Up Stock Trading Revs Up Despite Backlash",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/crypto-s-bid-to-shake-up-stock-trading-revs-up-despite-backlash",
+      "summary": "Crypto's bid to shake up stock trading is revving up despite backlash.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-calpers-board-member-says-ai-now-poses-a-stranded-asset-risk",
+      "source": "Bloomberg",
+      "headline": "Calpers Board Member Says AI Now Poses a Stranded-Asset Risk",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-11/calpers-board-member-says-ai-now-poses-a-stranded-asset-risk",
+      "summary": "A Calpers board member says AI now poses a stranded-asset risk.",
+      "publishedAt": null,
+      "tags": [
+        "Calpers",
+        "AI"
+      ],
+      "symbols": []
+    }
+  ]
+}
