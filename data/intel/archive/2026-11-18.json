@@ -1,0 +1,813 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-11-18",
+  "generatedAt": "2026-11-18T08:40:45+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-11-18 BKK from Daily Briefing (~7:05 AM BKK), NQ Briefing (~7:18 AM) and FX Briefing (~7:05 AM), ForexFactory week calendar JSON (fetched Nov 18 6:04 AM BKK; High/Medium only, today onward; actuals not captured), the Mango Atlas Bloomberg Markets Daily summaries (Tuesday Nov 17 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. NQ futures changePct left null because Yahoo prior close was stale. Short/medium-term sentiment were prose-only so left null. FX support/resistance left empty. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "The Nvidia earnings bounce is the first test of whether the AI selloff has run its course, with a 5% 10-year yield and Hormuz tension keeping volatility bid.",
+    "themes": [
+      "AI chip stress: Nvidia fell for several sessions on tighter US chip export rules and Jensen Huang's exit, then rallied after hours on its earnings beat. Dow futures and tech were up.",
+      "Broad tech and growth weakness: SPY closed at 732.44 (-1.01%) and QQQ at 656.95 (-0.73%) on Nov 17. Salesforce fell 9% and Nike 6.3%. Money is rotating into defensive stocks.",
+      "Rates remain a headwind: the 10-year yield was 5.12% on Nov 16, and St. Louis Fed's Musalem said four more hikes may be needed. Yields eased after retail sales.",
+      "Anthropic's IPO is expected to price above the $70 to $78 range, a test of AI risk appetite."
+    ],
+    "risks": [
+      "Nvidia's after-hours bounce may not hold given the China chip policy and governance overhang.",
+      "Middle East: a third US carrier has arrived, a tanker was struck in Hormuz, and crude is near $85.",
+      "Homebuilder sentiment is at a 14-year low, and the fear gauge is surging again.",
+      "Bitcoin slid to $62,000 on a liquidation cascade, a sign of thin liquidity in risk assets."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 27001.79,
+      "changePct": -0.7183,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T05:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 27439.5,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T07:03:27+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 103.598,
+      "changePct": 0.0464,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T06:04:58+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 5.103,
+      "changePct": -0.3515,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T02:59:53+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 25.46,
+      "changePct": 11.1305,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 34.44,
+      "changePct": 4.6808,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T04:15:02+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 3854,
+      "changePct": 0.026,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T06:53:48+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.09902,
+      "changePct": -0.0725,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T07:03:45+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 159.528,
+      "changePct": 0.0031,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T07:03:50+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.67381,
+      "changePct": 0.0117,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T07:03:45+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.8417,
+      "changePct": 0.2262,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-18T07:03:50+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "neutral",
+    "conviction": "medium",
+    "regime": "Volatile, event-driven",
+    "summary": "NDX cash fell 0.72% to 27,002 Tuesday, a fourth down day, after tagging 26,581 intraday. NVDA beat and guided above estimates after the close, and NQ is holding near 27,440 with Asia bouncing. The board's line that Huang will not return, the SEC probe and 5% yields cap the rebound. Thesis: neutral, 5/10, fade extremes in range. Invalidation: NDX above 27,622 or below 26,581. NDX levels: resistance 27,197 (Mon close), 27,259 (Tue H), 27,622 (Mon H); support 27,000, 26,581 (Tue L).",
+    "primaryCatalyst": "FOMC Minutes Thursday 2:00 AM BKK.",
+    "primaryRisk": "Elevated: FOMC Minutes, NVDA headlines, Hormuz.",
+    "overnight": "NQ firmer in a 27,382 to 27,609 range; Nikkei and Kospi lead an Asia rebound on NVDA.",
+    "macro": "10Y 5.10%, Fed hike talk after Musalem; DXY flat; high yields keep pressure on tech multiples.",
+    "volatility": "VIX 25.46 (+11.1%) and VXN 34.44 (+4.7%); vol still rising into the bounce. Dealer gamma unavailable.",
+    "sentimentShortTerm": null,
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "NVDA",
+        "changePct": -0.4355,
+        "context": "To 155.46 before earnings, bid after hours. Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:00+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 2.4595,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:01+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": 0.0974,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:01+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": -1.2407,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:00+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": -0.2466,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:01+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": 0.0543,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:01+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": -1.2037,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": -2.2684,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:01+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": -0.3897,
+        "context": "Chip ETF to 460.10. Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:00+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": -0.9179,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:00:01+07:00"
+      },
+      {
+        "symbol": "ORCL",
+        "changePct": -3.4344,
+        "context": "Tuesday Nov 17 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-18T04:04:01+07:00"
+      }
+    ],
+    "premarket": []
+  },
+  "fx": {
+    "macroPulse": "The dollar is steady, with DXY near 103.60 (+0.05%) and the 10Y near 5.10%. Fed hike talk persists after Musalem said several hikes may be needed. Risk tone is cautious into the Nvidia earnings bounce. Gold is flat near 3,854 and yen sits near 159.5.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "mildly_bullish",
+        "driver": "Yields above 5% and Fed hike pricing keep the dollar supported; near highs.",
+        "posture": "Watch only, buy dips above 103.3.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "neutral",
+        "driver": "Gold is flat near 3,854 as 5% yields cap it despite long-term bullish bank forecasts.",
+        "posture": "Watch only, chop around 3,850.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "mildly_bearish",
+        "driver": "Pair is near 1.0990 on dollar strength, with euro area final CPI due later.",
+        "posture": "Watch only, sellers favored below 1.0970.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bearish."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "neutral",
+        "driver": "Pair is flat near 159.5 and 160 invites intervention concern.",
+        "posture": "Watch only, avoid chasing longs near 160.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral, intervention risk."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "neutral",
+        "driver": "Pair is near 0.6738 ahead of the 7:30 AM wage data.",
+        "posture": "Watch only, wait for the wage reaction.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "mildly_bullish",
+        "driver": "Up 0.23% near 0.8417, tracking the dollar.",
+        "posture": "Watch only, chop below 0.8440.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-11-18-0730-aud-wage-price-index-q-q",
+      "datetime": "2026-11-18T07:30:00+07:00",
+      "date": "2026-11-18",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "medium",
+      "title": "Wage Price Index q/q",
+      "forecast": "1.0%",
+      "previous": "0.8%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-18-1400-gbp-cpi-y-y",
+      "datetime": "2026-11-18T14:00:00+07:00",
+      "date": "2026-11-18",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "CPI y/y",
+      "forecast": "3.6%",
+      "previous": "3.5%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-18-1430-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-11-18T14:30:00+07:00",
+      "date": "2026-11-18",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-18-1600-eur-ecb-financial-stability-review",
+      "datetime": "2026-11-18T16:00:00+07:00",
+      "date": "2026-11-18",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB Financial Stability Review",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-18-2125-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-11-18T21:25:00+07:00",
+      "date": "2026-11-18",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-18-2200-gbp-boe-gov-bailey-speaks",
+      "datetime": "2026-11-18T22:00:00+07:00",
+      "date": "2026-11-18",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "high",
+      "title": "BOE Gov Bailey Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-19-0100-nzd-rbnz-gov-breman-speaks",
+      "datetime": "2026-11-19T01:00:00+07:00",
+      "date": "2026-11-19",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "NZD",
+      "country": "New Zealand",
+      "impact": "medium",
+      "title": "RBNZ Gov Breman Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-19-0200-usd-fomc-meeting-minutes",
+      "datetime": "2026-11-19T02:00:00+07:00",
+      "date": "2026-11-19",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "FOMC Meeting Minutes",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-19-0730-aud-employment-change",
+      "datetime": "2026-11-19T07:30:00+07:00",
+      "date": "2026-11-19",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "high",
+      "title": "Employment Change",
+      "forecast": "25.5K",
+      "previous": "-39.3K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-19-0730-aud-unemployment-rate",
+      "datetime": "2026-11-19T07:30:00+07:00",
+      "date": "2026-11-19",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "high",
+      "title": "Unemployment Rate",
+      "forecast": "4.7%",
+      "previous": "4.7%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-19-2030-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-11-19T20:30:00+07:00",
+      "date": "2026-11-19",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-19-2030-usd-philly-fed-manufacturing-index",
+      "datetime": "2026-11-19T20:30:00+07:00",
+      "date": "2026-11-19",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Philly Fed Manufacturing Index",
+      "forecast": "20.6",
+      "previous": "20.9",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-19-2030-usd-unemployment-claims",
+      "datetime": "2026-11-19T20:30:00+07:00",
+      "date": "2026-11-19",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Unemployment Claims",
+      "forecast": "198K",
+      "previous": "200K",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-20-1400-gbp-retail-sales-m-m",
+      "datetime": "2026-11-20T14:00:00+07:00",
+      "date": "2026-11-20",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "impact": "medium",
+      "title": "Retail Sales m/m",
+      "forecast": "0.0%",
+      "previous": "-0.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-20-1515-eur-ecb-president-lagarde-speaks",
+      "datetime": "2026-11-20T15:15:00+07:00",
+      "date": "2026-11-20",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "EUR",
+      "country": "Euro Area",
+      "impact": "medium",
+      "title": "ECB President Lagarde Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-20-2200-usd-revised-uom-consumer-sentiment",
+      "datetime": "2026-11-20T22:00:00+07:00",
+      "date": "2026-11-20",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Revised UoM Consumer Sentiment",
+      "forecast": "51.7",
+      "previous": "51.0",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-20-2200-usd-revised-uom-inflation-expectations",
+      "datetime": "2026-11-20T22:00:00+07:00",
+      "date": "2026-11-20",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Revised UoM Inflation Expectations",
+      "forecast": null,
+      "previous": "4.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-nvidia-s-earnings-come-at-a-time-of-mounting-tech-turmoil",
+      "source": "Bloomberg",
+      "headline": "Nvidia's Earnings Come at a Time of Mounting Tech Turmoil",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-17/nvidia-s-earnings-come-at-a-time-of-mounting-tech-turmoil",
+      "summary": "Nvidia's earnings arrive after the close today at perhaps the strangest time possible for the world's most important AI chipmaker. Investors already were questioning the durability of the AI boom. Then the Democrats swept to victory in the US midterm elections this month, raising the prospect of tighter regulation for the tech industry. The scandal that led to the ouster of CEO Jensen Huang last week just added to the global upheaval in the stock market's hottest sector. Nvidia shares have plunged 35% from their Oct. 6 record high, wiping out $2 trillion in value. A survey by Bank of Americ...",
+      "publishedAt": null,
+      "tags": [
+        "Nvidia",
+        "Earnings"
+      ],
+      "symbols": [
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "source": "Bloomberg",
+      "headline": "Tech Stocks Fell Further Before Nvidia's Earnings",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/stock-market-today-dow-s-p-live-updates",
+      "summary": "Tech stocks fell further before Nvidia's earnings, with the stakes extending beyond the chipmaker to the broader AI trade.",
+      "publishedAt": null,
+      "tags": [
+        "US",
+        "Equities"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-jpmorgan-is-working-to-fix-technical-issue-affecting-customers",
+      "source": "Bloomberg",
+      "headline": "JPMorgan Fixed a Technical Issue Affecting Customer Transactions",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/jpmorgan-is-working-to-fix-technical-issue-affecting-customers",
+      "summary": "JPMorgan Chase said it fixed a technical issue that caused customer transactions to take longer to process yesterday.",
+      "publishedAt": null,
+      "tags": [
+        "Jpmorgan"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-united-airlines-hit-by-system-outage-days-after-faa-ground-stop",
+      "source": "Bloomberg",
+      "headline": "United Airlines Resolved a Widespread System Outage",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/united-airlines-hit-by-system-outage-days-after-faa-ground-stop",
+      "summary": "United Airlines resolved a widespread system outage affecting departing flights.",
+      "publishedAt": null,
+      "tags": [
+        "United",
+        "Airlines"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-deutsche-bank-processed-large-sums-linked-to-epstein-ft-reports",
+      "source": "Bloomberg",
+      "headline": "Deutsche Bank Shares Dropped on FT Report of Epstein-Linked Payments",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/deutsche-bank-processed-large-sums-linked-to-epstein-ft-reports",
+      "summary": "Deutsche Bank shares dropped on a Financial Times report that the lender processed $582 million of suspicious payments linked to the late sex offender Jeffrey Epstein.",
+      "publishedAt": null,
+      "tags": [
+        "Deutsche",
+        "Bank"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-de-cos-on-path-to-ecb-as-berlin-backs-brunnermeier-for-lane-job",
+      "source": "Bloomberg",
+      "headline": "De Cos on Track to Win ECB Presidency",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/de-cos-on-path-to-ecb-as-berlin-backs-brunnermeier-for-lane-job",
+      "summary": "Spain's Pablo Hernandez de Cos is on track to win the European Central Bank presidency after a pivotal political deal in Berlin.",
+      "publishedAt": null,
+      "tags": [
+        "ECB"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-trump-quad-india-australia-japan-economic-security-talks-before-xi-meeting",
+      "source": "Bloomberg",
+      "headline": "Trump Meets Quad Leaders Ahead of Xi Talks",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/trump-quad-india-australia-japan-economic-security-talks-before-xi-meeting",
+      "summary": "Donald Trump is meeting the leaders of India, Australia, and Japan today, an opportunity to reassure key partners before Trump's meetings with Xi Jinping this week.",
+      "publishedAt": null,
+      "tags": [
+        "Trump",
+        "Quad"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-bofa-survey-shows-investors-cut-tech-exposure-by-most-since-2006",
+      "source": "Bloomberg",
+      "headline": "BofA Survey Shows Investors Cut Tech Exposure by Most in Two Decades",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/bofa-survey-shows-investors-cut-tech-exposure-by-most-since-2006",
+      "summary": "A survey by Bank of America shows fund managers last week cut their allocations to tech stocks by the most in two decades.",
+      "publishedAt": null,
+      "tags": [
+        "Bofa",
+        "Tech"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-us-moves-to-limit-remote-access-to-advanced-ai-chips",
+      "source": "Bloomberg",
+      "headline": "US Imposed Tighter Restrictions on Advanced Chip Exports",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/us-moves-to-limit-remote-access-to-advanced-ai-chips",
+      "summary": "The US yesterday imposed tighter restrictions on exports of advanced chips, sending Chinese AI stocks tumbling.",
+      "publishedAt": null,
+      "tags": [
+        "Chip",
+        "Curbs"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-nvidia-forms-export-control-board-committee-after-chip-curbs",
+      "source": "Bloomberg",
+      "headline": "Nvidia Forms Committee to Oversee National Security Policies",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/nvidia-forms-export-control-board-committee-after-chip-curbs",
+      "summary": "Nvidia's board said today it's establishing a committee to oversee the company's national security policies.",
+      "publishedAt": null,
+      "tags": [
+        "Nvidia",
+        "Security"
+      ],
+      "symbols": [
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates-2",
+      "source": "Bloomberg",
+      "headline": "On the Move: Intel, Nvidia, Health Insurers, Red Cat",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/stock-market-today-dow-s-p-live-updates",
+      "summary": "Intel falls 3.3% in premarket trading. Nvidia reduced its stake in the chipmaker by roughly 25% last quarter. Nvidia also cut its holding of Nokia, which declines 4.8% in Helsinki. Nvidia is falling 0.2% before its earnings report, in line with Nasdaq 100 futures in premarket trading. Health insurers are among the top premarket decliners, with Humana, CVS and UnitedHealth dropping more than 2% each. Senator Elizabeth Warren called for breaking up \"big medicine\" in a post on X. US drone maker Red Cat Holdings plunges 28% after the company says it won't meet its revenue target this year.",
+      "publishedAt": null,
+      "tags": [
+        "Premarket"
+      ],
+      "symbols": [
+        "INTC",
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-deutsche-sees-asia-chip-boom-supporting-dollar-through-equities",
+      "source": "Bloomberg",
+      "headline": "The Petrodollar Is Being Superseded by the Chip-Dollar",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/deutsche-sees-asia-chip-boom-supporting-dollar-through-equities",
+      "summary": "The dollar's growing link to US equities and the technology sector is becoming more influential than its historic relationship with Treasuries and the oil business, creating the risk that the currency becomes more volatile, Deutsche Bank strategist Mallika Sachdeva says. \"The petrodollar is, rather quickly, being superseded by the chip-dollar. A dollar driven by chips, AI and private capital connections should be inherently riskier.\"",
+      "publishedAt": null,
+      "tags": [
+        "Dollar",
+        "Deutsche"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stablecoin-market-shrinks-most-since-terra-luna-s-2022-crash",
+      "source": "Bloomberg",
+      "headline": "Stablecoin Market Value Declines $12 Billion",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/stablecoin-market-shrinks-most-since-terra-luna-s-2022-crash",
+      "summary": "The market value of stablecoins has declined $12 billion over the past 30 days. The dollar-pegged tokens caught on as crypto exchanges adopted them as a substitute for dollars in trading. Now, with crypto gripped in a selloff, holders are converting the tokens back into traditional currencies and cashing out.",
+      "publishedAt": null,
+      "tags": [
+        "Stablecoins"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-china-ai-highflier-crashes-85-as-chip-fears-hit-model-makers",
+      "source": "Bloomberg",
+      "headline": "China AI Star Zhipu Sinks 85% From Peak on Chip Fears",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/china-ai-highflier-crashes-85-as-chip-fears-hit-model-makers",
+      "summary": "China AI star Zhipu sinks 85% from its peak on chip fears.",
+      "publishedAt": null,
+      "tags": [
+        "Zhipu",
+        "China"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-soros-joins-family-offices-reaping-nvidia-gains-before-ceo-exit",
+      "source": "Bloomberg",
+      "headline": "Soros Joined Family Offices Selling Nvidia Before CEO Exit",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/soros-joins-family-offices-reaping-nvidia-gains-before-ceo-exit",
+      "summary": "Soros joined family offices selling Nvidia before the CEO exit.",
+      "publishedAt": null,
+      "tags": [
+        "Soros",
+        "Nvidia"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-chinese-hedge-funds-suffered-double-digit-losses-from-ai-rout",
+      "source": "Bloomberg",
+      "headline": "Chinese Hedge Funds Suffered Double-Digit Losses from AI Rout",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/chinese-hedge-funds-suffered-double-digit-losses-from-ai-rout",
+      "summary": "Chinese hedge funds suffered double-digit losses from the AI rout.",
+      "publishedAt": null,
+      "tags": [
+        "China",
+        "Hedge funds"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-tradeweb-is-rolling-out-ai-assistant-for-us-treasury-traders",
+      "source": "Bloomberg",
+      "headline": "Tradeweb Is Rolling Out AI Assistant for US Treasury Traders",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/tradeweb-is-rolling-out-ai-assistant-for-us-treasury-traders",
+      "summary": "Tradeweb is rolling out an AI assistant for US Treasury traders.",
+      "publishedAt": null,
+      "tags": [
+        "Tradeweb"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-china-s-buyback-push-struggles-to-put-a-floor-under-stocks",
+      "source": "Bloomberg",
+      "headline": "China's Buyback Push Struggles to Put a Floor Under Stocks",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-17/china-s-buyback-push-struggles-to-put-a-floor-under-stocks",
+      "summary": "China's buyback push is struggling to put a floor under stocks.",
+      "publishedAt": null,
+      "tags": [
+        "China",
+        "Buybacks"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-kalshi-to-launch-stock-trading-moving-futher-beyond-predictions",
+      "source": "Bloomberg",
+      "headline": "Kalshi to Add Stock Trading in New Move Beyond Predictions",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-16/kalshi-to-launch-stock-trading-moving-futher-beyond-predictions",
+      "summary": "Kalshi plans to add stock trading in a new move beyond predictions.",
+      "publishedAt": null,
+      "tags": [
+        "Kalshi"
+      ],
+      "symbols": []
+    }
+  ]
+}
