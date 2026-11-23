@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { aggregate, exposure, netAt, gammaFlips, easternTimestamp, expiryTime, analyze, snapshotSchema, freshness, type Contract } from '../src/lib/gex/model';
-import { parseChain } from '../scripts/gex';
+import { parseChain, fetchChain, CHAIN_URLS } from '../scripts/gex';
 
 const asOf = '2026-10-23T15:00:00.000Z';
 const contracts: Contract[] = [
@@ -170,4 +170,17 @@ test('freshness considers chain and quote age even if the capture is new', () =>
   const empty = analyze({ ...s, contracts: [] }, 30);
   assert.equal(empty.gross, 0); assert.equal(empty.net, 0); assert.equal(empty.largestExpiry, null);
   assert.deepEqual(empty.flips, []); assert.deepEqual(empty.upside, []); assert.deepEqual(empty.downside, []);
+});
+
+test('Cboe fetch sends a cboe.com Referer, retries blocks and falls back to the legacy host', async () => {
+  const calls: { url: string; referer?: string }[] = [];
+  const stub = (async (url: string, init?: RequestInit) => {
+    calls.push({ url, referer: (init?.headers as Record<string, string>)?.Referer });
+    return calls.length < 3 ? new Response('blocked', { status: 403 }) : calls[calls.length - 1].url === CHAIN_URLS[1] ? new Response('{"ok":1}') : new Response('blocked', { status: 403 });
+  }) as typeof fetch;
+  assert.equal(await fetchChain(stub, { attempts: 2, baseDelayMs: 0 }), '{"ok":1}');
+  assert.deepEqual(calls.map(c => c.url), [CHAIN_URLS[0], CHAIN_URLS[0], CHAIN_URLS[1]]);
+  assert.ok(calls.every(c => c.referer === 'https://www.cboe.com/'));
+  const notFound = (async () => new Response('', { status: 404 })) as typeof fetch;
+  await assert.rejects(fetchChain(notFound, { attempts: 3, baseDelayMs: 0 }), /cdn-api\.cboe\.com HTTP 404; cdn\.cboe\.com HTTP 404$/);
 });

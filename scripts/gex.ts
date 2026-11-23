@@ -32,10 +32,40 @@ export function parseChain(input: unknown, now = new Date()): Snapshot {
   if (rejected / d.options.length > .05) throw new Error('Too many invalid provider contracts');
   return snapshotSchema.parse({ version: 1, symbol: 'QQQ', source: 'Cboe delayed', retrievedAt: now.toISOString(), chainAsOf, quoteAsOf, spot: d.current_price, open: d.open, high: d.high, low: d.low, previousClose: d.prev_day_close, contracts, rejected });
 }
+// Cboe moved the delayed-quotes API from cdn.cboe.com to cdn-api.cboe.com (307) in Nov 2026, and its
+// Cloudflare rule rejects requests without a cboe.com Referer (the quote table at www.cboe.com loads it).
+// Request the new host directly, and keep the old host as a fallback.
+export const CHAIN_URLS = [
+  'https://cdn-api.cboe.com/api/global/delayed_quotes/options/QQQ.json',
+  'https://cdn.cboe.com/api/global/delayed_quotes/options/QQQ.json',
+];
+export const CHAIN_HEADERS = {
+  Accept: 'application/json',
+  Referer: 'https://www.cboe.com/',
+  'User-Agent': 'mango-atlas-gex/1.0 (+https://www.mangoatlas.xyz/gex)',
+};
+const retryable = (status: number) => status === 403 || status === 408 || status === 429 || status >= 500;
+export async function fetchChain(fetchImpl: typeof fetch = fetch, { attempts = 3, baseDelayMs = 2_000 } = {}): Promise<string> {
+  const errors: string[] = [];
+  for (const url of CHAIN_URLS) {
+    for (let attempt = 1; attempt <= attempts; attempt++) {
+      let retry = true;
+      try {
+        const response = await fetchImpl(url, { signal: AbortSignal.timeout(30_000), headers: CHAIN_HEADERS });
+        if (response.ok) return await response.text();
+        retry = retryable(response.status);
+        errors.push(`${new URL(url).host} HTTP ${response.status}`);
+      } catch (error) {
+        errors.push(`${new URL(url).host} ${error instanceof Error ? error.message : 'request failed'}`);
+      }
+      if (!retry) break;
+      if (attempt < attempts) await new Promise(done => setTimeout(done, baseDelayMs * 2 ** (attempt - 1)));
+    }
+  }
+  throw new Error(`Cboe fetch failed: ${errors.join('; ')}`);
+}
 async function update() {
-  const response = await fetch('https://cdn.cboe.com/api/global/delayed_quotes/options/QQQ.json', { signal: AbortSignal.timeout(30_000), headers: { Accept: 'application/json' } });
-  if (!response.ok) throw new Error(`Cboe HTTP ${response.status}`);
-  const body = await response.text();
+  const body = await fetchChain();
   if (body.length > 20_000_000) throw new Error('Unexpected chain size');
   const snapshot = parseChain(JSON.parse(body));
   const path = resolve('public/data/gex/current.json');
