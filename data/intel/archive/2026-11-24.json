@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-11-24",
+  "generatedAt": "2026-11-24T08:33:39+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-11-24 BKK from Daily Briefing (~7:06 AM BKK), NQ Briefing (~7:13 AM BKK) and FX Briefing (~7:03 AM BKK), ForexFactory week calendar JSON (High/Medium only, today onward; actuals not captured), the Mango Atlas Bloomberg Markets Daily summaries (Monday Nov 23 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. NQ futures change left null (prior close unverified). Short/medium-term sentiment were prose-only so left null. FX support/resistance left empty. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "neutral",
+    "confidence": "low",
+    "volatilityOutlook": "falling",
+    "oneLineTake": "The AI relief rally cut fear fast, but with the Fed leaning hawkish and the move driven by one stock, expect choppy follow-through rather than a clean all-clear.",
+    "themes": [
+      "AI relief rally: Nvidia reinstating Jensen Huang as CEO triggered a 31% one-day jump in the stock and pulled Micron, AMD, CoreWeave and Oracle sharply higher. Wall Street posted its best day in over a year after last week's correction.",
+      "Index move is large: SPY closed at 722.29, up 4.7% from the prior close of 689.81. QQQ closed at 651.03, up 7.0% from 608.45 (Alpha Vantage, Nov 23).",
+      "Fed stays hawkish: NY Fed's Williams signaled higher rates are likely over time to address inflation, and the 2-year yield jumped. The 10-year yield was 4.92% on Nov 20.",
+      "Rotation out of defensives: consumer staples were among the S&P 500's biggest losers as money chased AI names.",
+      "Crypto lagged: Bitcoin sat out the rally amid a reported $1.8 billion ETF outflow."
+    ],
+    "risks": [
+      "A one-day squeeze after a rout is not a confirmed bottom. Short covering did much of the work, and analysts still call it a bottom only for now.",
+      "Washington backlash over the Nvidia decision, and a US probe into Nvidia chip smuggling, add headline risk to the AI trade.",
+      "Rate-hike odds and spreading inflation could cap multiples if the rebound fades.",
+      "Gold has been weak and Congo halted cobalt exports, so commodity cross-currents stay noisy."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 26746.1,
+      "changePct": 6.8605,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T05:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 26753.5,
+      "changePct": null,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T07:01:45+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 104.317,
+      "changePct": 0.44,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T06:04:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 4.918,
+      "changePct": 0.1222,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T02:59:52+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 26.62,
+      "changePct": -25.8289,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VXN",
+      "label": "CBOE NASDAQ 100 Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 36.31,
+      "changePct": -19.7569,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T04:15:01+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 3623.8,
+      "changePct": 3.0836,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T06:53:48+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.09111,
+      "changePct": -0.551,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T07:03:45+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 158.925,
+      "changePct": -0.0038,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T07:03:53+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.66291,
+      "changePct": -0.1777,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T07:03:45+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.84141,
+      "changePct": 0.0571,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-24T07:03:53+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "neutral",
+    "conviction": "low",
+    "regime": "Volatile, event-driven",
+    "summary": "NDX cash ripped 6.86% to 26,746 Monday, its best session since April last year, after Nvidia reinstated Jensen Huang and NVDA jumped 31.5%. NQ is giving back a little overnight while Williams keeps hikes on the table, so follow through is the test. Thesis: neutral, 4/10, two way trade between squeeze strength and a hawkish Fed. Invalidation: close above 27,019. NDX levels: resistance 27,000 (round), 27,019 (Mon H), 27,500 (round); support 26,500 (round), 26,386 (Mon L), 26,000 (round).",
+    "primaryCatalyst": "CB Consumer Confidence at 10:00 PM BKK (forecast 92.4, previous 91.7).",
+    "primaryRisk": "Elevated: give back of Monday's gap.",
+    "overnight": "NQ futures near 26,753.5 (session high 26,894, low 26,684), drifting below the 26,888 open; Nikkei up about 3%; DXY firmer +0.44%; gold near 3,624.",
+    "macro": "Williams says the Fed could hike at consecutive meetings if inflation does not ease; 10Y steady near 4.92% caps multiple expansion.",
+    "volatility": "VIX 26.62 (-25.8%), VXN 36.31 (-19.8%); premium still rich. Dealer gamma unavailable.",
+    "sentimentShortTerm": null,
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "NVDA",
+        "changePct": 31.4825,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": 11.4626,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:00+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": 6.5544,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": 3.4722,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": 1.647,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": 6.3365,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": 1.9033,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": 15.0277,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:00+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": 19.0392,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": 3.0025,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:00:01+07:00"
+      },
+      {
+        "symbol": "ORCL",
+        "changePct": 12.3431,
+        "context": "Monday Nov 23 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-24T04:05:19+07:00"
+      }
+    ],
+    "premarket": []
+  },
+  "fx": {
+    "macroPulse": "The dollar is firmer, with DXY near 104.32 (+0.44%) and the 10Y near 4.92%. Euro is weaker and yen is flat near 158.93. Gold is sharply higher near 3,624 (+3.08%) as last week's tech rout keeps risk sentiment fragile.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "mildly_bullish",
+        "driver": "DXY is up 0.44% near 104.32 with the 10Y holding near 4.92%.",
+        "posture": "Watch only, let Williams and consumer confidence set the tone.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "bullish",
+        "driver": "Gold is up 3.08% near 3,624 while equities remain under pressure.",
+        "posture": "Watch only, chasing after a move this size has poor risk.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: bullish, extended."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "mildly_bearish",
+        "driver": "EURUSD is down 0.55% near 1.0911 against a firmer dollar.",
+        "posture": "Watch only, chop unless 1.09 breaks.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bearish."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "neutral",
+        "driver": "USDJPY is unchanged near 158.93 with yields steady.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "mildly_bearish",
+        "driver": "AUDUSD is down 0.18% near 0.6629 as risk stays fragile.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bearish."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "neutral",
+        "driver": "USDCHF is near 0.8414, up 0.06%, with little direction.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-11-24-2200-usd-cb-consumer-confidence",
+      "datetime": "2026-11-24T22:00:00+07:00",
+      "date": "2026-11-24",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "CB Consumer Confidence",
+      "forecast": "92.4",
+      "previous": "91.7",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-25-0025-cad-boc-gov-macklem-speaks",
+      "datetime": "2026-11-25T00:25:00+07:00",
+      "date": "2026-11-25",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "CAD",
+      "country": "Canada",
+      "impact": "medium",
+      "title": "BOC Gov Macklem Speaks",
+      "forecast": null,
+      "previous": null,
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-25-0730-aud-cpi-m-m",
+      "datetime": "2026-11-25T07:30:00+07:00",
+      "date": "2026-11-25",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "high",
+      "title": "CPI m/m",
+      "forecast": "0.4%",
+      "previous": "0.8%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-25-0730-aud-cpi-y-y",
+      "datetime": "2026-11-25T07:30:00+07:00",
+      "date": "2026-11-25",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "high",
+      "title": "CPI y/y",
+      "forecast": "4.7%",
+      "previous": "4.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-25-0730-aud-trimmed-mean-cpi-m-m",
+      "datetime": "2026-11-25T07:30:00+07:00",
+      "date": "2026-11-25",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "AUD",
+      "country": "Australia",
+      "impact": "high",
+      "title": "Trimmed Mean CPI m/m",
+      "forecast": "0.3%",
+      "previous": "0.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-25-2030-usd-core-pce-price-index-m-m",
+      "datetime": "2026-11-25T20:30:00+07:00",
+      "date": "2026-11-25",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Core PCE Price Index m/m",
+      "forecast": "0.3%",
+      "previous": "0.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-25-2030-usd-prelim-gdp-q-q",
+      "datetime": "2026-11-25T20:30:00+07:00",
+      "date": "2026-11-25",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "high",
+      "title": "Prelim GDP q/q",
+      "forecast": "3.5%",
+      "previous": "3.4%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-25-2030-usd-prelim-gdp-price-index-q-q",
+      "datetime": "2026-11-25T20:30:00+07:00",
+      "date": "2026-11-25",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "USD",
+      "country": "United States",
+      "impact": "medium",
+      "title": "Prelim GDP Price Index q/q",
+      "forecast": "2.3%",
+      "previous": "2.3%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    },
+    {
+      "id": "2026-11-27-0630-jpy-tokyo-core-cpi-y-y",
+      "datetime": "2026-11-27T06:30:00+07:00",
+      "date": "2026-11-27",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "JPY",
+      "country": "Japan",
+      "impact": "medium",
+      "title": "Tokyo Core CPI y/y",
+      "forecast": "3.0%",
+      "previous": "2.6%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-wall-street-sees-buying-opportunities-for-the-brave",
+      "source": "Bloomberg",
+      "headline": "Wall Street Sees Buying Opportunities for the Brave",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-23/wall-street-sees-buying-opportunities-for-the-brave",
+      "summary": "Ed Yardeni now sees the S&P 500 ending 2026 at 7,500 points, down from the 7,900 he projected in September, while Goldman warned positioning is elevated.",
+      "publishedAt": null,
+      "tags": [
+        "Stocks",
+        "Bounce"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-asia-braces-for-more-volatility-after-us-selloff-markets-wrap",
+      "source": "Bloomberg",
+      "headline": "Selling in Asia Eased After Stabilization Steps",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-22/asia-braces-for-more-volatility-after-us-selloff-markets-wrap",
+      "summary": "Regulators in Korea, Taiwan and China unveiled steps to stabilize markets.",
+      "publishedAt": null,
+      "tags": [
+        "Asia"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-crowdstrike-reaches-44-billion-cybersecurity-deal-for-zscaler",
+      "source": "Bloomberg",
+      "headline": "CrowdStrike Reaches a $44 Billion Deal for Zscaler",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-23/crowdstrike-reaches-44-billion-cybersecurity-deal-for-zscaler",
+      "summary": "It is one of the largest-ever acquisitions in the sector, and Zscaler shares are up 12%.",
+      "publishedAt": null,
+      "tags": [
+        "Crowdstrike"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-bessent-warns-fed-risks-overtightening-as-us-markets-swoon",
+      "source": "Bloomberg",
+      "headline": "Scott Bessent Warns the Fed Risks Jeopardizing the Economy",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-22/bessent-warns-fed-risks-overtightening-as-us-markets-swoon",
+      "summary": "He said the risk is overtightening in response to the latest inflation data.",
+      "publishedAt": null,
+      "tags": [
+        "Fed"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-bitcoin-etf-exodus-gathers-pace-removing-key-source-of-support",
+      "source": "Bloomberg",
+      "headline": "Crypto's Diehard Believers Are Taking Their Money Elsewhere",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-23/bitcoin-etf-exodus-gathers-pace-removing-key-source-of-support",
+      "summary": "Investors have been pulling money from ETFs and Bitcoin has dropped for seven weeks, the longest losing stretch since 2022.",
+      "publishedAt": null,
+      "tags": [
+        "Crypto"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-trump-iran-talks-continue-year-end-republican-party-midterms-middle-east-arab",
+      "source": "Bloomberg",
+      "headline": "Donald Trump Said He Might Resume the War on Iran Next Year",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-23/trump-iran-talks-continue-year-end-republican-party-midterms-middle-east-arab",
+      "summary": "He said that would happen if talks fail to yield a diplomatic resolution.",
+      "publishedAt": null,
+      "tags": [
+        "Iran"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-asia-braces-for-more-volatility-after-us-selloff-markets-wrap-2",
+      "source": "Bloomberg",
+      "headline": "On the Move: Magnificent Seven, Anthropic, SpaceX",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-22/asia-braces-for-more-volatility-after-us-selloff-markets-wrap",
+      "summary": "Nvidia is up 8.6% and Alphabet 4.8% as the Magnificent Seven rebound in premarket trading.",
+      "publishedAt": null,
+      "tags": [
+        "Premarket"
+      ],
+      "symbols": [
+        "INTC",
+        "NVDA"
+      ]
+    },
+    {
+      "id": "bbg-us-consumers-are-holding-up-against-inflation-going-into-holiday-season",
+      "source": "Bloomberg",
+      "headline": "The Week Ahead: US Personal Spending and PCE on Wednesday",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-21/us-consumers-are-holding-up-against-inflation-going-into-holiday-season",
+      "summary": "Economists estimate inflation-adjusted personal spending rose 0.1% in October, while the PCE price index is projected to rise 3.8%, matching May as the biggest annual increase in three years.",
+      "publishedAt": null,
+      "tags": [
+        "Week",
+        "Ahead"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-from-squeezes-to-meltdown-a-week-of-mayhem-rocks-metals-markets",
+      "source": "Bloomberg",
+      "headline": "Metals Mayhem",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-22/from-squeezes-to-meltdown-a-week-of-mayhem-rocks-metals-markets",
+      "summary": "Massive squeezes in copper, aluminum and tin were followed last week by price crashes, and spot supply crunches that sent spreads soaring remain in place.",
+      "publishedAt": null,
+      "tags": [
+        "Metals"
+      ],
+      "symbols": []
+    }
+  ]
+}
