@@ -50,24 +50,27 @@ test('failed update checks preserve dated data, and a cold failure never invents
   await page.reload();await expect(page.locator('#gex-content')).toContainText('The map is waiting for data');
   await expect(page.locator('.gex-metric')).toHaveCount(0);
 });
-// The real current.json is refreshed by the data publisher several times a day, so tests that need a
-// specific age must move the snapshot's own timestamps relative to a frozen clock instead of pairing a
-// hard-coded clock with whatever capture is committed (a newer capture would look like it came from the future).
-const shiftSnapshot = (capturedAt: Date) => {
-  const delta = +capturedAt - +new Date(snapshot.retrievedAt);
-  const move = (iso: string) => new Date(+new Date(iso) + delta).toISOString();
-  return { ...snapshot, retrievedAt: move(snapshot.retrievedAt), chainAsOf: move(snapshot.chainAsOf), quoteAsOf: move(snapshot.quoteAsOf) };
-};
-// Shifting keeps whatever quote/chain lag the committed capture happens to have (an off-hours capture can carry
-// the previous close as its quote, hours older than retrievedAt). Tests that assert a fresh in-session status must
+// The real current.json is refreshed by the data publisher several times a day, so tests that need a specific
+// age must derive their frozen clock from the committed capture. Never pair a hard-coded date with it: a newer
+// capture would look like it came from the future, and its real expiries fall outside the expiry window.
+// An off-hours capture can carry the previous close as its quote, hours older than retrievedAt. Tests that assert a fresh in-session status must
 // set every source timestamp explicitly relative to the frozen clock so they never depend on the committed file.
 const freshSnapshot = (now: Date, ageMinutes: number) => {
   const at = (minutes: number) => new Date(+now - minutes * 60_000).toISOString();
   return { ...snapshot, retrievedAt: at(ageMinutes), chainAsOf: at(ageMinutes + 2), quoteAsOf: at(ageMinutes + 1) };
 };
+// Next weekday 18:00 UTC (13:00-14:00 New York, inside regular hours in both EST and EDT) at or after `from`.
+const tradingSessionAfter = (from: Date) => {
+  const at = new Date(Date.UTC(from.getUTCFullYear(), from.getUTCMonth(), from.getUTCDate(), 18));
+  if (at < from) at.setUTCDate(at.getUTCDate() + 1);
+  while (at.getUTCDay() === 0 || at.getUTCDay() === 6) at.setUTCDate(at.getUTCDate() + 1);
+  return at;
+};
 test('old data during a trading session is shown as the last saved snapshot',async({page})=>{
-  const now = new Date('2026-10-29T18:00:00Z'); // Thursday 14:00 New York, inside regular hours
-  const old = shiftSnapshot(new Date(+now - 26 * 3600_000)); // captured the previous session, well past the 4h limit
+  // Keep the committed capture (and its expiries) as-is and move the clock forward instead: shifting the capture
+  // back to a fixed past date leaves its real expiries outside the 30-day window once the file is ~30 days newer.
+  const now = tradingSessionAfter(new Date(+new Date(snapshot.retrievedAt) + 26 * 3600_000));
+  const old = snapshot; // at least 26h before `now`, well past the 4h limit
   await page.clock.setFixedTime(now);
   await page.route('**/data/gex/current.json',route=>route.fulfill({json:old}));
   await page.goto('/gex');await expect(page.locator('#gex-status')).toContainText('LAST SAVED SNAPSHOT');await expect(page.locator('#gex-status')).toHaveClass(/is-stale/);
@@ -76,7 +79,7 @@ test('old data during a trading session is shown as the last saved snapshot',asy
   await expect(page.locator('#gex-read-freshness')).toContainText('not current positioning');
 });
 test('a recent capture during a trading session is not flagged as old',async({page})=>{
-  const now = new Date('2026-10-29T18:00:00Z');
+  const now = tradingSessionAfter(new Date(snapshot.retrievedAt));
   await page.clock.setFixedTime(now);
   await page.route('**/data/gex/current.json',route=>route.fulfill({json:freshSnapshot(now, 30)}));
   await page.goto('/gex');await expect(page.locator('#gex-status')).toContainText('SCHEDULED SNAPSHOT');await expect(page.locator('#gex-status')).not.toHaveClass(/is-stale/);
