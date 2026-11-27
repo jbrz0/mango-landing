@@ -298,7 +298,8 @@ test('readable research, icons, stock identities and flags survive narrow layout
   await expect(page.locator('.story-tags .stock-identity')).toContainText('AAPL');
   for (const width of [320, 375, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px`).toBe(true);
+    // Poll: third-party quote widgets can briefly overflow while they reflow after a resize on slow CI runners.
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), { message: `${width}px` }).toBe(true);
     expect(await page.locator('.research-copy').first().evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(15);
   }
   const gold = page.locator('.fx-instrument').filter({ has: page.locator('summary strong', { hasText: 'XAUUSD' }) });
