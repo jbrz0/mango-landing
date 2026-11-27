@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "kind": "briefing",
+  "asOfDate": "2026-11-27",
+  "generatedAt": "2026-11-27T08:40:01+07:00",
+  "timezone": "Asia/Bangkok",
+  "provenance": {
+    "source": "Mango Atlas Grokbot daily intelligence",
+    "note": "Compiled 2026-11-27 BKK from Daily Briefing, NQ Briefing (~7:14 AM BKK) and FX Briefing (~7:06 AM BKK), ForexFactory week calendar JSON (High/Medium only, today onward; actuals not captured), the Mango Atlas Bloomberg Markets Daily summaries (Thursday Nov 26 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. Short/medium-term sentiment were prose-only so left null. FX support/resistance left empty. No invented prices, levels, or enums."
+  },
+  "overview": {
+    "sentiment": "bearish",
+    "confidence": "medium",
+    "volatilityOutlook": "rising",
+    "oneLineTake": "Sellers keep control while rate-hike odds and inflation worries cap tech, so stay defensive on short-vol exposure into thin holiday trade.",
+    "themes": [
+      "Tech rout and correction talk dominate the narrative: headlines focus on downside risk for the S&P 500, comparisons to 2018, and where equities bottom.",
+      "Rates are the pressure point: the 10-year yield sat at 4.91% (Nov 24) and coverage ties the tech selloff to Fed rate hike odds.",
+      "Growth is solid but inflation is the worry: Q3 real GDP was revised up to 4.3%, while commentary says inflation is spreading downstream.",
+      "Last close (Nov 25): QQQ 633.93 (-0.65%), SPY 716.70 (-0.29%). Dollar proxy UUP near 29.60.",
+      "Holiday session: US markets reopen for a half day, so liquidity is thin and moves can overshoot."
+    ],
+    "risks": [
+      "Hawkish repricing of Fed expectations hitting long-duration tech again.",
+      "Middle East: the US renewed its travel alert, warning hostilities could escalate rapidly.",
+      "Thin holiday liquidity with leadership names (semis, hyperscalers) driving index swings."
+    ]
+  },
+  "markets": [
+    {
+      "symbol": "NDX",
+      "label": "NASDAQ-100 cash index",
+      "instrumentType": "cash_index",
+      "price": 26046.9,
+      "changePct": -0.6381,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-26T05:15:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "NQ",
+      "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
+      "instrumentType": "futures",
+      "price": 26281.75,
+      "changePct": 0.6954,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-27T07:01:16+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "DXY",
+      "label": "ICE US Dollar Index",
+      "instrumentType": "cash_index",
+      "price": 103.777,
+      "changePct": 0.1032,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-27T06:04:59+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "US10Y",
+      "label": "US 10-year Treasury yield",
+      "instrumentType": "yield",
+      "price": 4.848,
+      "changePct": -1.1419,
+      "unit": "percent",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-26T02:59:53+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "VIX",
+      "label": "CBOE Volatility Index",
+      "instrumentType": "volatility_index",
+      "price": 26.8,
+      "changePct": -5.2669,
+      "unit": "points",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-26T23:30:00+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "GC",
+      "label": "Gold front-month futures (Yahoo GC=F)",
+      "instrumentType": "futures",
+      "price": 3593.4,
+      "changePct": 1.629,
+      "unit": "USD",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-27T06:53:38+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "EURUSD",
+      "label": "EUR/USD spot",
+      "instrumentType": "fx",
+      "price": 1.09709,
+      "changePct": 0.0077,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-27T07:03:43+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDJPY",
+      "label": "USD/JPY spot",
+      "instrumentType": "fx",
+      "price": 159.34,
+      "changePct": 0.0785,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-27T07:04:09+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "AUDUSD",
+      "label": "AUD/USD spot",
+      "instrumentType": "fx",
+      "price": 0.66388,
+      "changePct": 0.1642,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-27T07:03:43+07:00",
+      "status": "delayed"
+    },
+    {
+      "symbol": "USDCHF",
+      "label": "USD/CHF spot",
+      "instrumentType": "fx",
+      "price": 0.83495,
+      "changePct": 0.4499,
+      "unit": "rate",
+      "source": "Yahoo Finance",
+      "updatedAt": "2026-11-27T07:04:09+07:00",
+      "status": "delayed"
+    }
+  ],
+  "nq": {
+    "bias": "mildly_bullish",
+    "conviction": "low",
+    "regime": "Volatile, holiday liquidity",
+    "summary": "NQ futures held the Thanksgiving bid and trade +0.7% above Wednesday's settle, extending the reversal off Wednesday's 24,971 NDX cash low. Low volume half day, so moves can overshoot both ways, with Nvidia and chip curb headlines still the swing factor. Thesis: mildly bullish, 4/10, buy dips above 26,000. Invalidation: NDX below 26,000. NDX levels: resistance 26,082, 26,214, 26,434; support 26,000, 25,310, 24,971.",
+    "primaryCatalyst": "US cash reopens 9:30 PM BKK for a half day, closing 1:00 AM BKK Saturday.",
+    "primaryRisk": "Elevated: Nvidia and chip export curb headlines.",
+    "overnight": "NQ futures near 26,282 (+0.7% vs 26,100 prior settle), session high 26,436, low 25,998. Nikkei futures +0.8%, ASX flat. Tokyo CPI 2.8% y/y vs 3.1% est, core 2.9% in line.",
+    "macro": "10Y near 4.85% and DXY flat near 103.78; rate hike odds remain the main pressure on long duration tech, but no US data today to test them.",
+    "volatility": "VIX 26.80 (-5.27%) easing, VXN 38.53 still elevated. Dealer gamma unavailable.",
+    "sentimentShortTerm": null,
+    "sentimentMediumTerm": null,
+    "megaCaps": [
+      {
+        "symbol": "NVDA",
+        "changePct": -3.913,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:01+07:00"
+      },
+      {
+        "symbol": "TSLA",
+        "changePct": -1.1802,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "META",
+        "changePct": 3.4027,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "AMZN",
+        "changePct": -3.1155,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "MSFT",
+        "changePct": -1.2497,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "GOOGL",
+        "changePct": -2.1322,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "AAPL",
+        "changePct": 0.4265,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": -0.0731,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      }
+    ],
+    "semiconductors": [
+      {
+        "symbol": "SMH",
+        "changePct": -1.0053,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:01+07:00"
+      },
+      {
+        "symbol": "MU",
+        "changePct": -4.5317,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "AVGO",
+        "changePct": -0.0731,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:00:02+07:00"
+      },
+      {
+        "symbol": "ORCL",
+        "changePct": -5.1324,
+        "context": "Wednesday Nov 25 regular-session close vs prior close.",
+        "source": "Yahoo Finance",
+        "updatedAt": "2026-11-26T04:02:32+07:00"
+      }
+    ],
+    "premarket": []
+  },
+  "fx": {
+    "macroPulse": "The dollar is steady, with DXY near 103.78 (up 0.1%) and the 10Y near 4.85%. US markets reopen for a half session, so liquidity stays thin. Gold is up 1.6% near 3,593 as AI-led equity selling and Nvidia credit stress keep risk tilted lower.",
+    "instruments": [
+      {
+        "symbol": "DXY",
+        "bias": "neutral",
+        "driver": "DXY is up 0.1% near 103.78 while the 10Y eased to 4.85%.",
+        "posture": "Watch only, half session.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral, thin liquidity."
+      },
+      {
+        "symbol": "XAUUSD",
+        "bias": "mildly_bullish",
+        "driver": "Gold is up 1.6% near 3,593 as equities slide on the AI unwind.",
+        "posture": "Watch only, wide swings in holiday trade.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish, volatile."
+      },
+      {
+        "symbol": "EURUSD",
+        "bias": "neutral",
+        "driver": "EURUSD is flat near 1.0971 ahead of the eurozone CPI prints.",
+        "posture": "Watch only, chop until French and Spanish CPI.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "USDJPY",
+        "bias": "neutral",
+        "driver": "USDJPY is up 0.08% near 159.34, pinned just under 160.",
+        "posture": "Watch only, chop near 159 to 160.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "AUDUSD",
+        "bias": "neutral",
+        "driver": "AUDUSD is up 0.16% near 0.6639 with no Australian data today.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: neutral."
+      },
+      {
+        "symbol": "USDCHF",
+        "bias": "mildly_bullish",
+        "driver": "USDCHF is up 0.45% near 0.8349, recovering after the prior haven bid for the franc.",
+        "posture": "Watch only, chop.",
+        "support": [],
+        "resistance": [],
+        "comments": "Brief view: mildly bullish."
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2026-11-27-0630-jpy-tokyo-core-cpi-y-y",
+      "datetime": "2026-11-27T06:30:00+07:00",
+      "date": "2026-11-27",
+      "timeLabel": null,
+      "timezone": "Asia/Bangkok",
+      "currency": "JPY",
+      "country": "Japan",
+      "impact": "medium",
+      "title": "Tokyo Core CPI y/y",
+      "forecast": "3.0%",
+      "previous": "2.6%",
+      "actual": null,
+      "source": "https://www.forexfactory.com/calendar"
+    }
+  ],
+  "intelligence": [
+    {
+      "id": "bbg-wall-street-flips-from-ai-euphoria-to-gloom",
+      "source": "Bloomberg",
+      "headline": "Wall Street Flips From AI Euphoria to Gloom",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-26/wall-street-flips-from-ai-euphoria-to-gloom",
+      "summary": "The Nasdaq 100 was down nearly 5% just 15 minutes into Wednesday, then closed only 0.6% lower after Monday's Nvidia-led rebound faded.",
+      "publishedAt": null,
+      "tags": [
+        "Volatility"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
+      "source": "Bloomberg",
+      "headline": "Global Stocks Are Up",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/stock-market-today-dow-s-p-live-updates",
+      "summary": "Memory giants outperformed in Asia, and US markets are closed today for Thanksgiving.",
+      "publishedAt": null,
+      "tags": [
+        "Stocks"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-michael-burry-is-more-long-than-short-after-dumping-nasdaq-puts",
+      "source": "Bloomberg",
+      "headline": "Michael Burry Now Has More Long Equity Positions Than Short Ones",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/michael-burry-is-more-long-than-short-after-dumping-nasdaq-puts",
+      "summary": "He unloaded his put options on the Nasdaq 100.",
+      "publishedAt": null,
+      "tags": [
+        "Burry"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-jpmorgan-sees-450-billion-ai-debt-blitz-in-2027-before-plateau",
+      "source": "Bloomberg",
+      "headline": "JPMorgan Sees $450 Billion of High-Grade AI Debt Next Year",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/jpmorgan-sees-450-billion-ai-debt-blitz-in-2027-before-plateau",
+      "summary": "Spending growth will then slow sharply in 2028 as the industry settles into a steady run rate.",
+      "publishedAt": null,
+      "tags": [
+        "Debt"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stocks-meltdown-spills-into-unlikely-market-sinking-carry-trade",
+      "source": "Bloomberg",
+      "headline": "The Carry Trade Is Becoming Harder to Navigate",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/stocks-meltdown-spills-into-unlikely-market-sinking-carry-trade",
+      "summary": "AI doubts are denting risk appetite and fueling volatility in one of 2026's most reliable wagers.",
+      "publishedAt": null,
+      "tags": [
+        "Carry"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-anthropic-s-stock-sparks-rare-divide-inside-one-wall-street-firm",
+      "source": "Bloomberg",
+      "headline": "Two Hedgeye Analysts Posted Conflicting Views on Anthropic",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/anthropic-s-stock-sparks-rare-divide-inside-one-wall-street-firm",
+      "summary": "Andrew Freedman said the stock should be attractive for long-term investors, while colleague Felix Wang recommended clients short it.",
+      "publishedAt": null,
+      "tags": [
+        "Anthropic"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-situational-awareness-ai-65-hedge-fund-third-quarter-wsj-says",
+      "source": "Bloomberg",
+      "headline": "Situational Awareness Lost 65% After Fees in the Third Quarter",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-26/situational-awareness-ai-65-hedge-fund-third-quarter-wsj-says",
+      "summary": "The Leopold Aschenbrenner hedge fund nearly imploded in July when bets on AI went south, the Wall Street Journal reported.",
+      "publishedAt": null,
+      "tags": [
+        "Hedge funds"
+      ],
+      "symbols": []
+    }
+  ]
+}

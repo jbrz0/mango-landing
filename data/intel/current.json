@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
   "kind": "briefing",
-  "asOfDate": "2026-11-26",
-  "generatedAt": "2026-11-26T08:38:05+07:00",
+  "asOfDate": "2026-11-27",
+  "generatedAt": "2026-11-27T08:40:01+07:00",
   "timezone": "Asia/Bangkok",
   "provenance": {
     "source": "Mango Atlas Grokbot daily intelligence",
-    "note": "Compiled 2026-11-26 BKK from Daily Briefing, NQ Briefing (~7:14 AM BKK) and FX Briefing (~7:06 AM BKK), ForexFactory week calendar JSON (High/Medium only, today onward; actuals not captured), the Mango Atlas Bloomberg Markets Daily summaries (Wednesday Nov 25 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. NQ futures change left null (prior close unverified). Short/medium-term sentiment were prose-only so left null. FX support/resistance left empty. No invented prices, levels, or enums."
+    "note": "Compiled 2026-11-27 BKK from Daily Briefing, NQ Briefing (~7:14 AM BKK) and FX Briefing (~7:06 AM BKK), ForexFactory week calendar JSON (High/Medium only, today onward; actuals not captured), the Mango Atlas Bloomberg Markets Daily summaries (Thursday Nov 26 issue; publish times unknown), and Yahoo Finance quote snapshots captured by the NQ and FX briefing jobs. Short/medium-term sentiment were prose-only so left null. FX support/resistance left empty. No invented prices, levels, or enums."
   },
   "overview": {
     "sentiment": "bearish",
     "confidence": "medium",
     "volatilityOutlook": "rising",
-    "oneLineTake": "AI-led selling and Nvidia credit stress keep risk tilted lower, and holiday-thin liquidity raises the odds of sharp moves.",
+    "oneLineTake": "Sellers keep control while rate-hike odds and inflation worries cap tech, so stay defensive on short-vol exposure into thin holiday trade.",
     "themes": [
-      "AI infrastructure unwind: headlines point to Nasdaq futures down about 3% with Nvidia and AMD slumping, and AI stocks sliding on fears over buildout costs.",
-      "Nvidia credit stress: S&P is reported to be threatening a downgrade as the CDS widens to a record, and the failed Nvidia rally keeps tech leadership in question.",
-      "Inflation and the Fed: PCE inflation coverage keeps rate relief in doubt, and the 10-year yield sat at 4.92% (Nov 23 print).",
-      "Broad tape: SPY closed at 716.70 on Nov 25, down 0.29%, so the damage is concentrated in AI leaders so far.",
-      "Oil: reports of elevated Russian crude shipments add to supply surplus talk."
+      "Tech rout and correction talk dominate the narrative: headlines focus on downside risk for the S&P 500, comparisons to 2018, and where equities bottom.",
+      "Rates are the pressure point: the 10-year yield sat at 4.91% (Nov 24) and coverage ties the tech selloff to Fed rate hike odds.",
+      "Growth is solid but inflation is the worry: Q3 real GDP was revised up to 4.3%, while commentary says inflation is spreading downstream.",
+      "Last close (Nov 25): QQQ 633.93 (-0.65%), SPY 716.70 (-0.29%). Dollar proxy UUP near 29.60.",
+      "Holiday session: US markets reopen for a half day, so liquidity is thin and moves can overshoot."
     ],
     "risks": [
-      "Further AI de-rating or a credit downgrade forcing index-level selling.",
-      "Thanksgiving today: US markets are closed, so liquidity is thin and gaps can follow into Friday's half session.",
-      "Sticky inflation keeping yields near 4.9% and pressuring multiples."
+      "Hawkish repricing of Fed expectations hitting long-duration tech again.",
+      "Middle East: the US renewed its travel alert, warning hostilities could escalate rapidly.",
+      "Thin holiday liquidity with leadership names (semis, hyperscalers) driving index swings."
     ]
   },
   "markets": [
@@ -42,22 +42,22 @@
       "symbol": "NQ",
       "label": "E-mini Nasdaq 100 front-month futures (Yahoo NQ=F)",
       "instrumentType": "futures",
-      "price": 26133,
-      "changePct": null,
+      "price": 26281.75,
+      "changePct": 0.6954,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T06:57:28+07:00",
+      "updatedAt": "2026-11-27T07:01:16+07:00",
       "status": "delayed"
     },
     {
       "symbol": "DXY",
       "label": "ICE US Dollar Index",
       "instrumentType": "cash_index",
-      "price": 103.696,
-      "changePct": -0.1098,
+      "price": 103.777,
+      "changePct": 0.1032,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T06:04:59+07:00",
+      "updatedAt": "2026-11-27T06:04:59+07:00",
       "status": "delayed"
     },
     {
@@ -75,79 +75,79 @@
       "symbol": "VIX",
       "label": "CBOE Volatility Index",
       "instrumentType": "volatility_index",
-      "price": 28.29,
-      "changePct": 7.3217,
+      "price": 26.8,
+      "changePct": -5.2669,
       "unit": "points",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T04:15:01+07:00",
+      "updatedAt": "2026-11-26T23:30:00+07:00",
       "status": "delayed"
     },
     {
       "symbol": "GC",
       "label": "Gold front-month futures (Yahoo GC=F)",
       "instrumentType": "futures",
-      "price": 3608.1,
-      "changePct": 1.2971,
+      "price": 3593.4,
+      "changePct": 1.629,
       "unit": "USD",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T06:57:21+07:00",
+      "updatedAt": "2026-11-27T06:53:38+07:00",
       "status": "delayed"
     },
     {
       "symbol": "EURUSD",
       "label": "EUR/USD spot",
       "instrumentType": "fx",
-      "price": 1.09769,
-      "changePct": 0.1339,
+      "price": 1.09709,
+      "changePct": 0.0077,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T07:06:45+07:00",
+      "updatedAt": "2026-11-27T07:03:43+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDJPY",
       "label": "USD/JPY spot",
       "instrumentType": "fx",
-      "price": 159.146,
-      "changePct": -0.0728,
+      "price": 159.34,
+      "changePct": 0.0785,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T07:07:21+07:00",
+      "updatedAt": "2026-11-27T07:04:09+07:00",
       "status": "delayed"
     },
     {
       "symbol": "AUDUSD",
       "label": "AUD/USD spot",
       "instrumentType": "fx",
-      "price": 0.66287,
-      "changePct": -0.0802,
+      "price": 0.66388,
+      "changePct": 0.1642,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T07:05:45+07:00",
+      "updatedAt": "2026-11-27T07:03:43+07:00",
       "status": "delayed"
     },
     {
       "symbol": "USDCHF",
       "label": "USD/CHF spot",
       "instrumentType": "fx",
-      "price": 0.83099,
-      "changePct": -0.5731,
+      "price": 0.83495,
+      "changePct": 0.4499,
       "unit": "rate",
       "source": "Yahoo Finance",
-      "updatedAt": "2026-11-26T07:07:21+07:00",
+      "updatedAt": "2026-11-27T07:04:09+07:00",
       "status": "delayed"
     }
   ],
   "nq": {
-    "bias": "neutral",
+    "bias": "mildly_bullish",
     "conviction": "low",
-    "regime": "Volatile, thin holiday liquidity",
-    "summary": "NDX cash closed -0.64% at 26,047 Wednesday after tagging 24,971, a full reversal off bear market territory as dip buyers stepped in. With US cash shut today, NQ trades a thin holiday session, so expect chop and headline driven spikes rather than trend. Thesis: neutral, 3/10, fade extremes in thin trade. Invalidation: clean break of 26,214 or 26,000. NDX levels: resistance 26,082 (Wed H), 26,214 (Tue close), 26,434 (Tue H); support 26,000 (round), 25,310 (Wed open), 24,971 (Wed L).",
-    "primaryCatalyst": "US Thanksgiving, cash closed; BOE Financial Stability Report at 5:30 PM BKK.",
-    "primaryRisk": "Elevated: Nvidia and Gulf headlines.",
-    "overnight": "NQ futures near 26,133 (session high 26,167.5, low 25,997.5), above its 26,068.5 open; Asia firmer after the US recovery, Nikkei up about 1%; UKMTO reports a projectile blast near a tanker 50NM west of Dubai, no damage.",
-    "macro": "10Y eased to 4.85% (-1.14%) and DXY -0.11%; lower yields helped long duration tech recover into the close. No US data today.",
-    "volatility": "VIX 28.29 (+7.32%), intraday high 34.95 before fading. VXN and dealer gamma unavailable.",
+    "regime": "Volatile, holiday liquidity",
+    "summary": "NQ futures held the Thanksgiving bid and trade +0.7% above Wednesday's settle, extending the reversal off Wednesday's 24,971 NDX cash low. Low volume half day, so moves can overshoot both ways, with Nvidia and chip curb headlines still the swing factor. Thesis: mildly bullish, 4/10, buy dips above 26,000. Invalidation: NDX below 26,000. NDX levels: resistance 26,082, 26,214, 26,434; support 26,000, 25,310, 24,971.",
+    "primaryCatalyst": "US cash reopens 9:30 PM BKK for a half day, closing 1:00 AM BKK Saturday.",
+    "primaryRisk": "Elevated: Nvidia and chip export curb headlines.",
+    "overnight": "NQ futures near 26,282 (+0.7% vs 26,100 prior settle), session high 26,436, low 25,998. Nikkei futures +0.8%, ASX flat. Tokyo CPI 2.8% y/y vs 3.1% est, core 2.9% in line.",
+    "macro": "10Y near 4.85% and DXY flat near 103.78; rate hike odds remain the main pressure on long duration tech, but no US data today to test them.",
+    "volatility": "VIX 26.80 (-5.27%) easing, VXN 38.53 still elevated. Dealer gamma unavailable.",
     "sentimentShortTerm": null,
     "sentimentMediumTerm": null,
     "megaCaps": [
@@ -241,13 +241,13 @@
     "premarket": []
   },
   "fx": {
-    "macroPulse": "The dollar is slightly softer, with DXY near 103.70 (down 0.11%) and the 10Y near 4.85%. US markets are closed for Thanksgiving, so liquidity is thin. Gold is up 1.3% near 3,608 as AI-led equity selling and Nvidia credit stress keep risk tilted lower.",
+    "macroPulse": "The dollar is steady, with DXY near 103.78 (up 0.1%) and the 10Y near 4.85%. US markets reopen for a half session, so liquidity stays thin. Gold is up 1.6% near 3,593 as AI-led equity selling and Nvidia credit stress keep risk tilted lower.",
     "instruments": [
       {
         "symbol": "DXY",
         "bias": "neutral",
-        "driver": "DXY is down 0.11% near 103.70 with the 10Y easing to 4.85%.",
-        "posture": "Watch only, US closed.",
+        "driver": "DXY is up 0.1% near 103.78 while the 10Y eased to 4.85%.",
+        "posture": "Watch only, half session.",
         "support": [],
         "resistance": [],
         "comments": "Brief view: neutral, thin liquidity."
@@ -255,7 +255,7 @@
       {
         "symbol": "XAUUSD",
         "bias": "mildly_bullish",
-        "driver": "Gold is up 1.3% near 3,608 as equities slide on the AI unwind.",
+        "driver": "Gold is up 1.6% near 3,593 as equities slide on the AI unwind.",
         "posture": "Watch only, wide swings in holiday trade.",
         "support": [],
         "resistance": [],
@@ -264,8 +264,8 @@
       {
         "symbol": "EURUSD",
         "bias": "neutral",
-        "driver": "EURUSD is up 0.13% near 1.0977 on the slightly softer dollar.",
-        "posture": "Watch only, chop until GfK.",
+        "driver": "EURUSD is flat near 1.0971 ahead of the eurozone CPI prints.",
+        "posture": "Watch only, chop until French and Spanish CPI.",
         "support": [],
         "resistance": [],
         "comments": "Brief view: neutral."
@@ -273,8 +273,8 @@
       {
         "symbol": "USDJPY",
         "bias": "neutral",
-        "driver": "USDJPY is down 0.07% near 159.15 and stuck below 160.",
-        "posture": "Watch only, chop near 159.",
+        "driver": "USDJPY is up 0.08% near 159.34, pinned just under 160.",
+        "posture": "Watch only, chop near 159 to 160.",
         "support": [],
         "resistance": [],
         "comments": "Brief view: neutral."
@@ -282,20 +282,20 @@
       {
         "symbol": "AUDUSD",
         "bias": "neutral",
-        "driver": "AUDUSD is down 0.08% near 0.6629 ahead of the 7:30 AM capex print.",
-        "posture": "Watch only, let capex decide.",
+        "driver": "AUDUSD is up 0.16% near 0.6639 with no Australian data today.",
+        "posture": "Watch only, chop.",
         "support": [],
         "resistance": [],
         "comments": "Brief view: neutral."
       },
       {
         "symbol": "USDCHF",
-        "bias": "mildly_bearish",
-        "driver": "USDCHF is down 0.57% near 0.8310 as haven demand lifts the franc.",
+        "bias": "mildly_bullish",
+        "driver": "USDCHF is up 0.45% near 0.8349, recovering after the prior haven bid for the franc.",
         "posture": "Watch only, chop.",
         "support": [],
         "resistance": [],
-        "comments": "Brief view: mildly bearish."
+        "comments": "Brief view: mildly bullish."
       }
     ]
   },
@@ -318,35 +318,71 @@
   ],
   "intelligence": [
     {
-      "id": "bbg-bond-traders-hedge-a-hike-now-cut-later-scenario",
+      "id": "bbg-wall-street-flips-from-ai-euphoria-to-gloom",
       "source": "Bloomberg",
-      "headline": "Bond Traders Hedge a Hike Now, Cut Later Scenario",
-      "url": "https://www.bloomberg.com/news/newsletters/2026-11-25/bond-traders-hedge-a-hike-now-cut-later-scenario",
-      "summary": "Ten-year yields have fallen to about 4.85% despite inflation still running above target, and PCE later today is projected at 3.8%.",
+      "headline": "Wall Street Flips From AI Euphoria to Gloom",
+      "url": "https://www.bloomberg.com/news/newsletters/2026-11-26/wall-street-flips-from-ai-euphoria-to-gloom",
+      "summary": "The Nasdaq 100 was down nearly 5% just 15 minutes into Wednesday, then closed only 0.6% lower after Monday's Nvidia-led rebound faded.",
       "publishedAt": null,
       "tags": [
-        "Bonds"
+        "Volatility"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-asian-stocks-to-slide-as-ai-trade-doubts-resurface-markets-wrap",
+      "id": "bbg-stock-market-today-dow-s-p-live-updates",
       "source": "Bloomberg",
-      "headline": "Tech Stocks Are Still Selling Off",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-24/asian-stocks-to-slide-as-ai-trade-doubts-resurface-markets-wrap",
-      "summary": "South Korea's Kospi sank the most in a month.",
+      "headline": "Global Stocks Are Up",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/stock-market-today-dow-s-p-live-updates",
+      "summary": "Memory giants outperformed in Asia, and US markets are closed today for Thanksgiving.",
       "publishedAt": null,
       "tags": [
-        "Asia"
+        "Stocks"
       ],
       "symbols": []
     },
     {
-      "id": "bbg-anthropic-breaks-below-83-ipo-price-in-premarket-trading",
+      "id": "bbg-michael-burry-is-more-long-than-short-after-dumping-nasdaq-puts",
       "source": "Bloomberg",
-      "headline": "Anthropic Extended Losses",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-24/anthropic-breaks-below-83-ipo-price-in-premarket-trading",
-      "summary": "The stock closed below the $83 IPO price on Tuesday, wiping out gains for investors who piled into the record-setting debut.",
+      "headline": "Michael Burry Now Has More Long Equity Positions Than Short Ones",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/michael-burry-is-more-long-than-short-after-dumping-nasdaq-puts",
+      "summary": "He unloaded his put options on the Nasdaq 100.",
+      "publishedAt": null,
+      "tags": [
+        "Burry"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-jpmorgan-sees-450-billion-ai-debt-blitz-in-2027-before-plateau",
+      "source": "Bloomberg",
+      "headline": "JPMorgan Sees $450 Billion of High-Grade AI Debt Next Year",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/jpmorgan-sees-450-billion-ai-debt-blitz-in-2027-before-plateau",
+      "summary": "Spending growth will then slow sharply in 2028 as the industry settles into a steady run rate.",
+      "publishedAt": null,
+      "tags": [
+        "Debt"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-stocks-meltdown-spills-into-unlikely-market-sinking-carry-trade",
+      "source": "Bloomberg",
+      "headline": "The Carry Trade Is Becoming Harder to Navigate",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/stocks-meltdown-spills-into-unlikely-market-sinking-carry-trade",
+      "summary": "AI doubts are denting risk appetite and fueling volatility in one of 2026's most reliable wagers.",
+      "publishedAt": null,
+      "tags": [
+        "Carry"
+      ],
+      "symbols": []
+    },
+    {
+      "id": "bbg-anthropic-s-stock-sparks-rare-divide-inside-one-wall-street-firm",
+      "source": "Bloomberg",
+      "headline": "Two Hedgeye Analysts Posted Conflicting Views on Anthropic",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-25/anthropic-s-stock-sparks-rare-divide-inside-one-wall-street-firm",
+      "summary": "Andrew Freedman said the stock should be attractive for long-term investors, while colleague Felix Wang recommended clients short it.",
       "publishedAt": null,
       "tags": [
         "Anthropic"
@@ -354,69 +390,16 @@
       "symbols": []
     },
     {
-      "id": "bbg-trump-says-huang-pardon-always-an-option-new-york-post-reports",
+      "id": "bbg-situational-awareness-ai-65-hedge-fund-third-quarter-wsj-says",
       "source": "Bloomberg",
-      "headline": "Trump Says a Pardon Is Always an Option for Huang",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-25/trump-says-huang-pardon-always-an-option-new-york-post-reports",
-      "summary": "The New York Post reported the president's comment.",
+      "headline": "Situational Awareness Lost 65% After Fees in the Third Quarter",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-26/situational-awareness-ai-65-hedge-fund-third-quarter-wsj-says",
+      "summary": "The Leopold Aschenbrenner hedge fund nearly imploded in July when bets on AI went south, the Wall Street Journal reported.",
       "publishedAt": null,
       "tags": [
-        "Nvidia"
+        "Hedge funds"
       ],
       "symbols": []
-    },
-    {
-      "id": "bbg-unprecedented-cmbs-debt-wipeout-is-coming-for-two-hilton-hotels",
-      "source": "Bloomberg",
-      "headline": "Investors Face a Total Loss on Bonds Backed by Two Portland Hiltons",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-24/unprecedented-cmbs-debt-wipeout-is-coming-for-two-hilton-hotels",
-      "summary": "The value of the properties tumbled 83%.",
-      "publishedAt": null,
-      "tags": [
-        "Cmbs"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-asian-stocks-to-slide-as-ai-trade-doubts-resurface-markets-wrap-2",
-      "source": "Bloomberg",
-      "headline": "On the Move: Nvidia, Anthropic, Ambarella, Workday",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-24/asian-stocks-to-slide-as-ai-trade-doubts-resurface-markets-wrap",
-      "summary": "Nvidia falls 5% and Anthropic is down 5.5%, with the iShares Semiconductor ETF sinking 4%.",
-      "publishedAt": null,
-      "tags": [
-        "Premarket"
-      ],
-      "symbols": [
-        "INTC",
-        "NVDA"
-      ]
-    },
-    {
-      "id": "bbg-quant-funds-are-having-a-hard-time-keeping-up-with-this-market",
-      "source": "Bloomberg",
-      "headline": "Quant Funds Are Having a Hard Time Keeping Up With This Market",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-24/quant-funds-are-having-a-hard-time-keeping-up-with-this-market",
-      "summary": "Goldman Sachs expects commodity-trading advisors to unload $68 billion of global stocks in the next five days.",
-      "publishedAt": null,
-      "tags": [
-        "Quant"
-      ],
-      "symbols": []
-    },
-    {
-      "id": "bbg-nvidia-option-trader-scores-1-984-gain-after-ceo-huang-s-return",
-      "source": "Bloomberg",
-      "headline": "Nvidia Option Trader Scores a 1,984% Gain After Huang's Return",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-24/nvidia-option-trader-scores-1-984-gain-after-ceo-huang-s-return",
-      "summary": "The trader made $376,900 in profit on $19,000 worth of Nvidia call options, or about 10 times their yearly salary.",
-      "publishedAt": null,
-      "tags": [
-        "Nvidia"
-      ],
-      "symbols": [
-        "NVDA"
-      ]
     }
   ]
 }
